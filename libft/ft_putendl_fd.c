@@ -6,13 +6,13 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/18 23:44:21 by fcardina         ###   ########          */
+/*   Updated: 2023/01/19 14:21:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char const *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	if (s)
 	{

@@ -5,64 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/18 23:44:21 by fcardina         ###   ########          */
+/*   Created: 2022/09/23 17:43:24 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/19 15:56:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-int		word_counter(char const *s, char c)
+int	check_separator(char c, char *charset)
 {
-	int i;
-	int j;
+	int	i;
 
-	j = 0;
 	i = 0;
-	while (s[i])
+	while (charset[i] != '\0')
 	{
-		while (s[i] == c)
+		if (c == charset[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	count_strings(char *str, char *charset)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != '\0' && check_separator(str[i], charset))
 			i++;
-		if (s[i])
-			j++;
-		while (s[i] && s[i] != c)
+		if (str[i] != '\0')
+			count++;
+		while (str[i] != '\0' && !check_separator(str[i], charset))
 			i++;
 	}
-	return (j);
+	return (count);
 }
 
-void	ft_freewd(char **str, int l)
+int	ft_strlen_sep(char *str, char *charset)
 {
-	while (l--)
-		free(str[l]);
-	free(str);
+	int	i;
+
+	i = 0;
+	while (str[i] && !check_separator(str[i], charset))
+		i++;
+	return (i);
 }
 
-char	**ft_strsplit(char const *s, char c)
+char	*ft_word(char *str, char *charset)
 {
+	int		len_word;
 	int		i;
-	int		j;
-	char	**kek;
-	int		word;
+	char	*word;
 
-	word = 0;
-	j = 0;
 	i = 0;
-	if (!s)
-		return (NULL);
-	if (!(kek = (char **)malloc(sizeof(char*) * (word_counter(s, c) + 1))))
-		return (NULL);
-	while (s[i])
+	len_word = ft_strlen_sep(str, charset);
+	word = (char *)malloc(sizeof(char) * (len_word + 1));
+	while (i < len_word)
 	{
-		while (s[i] == c)
-			i++;
-		j = i;
-		while (s[i] && s[i] != c)
-			i++;
-		if (i > j)
-			if (!(kek[word++] = ft_strndup(s + j, i - j)))
-				ft_freewd(kek, word);
+		word[i] = str[i];
+		i++;
 	}
-	kek[word] = 0;
-	return (kek);
+	word[i] = '\0';
+	return (word);
+}
+
+char	**ft_split(char *str, char *charset)
+{
+	char	**strings;
+	int		i;
+
+	i = 0;
+	strings = (char **)malloc(sizeof(char *) * (count_strings(str, charset)
+				+ 1));
+	while (*str != '\0')
+	{
+		while (*str != '\0' && check_separator(*str, charset))
+			str++;
+		if (*str != '\0')
+		{
+			strings[i] = ft_word(str, charset);
+			i++;
+		}
+		while (*str && !check_separator(*str, charset))
+			str++;
+	}
+	strings[i] = 0;
+	return (strings);
 }

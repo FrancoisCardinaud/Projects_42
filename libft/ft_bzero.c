@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/18 23:44:21 by fcardina         ###   ########          */
+/*   Updated: 2023/01/19 15:50:36 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*p;
 
-	p = (unsigned char*)s;
+	p = (unsigned char *)s;
 	while (n)
 		p[--n] = 0;
 }

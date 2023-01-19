@@ -5,28 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/18 23:44:21 by fcardina         ###   ########          */
+/*   Created: 2022/09/13 11:58:10 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/19 15:49:34 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
-	int					sign;
-	unsigned long long	res;
+	int	i;
+	int	k;
+	int	r;
 
-	res = 0;
-	sign = 1;
-	while (*str && (*str == ' ' || *str == '\v' || *str == '\n' || \
-					*str == '\f' || *str == '\t' || *str == '\r'))
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = *str++ == '-' ? -1 : 1;
-	while (*str && (*str >= '0' && *str <= '9'))
-		res = res * 10 + *str++ - 48;
-	if (res > 9223372036854775807)
-		return (sign < 0) ? 0 : -1;
-	return ((int)res * sign);
+	i = 0;
+	k = 1;
+	r = 0;
+	while (str[i] == ' ')
+	{
+		i++;
+	}
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+		{
+			k = k * -1;
+		}
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		r = r * 10 + (int)str[i] - '0';
+		i++;
+	}	
+	return (r * k);
 }

@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/18 23:44:21 by fcardina         ###   ########          */
+/*   Updated: 2023/01/19 16:05:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ char	*ft_strrchr(const char *s, int c)
 		s++;
 	}
 	if (*s == (char)c)
-		return (char*)s;
-	return (char*)p;
+		return ((char *)s);
+	return ((char *)p);
 }
