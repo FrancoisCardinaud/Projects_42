@@ -6,35 +6,39 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:58:10 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/19 15:49:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:27:51 by francoiscardi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(char *str)
-{
-	int	i;
-	int	k;
-	int	r;
+#include "libft.h"
+#include "stdlib.h"
+#include "stdio.h"
 
+int		ft_atoi(const char *str)
+{
+	int		i;
+	int		mult;
+	int		nb;
+
+	mult = 1;
+	nb = 0;
 	i = 0;
-	k = 1;
-	r = 0;
-	while (str[i] == ' ')
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' ||
+		str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
 	{
 		i++;
 	}
 	while (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-		{
-			k = k * -1;
-		}
+			mult *= -1;
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		r = r * 10 + (int)str[i] - '0';
+		nb = (nb * 10) + (str[i] - '0');
 		i++;
-	}	
-	return (r * k);
+	}
+	nb *= mult;
+	return (nb);
 }
