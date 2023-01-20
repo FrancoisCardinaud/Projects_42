@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/20 15:34:44 by francoiscardi    ###   ########.fr       */
+/*   Updated: 2023/01/20 19:29:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	l = little;
 	if (*l == '\0')
-		return ((char*)big);
+		return ((char *) big);
 	while (len--)
 	{
 		if (*l == *big)
@@ -31,10 +31,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		}
 		big++;
 		if (*l == '\0')
-			return ((char*)(big - (l - little)));
+			return ((char *)(big - (l - little)));
 		if (*big == '\0')
 			break ;
 	}
 	return (NULL);
 }
-
