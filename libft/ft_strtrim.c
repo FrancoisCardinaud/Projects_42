@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/22 03:57:56 by francoiscardi    ###   ########.fr       */
+/*   Updated: 2023/01/22 17:54:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,6 @@ int	ft_getstart(const char *s1, const char *set)
 		i++;
 	}
 	return (i);
-}
-
-char	*ft_strdup(char const *src)
-{
-	char	*new;
-	int		i;
-	int		size;
-
-	size = 0;
-	while (src[size])
-		++size;
-	new = malloc(sizeof(char) * (size + 1));
-	if (!new)
-		return (NULL);
-	i = 0;
-	while (src[i])
-	{
-		new[i] = src[i];
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
 }
 
 int	ft_getend(const char *s1, const char *set)

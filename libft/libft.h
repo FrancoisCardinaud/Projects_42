@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:46:20 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/20 19:30:41 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:08:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
-void			*calloc(size_t count, size_t size);
+void			*ft_calloc(size_t count, size_t size);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
-int				isprint(int c);
+int				ft_isprint(int c);
 char			*ft_itoa(int n);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -34,6 +34,7 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 char			**ft_split(char const *s, char c);
 char			*ft_strchr(const char *s, int c);
+char			*ft_strdup(const char *src);
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 char			*ft_strjoin(char const *s1, char const *s2);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
