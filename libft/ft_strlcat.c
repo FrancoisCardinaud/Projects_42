@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/22 19:21:05 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/01/23 00:19:14 by francoiscardi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 	dstlen = 0;
 	srclen = 0;
+	if (dst == NULL && dstsize == 0)
+		return (0);
 	while (dst[dstlen] && dstlen < dstsize)
 		dstlen++;
 	while (src[srclen])
