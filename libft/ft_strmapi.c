@@ -6,12 +6,12 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/19 17:20:01 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/01/22 03:57:22 by francoiscardi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
