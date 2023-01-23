@@ -6,7 +6,7 @@
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:43:24 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/20 19:24:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:05:26 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static char	*word_dup(const char *str, int start, int finish)
 
 	i = 0;
 	word = malloc((finish - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
 	while (start < finish)
 		word[i++] = str[start++];
 	word[i] = '\0';
@@ -56,7 +58,7 @@ char	**ft_split(char const *s, char c)
 
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!s || !split)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	index = -1;
