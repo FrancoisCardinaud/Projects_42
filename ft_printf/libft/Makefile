@@ -1,108 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/27 09:39:13 by ajordan-          #+#    #+#              #
-#    Updated: 2021/10/20 02:25:41 by ajordan-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_striteri.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
-#Standard
+OBJS		= $(SRCS:.c=.o)
 
-NAME		=	libft.a
-INCLUDES	=	../include
-SRCS_DIR 	=	src/
-OBJS_DIR	=	obj/
-CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -I
-RM			=	rm -f
-AR			=	ar rcs
+HEAD		= ./includes/
 
-#Colors
+NAME		= libft.a
 
-DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+AR		= ar rc
 
-#Sources
+RM		= rm -f
 
-FTIS_DIR	=	ft_is/
-FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
+LIB		= ranlib
 
-FTMEM_DIR	=	ft_mem/
-FTMEM		=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
+GCC		= gcc
 
-FTPUT_DIR	=	ft_put/
-FTPUT		=	ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
-
-FTTO_DIR	=	ft_to/
-FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper
-
-FTSTR_DIR	=	ft_str/
-FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
-				ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
-				ft_strnstr ft_strrchr ft_strtrim ft_substr
-
-FTLST_DIR	=	ft_lst/
-FTLST		=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
-				ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize
-
-SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
-SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
-SRC_FILES+=$(addprefix $(FTPUT_DIR),$(FTPUT))
-SRC_FILES+=$(addprefix $(FTTO_DIR),$(FTTO))
-SRC_FILES+=$(addprefix $(FTSTR_DIR),$(FTSTR))
-SRC_FILES+=$(addprefix $(FTLST_DIR),$(FTLST))
-
-SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
-
-###
-
-OBJSF		=	.cache_exists
+CFLAGS		= -Wall -Wextra -Werror
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
-			@$(AR) $(NAME) $(OBJS)
-			@ranlib $(NAME)
-			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
+.c.o:
+			$(GCC) $(CFLAGS) -c -I $(HEAD) $< -o $(<:.c=.o)
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
-			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJSF):
-			@mkdir -p $(OBJS_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTIS_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTMEM_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTPUT_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTTO_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTSTR_DIR)
-			@mkdir -p $(OBJS_DIR)$(FTLST_DIR)
+${NAME}:	$(OBJS)
+			$(AR) $(NAME) $(OBJS)
+			$(LIB) $(NAME)
 
 clean:
-			@$(RM) -rf $(OBJS_DIR)
-			@$(RM) -f $(OBJSF)
-			@echo "$(BLUE)libft objects files cleaned!$(DEF_COLOR)"
+			rm -f $(OBJS)
 
 fclean:		clean
-			@$(RM) -f $(NAME)
-			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+			rm -f $(NAME)
 
 re:			fclean all
-			@echo "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
 
-norm:
-	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
-
-.PHONY:		all clean fclean re norm
+.PHONY:		all clean fclean re
