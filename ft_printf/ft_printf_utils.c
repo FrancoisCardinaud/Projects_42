@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 13:40:58 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/10/19 14:53:21 by ajordan-         ###   ########.fr       */
+/*   Created: 2023/01/28 21:10:49 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/28 21:10:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft.h"
+#include "libft/libft.h"
 #include <stdlib.h>
 
 void	ft_putstr(char *str)

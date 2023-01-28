@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 11:58:09 by ajordan-          #+#    #+#             */
-/*   Updated: 2021/09/28 09:42:55 by ajordan-         ###   ########.fr       */
+/*   Created: 2023/01/28 21:10:39 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/28 21:10:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printchar(int c)
+int	ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
@@ -24,16 +24,20 @@ int	ft_formats(va_list args, const char format)
 
 	print_length = 0;
 	if (format == 'c')
-		print_length += ft_printchar(va_arg(args, int));
+		print_length += ft_putchar(va_arg(args, int));
 	else if (format == 's')
 		print_length += ft_printstr(va_arg(args, char *));
 	else if (format == 'p')
 		print_length += ft_print_ptr(va_arg(args, unsigned long long));
-	else if (format == 'd' || format == 'i')
+	else if (format == 'd')
+		print_length += ft_printnbr(va_arg(args, int));
+	else if (format == 'i')
 		print_length += ft_printnbr(va_arg(args, int));
 	else if (format == 'u')
 		print_length += ft_print_unsigned(va_arg(args, unsigned int));
-	else if (format == 'x' || format == 'X')
+	else if (format == 'x')
+		print_length += ft_print_hex(va_arg(args, unsigned int), format);
+	else if (format == 'X')
 		print_length += ft_print_hex(va_arg(args, unsigned int), format);
 	else if (format == '%')
 		print_length += ft_printpercent();
@@ -57,7 +61,7 @@ int	ft_printf(const char *str, ...)
 			i++;
 		}
 		else
-			print_length += ft_printchar(str[i]);
+			print_length += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(args);
