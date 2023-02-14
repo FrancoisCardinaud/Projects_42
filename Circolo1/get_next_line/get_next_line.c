@@ -6,13 +6,13 @@
 /*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 01:33:01 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/01/25 02:05:19 by francoiscardi    ###   ########.fr       */
+/*   Updated: 2023/02/03 14:12:14 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_get_line(char *save)
+char	*ft_extract(char *save)
 {
 	int		i;
 	char	*s;
@@ -40,7 +40,7 @@ char	*ft_get_line(char *save)
 	return (s);
 }
 
-char	*ft_save(char *save)
+char	*ft_overwrite(char *save)
 {
 	int		i;
 	int		c;
@@ -100,37 +100,7 @@ char	*get_next_line(int fd)
 	save = ft_read_and_save(fd, save);
 	if (!save)
 		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
+	line = ft_extract(save);
+	save = ft_overwrite(save);
 	return (line);
 }
-
-/*int	main(void)
-{
-	char	*line;
-	int		i;
-	int		fd1;
-	int		fd2;
-	int		fd3;
-	fd1 = open("tests/test.txt", O_RDONLY);
-	fd2 = open("tests/test2.txt", O_RDONLY);
-	fd3 = open("tests/test3.txt", O_RDONLY);
-	i = 1;
-	while (i < 7)
-	{
-		line = get_next_line(fd1);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		line = get_next_line(fd2);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		line = get_next_line(fd3);
-		printf("line [%02d]: %s", i, line);
-		free(line);
-		i++;
-	}
-	close(fd1);
-	close(fd2);
-	close(fd3);
-	return (0);
-}*/

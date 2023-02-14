@@ -6,7 +6,7 @@
 /*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 01:42:24 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/01/25 02:06:31 by francoiscardi    ###   ########.fr       */
+/*   Updated: 2023/02/03 13:52:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 size_t	ft_strlen(char *str)
 {
-	size_t	c;
+	size_t	l;
 
-	c = 0;
+	l = 0;
 	if (!str)
 		return (0);
-	while (str[c] != '\0')
-		c++;
-	return (c);
+	while (str[l] != '\0')
+		l++;
+	return (l);
 }
 
 char	*ft_strchr(char *s, int c)
@@ -42,30 +42,30 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *str1, char *str2)
 {
 	size_t	i;
 	size_t	c;
 	char	*str;
 
-	if (!s1)
+	if (!str1)
 	{
-		s1 = (char *)malloc(1 * sizeof(char));
-		s1[0] = '\0';
+		str1 = (char *)malloc(1 * sizeof(char));
+		str1[0] = '\0';
 	}
-	if (!s1 || !s2)
+	if (!str1 || !str2)
 		return (NULL);
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
 	c = 0;
-	if (s1)
-		while (s1[++i] != '\0')
-			str[i] = s1[i];
-	while (s2[c] != '\0')
-		str[i++] = s2[c++];
-	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	free(s1);
+	if (str1)
+		while (str1[++i] != '\0')
+			str[i] = str1[i];
+	while (str2[c] != '\0')
+		str[i++] = str2[c++];
+	str[ft_strlen(str1) + ft_strlen(str2)] = '\0';
+	free(str1);
 	return (str);
 }
