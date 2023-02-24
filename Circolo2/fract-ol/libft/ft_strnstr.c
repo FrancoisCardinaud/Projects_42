@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 00:32:11 by pbondoer          #+#    #+#             */
-/*   Updated: 2016/01/08 01:30:00 by pbondoer         ###   ########.fr       */
+/*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/20 19:29:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t i;
-	size_t j;
+	const char	*l;
 
-	if (*s2 == '\0')
-		return ((char *)s1);
-	i = 0;
-	while (s1[i] && i < n)
+	l = little;
+	if (*l == '\0')
+		return ((char *) big);
+	while (len--)
 	{
-		j = 0;
-		while (s1[i + j] && i + j < n && s2[j] && s1[i + j] == s2[j])
-			j++;
-		if (s2[j] == '\0')
-			return ((char *)(s1 + i));
-		i++;
+		if (*l == *big)
+			l++;
+		else
+		{
+			big -= (l - little);
+			len += (l - little);
+			l = little;
+		}
+		big++;
+		if (*l == '\0')
+			return ((char *)(big - (l - little)));
+		if (*big == '\0')
+			break ;
 	}
 	return (NULL);
 }

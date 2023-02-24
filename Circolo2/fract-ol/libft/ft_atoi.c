@@ -3,30 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 01:05:06 by pbondoer          #+#    #+#             */
-/*   Updated: 2016/01/08 01:47:30 by pbondoer         ###   ########.fr       */
+/*   Created: 2022/09/13 11:58:10 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/22 18:27:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 int	ft_atoi(const char *str)
 {
-	int		nbr;
-	char	neg;
+	int		i;
+	int		mult;
+	int		nb;
 
-	while (ft_iswhitespace(*str))
-		str++;
-	neg = (*str == '-');
-	if (*str == '-' || *str == '+')
-		str++;
-	nbr = 0;
-	while (ft_isdigit(*str))
+	mult = 1;
+	nb = 0;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
+		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
 	{
-		nbr = nbr * 10 + (*str - '0');
-		str++;
+		i++;
 	}
-	return (neg ? -nbr : nbr);
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			mult *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + (str[i] - '0');
+		i++;
+	}
+	nb *= mult;
+	return (nb);
 }

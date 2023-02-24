@@ -3,48 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 00:51:40 by pbondoer          #+#    #+#             */
-/*   Updated: 2015/12/04 03:43:02 by pbondoer         ###   ########.fr       */
+/*   Created: 2023/01/28 21:12:43 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/28 21:12:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	cleanup(t_list *lst)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*tmp;
+	t_list	*new_lst;
+	t_list	*new_elem;
 
+	if (!f || !del)
+		return (0);
+	new_lst = 0;
 	while (lst)
 	{
-		tmp = lst->next;
-		ft_memdel((void **)&lst);
-		lst = tmp;
-	}
-}
-
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
-{
-	t_list	*elem;
-	t_list	*first;
-
-	elem = ft_lstnew(lst->content, lst->content_size);
-	if (elem == NULL)
-		return (NULL);
-	elem = (*f)(elem);
-	first = elem;
-	while (lst->next)
-	{
-		lst = lst->next;
-		elem->next = ft_lstnew(lst->content, lst->content_size);
-		if (elem->next == NULL)
+		new_elem = ft_lstnew(f(lst->content));
+		if (!new_elem)
 		{
-			cleanup(first);
-			return (NULL);
+			ft_lstclear(&new_lst, del);
+			return (0);
 		}
-		elem->next = (*f)(elem->next);
-		elem = elem->next;
+		ft_lstadd_back(&new_lst, new_elem);
+		lst = lst->next;
 	}
-	return (first);
+	return (new_lst);
 }

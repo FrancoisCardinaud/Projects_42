@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
+#    By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2016/11/23 00:54:14 by lemon            ###   ########.fr        #
+#    Created: 2023/02/24 14:16:12 by francoiscardi     #+#    #+#              #
+#    Updated: 2023/02/24 14:21:14 by francoiscardi    ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,18 +19,7 @@ INCDIR	= ./includes
 OBJDIR	= ./obj
 
 # src / obj files
-SRC		= main.c \
-		  window.c \
-		  image.c \
-		  mouse.c \
-		  keyboard.c \
-		  zoom.c \
-		  fractal.c \
-		  palette.c \
-		  draw.c \
-		  color.c \
-		  viewport.c \
-		  $(addprefix fractals/,$(shell ls $(SRCDIR)/fractals | grep -E ".+\.c"))
+SRC		= event.c fractal.c main.c tools.c events2.c
 
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
@@ -40,13 +29,8 @@ CFLAGS	= -Wall -Wextra -Werror -g
 
 
 # mlx library
-ifeq ($(OS), Linux)
-	MLX		= ./miniLibX_X11/
-	MLX_LNK	= -L $(MLX) -l mlx -lXext -lX11
-else
-	MLX		= ./miniLibX/
-	MLX_LNK	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit
-endif
+MLX		= ./miniLibX/
+MLX_LNK	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit
 
 MLX_INC	= -I $(MLX)
 MLX_LIB	= $(addprefix $(MLX),mlx.a)

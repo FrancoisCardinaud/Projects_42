@@ -3,54 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 18:32:07 by pbondoer          #+#    #+#             */
-/*   Updated: 2015/12/03 23:29:54 by pbondoer         ###   ########.fr       */
+/*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/19 17:16:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
+#include <stdlib.h>
 
-static size_t	digit_count(long n)
+static void	ft_putnbr_stock(long n, char *str, int *i)
 {
-	size_t i;
-
-	i = 1;
-	if (n < 0)
-		n = -n;
-	while (n >= 10)
+	if (n > 9)
 	{
-		i++;
-		n /= 10;
+		ft_putnbr_stock(n / 10, str, i);
+		ft_putnbr_stock(n % 10, str, i);
 	}
-	return (i);
+	else
+		str[(*i)++] = n + '0';
 }
 
-char			*ft_itoa(int n)
+size_t	ft_nbrlen(int n)
 {
-	long	v;
-	size_t	count;
-	char	*str;
-	char	neg;
+	int	size;
 
-	v = n;
-	neg = (v < 0 ? 1 : 0);
-	count = digit_count(v);
-	str = ft_strnew(count + neg);
+	size = 0;
+	if (n < 0)
+		size++;
+	while (n / 10 != 0)
+	{
+		n = n / 10;
+		size++;
+	}
+	size++;
+	return (size);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		i;
+	long	nbr;
+
+	nbr = n;
+	str = malloc(sizeof(char) * (ft_nbrlen(nbr) + 1));
 	if (str == NULL)
 		return (NULL);
-	if (neg)
+	i = 0;
+	if (nbr < 0)
 	{
-		v = -v;
-		str[0] = '-';
+		str[i++] = '-';
+		nbr *= -1;
 	}
-	while (count > 0)
-	{
-		str[count + neg - 1] = (v % 10) + '0';
-		count--;
-		v /= 10;
-	}
+	ft_putnbr_stock(nbr, str, &i);
+	str[i] = '\0';
 	return (str);
 }

@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/01/19 14:21:48 by fcardina         ###   ########.fr       */
+/*   Created: 2023/01/19 17:44:15 by fcardina          #+#    #+#             */
+/*   Updated: 2023/01/23 16:33:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	ft_putendl_fd(char *s, int fd)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (s)
+	void	*ptr;
+
+	if (count == 0 || size == 0)
 	{
-		ft_putstr_fd(s, fd);
-		ft_putchar_fd('\n', fd);
+		ptr = malloc(1);
+		if (ptr)
+			*(unsigned char *)ptr = 0;
 	}
+	else if (count == SIZE_MAX && size == SIZE_MAX)
+		return (NULL);
+	else
+	{
+		ptr = malloc(count * size);
+		if (ptr)
+			ft_memset(ptr, 0, count * size);
+	}
+	return (ptr);
 }

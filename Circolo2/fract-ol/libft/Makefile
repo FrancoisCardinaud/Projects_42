@@ -1,38 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/12/01 21:02:30 by pbondoer          #+#    #+#              #
-#    Updated: 2016/02/23 00:20:24 by pbondoer         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_striteri.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
-NAME	= libft.a
-SRC		= $(shell ls | grep -E "ft_.+\.c") \
-		  get_next_line.c
+OBJS		= $(SRCS:.c=.o)
 
-OBJ		= $(SRC:.c=.o)
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+HEAD		= ./includes/
 
-all: $(NAME)
+NAME		= libft.a
 
-%.o:%.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+AR		= ar rc
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+RM		= rm -f
+
+LIB		= ranlib
+
+GCC		= gcc
+
+CFLAGS		= -Wall -Wextra -Werror
+
+all:		$(NAME)
+
+.c.o:
+			$(GCC) $(CFLAGS) -c -I $(HEAD) $< -o $(<:.c=.o)
+
+${NAME}:	$(OBJS)
+			$(AR) $(NAME) $(OBJS)
+			$(LIB) $(NAME)
 
 clean:
-	rm -rf $(OBJ)
+			rm -f $(OBJS)
 
-fclean: clean
-	rm -rf $(NAME)
+fclean:		clean
+			rm -f $(NAME)
 
-re: fclean all
+re:			fclean all
 
-test: fclean all fclean
+.PHONY:		all clean fclean re
