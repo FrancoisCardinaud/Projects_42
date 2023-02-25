@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractal.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hamr <sel-hamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/22 11:04:51 by sel-hamr          #+#    #+#             */
-/*   Updated: 2019/12/25 10:29:26 by sel-hamr         ###   ########.fr       */
+/*   Created: 2023/02/25 15:15:32 by fcardina          #+#    #+#             */
+/*   Updated: 2023/02/25 15:15:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		mandelbrot(t_t *t)
 
 int			mouse_move(int x, int y, t_t *t)
 {
-	if (x < 600 && y < 600 && t->stop == 0 && str_cmp(t->name, "julia") == 0)
+	if (x < 600 && y < 600 && t->stop == 0 && ft_strcmp(t->name, "julia") == 0)
 	{
 		t->x_o = (((double)x / 600) * 4) - 2;
 		t->y_o = ((((double)y * -1) / 600) * 4) + 2;

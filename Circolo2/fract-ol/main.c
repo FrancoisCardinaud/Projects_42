@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hamr <sel-hamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/23 17:10:35 by sel-hamr          #+#    #+#             */
-/*   Updated: 2019/12/25 10:37:41 by sel-hamr         ###   ########.fr       */
+/*   Created: 2023/02/25 15:16:15 by fcardina          #+#    #+#             */
+/*   Updated: 2023/02/25 15:16:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ void		init(t_t *t, char *str)
 
 void		check_ar(t_t *t)
 {
-	if (str_cmp(t->name, "Mandelbrot") == 0)
+	if (ft_strcmp(t->name, "Mandelbrot") == 0)
 		mandelbrot(t);
-	else if (str_cmp(t->name, "Burningship") == 0)
+	else if (ft_strcmp(t->name, "Burningship") == 0)
 		mandelbrot(t);
-	else if (str_cmp(t->name, "julia") == 0)
+	else if (ft_strcmp(t->name, "julia") == 0)
 		julia(t);
 	else
 	{
@@ -99,8 +99,8 @@ int			main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		if (str_cmp(av[1], "Mandelbrot") == 0 || str_cmp(av[1]
-		, "Burningship") == 0 || str_cmp(av[1], "julia") == 0)
+		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1]
+		, "Burningship") == 0 || ft_strcmp(av[1], "julia") == 0)
 		{
 			t.ptr = mlx_init();
 			t.win = mlx_new_window(t.ptr, 1000, 600, "Fractol");

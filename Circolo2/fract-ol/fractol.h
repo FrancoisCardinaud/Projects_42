@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hamr <sel-hamr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/24 08:50:29 by sel-hamr          #+#    #+#             */
-/*   Updated: 2023/02/24 13:38:22 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/02/25 15:15:52 by fcardina          #+#    #+#             */
+/*   Updated: 2023/02/25 15:15:55 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include "libft.h"
 
 #	define WIDTH 600
 #	define HIGHT 600
@@ -66,7 +67,7 @@ void				key_press2(int keycode, t_t *t);
 void				key_press3(int keycode, t_t *t);
 void				key_press4(int keycode, t_t *t);
 void				set_color(t_t *t, int color);
-int					str_cmp(char *s1, char *s2);
+int					ft_strcmp(char *s1, char *s2);
 void				check_ar(t_t *t);
 void				init(t_t *t, char *str);
 void				string_put(t_t *t);
