@@ -15,18 +15,18 @@
 #include "minitalk.h"
 #include "libft.h"
 
-void		print_pid(void)
+void	print_pid(void)
 {
-	char	*tmp_pid;
+	char	*pid;
 
-	tmp_pid = ft_itoa(getpid());
+	pid = ft_itoa(getpid());
 	write(1, "pid: ", 5);
-	write(1, tmp_pid, ft_strlen(tmp_pid));
+	write(1, pid, ft_strlen(pid));
 	write(1, "\n", 1);
-	free(tmp_pid);
+	free(pid);
 }
 
-void		activebit(int sig, siginfo_t *info, void *context)
+void	activebit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)context;
@@ -42,7 +42,7 @@ void		activebit(int sig, siginfo_t *info, void *context)
 		g_to_print.buff_overflow = TRUE;
 }
 
-void		nullbit(int sig, siginfo_t *info, void *context)
+void	nullbit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)context;
@@ -62,7 +62,7 @@ void		nullbit(int sig, siginfo_t *info, void *context)
 	}
 }
 
-_Bool		main_handler(void)
+_Bool	main_handler(void)
 {
 	while (1)
 	{
@@ -82,10 +82,10 @@ _Bool		main_handler(void)
 	return (TRUE);
 }
 
-int			main(void)
+int	main(void)
 {
-	struct sigaction active_act;
-	struct sigaction null_act;
+	struct sigaction	active_act;
+	struct sigaction	null_act;
 
 	active_act.sa_sigaction = activebit;
 	null_act.sa_sigaction = nullbit;

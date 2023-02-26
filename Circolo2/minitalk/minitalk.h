@@ -23,7 +23,7 @@
 #  define FALSE 0
 # endif
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	char		message[BUFFSIZE];
 	int			top_bit;
@@ -32,7 +32,7 @@ typedef struct	s_stack
 	_Bool		buff_overflow;
 }				t_stack;
 
-t_stack			g_to_print = {{0}, 1 << 6, 0, FALSE, FALSE};
+t_stack	g_to_print = {{0}, 1 << 6, 0, FALSE, FALSE};
 
 void			error(char *str_error);
 

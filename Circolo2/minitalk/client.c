@@ -19,9 +19,9 @@
 ** Parameters: ./client [server-pid] [message]
 */
 
-void	usage(void)
+void	howto(void)
 {
-	write(1, "usage: ./client [server-pid] [message]\n", 39);
+	write(1, "How to use: ./client [server-pid] [message]\n", 39);
 	exit(0);
 }
 
@@ -66,10 +66,10 @@ void	success(int sig)
 	write(1, "Data has been received.\n", 25);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc != 3)
-		usage();
+		howto();
 	signal(SIGUSR1, success);
 	main_handler(argv[1], argv[2]);
 	return (0);
