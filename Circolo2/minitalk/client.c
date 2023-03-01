@@ -15,62 +15,64 @@
 #include "libft.h"
 #include "minitalk.h"
 
-/*
-** Parameters: ./client [server-pid] [message]
-*/
-
 void	howto(void)
 {
-	write(1, "How to use: ./client [server-pid] [message]\n", 39);
+	write(1, "How to use: ./client [Server PID] \"Message\"\n", 44);
 	exit(0);
 }
 
-void	send_char(int pid, unsigned char byte)
+void	send_byte(int pid, unsigned char byte)
 {
-	uint8_t		counter;
+	uint8_t		i;
 
-	counter = 1 << 6;
-	while (counter)
+	i = 1 << 6;
+	while (i)
 	{
-		if (byte & counter)
+		if (byte & i)
 		{
 			if (kill(pid, SIGUSR1) == -1)
-				error("bad pid\n");
+			{
+				write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
+				exit(1);
+			}
 		}
 		else
 		{
 			if (kill(pid, SIGUSR2) == -1)
-				error("bad pid\n");
+			{
+				write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
+				exit(1);
+			}
 		}
-		counter >>= 1;
+		i >>= 1;
 		usleep(600);
 	}
 }
 
-void	main_handler(char *str_pid, char *message)
+void	client(char *str_pid, char *message)
 {
 	int			pid;
 
 	pid = ft_atoi(str_pid);
 	while (*message)
 	{
-		send_char(pid, *message);
-		++message;
+		send_byte(pid, *message);
+		message++;
 	}
-	send_char(pid, *message);
+	send_byte(pid, *message);
 }
 
 void	success(int sig)
 {
 	(void)sig;
-	write(1, "Data has been received.\n", 25);
+	write(1, "Data was received.\n", 19);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc != 3)
+	if (argc != 3 || !ft_isnbr(argv[1]))
 		howto();
 	signal(SIGUSR1, success);
-	main_handler(argv[1], argv[2]);
+	client(argv[1], argv[2]);
 	return (0);
 }

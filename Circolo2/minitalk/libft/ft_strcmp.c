@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 23:04:50 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/02/21 23:05:04 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/02/25 15:54:30 by fcardina          #+#    #+#             */
+/*   Updated: 2023/02/25 15:54:34 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	error(char *str_error)
+int	ft_strcmp(char *s1, char *s2)
 {
-	write(2, str_error, ft_strlen(str_error));
-	exit(1);
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
 }

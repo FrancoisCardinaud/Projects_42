@@ -20,63 +20,63 @@ void	print_pid(void)
 	char	*pid;
 
 	pid = ft_itoa(getpid());
-	write(1, "pid: ", 5);
+	write(1, "PID: ", 5);
 	write(1, pid, ft_strlen(pid));
 	write(1, "\n", 1);
 	free(pid);
 }
 
-void	activebit(int sig, siginfo_t *info, void *context)
+void	sigur1_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)context;
 	(void)info;
-	if (!g_to_print.top_bit)
+	if (!global.top_bit)
 	{
-		g_to_print.top_bit = 1 << 6;
-		++(g_to_print.top_byte);
+		global.top_bit = 1 << 6;
+		++(global.top_byte);
 	}
-	g_to_print.message[g_to_print.top_byte] += g_to_print.top_bit;
-	g_to_print.top_bit >>= 1;
-	if (g_to_print.top_byte == BUFFSIZE - 2 && !g_to_print.top_bit)
-		g_to_print.buff_overflow = TRUE;
+	global.message[global.top_byte] += global.top_bit;
+	global.top_bit >>= 1;
+	if (global.top_byte == BUFFSIZE - 2 && !global.top_bit)
+		global.buff_overflow = TRUE;
 }
 
-void	nullbit(int sig, siginfo_t *info, void *context)
+void	sigur2_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)context;
-	if (!g_to_print.top_bit)
+	if (!global.top_bit)
 	{
-		g_to_print.top_bit = 1 << 6;
-		++(g_to_print.top_byte);
+		global.top_bit = 1 << 6;
+		++(global.top_byte);
 	}
-	g_to_print.top_bit >>= 1;
-	if (g_to_print.top_byte == BUFFSIZE - 2 && !g_to_print.top_bit)
-		g_to_print.buff_overflow = TRUE;
-	else if (!g_to_print.message[g_to_print.top_byte]
-		&& !g_to_print.top_bit)
+	global.top_bit >>= 1;
+	if (global.top_byte == BUFFSIZE - 2 && !global.top_bit)
+		global.buff_overflow = TRUE;
+	else if (!global.message[global.top_byte]
+		&& !global.top_bit)
 	{
-		g_to_print.all_receive = TRUE;
+		global.all_receive = TRUE;
 		kill(info->si_pid, SIGUSR1);
 	}
 }
 
-_Bool	main_handler(void)
+_Bool	server(void)
 {
 	while (1)
 	{
 		pause();
-		if (g_to_print.all_receive || g_to_print.buff_overflow)
+		if (global.all_receive || global.buff_overflow)
 		{
-			write(1, g_to_print.message, ft_strlen(g_to_print.message));
-			ft_bzero(g_to_print.message, BUFFSIZE);
-			g_to_print.top_byte = 0;
-			g_to_print.top_bit = 1 << 6;
-			if (g_to_print.all_receive)
+			write(1, global.message, ft_strlen(global.message));
+			ft_bzero(global.message, BUFFSIZE);
+			global.top_byte = 0;
+			global.top_bit = 1 << 6;
+			if (global.all_receive)
 				write(1, "\n", 1);
-			g_to_print.all_receive = FALSE;
-			g_to_print.buff_overflow = FALSE;
+			global.all_receive = FALSE;
+			global.buff_overflow = FALSE;
 		}
 	}
 	return (TRUE);
@@ -84,18 +84,24 @@ _Bool	main_handler(void)
 
 int	main(void)
 {
-	struct sigaction	active_act;
-	struct sigaction	null_act;
+	struct sigaction	sigur1_act;
+	struct sigaction	sigur2_act;
 
-	active_act.sa_sigaction = activebit;
-	null_act.sa_sigaction = nullbit;
-	active_act.sa_flags = SA_SIGINFO;
-	null_act.sa_flags = SA_SIGINFO;
-	if (sigaction(SIGUSR1, &active_act, NULL) != 0)
-		error("signal error\n");
-	if (sigaction(SIGUSR2, &null_act, NULL) != 0)
-		error("signal error\n");
+	sigur1_act.sa_sigaction = sigur1_bit;
+	sigur2_act.sa_sigaction = sigur2_bit;
+	sigur1_act.sa_flags = SA_SIGINFO;
+	sigur2_act.sa_flags = SA_SIGINFO;
+	if (sigaction(SIGUSR1, &sigur1_act, NULL) != 0)
+	{
+		write(2, "Signal error\n", ft_strlen("Signal error\n"));
+		exit(1);
+	}
+	if (sigaction(SIGUSR2, &sigur2_act, NULL) != 0)
+	{
+		write(2, "Signal error\n", ft_strlen("Signal error\n"));
+		exit(1);
+	}
 	print_pid();
-	ft_bzero(g_to_print.message, BUFFSIZE);
-	main_handler();
+	ft_bzero(global.message, BUFFSIZE);
+	server();
 }
