@@ -38,7 +38,7 @@ void	sigur1_bit(int sig, siginfo_t *info, void *context)
 	}
 	global.message[global.top_byte] += global.top_bit;
 	global.top_bit >>= 1;
-	if (global.top_byte == BUFFSIZE - 2 && !global.top_bit)
+	if (global.top_byte == G_BUFFSIZE - 2 && !global.top_bit)
 		global.buff_overflow = TRUE;
 }
 
@@ -52,7 +52,7 @@ void	sigur2_bit(int sig, siginfo_t *info, void *context)
 		++(global.top_byte);
 	}
 	global.top_bit >>= 1;
-	if (global.top_byte == BUFFSIZE - 2 && !global.top_bit)
+	if (global.top_byte == G_BUFFSIZE - 2 && !global.top_bit)
 		global.buff_overflow = TRUE;
 	else if (!global.message[global.top_byte]
 		&& !global.top_bit)
@@ -70,7 +70,7 @@ _Bool	server(void)
 		if (global.all_receive || global.buff_overflow)
 		{
 			write(1, global.message, ft_strlen(global.message));
-			ft_bzero(global.message, BUFFSIZE);
+			ft_bzero(global.message, G_BUFFSIZE);
 			global.top_byte = 0;
 			global.top_bit = 1 << 6;
 			if (global.all_receive)
@@ -102,6 +102,6 @@ int	main(void)
 		exit(1);
 	}
 	print_pid();
-	ft_bzero(global.message, BUFFSIZE);
+	ft_bzero(global.message, G_BUFFSIZE);
 	server();
 }

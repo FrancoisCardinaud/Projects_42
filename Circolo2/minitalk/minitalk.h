@@ -6,14 +6,14 @@
 /*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:07:12 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/02/21 23:07:22 by francoiscardi    ###   ########.fr       */
+/*   Updated: 2023/03/06 14:56:30 by francoiscardi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# define BUFFSIZE 1024
+# define G_BUFFSIZE 1024
 
 # ifndef TRUE
 #  define TRUE 1
@@ -25,7 +25,7 @@
 
 typedef struct s_stack
 {
-	char		message[BUFFSIZE];
+	char		message[G_BUFFSIZE];
 	int			top_bit;
 	int			top_byte;
 	_Bool		all_receive;
