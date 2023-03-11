@@ -16,7 +16,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include "libft.h"
+#include "libft/libft.h"
 
 #	define WIDTH 600
 #	define HIGHT 600
