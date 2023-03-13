@@ -35,7 +35,7 @@ void		init_x_y(t_t *t)
 {
 	t->x = ((t->x_x / (double)WIDTH) *
 	(t->end_x - t->start_x)) + t->start_x;
-	t->y = ((t->y_y / (double)HIGHT) *
+	t->y = ((t->y_y / (double)HEIGHT) *
 	(t->end_y - t->start_y)) + t->start_y;
 }
 

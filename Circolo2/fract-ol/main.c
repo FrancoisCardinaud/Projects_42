@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "libft/libft.h"
 
 void		menu(t_t *t)
 {
@@ -18,7 +19,7 @@ void		menu(t_t *t)
 	int		j;
 
 	j = -1;
-	while (++j < HIGHT)
+	while (++j < HEIGHT)
 	{
 		i = 599;
 		while (++i < 1000)
@@ -104,7 +105,7 @@ int			main(int ac, char *av[])
 		{
 			t.ptr = mlx_init();
 			t.win = mlx_new_window(t.ptr, 1000, 600, "Fractol");
-			t.image = mlx_new_image(t.ptr, WIDTH + 400, HIGHT);
+			t.image = mlx_new_image(t.ptr, WIDTH + 400, HEIGHT);
 			t.ch = (unsigned char*)mlx_get_data_addr(t.image, &t.bpp
 			, &t.size_l, &t.endian);
 		}

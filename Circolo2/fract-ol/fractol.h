@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef FRACTOL_H
+#ifndef FRACTOL_H
 #	define FRACTOL_H
 
-#include "mlx.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#	include "mlx.h"
+#	include "libft/libft.h"
+#	include <stdlib.h>
+#	include <unistd.h>
 
 #	define WIDTH 600
-#	define HIGHT 600
+#	define HEIGHT 600
 
 typedef struct		s_t
 {
@@ -53,7 +53,6 @@ typedef struct		s_t
 }					t_t;
 
 void				mandelbrot(t_t *t);
-int					str_cmp(char *s1, char *s2);
 int					mouse_move(int x, int y, t_t *t);
 int					mouse_press(int button, int x, int y, t_t *t);
 int					key_press(int keycode, t_t *t);

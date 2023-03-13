@@ -32,7 +32,7 @@ void	set_color(t_t *t, int color)
 void	map(t_t *t)
 {
 	t->x = t->x_x / (WIDTH / (t->end_x - t->start_x)) + t->start_x;
-	t->y = t->y_y / (HIGHT / (t->end_y - t->start_y)) + t->start_y;
+	t->y = t->y_y / (HEIGHT / (t->end_y - t->start_y)) + t->start_y;
 	t->x_o = t->x;
 	t->y_o = t->y;
 }
