@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../push_swap.h"
 
 static t_lst	*ps_get_min(t_lst **stack)
 {

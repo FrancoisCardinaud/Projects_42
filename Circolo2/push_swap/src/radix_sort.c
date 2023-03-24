@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../push_swap.h"
 
 static int	get_maxbits_lst(t_lst **stack)
 {

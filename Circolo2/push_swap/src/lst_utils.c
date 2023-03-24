@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../push_swap.h"
 
 void	lst_addfront(t_lst **stack, t_lst *news)
 {

@@ -48,12 +48,12 @@ INDI	= \033[38;5;99m
 RESET	= \033[00m
 
 # PRINT
-RNBW	= @printf "\n$(RED)pu$(ORANGE)sh _$(YELLOW)swa$(GREEN)p i$(LBLUE)s re$(BLUE)ady $(INDI)to r$(PURPLE)un !$(RESET)  \n"
+RNBW	= @printf "\nPlease enter a series of non-repeating numbers as such: ./push_swap [nb1 nb1 nb3 ...]\n"
 
 all: $(PRINT_NAME) $(NAME)
 
 %.o: %.c
-	@printf "\r$(LBLUE)[$(RESET)+$(LBLUE)] $(RESET)Compiling $(GREEN)$<$(BLUE) [$(RESET)$(CMP)$(BLUE)/$(RESET)$(FILE)$(BLUE)]$(RESET)                      \r"
+	@printf "\rCompiling                      \r"
 	$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval CMP=$(shell echo $$(($(CMP)+1))))
 	
