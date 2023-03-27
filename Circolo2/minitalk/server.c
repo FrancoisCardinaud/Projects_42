@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 23:06:12 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/02/21 23:06:16 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/02/21 23:06:12 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/03/27 01:58:59 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,33 @@ void	sigur1_bit(int sig, siginfo_t *info, void *context)
 	(void)sig;
 	(void)context;
 	(void)info;
-	if (!global.top_bit)
+	if (!g_global.top_bit)
 	{
-		global.top_bit = 1 << 6;
-		++(global.top_byte);
+		g_global.top_bit = 1 << 6;
+		++(g_global.top_byte);
 	}
-	global.message[global.top_byte] += global.top_bit;
-	global.top_bit >>= 1;
-	if (global.top_byte == G_BUFFSIZE - 2 && !global.top_bit)
-		global.buff_overflow = TRUE;
+	g_global.message[g_global.top_byte] += g_global.top_bit;
+	g_global.top_bit >>= 1;
+	if (g_global.top_byte == G_BUFFSIZE - 2 && !g_global.top_bit)
+		g_global.buff_overflow = TRUE;
 }
 
 void	sigur2_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
 	(void)context;
-	if (!global.top_bit)
+	if (!g_global.top_bit)
 	{
-		global.top_bit = 1 << 6;
-		++(global.top_byte);
+		g_global.top_bit = 1 << 6;
+		++(g_global.top_byte);
 	}
-	global.top_bit >>= 1;
-	if (global.top_byte == G_BUFFSIZE - 2 && !global.top_bit)
-		global.buff_overflow = TRUE;
-	else if (!global.message[global.top_byte]
-		&& !global.top_bit)
+	g_global.top_bit >>= 1;
+	if (g_global.top_byte == G_BUFFSIZE - 2 && !g_global.top_bit)
+		g_global.buff_overflow = TRUE;
+	else if (!g_global.message[g_global.top_byte]
+		&& !g_global.top_bit)
 	{
-		global.all_receive = TRUE;
+		g_global.all_receive = TRUE;
 		kill(info->si_pid, SIGUSR1);
 	}
 }
@@ -67,16 +67,16 @@ _Bool	server(void)
 	while (1)
 	{
 		pause();
-		if (global.all_receive || global.buff_overflow)
+		if (g_global.all_receive || g_global.buff_overflow)
 		{
-			write(1, global.message, ft_strlen(global.message));
-			ft_bzero(global.message, G_BUFFSIZE);
-			global.top_byte = 0;
-			global.top_bit = 1 << 6;
-			if (global.all_receive)
+			write(1, g_global.message, ft_strlen(g_global.message));
+			ft_bzero(g_global.message, G_BUFFSIZE);
+			g_global.top_byte = 0;
+			g_global.top_bit = 1 << 6;
+			if (g_global.all_receive)
 				write(1, "\n", 1);
-			global.all_receive = FALSE;
-			global.buff_overflow = FALSE;
+			g_global.all_receive = FALSE;
+			g_global.buff_overflow = FALSE;
 		}
 	}
 	return (TRUE);
@@ -102,6 +102,6 @@ int	main(void)
 		exit(1);
 	}
 	print_pid();
-	ft_bzero(global.message, G_BUFFSIZE);
+	ft_bzero(g_global.message, G_BUFFSIZE);
 	server();
 }

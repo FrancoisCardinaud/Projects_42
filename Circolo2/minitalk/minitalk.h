@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 23:07:12 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/03/06 14:56:30 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/02/21 23:07:12 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/03/27 02:00:56 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 
 typedef struct s_stack
 {
-	char		message[G_BUFFSIZE];
-	int			top_bit;
-	int			top_byte;
-	_Bool		all_receive;
-	_Bool		buff_overflow;
-}				t_stack;
+	char	message[G_BUFFSIZE];
+	int		top_bit;
+	int		top_byte;
+	_Bool	all_receive;
+	_Bool	buff_overflow;
+}			t_stack;
 
-t_stack	global = {{0}, 1 << 6, 0, FALSE, FALSE};
+t_stack		g_global = {{0}, 1 << 6, 0, FALSE, FALSE};
 
 #endif

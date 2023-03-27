@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 21:43:16 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/03/02 21:43:21 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/03/02 21:43:16 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/03/27 02:47:37 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
