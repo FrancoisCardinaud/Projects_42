@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fractal.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:15:32 by fcardina          #+#    #+#             */
-/*   Updated: 2023/02/25 15:15:35 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:46:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft/libft.h"
 
-void		julia(t_t *t)
+void	julia(t_t *t)
 {
 	mlx_clear_window(t->ptr, t->win);
 	t->y_y = 0;
@@ -36,7 +36,7 @@ void		julia(t_t *t)
 	mlx_ho(t);
 }
 
-void		mandelbrot(t_t *t)
+void	mandelbrot(t_t *t)
 {
 	mlx_clear_window(t->ptr, t->win);
 	t->y_y = 0;
@@ -60,7 +60,7 @@ void		mandelbrot(t_t *t)
 	mlx_ho(t);
 }
 
-int			mouse_move(int x, int y, t_t *t)
+int	mouse_move(int x, int y, t_t *t)
 {
 	if (x < 600 && y < 600 && t->stop == 0 && ft_strcmp(t->name, "julia") == 0)
 	{
@@ -71,7 +71,7 @@ int			mouse_move(int x, int y, t_t *t)
 	return (1);
 }
 
-void		zoom(t_t *t, double x, double y, double zoom)
+void	zoom(t_t *t, double x, double y, double zoom)
 {
 	double	xx;
 	double	yy;
@@ -86,7 +86,7 @@ void		zoom(t_t *t, double x, double y, double zoom)
 		t->max += 2;
 }
 
-void		mlx_ho(t_t *t)
+void	mlx_ho(t_t *t)
 {
 	menu(t);
 	mlx_hook(t->win, 4, 1, mouse_press, t);

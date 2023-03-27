@@ -3,16 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/24 14:16:12 by francoiscardi     #+#    #+#              #
-#    Updated: 2023/03/13 17:27:39 by fcardina         ###   ########.fr        #
+#    Created: 2023/02/24 14:16:12 by francoiscar       #+#    #+#              #
+#    Updated: 2023/03/27 15:46:30 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Werror -Wextra
 
 NAME = fractol
+
+LIB = libft/libft.a
 
 CC = gcc
 
@@ -25,7 +27,7 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIB) $(OBJS) $(MLX) -o $(NAME)
 
 clean :
 	@rm -rf $(OBJS)

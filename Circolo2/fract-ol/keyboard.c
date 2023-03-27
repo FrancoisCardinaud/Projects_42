@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:14:06 by fcardina          #+#    #+#             */
-/*   Updated: 2023/02/25 15:14:13 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:31:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int			mouse_press(int button, int x, int y, t_t *t)
+int	mouse_press(int button, int x, int y, t_t *t)
 {
 	if (button == 5 && t->stop == 1)
 		zoom(t, (double)x, (double)y, 1.1);
@@ -22,7 +22,7 @@ int			mouse_press(int button, int x, int y, t_t *t)
 	return (1);
 }
 
-void		key_press2(int keycode, t_t *t)
+void	key_press2(int keycode, t_t *t)
 {
 	if (keycode == 124)
 	{
@@ -51,7 +51,7 @@ void		key_press2(int keycode, t_t *t)
 		key_press3(keycode, t);
 }
 
-int			key_press(int keycode, t_t *t)
+int	key_press(int keycode, t_t *t)
 {
 	if (keycode == 53)
 	{
@@ -79,7 +79,7 @@ int			key_press(int keycode, t_t *t)
 	return (1);
 }
 
-void		key_press3(int keycode, t_t *t)
+void	key_press3(int keycode, t_t *t)
 {
 	if (keycode == 83)
 	{
@@ -104,7 +104,7 @@ void		key_press3(int keycode, t_t *t)
 		key_press4(keycode, t);
 }
 
-void		key_press4(int keycode, t_t *t)
+void	key_press4(int keycode, t_t *t)
 {
 	if (keycode == 84)
 	{

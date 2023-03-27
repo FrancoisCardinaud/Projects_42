@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:16:15 by fcardina          #+#    #+#             */
-/*   Updated: 2023/02/25 15:16:18 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:40:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft/libft.h"
 
-void		menu(t_t *t)
+void	menu(t_t *t)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	j = -1;
 	while (++j < HEIGHT)
@@ -36,35 +35,35 @@ void		menu(t_t *t)
 	string_put(t);
 }
 
-void		string_put(t_t *t)
+void	string_put(t_t *t)
 {
 	mlx_string_put(t->ptr, t->win, 650, 70, 0xf7b079,
-			"       Scroll UP | Scroll DOWN         ");
+		"       Scroll UP | Scroll DOWN         ");
 	mlx_string_put(t->ptr, t->win, 650, 110, 0xFFFFFF,
-			"-------------MOVE------------");
+		"-------------MOVE------------");
 	mlx_string_put(t->ptr, t->win, 650, 140, 0xf7b079,
-			"        Arrow UP | Arrow DOWN    ");
+		"        Arrow UP | Arrow DOWN    ");
 	mlx_string_put(t->ptr, t->win, 650, 180, 0xf7b079,
-			"     Arrow RIGHT | Arrow LIFT ");
+		"     Arrow RIGHT | Arrow LIFT ");
 	mlx_string_put(t->ptr, t->win, 650, 240, 0xFFFFFF,
-			"--------CHANGE FRACTAL-------");
+		"--------CHANGE FRACTAL-------");
 	mlx_string_put(t->ptr, t->win, 650, 280, 0xf7b079,
-			"      Mandelbrot | BUTTON (3) ");
+		"      Mandelbrot | BUTTON (3) ");
 	mlx_string_put(t->ptr, t->win, 650, 310, 0xf7b079,
-			"     BurningShip | BUTTON (2) ");
+		"     BurningShip | BUTTON (2) ");
 	mlx_string_put(t->ptr, t->win, 650, 340, 0xf7b079,
-			"           julia | BUTTON (1) ");
+		"           julia | BUTTON (1) ");
 	mlx_string_put(t->ptr, t->win, 650, 380, 0xFFFFFF,
-			"--------CHANGE COLOR-------");
+		"--------CHANGE COLOR-------");
 	mlx_string_put(t->ptr, t->win, 650, 410, 0xf7b079,
-			"           BUTTON (enter) ");
+		"           BUTTON (enter) ");
 	mlx_string_put(t->ptr, t->win, 650, 440, 0xFFFFFF,
-			"--------RESTART FRACTAL-------");
+		"--------RESTART FRACTAL-------");
 	mlx_string_put(t->ptr, t->win, 650, 470, 0xf7b079,
-			"           BUTTON (0) ");
+		"           BUTTON (0) ");
 }
 
-void		init(t_t *t, char *str)
+void	init(t_t *t, char *str)
 {
 	t->start_x = -2;
 	t->end_x = 2;
@@ -79,7 +78,7 @@ void		init(t_t *t, char *str)
 	t->name = str;
 }
 
-void		check_ar(t_t *t)
+void	check_ar(t_t *t)
 {
 	if (ft_strcmp(t->name, "Mandelbrot") == 0)
 		mandelbrot(t);
@@ -89,32 +88,32 @@ void		check_ar(t_t *t)
 		julia(t);
 	else
 	{
-		write(1, "usage: ./fractol <name>", 23);
+		write(1, "How to use: ./fractol <name>", 28);
 		write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
 	}
 }
 
-int			main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
-	t_t		t;
+	t_t	t;
 
 	if (ac == 2)
 	{
-		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1]
-		, "Burningship") == 0 || ft_strcmp(av[1], "julia") == 0)
+		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1],
+				"Burningship") == 0 || ft_strcmp(av[1], "julia") == 0)
 		{
 			t.ptr = mlx_init();
 			t.win = mlx_new_window(t.ptr, 1000, 600, "Fractol");
 			t.image = mlx_new_image(t.ptr, WIDTH + 400, HEIGHT);
-			t.ch = (unsigned char*)mlx_get_data_addr(t.image, &t.bpp
-			, &t.size_l, &t.endian);
+			t.ch = (unsigned char *)mlx_get_data_addr(t.image, &t.bpp,
+					&t.size_l, &t.endian);
 		}
 		init(&t, av[1]);
 		check_ar(&t);
 	}
 	else
 	{
-		write(1, "usage: ./fractol <name>", 23);
+		write(1, "How to use: ./fractol <name>", 28);
 		write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
 	}
 	return (0);

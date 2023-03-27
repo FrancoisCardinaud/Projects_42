@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:15:52 by fcardina          #+#    #+#             */
-/*   Updated: 2023/02/25 15:15:55 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:48:42 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
-#	define FRACTOL_H
+# define FRACTOL_H
 
-#	include "mlx.h"
-#	include "libft/libft.h"
-#	include <stdlib.h>
-#	include <unistd.h>
+# include "libft/libft.h"
+# include "mlx.h"
+# include <stdlib.h>
+# include <unistd.h>
 
-#	define WIDTH 600
-#	define HEIGHT 600
+# define WIDTH 600
+# define HEIGHT 600
 
-typedef struct		s_t
+typedef struct s_t
 {
 	unsigned char	*ch;
 	double			x;
@@ -66,7 +66,6 @@ void				key_press2(int keycode, t_t *t);
 void				key_press3(int keycode, t_t *t);
 void				key_press4(int keycode, t_t *t);
 void				set_color(t_t *t, int color);
-int					ft_strcmp(char *s1, char *s2);
 void				check_ar(t_t *t);
 void				init(t_t *t, char *str);
 void				string_put(t_t *t);
@@ -78,4 +77,4 @@ void				init_x_y(t_t *t);
 void				string1_put(t_t *t);
 void				destroy_exit(t_t *t);
 
-#	endif
+#endif
