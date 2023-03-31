@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:07:12 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/27 02:00:56 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:24:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # define G_BUFFSIZE 1024
 
-# ifndef TRUE
-#  define TRUE 1
-# endif
-
 # ifndef FALSE
 #  define FALSE 0
+# endif
+
+# ifndef TRUE
+#  define TRUE 1
 # endif
 
 typedef struct s_stack

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:06:12 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/27 01:58:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:52:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ void	print_pid(void)
 	free(pid);
 }
 
+/*The function sigur1_bit() is a signal handler function that is called 
+when the server process receives a SIGUSR1 signal from the client process. 
+This function is responsible for decoding the message sent by the client 
+process. It first checks whether the top bit of the current byte is set. 
+If not, it sets the top bit and moves on to the next byte. It then sets 
+the bit value in the current byte and shifts the top bit by one position 
+to the right. If the buffer is about to overflow, it sets a flag to indicate 
+the buffer overflow condition.*/
 void	sigur1_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
@@ -42,6 +50,11 @@ void	sigur1_bit(int sig, siginfo_t *info, void *context)
 		g_global.buff_overflow = TRUE;
 }
 
+/*The function sigur2_bit() is another signal handler function that is 
+called when the server process receives a SIGUSR2 signal from the client 
+process. This function is responsible for decoding the message sent by 
+the client process. It is similar to the sigur1_bit() function but does 
+not set the bit value in the current byte.*/
 void	sigur2_bit(int sig, siginfo_t *info, void *context)
 {
 	(void)sig;
@@ -61,7 +74,12 @@ void	sigur2_bit(int sig, siginfo_t *info, void *context)
 		kill(info->si_pid, SIGUSR1);
 	}
 }
-
+/*The function server() is the main server process that continuously waits 
+for signals from the client process using the pause() function. When it 
+receives a signal, it checks whether the buffer has overflowed or whether 
+it has received the entire message. If either of these conditions is true, 
+it prints the message on the standard output, clears the buffer, and resets 
+the flags.*/
 _Bool	server(void)
 {
 	while (1)
@@ -82,6 +100,10 @@ _Bool	server(void)
 	return (TRUE);
 }
 
+/*The main() function sets up the signal handlers for SIGUSR1 and SIGUSR2 
+signals and then prints the PID of the server process using the print_pid() 
+function. It then clears the message buffer and starts the server process 
+using the server() function.*/
 int	main(void)
 {
 	struct sigaction	sigur1_act;
