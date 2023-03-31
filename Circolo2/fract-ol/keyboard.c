@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:14:06 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/27 15:31:05 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:19:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ int	key_press(int keycode, t_t *t)
 	}
 	else if (keycode == 69 && t->stop == 1)
 	{
-		simple_zoome1(t);
+		simple_zoom1(t);
 		check_ar(t);
 	}
 	else if (keycode == 78 && t->stop == 1)
 	{
-		simple_zoome2(t);
+		simple_zoom2(t);
 		check_ar(t);
 	}
 	else if (keycode == 27)
@@ -83,7 +83,7 @@ void	key_press3(int keycode, t_t *t)
 {
 	if (keycode == 83)
 	{
-		t->name = "julia";
+		t->name = "Julia";
 		init(t, t->name);
 		check_ar(t);
 	}
@@ -106,13 +106,13 @@ void	key_press3(int keycode, t_t *t)
 
 void	key_press4(int keycode, t_t *t)
 {
-	if (keycode == 84)
+	/*if (keycode == 84)
 	{
 		t->name = "Burningship";
 		init(t, t->name);
 		check_ar(t);
 	}
-	else if (keycode == 85)
+	else */if (keycode == 85)
 	{
 		t->name = "Mandelbrot";
 		init(t, t->name);

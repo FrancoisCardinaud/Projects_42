@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:15:52 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/27 15:48:42 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:07:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,32 +49,30 @@ typedef struct s_t
 	int				stop;
 	int				max;
 	int				color;
-
 }					t_t;
 
-void				mandelbrot(t_t *t);
-int					mouse_move(int x, int y, t_t *t);
-int					mouse_press(int button, int x, int y, t_t *t);
-int					key_press(int keycode, t_t *t);
-int					key_press(int keycode, t_t *t);
-void				julia(t_t *t);
-void				menu(t_t *t);
-void				itier_loop(t_t *t);
-void				map(t_t *t);
+void				check_ar(t_t *t);
+void				destroy_exit(t_t *t);
 double				ft_abs(double x);
+void				init(t_t *t, char *str);
+void				init_x_y(t_t *t);
+void				itier_loop(t_t *t);
+void				julia(t_t *t);
+int					key_press(int keycode, t_t *t);
 void				key_press2(int keycode, t_t *t);
 void				key_press3(int keycode, t_t *t);
 void				key_press4(int keycode, t_t *t);
-void				set_color(t_t *t, int color);
-void				check_ar(t_t *t);
-void				init(t_t *t, char *str);
-void				string_put(t_t *t);
-void				zoom(t_t *t, double x, double y, double zoom);
+void				mandelbrot(t_t *t);
+void				map(t_t *t);
+void				menu(t_t *t);
 void				mlx_ho(t_t *t);
-void				simple_zoome1(t_t *t);
-void				simple_zoome2(t_t *t);
-void				init_x_y(t_t *t);
+int					mouse_move(int x, int y, t_t *t);
+int					mouse_press(int button, int x, int y, t_t *t);
+void				set_color(t_t *t, int color);
+void				simple_zoom1(t_t *t);
+void				simple_zoom2(t_t *t);
+void				string_put(t_t *t);
 void				string1_put(t_t *t);
-void				destroy_exit(t_t *t);
+void				zoom(t_t *t, double x, double y, double zoom);
 
 #endif

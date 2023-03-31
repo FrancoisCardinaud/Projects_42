@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:16:15 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/27 16:40:05 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:18:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	menu(t_t *t)
 {
-	int	i;
+	/*int	i;
 	int	j;
 
 	j = -1;
@@ -29,10 +29,10 @@ void	menu(t_t *t)
 			t->ch[t->index + 2] = 54;
 			t->ch[t->index + 3] = 0;
 		}
-	}
+	}*/
 	mlx_put_image_to_window(t->ptr, t->win, t->image, 0, 0);
-	string1_put(t);
-	string_put(t);
+	//string1_put(t);
+	//string_put(t);
 }
 
 void	string_put(t_t *t)
@@ -44,15 +44,15 @@ void	string_put(t_t *t)
 	mlx_string_put(t->ptr, t->win, 650, 140, 0xf7b079,
 		"        Arrow UP | Arrow DOWN    ");
 	mlx_string_put(t->ptr, t->win, 650, 180, 0xf7b079,
-		"     Arrow RIGHT | Arrow LIFT ");
+		"     Arrow RIGHT | Arrow LEFT ");
 	mlx_string_put(t->ptr, t->win, 650, 240, 0xFFFFFF,
 		"--------CHANGE FRACTAL-------");
 	mlx_string_put(t->ptr, t->win, 650, 280, 0xf7b079,
-		"      Mandelbrot | BUTTON (3) ");
+		"      Mandelbrot | PRESS 3 ");
 	mlx_string_put(t->ptr, t->win, 650, 310, 0xf7b079,
-		"     BurningShip | BUTTON (2) ");
+		"     BurningShip | PRESS 2 ");
 	mlx_string_put(t->ptr, t->win, 650, 340, 0xf7b079,
-		"           julia | BUTTON (1) ");
+		"           Julia | PRESS 1 ");
 	mlx_string_put(t->ptr, t->win, 650, 380, 0xFFFFFF,
 		"--------CHANGE COLOR-------");
 	mlx_string_put(t->ptr, t->win, 650, 410, 0xf7b079,
@@ -82,14 +82,15 @@ void	check_ar(t_t *t)
 {
 	if (ft_strcmp(t->name, "Mandelbrot") == 0)
 		mandelbrot(t);
-	else if (ft_strcmp(t->name, "Burningship") == 0)
-		mandelbrot(t);
-	else if (ft_strcmp(t->name, "julia") == 0)
+	/*else if (ft_strcmp(t->name, "Burningship") == 0)
+		mandelbrot(t);*/
+	else if (ft_strcmp(t->name, "Julia") == 0)
 		julia(t);
 	else
 	{
 		write(1, "How to use: ./fractol <name>", 28);
-		write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
+		//write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
+		write(1, "\tMandelbrot\tJulia\n", 18);
 	}
 }
 
@@ -99,8 +100,9 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1],
-				"Burningship") == 0 || ft_strcmp(av[1], "julia") == 0)
+		/*if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1],
+				"Burningship") == 0 || ft_strcmp(av[1], "julia") == 0)*/
+		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1], "Julia") == 0)
 		{
 			t.ptr = mlx_init();
 			t.win = mlx_new_window(t.ptr, 1000, 600, "Fractol");
@@ -114,7 +116,8 @@ int	main(int ac, char *av[])
 	else
 	{
 		write(1, "How to use: ./fractol <name>", 28);
-		write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
+		//write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
+		write(1, "\tMandelbrot\tJulia\n", 18);
 	}
 	return (0);
 }

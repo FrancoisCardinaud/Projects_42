@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:15:32 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/27 16:46:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:18:19 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	mandelbrot(t_t *t)
 
 int	mouse_move(int x, int y, t_t *t)
 {
-	if (x < 600 && y < 600 && t->stop == 0 && ft_strcmp(t->name, "julia") == 0)
+	if (x < 600 && y < 600 && t->stop == 0 && ft_strcmp(t->name, "Julia") == 0)
 	{
 		t->x_o = (((double)x / 600) * 4) - 2;
 		t->y_o = ((((double)y * -1) / 600) * 4) + 2;
