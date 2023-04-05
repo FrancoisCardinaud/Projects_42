@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/22 02:34:17 by francoiscardi     #+#    #+#              #
-#    Updated: 2023/02/22 02:40:58 by francoiscardi    ###   ########.fr        #
+#    Created: 2023/02/22 02:34:17 by francoiscar       #+#    #+#              #
+#    Updated: 2023/04/05 15:49:33 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

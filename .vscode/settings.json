@@ -2,6 +2,8 @@
     "files.associations": {
         "libft.h": "c",
         "push_swap.h": "c",
-        "libftprintf.h": "c"
+        "libftprintf.h": "c",
+        "mlx.h": "c",
+        "signal.h": "c"
     }
 }

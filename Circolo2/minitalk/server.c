@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:06:12 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/31 16:52:43 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:17:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	sigur2_bit(int sig, siginfo_t *info, void *context)
 		kill(info->si_pid, SIGUSR1);
 	}
 }
+
 /*The function server() is the main server process that continuously waits 
 for signals from the client process using the pause() function. When it 
 receives a signal, it checks whether the buffer has overflowed or whether 

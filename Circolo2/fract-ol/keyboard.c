@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:14:06 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/31 16:19:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:03:47 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,3 +130,36 @@ void	key_press4(int keycode, t_t *t)
 		check_ar(t);
 	}
 }
+
+/*This C code defines a series of functions that handle key presses 
+in a graphical application. The key_press function is the main function 
+that is called when a key is pressed. It takes an integer keycode and 
+a pointer to a t_t struct as arguments. The t_t struct contains information 
+about the application's state, such as the current zoom level and the 
+type of fractal being displayed.
+
+The key_press function checks the value of keycode using conditional 
+statements (if, else if, and else) and calls other functions based on 
+the key that was pressed. For example, if the keycode is 53, the 
+destroy_exit function is called, which exits the application. If the 
+keycode is 69, the simple_zoom1 function is called, which zooms in 
+on the fractal. If the keycode is none of the above, the key_press2 
+function is called to check if the key code corresponds to one of the 
+fractal manipulation actions.
+
+The key_press2 function also checks the keycode value and manipulates 
+the t_t struct accordingly. For example, if the keycode is 124, the 
+start_x and end_x values in the t_t struct are decreased by 0.037, 
+which has the effect of panning the fractal to the left. The check_ar 
+function is called after each manipulation to update the fractal display.
+
+The key_press3 and key_press4 functions are called from key_press2 
+and handle additional key codes that are not directly related to 
+fractal manipulation. For example, if the keycode is 83, the name 
+field in the t_t struct is set to "Julia", which changes the type of 
+fractal being displayed to a Julia set. If the keycode is 36, the 
+color field in the t_t struct is set to a random value, which changes 
+the color of the fractal.
+
+Overall, these functions handle user input and update the application's 
+state accordingly to display and manipulate fractals.*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 23:05:39 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/02/21 23:05:46 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/02/21 23:05:39 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/04/05 17:21:04 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

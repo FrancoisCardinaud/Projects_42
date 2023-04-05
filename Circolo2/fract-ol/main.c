@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:16:15 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/31 16:18:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:38:03 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	menu(t_t *t)
 	//string1_put(t);
 	//string_put(t);
 }
-
+/*
 void	string_put(t_t *t)
 {
 	mlx_string_put(t->ptr, t->win, 650, 70, 0xf7b079,
@@ -61,7 +61,7 @@ void	string_put(t_t *t)
 		"--------RESTART FRACTAL-------");
 	mlx_string_put(t->ptr, t->win, 650, 470, 0xf7b079,
 		"           BUTTON (0) ");
-}
+}*/
 
 void	init(t_t *t, char *str)
 {
@@ -105,7 +105,7 @@ int	main(int ac, char *av[])
 		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1], "Julia") == 0)
 		{
 			t.ptr = mlx_init();
-			t.win = mlx_new_window(t.ptr, 1000, 600, "Fractol");
+			t.win = mlx_new_window(t.ptr, 600, 600, "Fractol");
 			t.image = mlx_new_image(t.ptr, WIDTH + 400, HEIGHT);
 			t.ch = (unsigned char *)mlx_get_data_addr(t.image, &t.bpp,
 					&t.size_l, &t.endian);
