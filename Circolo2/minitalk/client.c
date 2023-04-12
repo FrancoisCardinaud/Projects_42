@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:05:39 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/04/05 17:21:04 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:53:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,49 +21,56 @@ void	howto(void)
 	exit(0);
 }
 
-void	send_byte(int pid, unsigned char byte)
+void	send_msg(int pid, char *msg)
 {
-	uint8_t		i;
+	int		i;
+	char	c;
 
-	i = 1 << 6;
-	while (i)
+	while (*msg)
 	{
-		if (byte & i)
+		i = 8;
+		c = *msg++;
+		while(i--)
 		{
-			if (kill(pid, SIGUSR1) == -1)
+			if (c >> i & 1)
 			{
-				write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
-				exit(1);
+				if (kill(pid, SIGUSR2) == -1)
+				{
+					write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
+					exit(1);
+				}
 			}
-		}
-		else
-		{
-			if (kill(pid, SIGUSR2) == -1)
+			else
 			{
-				write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
-				exit(1);
+				if (kill(pid, SIGUSR1) == -1)
+				{
+					write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
+					exit(1);
+				}
 			}
+			usleep(100);
 		}
-		i >>= 1;
-		usleep(600);
+	}
+	i = 8;
+	while (i--)
+	{
+		kill(pid, SIGUSR1);
+		usleep(100);
 	}
 }
 
-void	client(char *str_pid, char *message)
+static void	client(int sig)
 {
-	int			pid;
+	static int	rec = 0;
 
-	pid = ft_atoi(str_pid);
-	while (*message)
+	if (sig == SIGUSR1)
+		++rec;
+	else
 	{
-		send_byte(pid, *message);
-		message++;
+		ft_putnbr_fd(rec, 1);
+		ft_putchar_fd('\n', 1);
+		return ;
 	}
-	send_byte(pid, *message);
-}
-
-void	success(int sig)
-{
 	(void)sig;
 	write(1, "Data was received.\n", 19);
 }
@@ -72,7 +79,8 @@ int	main(int argc, char **argv)
 {
 	if (argc != 3 || !ft_isnbr(argv[1]))
 		howto();
-	signal(SIGUSR1, success);
-	client(argv[1], argv[2]);
+	signal(SIGUSR1, client);
+	signal(SIGUSR2, client);
+	send_msg(ft_atoi(argv[1]), argv[2]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:07:12 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/04/05 17:20:17 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:18:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # define G_BUFFSIZE 1024
 
-# ifndef FALSE
-#  define FALSE 0
-# endif
+// # ifndef FALSE
+// #  define FALSE 0
+// # endif
 
-# ifndef TRUE
-#  define TRUE 1
-# endif
+// # ifndef TRUE
+// #  define TRUE 1
+// # endif
 
 typedef struct s_stack
 {
@@ -32,6 +32,6 @@ typedef struct s_stack
 	_Bool	buff_overflow;
 }			t_stack;
 
-t_stack		g_global = {{0}, 1 << 6, 0, FALSE, FALSE};
+// t_stack		g_global = {{0}, 1 << 6, 0, FALSE, FALSE};
 
 #endif
