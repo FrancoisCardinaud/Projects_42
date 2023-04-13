@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "signal.h": "c"
+        "signal.h": "c",
+        "zconf.h": "c",
+        "libft.h": "c"
     }
 }

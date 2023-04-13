@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/22 02:34:17 by francoiscar       #+#    #+#              #
-#    Updated: 2023/04/05 15:49:33 by fcardina         ###   ########.fr        #
+#    Created: 2023/02/22 02:34:17 by fcardina          #+#    #+#              #
+#    Updated: 2023/04/13 17:43:48 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,11 @@ all : $(LIBFT) $(SERVER) $(CLIENT)
 $(LIBFT) : 
 	@make -C libft
 
-$(SERVER) : server.o minitalk.h
+$(SERVER) : server.o
 	@$(CC) server.o $(LIB) -o $@
 	@printf "\e[38;5;46m./$@ built\e[0m\n"
 
-$(CLIENT) : client.o minitalk.h
+$(CLIENT) : client.o
 	@$(CC) client.o $(LIB) -o $@
 	@printf "\e[38;5;46m./$@ built\e[0m\n"
 	@printf "\e[38;5;46mHow to use:\e[0m\n"

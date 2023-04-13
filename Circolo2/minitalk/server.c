@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 23:06:12 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/04/12 16:44:18 by fcardina         ###   ########.fr       */
+/*   Created: 2023/02/21 23:06:12 by fcardina          #+#    #+#             */
+/*   Updated: 2023/04/13 17:46:47 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <zconf.h>
-#include "minitalk.h"
 #include "libft.h"
 
 void	print_pid(void)
@@ -44,7 +43,7 @@ void	server(int sig, siginfo_t *info, void *context)
 			kill(client_pid, SIGUSR2);
 			client_pid = 0;
 			write(1, "\n", 1);
-			return;
+			return ;
 		}
 		ft_putchar_fd(c, 1);
 		c = 0;
