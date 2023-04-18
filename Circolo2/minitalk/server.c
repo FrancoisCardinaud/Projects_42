@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:06:12 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/13 17:46:47 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:44:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <zconf.h>
-#include "libft.h"
+#include "libft/libft.h"
 
 void	print_pid(void)
 {

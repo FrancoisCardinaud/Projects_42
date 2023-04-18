@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:15:32 by fcardina          #+#    #+#             */
-/*   Updated: 2023/03/31 16:18:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 10:33:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	mandelbrot(t_t *t)
 			if (t->itier == t->max)
 				set_color(t, 0);
 			else
-				set_color(t, 1);
+				set_color(t, 2);
 			t->x_x++;
 		}
 		t->y_y++;
