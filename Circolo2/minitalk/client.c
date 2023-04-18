@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:05:39 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 12:45:17 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:42:34 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,43 +48,6 @@ void	send_msg(int pid, char *msg)
 		usleep(100);
 	}
 }
-/*void	send_msg(int pid, char *msg)
-{
-	int		i;
-	char	c;
-
-	while (*msg)
-	{
-		i = 8;
-		c = *msg++;
-		while (i--)
-		{
-			if (c >> i & 1)
-			{
-				if (kill(pid, SIGUSR2) == -1)
-				{
-					write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
-					exit(1);
-				}
-			}
-			else
-			{
-				if (kill(pid, SIGUSR1) == -1)
-				{
-					write(2, "Wrong PID\n", ft_strlen("Wrong PID\n"));
-					exit(1);
-				}
-			}
-			usleep(100);
-		}
-	}
-	i = 8;
-	while (i--)
-	{
-		kill(pid, SIGUSR1);
-		usleep(100);
-	}
-}*/
 
 static void	client(int sig)
 {
