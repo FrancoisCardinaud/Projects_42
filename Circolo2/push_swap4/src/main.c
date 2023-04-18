@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:57:32 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/27 00:04:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:01:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	initialize_stack(t_list **stack, int argc, char **argv)
 {
@@ -28,7 +28,7 @@ static void	initialize_stack(t_list **stack, int argc, char **argv)
 	}
 	while (args[i])
 	{
-		new_element = ft_new_stack(ft_atoi(args[i]));
+		new_element = ft_lstnew(ft_atoi(args[i]));
 		ft_lstadd_back(stack, new_element);
 		i++;
 	}
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
-	ft_validate_args(argc, argv);
+	ft_check_args(argc, argv);
 	stack_a = (t_list **)malloc(sizeof(t_list));
 	stack_b = (t_list **)malloc(sizeof(t_list));
 	*stack_a = NULL;

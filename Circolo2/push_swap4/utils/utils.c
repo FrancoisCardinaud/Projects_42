@@ -3,26 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 17:18:13 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/03/24 17:18:52 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/03/24 17:18:13 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/04/18 11:57:27 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void report_error(char *msg) {
     ft_putendl_fd(msg, 1);
     exit(0);
 }
 
-void free_strings(char **str) {
+void ft_free(char **str) {
     int i = 0;
     while (str[i])
         i++;
     while (i >= 0)
         free(str[i--]);
+}
+
+int	is_sorted(t_list **stack)
+{
+	t_list	*head;
+
+	head = *stack;
+	while (head && head->next)
+	{
+		if (head->value > head->next->value)
+			return (0);
+		head = head->next;
+	}
+	return (1);
 }
 
 int is_ascending(t_list **stack) {
@@ -35,7 +49,7 @@ int is_ascending(t_list **stack) {
     return 1;
 }
 
-int distance_to_index(t_list **stack, int index) {
+int get_distance_to_top(t_list **stack, int index) {
     t_list *head = *stack;
     int distance = 0;
     while (head) {
@@ -55,14 +69,14 @@ void move_to_top(t_list **stack, int distance) {
     tmp = ft_lstsize(head) - distance;
     if (distance <= (ft_lstsize(head) / 2)) {
         while (distance-- > 0)
-            rotate_a(stack);
+            rotateA(stack);
     } else {
         while (tmp-- > 0)
-            reverse_rotate_a(stack);
+            reverseRotateA(stack);
     }
 }
 
-void free_list(t_list **stack) {
+void free_stack(t_list **stack) {
     t_list *head = *stack;
     t_list *tmp;
     while (head) {

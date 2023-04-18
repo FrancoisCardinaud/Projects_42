@@ -3,91 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   t_list.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 17:17:31 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/03/24 17:17:42 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/03/24 17:17:31 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/04/18 11:51:37 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-// Create a new node and return a pointer to it
-t_list	*create_node(int value)
+// Creates new node and returns the pointer of it
+t_list	*ft_lstnew(int value)
 {
-	t_list	*node;
+	t_list	*new;
 
-	node = (t_list *) malloc(sizeof(*node));
-	if (!node)
+	new = (t_list *) malloc(sizeof(*new));
+	if (!new)
 		return (NULL);
-	node->value = value;
-	node->index = -1;
-	node->next = NULL;
-	return (node);
+	new->value = value;
+	new->index = -1;
+	new->next = NULL;
+	return (new);
 }
 
-// Add a node to the beginning of the list, making it the new head
-void	add_to_front(t_list **stack, t_list *node)
+// Adds the specified node to a stack (list) making it the head
+void	ft_lstadd_front(t_list **stack, t_list *new)
 {
-	node->next = *stack;
-	*stack = node;
+	new->next = *stack;
+	*stack = new;
 }
 
-// Return the last node in the list
-t_list	*get_last_node(t_list *head)
+// Returns the last node of a list 
+t_list	*ft_lstlast(t_list *head)
 {
-	t_list	*node;
+	t_list	*tmp;
 
-	node = head;
-	while (node->next)
-		node = node->next;
-	return (node);
+	tmp = head;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+		if (tmp->next == NULL)
+			return (tmp);
+	}
+	return (tmp);
 }
 
-// Add a node to the end of the list
-void	add_to_end(t_list **stack, t_list *node)
+// Adds the specified node to a stack (list) making it the last node
+void	ft_lstadd_back(t_list **stack, t_list *new)
 {
-	t_list	*last;
+	t_list	*n;
 
 	if (*stack)
 	{
-		last = get_last_node(*stack);
-		last->next = node;
-		node->next = NULL;
+		n = ft_lstlast(*stack);
+		n->next = new;
+		new->next = NULL;
 	}
 	else
 	{
-		*stack = node;
+		*stack = new;
 		(*stack)->next = NULL;
 	}
 }
 
-// Return the size of the list
-int	get_list_size(t_list *head)
+// Returns the size of the Linked List
+int	ft_lstsize(t_list *head)
 {
-	size_t	size;
-	t_list	*node;
+	size_t	i;
+	t_list	*tmp;
 
-	node = head;
-	size = 0;
-	while (node)
+	tmp = head;
+	i = 0;
+	while (tmp)
 	{
-		node = node->next;
-		size++;
+		tmp = tmp->next;
+		i++;
 	}
-	return (size);
+	return (i);
 }
 
-// Print the list
-void	print_list(t_list *head)
+// Prints the Linked List
+void	printList(t_list *head)
 {
-	t_list	*node;
+	t_list	*tmp;
 
-	node = head;
-	while (node != NULL)
+	tmp = head;
+	while (tmp != NULL)
 	{
-		ft_putnbr_fd(node->value, 1);
+		ft_putnbr_fd(tmp->value, 1);
 		ft_putendl_fd("", 1);
-		node = node->next;
+		tmp = tmp->next;
 	}
 }

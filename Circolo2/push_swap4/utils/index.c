@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 17:16:31 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/03/24 17:16:34 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/03/24 17:16:31 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/04/18 11:56:47 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 // Find the next minimum value node in the stack that hasn't been indexed yet
 static t_list	*find_next_min_node(t_list **stack)
@@ -38,7 +38,7 @@ static t_list	*find_next_min_node(t_list **stack)
 }
 
 // Assigns indexes to each node in the stack based on their value
-void	assign_indexes_to_stack(t_list **stack)
+void	index_stack_elements(t_list **stack)
 {
 	t_list	*head;
 	int		index;

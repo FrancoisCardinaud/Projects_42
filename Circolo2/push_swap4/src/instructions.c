@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:20:38 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/27 00:14:01 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:01:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 // Swaps first two elements of a stack | sa and sb
 
@@ -26,7 +26,7 @@ int	swap(t_list **stack)
 	head = *stack;
 	next = head->next;
 	if (!head && !next)
-		ft_error("Error occured while swapping!");
+		report_error("Error occured while swapping!");
 	tmp_val = head->value;
 	tmp_index = head->index;
 	head->value = next->value;
@@ -36,7 +36,7 @@ int	swap(t_list **stack)
 	return (0);
 }
 
-int	sa(t_list **stack_a)
+int	swapA(t_list **stack_a)
 {
 	if (swap(stack_a) == -1)
 		return (-1);
@@ -91,7 +91,7 @@ int	push(t_list **stack_to, t_list **stack_from)
 	return (0);
 }
 
-int	pa(t_list **stack_a, t_list **stack_b)
+int	pushA(t_list **stack_a, t_list **stack_b)
 {
 	if (push(stack_a, stack_b) == -1)
 		return (-1);
@@ -99,7 +99,7 @@ int	pa(t_list **stack_a, t_list **stack_b)
 	return (0);
 }
 
-int	pb(t_list **stack_a, t_list **stack_b)
+int	pushB(t_list **stack_a, t_list **stack_b)
 {
 	if (push(stack_b, stack_a) == -1)
 		return (-1);
@@ -124,7 +124,7 @@ int	rotate(t_list **stack)
 	return (0);
 }
 
-int	ra(t_list **stack_a)
+int	rotateA(t_list **stack_a)
 {
 	if (rotate(stack_a) == -1)
 		return (-1);
@@ -175,7 +175,7 @@ int	reverseRotate(t_list **stack)
 	return (0);
 }
 
-int	rra(t_list **stack_a)
+int	reverseRotateA(t_list **stack_a)
 {
 	if (reverseRotate(stack_a) == -1)
 		return (-1);
@@ -183,7 +183,7 @@ int	rra(t_list **stack_a)
 	return (0);
 }
 
-int	rrb(t_list **stack_b)
+int	reverseRotateB(t_list **stack_b)
 {
 	if (reverseRotate(stack_b) == -1)
 		return (-1);

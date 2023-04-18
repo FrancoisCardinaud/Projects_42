@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   radix.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:26 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/27 00:11:53 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:21:27 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 // Helper function to determine the maximum number of bits in a list
 static int	get_max_bits(t_list **stack)
@@ -57,12 +57,12 @@ void	radix_sort(t_list **stack_a, t_list **stack_b)
 		{
 			head_a = *stack_a;
 			if (((head_a->index >> i) & 1) == 1)
-				rotate_stack_a(stack_a);
+				rotateA(stack_a);
 			else
-				push_top_from_a_to_b(stack_a, stack_b);
+				pushB(stack_a, stack_b);
 		}
 		while (ft_lstsize(*stack_b) != 0)
-			push_top_from_b_to_a(stack_a, stack_b);
+			pushA(stack_a, stack_b);
 		i++;
 	}
 }

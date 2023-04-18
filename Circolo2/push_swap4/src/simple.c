@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:04:23 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/03/27 00:13:36 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:53:51 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static int	getMinimum(t_list **stack, int val)
 {
@@ -68,9 +68,9 @@ static void	sortFourNumbers(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
 
-	if (isSorted(stack_a))
+	if (is_sorted(stack_a))
 		return ;
-	distance = getDistance(stack_a, getMinimum(stack_a, -1));
+	distance = get_distance_to_top(stack_a, getMinimum(stack_a, -1));
 	if (distance == 1)
 		rotateA(stack_a);
 	else if (distance == 2)
@@ -80,7 +80,7 @@ static void	sortFourNumbers(t_list **stack_a, t_list **stack_b)
 	}
 	else if (distance == 3)
 		reverseRotateA(stack_a);
-	if (isSorted(stack_a))
+	if (is_sorted(stack_a))
 		return ;
 	pushB(stack_a, stack_b);
 	sortThreeNumbers(stack_a);
@@ -91,7 +91,7 @@ void	sortFiveNumbers(t_list **stack_a, t_list **stack_b)
 {
 	int	distance;
 
-	distance = getDistance(stack_a, getMinimum(stack_a, -1));
+	distance = get_distance_to_top(stack_a, getMinimum(stack_a, -1));
 	if (distance == 1)
 		rotateA(stack_a);
 	else if (distance == 2)
@@ -106,18 +106,18 @@ void	sortFiveNumbers(t_list **stack_a, t_list **stack_b)
 	}
 	else if (distance == 4)
 		reverseRotateA(stack_a);
-	if (isSorted(stack_a))
+	if (is_sorted(stack_a))
 		return ;
 	pushB(stack_a, stack_b);
 	sortFourNumbers(stack_a, stack_b);
 	pushA(stack_a, stack_b);
 }
 
-void	simpleSort(t_list **stack_a, t_list **stack_b)
+void	simple_sort(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 
-	if (isSorted(stack_a) || ft_lstsize(*stack_a) == 0
+	if (is_sorted(stack_a) || ft_lstsize(*stack_a) == 0
 		|| ft_lstsize(*stack_a) == 1)
 		return ;
 	size = ft_lstsize(*stack_a);
