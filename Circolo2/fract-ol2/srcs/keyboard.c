@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 20:00:26 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 14:26:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:36:01 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int		key_hook(int keycode, t_fractol *data)
 		data->y1 -= 30 / data->zoom;
 	else if (keycode == 49)
 		fract_init(data);
-	else if (keycode == 18)
-		data->color = 1677216;
+	else if (keycode == 36)
+		data->color = rand();
 	key_hook2(keycode, data);
 	fract_calc(data);
 	return (0);
