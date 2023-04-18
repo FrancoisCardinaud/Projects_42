@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_freesplit.c                                     :+:      :+:    :+:   */
+/*   ft_isnbr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 20:03:49 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/03/02 20:04:19 by francoiscardi    ###   ########.fr       */
+/*   Created: 2023/02/28 22:55:24 by francoiscar       #+#    #+#             */
+/*   Updated: 2023/04/18 13:29:24 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_freesplit(char **split)
+int	ft_isnbr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (split[i])
+	while (*str)
 	{
-		free(split[i]);
-		split[i] = NULL;
-		i++;
+		if (ft_isdigit(*str) == 0 && str[0] != '-')
+			return (0);
+		str++;
 	}
-	free(split);
+	return (1);
 }
