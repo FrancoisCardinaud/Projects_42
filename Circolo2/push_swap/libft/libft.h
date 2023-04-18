@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:46:20 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 13:30:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 16:23:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 
 int					ft_atoi(const char *str);
+long				ft_atol(char *s);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
 int					ft_isalnum(int c);
@@ -24,6 +25,7 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isnbr(char *str);
 int					ft_isprint(int c);
+int					ft_isspace(int c);
 char				*ft_itoa(int n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);

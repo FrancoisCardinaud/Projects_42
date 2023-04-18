@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 17:14:56 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/04/18 14:12:12 by fcardina         ###   ########.fr       */
+/*   Created: 2023/03/24 17:14:56 by fcardina          #+#    #+#             */
+/*   Updated: 2023/04/18 16:25:06 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <limits.h>
+#include <unistd.h>
 
 static int	has_number(int num, char **args, int startIdx)
 {
@@ -26,13 +28,25 @@ static int	has_number(int num, char **args, int startIdx)
 	return (0);
 }
 
+int	number_limit(char *n)
+{
+	if ((ft_atol(n) > INT_MAX) || (ft_atol(n) < -INT_MAX))
+	{
+		return (1);
+	}
+	else
+		return (0);
+}
+
 void	ft_check_args(int argc, char **argv)
 {
-	int		i;
-	long	tmp;
-	char	**args;
+	int			i;
+	long long	tmp;
+	char		**args;
+	int			*numbers_in_stack;
 
 	i = 0;
+	numbers_in_stack = (int *)malloc(2 * sizeof(int) + 2);
 	if (argc == 2)
 		args = ft_split(argv[1], ' ');
 	else
@@ -44,11 +58,11 @@ void	ft_check_args(int argc, char **argv)
 	{
 		tmp = ft_atoi(args[i]);
 		if (!ft_isnbr(args[i]))
-			report_error("Invalid input");
+			report_error("Error");
 		if (has_number(tmp, args, i))
-			report_error("Duplicate input");
-		if (tmp < -2147483648 || tmp > 2147483647)
-			report_error("Input out of range");
+			report_error("Error");
+		if (number_limit(args[i]))
+			report_error("Error");
 		i++;
 	}
 	if (argc == 2)
