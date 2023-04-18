@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglandai <tglandai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/13 17:06:07 by tglandai          #+#    #+#             */
-/*   Updated: 2016/12/14 15:32:36 by tglandai         ###   ########.fr       */
+/*   Created: 2016/12/13 17:06:07 by fcardina          #+#    #+#             */
+/*   Updated: 2023/04/18 14:35:09 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
 int		ft_close(void)
 {

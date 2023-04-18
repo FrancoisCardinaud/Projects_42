@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/11 13:42:53 by tglandai          #+#    #+#             */
-/*   Updated: 2023/04/18 10:43:44 by fcardina         ###   ########.fr       */
+/*   Created: 2016/12/11 13:42:53 by fcardina          #+#    #+#             */
+/*   Updated: 2023/04/18 14:47:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
 void	mandelbrot_init(t_fractol *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tglandai <tglandai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 15:58:46 by tglandai          #+#    #+#             */
-/*   Updated: 2018/10/11 13:13:06 by tglandai         ###   ########.fr       */
+/*   Created: 2016/12/08 15:58:46 by fcardina          #+#    #+#             */
+/*   Updated: 2023/04/18 14:43:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 
 # include <stdlib.h>
-# include "libft.h"
+# include "../libft/libft.h"
 # include "mlx.h"
 # include "math.h"
 # include "pthread.h"
@@ -66,11 +66,6 @@ void			julia_init(t_fractol *data);
 void			julia_calc(t_fractol *data);
 void			*julia(void *tab);
 void			julia_pthread(t_fractol *data);
-
-void			burningship_init(t_fractol *data);
-void			burningship_calc(t_fractol *data);
-void			*burningship(void *tab);
-void			burningship_pthread(t_fractol *data);
 
 int				ft_close(void);
 void			put_pxl_to_img(t_fractol *data, int x, int y, int color);

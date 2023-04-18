@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tglandai <tglandai@student.42.fr>          +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/04 12:18:57 by tglandai          #+#    #+#              #
-#    Updated: 2018/10/11 13:12:56 by tglandai         ###   ########.fr        #
+#    Created: 2016/11/04 12:18:57 by fcardina          #+#    #+#              #
+#    Updated: 2023/04/18 14:41:52 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRC_PATH = srcs
-SRC_NAME = main.c hook.c mandelbrot.c julia.c tools.c burningship.c
+SRC_NAME = julia.c keyboard.c main.c  mandelbrot.c mouse.c tools.c 
 
 OBJ_PATH = objs
 OBJ_NAME = $(SRC_NAME:.c=.o)

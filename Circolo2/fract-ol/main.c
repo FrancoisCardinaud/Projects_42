@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:16:15 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/05 17:38:03 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:44:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,11 @@ void	check_ar(t_t *t)
 {
 	if (ft_strcmp(t->name, "Mandelbrot") == 0)
 		mandelbrot(t);
-	/*else if (ft_strcmp(t->name, "Burningship") == 0)
-		mandelbrot(t);*/
 	else if (ft_strcmp(t->name, "Julia") == 0)
 		julia(t);
 	else
 	{
 		write(1, "How to use: ./fractol <name>", 28);
-		//write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
 		write(1, "\tMandelbrot\tJulia\n", 18);
 	}
 }
@@ -100,8 +97,6 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		/*if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1],
-				"Burningship") == 0 || ft_strcmp(av[1], "julia") == 0)*/
 		if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1], "Julia") == 0)
 		{
 			t.ptr = mlx_init();
@@ -116,7 +111,6 @@ int	main(int ac, char *av[])
 	else
 	{
 		write(1, "How to use: ./fractol <name>", 28);
-		//write(1, "\tMandelbrot\tBurningship\tJulia\n", 30);
 		write(1, "\tMandelbrot\tJulia\n", 18);
 	}
 	return (0);
