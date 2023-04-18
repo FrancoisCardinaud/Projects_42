@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:59:26 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 14:41:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:20:39 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	fract_calc(t_fractol *data)
 		mandelbrot_pthread(data);
 	else if (data->fract == 1)
 		julia_pthread(data);
+	else if (data->fract == 2)
+		burningship_pthread(data);
 	if (data->show_text)
 		put_text(data);
 }
@@ -30,6 +32,8 @@ void	fract_init(t_fractol *data)
 		mandelbrot_init(data);
 	else if (data->fract == 1)
 		julia_init(data);
+	else if (data->fract == 2)
+		burningship_init(data);
 	fract_calc(data);
 }
 
@@ -48,9 +52,11 @@ int		fract_comp(char **av, t_fractol *data)
 		data->fract = 0;
 	else if (ft_strcmp(av[1], "julia") == 0)
 		data->fract = 1;
+	else if (ft_strcmp(av[1], "burningship") == 0)
+		data->fract = 2;
 	else
 	{
-		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\"");
+		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\", \"burningship\"");
 		return (0);
 	}
 	return (1);
@@ -75,6 +81,6 @@ int		main(int ac, char **av)
 		mlx_loop(data->mlx);
 	}
 	else
-		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\"");
+		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\", \"burningship\"");
 	return (0);
 }

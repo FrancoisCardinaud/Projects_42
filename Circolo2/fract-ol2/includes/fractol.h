@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:58:46 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 14:43:57 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:18:26 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void			julia_init(t_fractol *data);
 void			julia_calc(t_fractol *data);
 void			*julia(void *tab);
 void			julia_pthread(t_fractol *data);
+
+void			burningship_init(t_fractol *data);
+void			burningship_calc(t_fractol *data);
+void			*burningship(void *tab);
+void			burningship_pthread(t_fractol *data);
 
 int				ft_close(void);
 void			put_pxl_to_img(t_fractol *data, int x, int y, int color);
