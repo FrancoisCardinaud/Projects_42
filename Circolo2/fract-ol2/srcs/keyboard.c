@@ -6,26 +6,13 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 20:00:26 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 17:36:01 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:12:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int		key_hook2(int keycode, t_fractol *data)
-{
-	if (keycode == 19)
-		data->color = 2050;
-	else if (keycode == 20)
-		data->color = 265;
-	else if (keycode == 35)
-		data->julia_mouse = !data->julia_mouse;
-	else if (keycode == 34)
-		data->show_text = !data->show_text;
-	return (0);
-}
-
-int		key_hook(int keycode, t_fractol *data)
+int	key_hook(int keycode, t_fractol *data)
 {
 	if (keycode == 53)
 		exit(1);
@@ -47,5 +34,18 @@ int		key_hook(int keycode, t_fractol *data)
 		data->color = rand();
 	key_hook2(keycode, data);
 	fract_calc(data);
+	return (0);
+}
+
+int	key_hook2(int keycode, t_fractol *data)
+{
+	if (keycode == 20)
+		data->color = 2050;
+	else if (keycode == 8)
+		data->color = 265;
+	else if (keycode == 35)
+		data->julia_mouse = !data->julia_mouse;
+	else if (keycode == 34)
+		data->show_text = !data->show_text;
 	return (0);
 }

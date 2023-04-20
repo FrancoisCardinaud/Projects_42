@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:59:26 by fcardina          #+#    #+#             */
-/*   Updated: 2023/04/18 17:20:39 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:29:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,29 @@ void	mlx_win_init(t_fractol *data)
 			&data->bpp, &data->sl, &data->endian);
 }
 
-int		fract_comp(char **av, t_fractol *data)
+int	fract_comp(char **av, t_fractol *data)
 {
-	if (ft_strcmp(av[1], "mandelbrot") == 0)
+	if (ft_strcmp(av[1], "M") == 0)
 		data->fract = 0;
-	else if (ft_strcmp(av[1], "julia") == 0)
+	else if (ft_strcmp(av[1], "J") == 0)
 		data->fract = 1;
-	else if (ft_strcmp(av[1], "burningship") == 0)
+	else if (ft_strcmp(av[1], "B") == 0)
 		data->fract = 2;
 	else
 	{
-		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\", \"burningship\"");
+		ft_putstr("Usage:\n");
+		ft_putendl("./fractol [M = mandelbrot,  J = julia, B = burningship]");
 		return (0);
 	}
 	return (1);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_fractol	*data;
 
-	if (!(data = (t_fractol *)malloc(sizeof(t_fractol))))
+	data = (t_fractol *)malloc(sizeof(t_fractol));
+	if (!data)
 		return (-1);
 	if (ac == 2)
 	{
@@ -81,6 +83,9 @@ int		main(int ac, char **av)
 		mlx_loop(data->mlx);
 	}
 	else
-		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\", \"burningship\"");
+	{
+		ft_putstr("Usage:\n");
+		ft_putendl("./fractol [M = mandelbrot,  J = julia, B = burningship]");
+	}
 	return (0);
 }
