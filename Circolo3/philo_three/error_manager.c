@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:31:56 by gsmets            #+#    #+#             */
-/*   Updated: 2021/02/17 16:39:28 by gsmets           ###   ########.fr       */
+/*   Updated: 2023/05/01 20:47:04 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	write_error(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len])

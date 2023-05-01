@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:47:47 by gsmets            #+#    #+#             */
-/*   Updated: 2021/02/22 10:36:46 by gsmets           ###   ########.fr       */
+/*   Updated: 2023/05/01 20:45:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_semaphore(t_rules *rules)
 
 int	init_philosophers(t_rules *rules)
 {
-	int i;
+	int	i;
 
 	i = rules->nb_philo;
 	while (--i >= 0)
@@ -46,7 +46,6 @@ int	init_all(t_rules *rules, char **argv)
 	rules->time_death = ft_atoi(argv[2]);
 	rules->time_eat = ft_atoi(argv[3]);
 	rules->time_sleep = ft_atoi(argv[4]);
-	rules->all_ate = 0;
 	rules->dieded = 0;
 	if (rules->nb_philo < 2 || rules->time_death < 0 || rules->time_eat < 0
 		|| rules->time_sleep < 0 || rules->nb_philo > 250)
@@ -59,6 +58,8 @@ int	init_all(t_rules *rules, char **argv)
 	}
 	else
 		rules->nb_eat = -1;
+	if (rules->nb_eat == 1)
+		rules->nb_eat++;
 	if (init_semaphore(rules))
 		return (2);
 	init_philosophers(rules);

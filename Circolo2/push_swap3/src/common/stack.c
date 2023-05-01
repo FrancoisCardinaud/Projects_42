@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/08 16:37:08 by ttranche          #+#    #+#             */
-/*   Updated: 2021/06/08 17:39:11 by ttranche         ###   ########.fr       */
+/*   Created: 2021/06/08 16:37:08 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/01 20:34:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void	push_init(t_list **stack, int value, int tag, t_mem *mem)
 void	swap_private(t_list **stack)
 {
 	t_list	*temp;
-	t_list	*third;
+	t_list	*temp1;
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	third = (*stack)->next->next;
+	temp1 = (*stack)->next->next;
 	temp = *stack;
 	*stack = (*stack)->next;
 	(*stack)->next = temp;
-	temp->next = third;
+	temp->next = temp1;
 }
 
 void	push_top_x1_on_x2(t_list **x1, t_list **x2)

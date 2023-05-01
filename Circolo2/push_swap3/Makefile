@@ -1,6 +1,18 @@
-SRC_COMMON = 	./src/common/actions/actions_1.c \
-				./src/common/actions/actions_2.c \
-				./src/common/actions/actions_3.c \
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/01 20:26:14 by fcardina          #+#    #+#              #
+#    Updated: 2023/05/01 20:26:33 by fcardina         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC_COMMON = 	./src/common/instructions/instructions_1.c \
+				./src/common/instructions/instructions_2.c \
+				./src/common/instructions/instructions_3.c \
 				./src/common/args.c \
 				./src/common/clean.c \
 				./src/common/stack.c \

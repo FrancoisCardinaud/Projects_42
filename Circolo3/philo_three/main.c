@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 17:20:40 by gsmets            #+#    #+#             */
-/*   Updated: 2021/02/15 20:29:47 by gsmets           ###   ########.fr       */
+/*   Updated: 2023/05/01 20:46:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_rules	rules;
 	int		ret;

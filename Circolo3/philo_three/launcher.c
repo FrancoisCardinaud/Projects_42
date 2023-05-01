@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launcher.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsmets <gsmets@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 15:19:34 by gsmets            #+#    #+#             */
-/*   Updated: 2021/02/22 10:38:20 by gsmets           ###   ########.fr       */
+/*   Updated: 2023/05/01 20:45:31 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_eats(t_philosopher *philo)
 {
-	t_rules *rules;
+	t_rules	*rules;
 
 	rules = philo->rules;
 	sem_wait(rules->forks);
@@ -31,37 +31,77 @@ void	philo_eats(t_philosopher *philo)
 	sem_post(rules->forks);
 }
 
-void	*p_thread(void *void_philosopher)
+void	*death_checker(void *void_philosopher)
 {
-	int				i;
+	t_philosopher	*philo;
+	t_rules			*r;
+
+	philo = (t_philosopher *)void_philosopher;
+	r = philo->rules;
+	while (42)
+	{
+		sem_wait(r->meal_check);
+		if (time_diff(philo->t_last_meal, timestamp()) > r->time_death)
+		{
+			action_print(r, philo->id, "died");
+			r->dieded = 1;
+			sem_wait(r->writing);
+			exit(1);
+		}
+		sem_post(r->meal_check);
+		if (r->dieded)
+			break ;
+		usleep(1000);
+		if (philo->x_ate >= r->nb_eat && r->nb_eat != -1)
+			break ;
+	}
+	return (NULL);
+}
+
+void	p_process(void *void_phil)
+{
 	t_philosopher	*philo;
 	t_rules			*rules;
 
-	i = 0;
-	philo = (t_philosopher *)void_philosopher;
+	philo = (t_philosopher *)void_phil;
 	rules = philo->rules;
+	philo->t_last_meal = timestamp();
+	pthread_create(&(philo->death_check), NULL, death_checker, void_phil);
 	if (philo->id % 2)
 		usleep(15000);
 	while (!(rules->dieded))
 	{
 		philo_eats(philo);
-		if (rules->all_ate)
+		if (philo->x_ate >= rules->nb_eat && rules->nb_eat != -1)
 			break ;
 		action_print(rules, philo->id, "is sleeping");
 		smart_sleep(rules->time_sleep, rules);
 		action_print(rules, philo->id, "is thinking");
-		i++;
 	}
-	return (NULL);
+	pthread_join(philo->death_check, NULL);
+	if (rules->dieded)
+		exit(1);
+	exit(0);
 }
 
-void	exit_launcher(t_rules *rules, t_philosopher *philos)
+void	exit_launcher(t_rules *rules)
 {
-	int i;
+	int	i;
+	int	ret;
 
-	i = -1;
-	while (++i < rules->nb_philo)
-		pthread_join(philos[i].thread_id, NULL);
+	i = 0;
+	while (i < rules->nb_philo)
+	{
+		waitpid(-1, &ret, 0);
+		if (ret != 0)
+		{
+			i = -1;
+			while (++i < rules->nb_philo)
+				kill(rules->philosophers[i].proc_id, 15);
+			break ;
+		}
+		i++;
+	}
 	sem_close(rules->forks);
 	sem_close(rules->writing);
 	sem_close(rules->meal_check);
@@ -70,50 +110,23 @@ void	exit_launcher(t_rules *rules, t_philosopher *philos)
 	sem_unlink("/philo_mealcheck");
 }
 
-void	death_checker(t_rules *r, t_philosopher *p)
-{
-	int i;
-
-	while (!(r->all_ate))
-	{
-		i = -1;
-		while (++i < r->nb_philo && !(r->dieded))
-		{
-			sem_wait(r->meal_check);
-			if (time_diff(p[i].t_last_meal, timestamp()) > r->time_death)
-			{
-				action_print(r, i, "died");
-				r->dieded = 1;
-			}
-			sem_post(r->meal_check);
-			usleep(100);
-		}
-		if (r->dieded)
-			break ;
-		i = 0;
-		while (r->nb_eat != -1 && i < r->nb_philo && p[i].x_ate >= r->nb_eat)
-			i++;
-		if (i == r->nb_philo)
-			r->all_ate = 1;
-	}
-}
-
-int		launcher(t_rules *rules)
+int	launcher(t_rules *rules)
 {
 	int				i;
 	t_philosopher	*phi;
 
-	i = 0;
+	i = -1;
 	phi = rules->philosophers;
 	rules->first_timestamp = timestamp();
-	while (i < rules->nb_philo)
+	while (++i < rules->nb_philo)
 	{
-		if (pthread_create(&(phi[i].thread_id), NULL, p_thread, &(phi[i])))
+		phi[i].proc_id = fork();
+		if (phi[i].proc_id < 0)
 			return (1);
-		phi[i].t_last_meal = timestamp();
-		i++;
+		if (phi[i].proc_id == 0)
+			p_process(&(phi[i]));
+		usleep(100);
 	}
-	death_checker(rules, rules->philosophers);
-	exit_launcher(rules, phi);
+	exit_launcher(rules);
 	return (0);
 }
