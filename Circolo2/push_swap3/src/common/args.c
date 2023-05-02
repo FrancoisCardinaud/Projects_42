@@ -6,11 +6,11 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:01:12 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/01 20:28:04 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:04:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <common/common.h>
+#include <../include/common/common.h>
 
 void	read_args(int argc, char **argv, t_mem *mem)
 {

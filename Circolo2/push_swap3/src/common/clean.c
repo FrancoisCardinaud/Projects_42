@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttranche <ttranche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/08 17:12:29 by ttranche          #+#    #+#             */
-/*   Updated: 2021/06/08 18:53:40 by ttranche         ###   ########.fr       */
+/*   Created: 2021/06/08 17:12:29 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/02 14:04:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <common/common.h>
+#include <../include/common/common.h>
 
 void	clear_all(t_mem *mem)
 {
