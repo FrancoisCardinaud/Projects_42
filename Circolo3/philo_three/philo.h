@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:30:58 by fcardina            #+#    #+#             */
-/*   Updated: 2023/05/01 20:46:37 by fcardina         ###   ########.fr       */
+/*   Created: 2021/02/10 18:30:58 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/02 13:50:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-struct s_rules;
+struct	s_rules;
 
 typedef struct s_philosopher
 {
