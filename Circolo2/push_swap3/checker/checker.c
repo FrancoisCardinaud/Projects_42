@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:46:33 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/02 14:01:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:21:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker/checker.h>
+#include <../include/checker/checker.h>
 
 int	execute_action(char *name, t_mem *mem)
 {

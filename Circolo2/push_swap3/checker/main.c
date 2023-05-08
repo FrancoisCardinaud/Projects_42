@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:03:40 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/02 15:38:31 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:21:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <checker/checker.h>
+#include <../include/checker/checker.h>
 
 int	main(int argc, char **argv)
 {

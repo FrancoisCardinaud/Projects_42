@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 12:18:57 by fcardina          #+#    #+#              #
-#    Updated: 2023/04/20 16:30:20 by fcardina         ###   ########.fr        #
+#    Updated: 2023/05/08 16:51:13 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 	@echo "Compilation:	\033[38;5;46mOK\033[m"
 	@printf "\e[38;5;46mHow to use:\e[0m\n"
+	@printf "\e[38;5;46m./fractol [M = mandelbrot,  J = julia, B = burningship]\e[0m\n"
 	@printf "\e[38;5;46mEsc or close button -> close program\e[0m\n"
 	@printf "\e[38;5;46mSpace -> reset fractal\e[0m\n"
 	@printf "\e[38;5;46mClick or wheel -> zoom\e[0m\n"
