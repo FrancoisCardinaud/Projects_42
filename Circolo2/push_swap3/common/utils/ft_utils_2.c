@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:54:38 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/02 14:01:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:41:36 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <common/common.h>
+#include "../../include/common/common.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

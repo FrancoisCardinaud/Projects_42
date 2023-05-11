@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:37:08 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/02 14:04:10 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:42:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../include/common/common.h>
+#include "../include/common/common.h"
 
 void	push_init(t_list **stack, int value, int tag, t_mem *mem)
 {

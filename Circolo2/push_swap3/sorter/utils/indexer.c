@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   indexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:07:41 by ttranche          #+#    #+#             */
-/*   Updated: 2023/05/02 14:01:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:43:39 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sorter/sorter.h>
+#include "../../include/sorter/sorter.h"
 
 void	tag_list(t_list *start, t_mem *mem)
 {

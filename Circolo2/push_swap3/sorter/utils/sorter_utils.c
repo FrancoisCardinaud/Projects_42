@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sorter_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:05:14 by ttranche          #+#    #+#             */
-/*   Updated: 2023/05/02 14:02:00 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:43:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sorter/sorter.h>
+#include "../../include/sorter/sorter.h"
 
 void	init_resolve(t_mem *mem)
 {

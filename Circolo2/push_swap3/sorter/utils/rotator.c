@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotator.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 16:57:32 by ttranche          #+#    #+#             */
-/*   Updated: 2023/05/02 14:01:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:54:20 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sorter/sorter.h>
+#include "../../include/sorter/sorter.h"
 
 void	double_rotate(t_mem *mem, int *rot_a, int *rot_b)
 {

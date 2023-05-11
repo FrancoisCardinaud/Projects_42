@@ -3,33 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 20:26:14 by fcardina          #+#    #+#              #
-#    Updated: 2023/05/02 15:21:33 by fcardina         ###   ########.fr        #
+#    Updated: 2023/05/11 17:30:19 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_COMMON = 	./src/common/instructions/instructions_1.c \
-				./src/common/instructions/instructions_2.c \
-				./src/common/instructions/instructions_3.c \
-				./src/common/args.c \
-				./src/common/clean.c \
-				./src/common/stack.c \
-				./src/common/utils/ft_utils_1.c \
-				./src/common/utils/ft_utils_2.c \
-				./src/common/utils/ft_utils_3.c
+SRC_COMMON = 	./common/instructions/instructions_1.c \
+				./common/instructions/instructions_2.c \
+				./common/instructions/instructions_3.c \
+				./common/args.c \
+				./common/clean.c \
+				./common/stack.c \
+				./common/utils/ft_utils_1.c \
+				./common/utils/ft_utils_2.c \
+				./common/utils/ft_utils_3.c
 
-SRC_SORTER =	./src/sorter/looper.c \
-				./src/sorter/main.c \
-				./src/sorter/sorter.c \
-				./src/sorter/utils/five_optimize.c \
-				./src/sorter/utils/indexer.c \
-				./src/sorter/utils/rotator.c \
-				./src/sorter/utils/sorter_utils.c
+SRC_SORTER =	./sorter/looper.c \
+				./sorter/main.c \
+				./sorter/sorter.c \
+				./sorter/utils/five_optimize.c \
+				./sorter/utils/indexer.c \
+				./sorter/utils/rotator.c \
+				./sorter/utils/sorter_utils.c
 
-SRC_CHECKER =	./src/checker/checker.c \
-				./src/checker/main.c
+SRC_CHECKER =	./checker/checker.c \
+				./checker/main.c
 
 
 OBJS_COMMON	= ${SRC_COMMON:.c=.o}
@@ -61,7 +61,7 @@ clean:
 			${RM} ${OBJS_COMMON} ${OBJS_SORTER} ${OBJS_CHECKER}
 
 fclean: clean
-			${RM} ${NAME} ${NAME_CHECKER}
+			${RM} ${NAME} ${NAME}
 
 re: fclean all
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sorter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:00:19 by ttranche          #+#    #+#             */
-/*   Updated: 2023/05/02 14:02:04 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:43:22 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sorter/sorter.h>
+#include "../include/sorter/sorter.h"
 
 int	insert_distance(t_list *list, int t, int size)
 {

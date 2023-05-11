@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   looper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 17:11:06 by ttranche          #+#    #+#             */
-/*   Updated: 2023/05/02 14:02:00 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:43:24 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sorter/sorter.h>
+#include "../include/sorter/sorter.h"
 
 int	loop_list(t_list *list, t_list *start, int set)
 {
