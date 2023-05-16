@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   micro_paint.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/16 18:27:48 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/16 18:34:08 by fcardina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "micro_paint.h"
 
@@ -91,7 +102,7 @@ int	main(int ac, char **av)
 				&paint.x, &paint.y, &paint.w, &paint.h, &paint.c);
 		if (args == -1)
 			break;
-		if ((args > -1 && args < 6) || (paint.type != 114 && paint.type != 82) || paint.w <= 0 || paint.h <= 0))
+		if ((args > -1 && args < 6) || (paint.type != 114 && paint.type != 82) || paint.w <= 0 || paint.h <= 0)
 		{
 			write(1, "Error: Operation file corrupted\n", 32);
 			return (1);

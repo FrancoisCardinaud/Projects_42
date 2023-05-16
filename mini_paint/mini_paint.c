@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_paint.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/16 18:28:31 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/16 18:33:42 by fcardina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "mini_paint.h"
 
@@ -93,7 +104,7 @@ int	main(int ac, char **av)
 				&paint.x, &paint.y, &paint.r, &paint.c);
 		if (args == -1)
 			break;
-		if ((args > -1 && args < 5) || (paint.type != 99 && paint.type != 67) || paint.r <= 0))
+		if ((args > -1 && args < 5) || (paint.type != 99 && paint.type != 67) || paint.r <= 0)
 		{
 			write(1, "Error: Operation file corrupted\n", 32);
 			return (1);
