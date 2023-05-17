@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:47:47 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/01 22:30:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:57:42 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_semaphore(t_rules *rules)
+int	init_sem(t_rules *rules)
 {
 	sem_unlink("/philo_forks");
 	sem_unlink("/philo_write");
@@ -25,7 +25,7 @@ int	init_semaphore(t_rules *rules)
 	return (0);
 }
 
-int	init_philosophers(t_rules *rules)
+int	init_philo(t_rules *rules)
 {
 	int	i;
 
@@ -40,14 +40,14 @@ int	init_philosophers(t_rules *rules)
 	return (0);
 }
 
-int	init_all(t_rules *rules, char **argv)
+int	init(t_rules *rules, char **argv)
 {
 	rules->nb_philo = ft_atoi(argv[1]);
 	rules->time_death = ft_atoi(argv[2]);
 	rules->time_eat = ft_atoi(argv[3]);
 	rules->time_sleep = ft_atoi(argv[4]);
 	rules->dieded = 0;
-	if (rules->nb_philo < 2 || rules->time_death < 0 || rules->time_eat < 0
+	if (rules->nb_philo < 1 || rules->time_death < 0 || rules->time_eat < 0
 		|| rules->time_sleep < 0 || rules->nb_philo > 250)
 		return (1);
 	if (argv[5])
@@ -60,8 +60,8 @@ int	init_all(t_rules *rules, char **argv)
 		rules->nb_eat = -1;
 	if (rules->nb_eat == 1)
 		rules->nb_eat++;
-	if (init_semaphore(rules))
+	if (init_sem(rules))
 		return (2);
-	init_philosophers(rules);
+	init_philo(rules);
 	return (0);
 }

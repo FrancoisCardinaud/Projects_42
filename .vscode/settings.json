@@ -9,6 +9,7 @@
         "sorter.h": "c",
         "stack.h": "c",
         "__locale": "c",
-        "ios": "c"
+        "ios": "c",
+        "philo.h": "c"
     }
 }

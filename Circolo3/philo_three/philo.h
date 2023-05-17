@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:30:58 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/02 13:50:57 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:57:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ typedef struct s_rules
 }					t_rules;
 
 /*
-** ----- error_manager.c -----
+** ----- error.c -----
 */
 
-int					write_error(char *str);
-int					error_manager(int error);
+int					print_error(char *str);
+int					error(int err);
 
 /*
 ** ----- init.c -----
 */
 
-int					init_all(t_rules *rules, char **argv);
+int					init(t_rules *rules, char **argv);
 
 /*
 ** ----- utils.c -----

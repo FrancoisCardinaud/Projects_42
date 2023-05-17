@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_manager.c                                    :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:31:56 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/01 20:47:04 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:50:31 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	write_error(char *str)
+int	print_error(char *str)
 {
 	int	len;
 
@@ -25,11 +25,11 @@ int	write_error(char *str)
 	return (1);
 }
 
-int	error_manager(int error)
+int	error(int err)
 {
-	if (error == 1)
-		return (write_error("At least one wrong argument"));
-	if (error == 2)
-		return (write_error("Fatal error when intializing semaphores"));
+	if (err == 1)
+		return (print_error("At least one wrong argument"));
+	if (err == 2)
+		return (print_error("Fatal error when intializing semaphores"));
 	return (1);
 }

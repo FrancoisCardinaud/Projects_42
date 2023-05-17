@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 20:46:11 by fcardina          #+#    #+#              #
-#    Updated: 2023/05/02 15:38:23 by fcardina         ###   ########.fr        #
+#    Updated: 2023/05/17 18:57:53 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= main.c
 
-SRCS	+= error_manager.c init.c utils.c launcher.c
+SRCS	+= error.c init.c utils.c launcher.c
 
 OBJS	= $(SRCS:.c=.o)
 
