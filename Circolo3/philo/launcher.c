@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/12 15:19:34 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/17 18:50:32 by fcardina         ###   ########.fr       */
+/*   Created: 2023/04/12 15:19:34 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/25 16:18:06 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_eats(t_philosopher *philo)
+void	eat(t_philosopher *philo)
 {
 	t_rules	*rules;
 
 	rules = philo->rules;
 	sem_wait(rules->forks);
-	action_print(rules, philo->id, "has taken a fork");
+	print_action(rules, philo->id, "has taken a fork");
 	sem_wait(rules->forks);
-	action_print(rules, philo->id, "has taken a fork");
+	print_action(rules, philo->id, "has taken a fork");
 	sem_wait(rules->meal_check);
-	action_print(rules, philo->id, "is eating");
-	philo->t_last_meal = timestamp();
+	print_action(rules, philo->id, "is eating");
+	philo->t_last_meal = get_time();
 	sem_post(rules->meal_check);
 	smart_sleep(rules->time_eat, rules);
 	(philo->x_ate)++;
@@ -31,7 +31,7 @@ void	philo_eats(t_philosopher *philo)
 	sem_post(rules->forks);
 }
 
-void	*death_checker(void *void_philosopher)
+void	*death_check(void *void_philosopher)
 {
 	t_philosopher	*philo;
 	t_rules			*r;
@@ -41,15 +41,15 @@ void	*death_checker(void *void_philosopher)
 	while (42)
 	{
 		sem_wait(r->meal_check);
-		if (time_diff(philo->t_last_meal, timestamp()) > r->time_death)
+		if (time_delta(philo->t_last_meal, get_time()) > r->time_death)
 		{
-			action_print(r, philo->id, "died");
-			r->dieded = 1;
+			print_action(r, philo->id, "died");
+			r->died = 1;
 			sem_wait(r->writing);
 			exit(1);
 		}
 		sem_post(r->meal_check);
-		if (r->dieded)
+		if (r->died)
 			break ;
 		usleep(1000);
 		if (philo->x_ate >= r->nb_eat && r->nb_eat != -1)
@@ -65,26 +65,26 @@ void	p_process(void *void_phil)
 
 	philo = (t_philosopher *)void_phil;
 	rules = philo->rules;
-	philo->t_last_meal = timestamp();
-	pthread_create(&(philo->death_check), NULL, death_checker, void_phil);
+	philo->t_last_meal = get_time();
+	pthread_create(&(philo->death_check), NULL, death_check, void_phil);
 	if (philo->id % 2)
 		usleep(15000);
-	while (!(rules->dieded))
+	while (!(rules->died))
 	{
-		philo_eats(philo);
+		eat(philo);
 		if (philo->x_ate >= rules->nb_eat && rules->nb_eat != -1)
 			break ;
-		action_print(rules, philo->id, "is sleeping");
+		print_action(rules, philo->id, "is sleeping");
 		smart_sleep(rules->time_sleep, rules);
-		action_print(rules, philo->id, "is thinking");
+		print_action(rules, philo->id, "is thinking");
 	}
 	pthread_join(philo->death_check, NULL);
-	if (rules->dieded)
+	if (rules->died)
 		exit(1);
 	exit(0);
 }
 
-void	exit_launcher(t_rules *rules)
+void	kill_launcher(t_rules *rules)
 {
 	int	i;
 	int	ret;
@@ -117,7 +117,7 @@ int	launcher(t_rules *rules)
 
 	i = -1;
 	phi = rules->philosophers;
-	rules->first_timestamp = timestamp();
+	rules->first_time = get_time();
 	while (++i < rules->nb_philo)
 	{
 		phi[i].proc_id = fork();
@@ -127,6 +127,6 @@ int	launcher(t_rules *rules)
 			p_process(&(phi[i]));
 		usleep(100);
 	}
-	exit_launcher(rules);
+	kill_launcher(rules);
 	return (0);
 }

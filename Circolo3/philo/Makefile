@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 20:46:11 by fcardina          #+#    #+#              #
-#    Updated: 2023/05/24 14:23:07 by fcardina         ###   ########.fr        #
+#    Updated: 2023/05/25 16:18:53 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS	+= error.c init.c utils.c launcher.c
 
 OBJS	= $(SRCS:.c=.o)
 
-NAME	= philo_three
+NAME	= philo
 
 CLANG	= clang
 
@@ -33,8 +33,6 @@ $(NAME): $(OBJS)
 	$(CLANG) $(FLAGS) -c $<  -o $(<:.c=.o)
 
 all:	$(NAME)
-
-.PHONY:	clean fclean re bonus bench bclean
 
 clean:
 	rm -f $(OBJS) $(B_OBJS)

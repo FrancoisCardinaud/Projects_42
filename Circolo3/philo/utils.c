@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:59:07 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/24 14:23:01 by fcardina         ###   ########.fr       */
+/*   Created: 2023/04/10 18:59:07 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/25 16:18:03 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	smart_sleep(long long time, t_rules *rules)
 	long long	i;
 
 	i = get_time();
-	while (!(rules->dieded))
+	while (!(rules->died))
 	{
 		if (time_delta(i, get_time()) >= time)
 			break ;
@@ -64,7 +64,7 @@ void	smart_sleep(long long time, t_rules *rules)
 void	print_action(t_rules *rules, int id, char *string)
 {
 	sem_wait(rules->writing);
-	if (!(rules->dieded))
+	if (!(rules->died))
 	{
 		printf("%lli ", get_time() - rules->first_time);
 		printf("%i ", id + 1);
