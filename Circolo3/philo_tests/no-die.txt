@@ -1,12 +1,12 @@
-5 800 200 200
+./philo 5 800 200 200
 no one should die
-5 600 150 150
+./philo 5 600 150 150
 no one should die
-4 410 200 200
+./philo 4 410 200 200
 no one should die
-100 800 200 200
+./philo 100 800 200 200
 no one should die
-105 800 200 200
+./philo 105 800 200 200
 no one should die
-200 800 200 200
-no one should die
+./philo 200 800 200 200
+no one should die (DOESN'T WORK)

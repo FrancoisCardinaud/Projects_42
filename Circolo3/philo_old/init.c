@@ -5,31 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:47:47 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/27 18:55:31 by fcardina         ###   ########.fr       */
+/*   Created: 2023/04/10 18:47:47 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/25 16:18:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_mutex(t_rules *rules)
+int	init_sem(t_rules *rules)
 {
-	int	i;
-
-	i = rules->nb_philo;
-	while (--i >= 0)
-	{
-		if (pthread_mutex_init(&(rules->forks[i]), NULL))
-			return (1);
-	}
-	if (pthread_mutex_init(&(rules->writing), NULL))
-		return (1);
-	if (pthread_mutex_init(&(rules->meal_check), NULL))
+	sem_unlink("/philo_forks");
+	sem_unlink("/philo_write");
+	sem_unlink("/philo_mealcheck");
+	rules->forks = sem_open("/philo_forks", O_CREAT, S_IRWXU, rules->nb_philo);
+	rules->writing = sem_open("/philo_write", O_CREAT, S_IRWXU, 1);
+	rules->meal_check = sem_open("/philo_mealcheck", O_CREAT, S_IRWXU, 1);
+	if (rules->forks <= 0 || rules->writing <= 0 || rules->meal_check <= 0)
 		return (1);
 	return (0);
 }
 
-int	init_philosophers(t_rules *rules)
+int	init_philo(t_rules *rules)
 {
 	int	i;
 
@@ -38,8 +34,6 @@ int	init_philosophers(t_rules *rules)
 	{
 		rules->philosophers[i].id = i;
 		rules->philosophers[i].x_ate = 0;
-		rules->philosophers[i].left_fork_id = i;
-		rules->philosophers[i].right_fork_id = (i + 1) % rules->nb_philo;
 		rules->philosophers[i].t_last_meal = 0;
 		rules->philosophers[i].rules = rules;
 	}
@@ -52,7 +46,6 @@ int	init(t_rules *rules, char **argv)
 	rules->time_death = ft_atoi(argv[2]);
 	rules->time_eat = ft_atoi(argv[3]);
 	rules->time_sleep = ft_atoi(argv[4]);
-	rules->all_ate = 0;
 	rules->died = 0;
 	if (rules->nb_philo < 1 || rules->time_death < 0 || rules->time_eat < 0
 		|| rules->time_sleep < 0 || rules->nb_philo > 250)
@@ -65,8 +58,10 @@ int	init(t_rules *rules, char **argv)
 	}
 	else
 		rules->nb_eat = -1;
-	if (init_mutex(rules))
+	if (rules->nb_eat == 1)
+		rules->nb_eat++;
+	if (init_sem(rules))
 		return (2);
-	init_philosophers(rules);
+	init_philo(rules);
 	return (0);
 }

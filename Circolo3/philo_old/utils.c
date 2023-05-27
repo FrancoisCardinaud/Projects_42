@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:59:07 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/27 18:25:08 by fcardina         ###   ########.fr       */
+/*   Created: 2023/04/10 18:59:07 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/25 16:18:03 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	smart_sleep(long long time, t_rules *rules)
 
 void	print_action(t_rules *rules, int id, char *string)
 {
-	pthread_mutex_lock(&(rules->writing));
+	sem_wait(rules->writing);
 	if (!(rules->died))
 	{
 		printf("%lli ", get_time() - rules->first_time);
 		printf("%i ", id + 1);
 		printf("%s\n", string);
 	}
-	pthread_mutex_unlock(&(rules->writing));
+	sem_post(rules->writing);
 	return ;
 }

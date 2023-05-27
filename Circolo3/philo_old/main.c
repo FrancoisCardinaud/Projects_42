@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:31:56 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/27 18:55:19 by fcardina         ###   ########.fr       */
+/*   Created: 2023/05/25 15:32:58 by fcardina          #+#    #+#             */
+/*   Updated: 2023/05/27 18:17:19 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	print_error(char *str)
+int	main(int argc, char **argv)
 {
-	int	len;
+	t_rules	rules;
+	int		ret;
 
-	len = 0;
-	while (str[len])
-		len++;
-	write(2, "Error: ", 7);
-	write(2, str, len);
-	write(2, "\n", 1);
-	return (1);
-}
-
-int	error(int err)
-{
-	if (err == 1)
-		return (print_error("One or more wrong arguments"));
-	if (err == 2)
-		return (print_error("Fatal error when intializing semaphores"));
-	return (1);
+	if (argc != 5 && argc != 6)
+		return (print_error("Wrong amount of arguments"));
+	ret = init(&rules, argv);
+	if (ret)
+		return (error(ret));
+	if (launcher(&rules))
+		return (print_error("There was an error creating the threads"));
+	return (0);
 }
