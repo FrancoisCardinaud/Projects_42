@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 15:19:34 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/27 18:55:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:54:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	death_checker(t_rules *r, t_philosopher *p)
 			{
 				print_action(r, i, "died");
 				r->died = 1;
+				exit(1);
 			}
 			pthread_mutex_unlock(&(r->meal_check));
 			usleep(100);

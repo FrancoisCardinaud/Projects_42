@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:30:58 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/27 18:56:00 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:17:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ typedef struct s_rules
 	t_philosopher	philosophers[250];
 }					t_rules;
 
-int					print_error(char *str);
 int					error(int error);
-int					init(t_rules *rules, char **argv);
 int					ft_atoi(const char *str);
-void				print_action(t_rules *rules, int id, char *string);
 long long			get_time(void);
-long long			time_delta(long long past, long long pres);
-void				smart_sleep(long long time, t_rules *rules);
+int					init(t_rules *rules, char **argv);
 int					launcher(t_rules *rules);
+int					print_error(char *str);
+void				print_action(t_rules *rules, int id, char *string);
 void				quit_launcher(t_rules *rules, t_philosopher *philos);
+void				smart_sleep(long long time, t_rules *rules);
+long long			time_delta(long long past, long long pres);
 
 #endif
