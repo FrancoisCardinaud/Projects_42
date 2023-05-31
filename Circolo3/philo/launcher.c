@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 15:19:34 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/29 17:54:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:30:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,61 @@
 
 void	eat(t_philosopher *philo)
 {
-	t_rules	*rules;
+	t_data	*data;
 
-	rules = philo->rules;
-	pthread_mutex_lock(&(rules->forks[philo->left_fork_id]));
-	print_action(rules, philo->id, "has taken a fork");
-	pthread_mutex_lock(&(rules->forks[philo->right_fork_id]));
-	print_action(rules, philo->id, "has taken a fork");
-	pthread_mutex_lock(&(rules->meal_check));
-	print_action(rules, philo->id, "is eating");
+	data = philo->data;
+	pthread_mutex_lock(&(data->forks[philo->left_fork_id]));
+	print_action(data, philo->id, "has taken a fork");
+	pthread_mutex_lock(&(data->forks[philo->right_fork_id]));
+	print_action(data, philo->id, "has taken a fork");
+	pthread_mutex_lock(&(data->meal_check));
+	print_action(data, philo->id, "is eating");
 	philo->t_last_meal = get_time();
-	pthread_mutex_unlock(&(rules->meal_check));
-	smart_sleep(rules->time_eat, rules);
+	pthread_mutex_unlock(&(data->meal_check));
+	smart_sleep(data->time_eat, data);
 	(philo->x_ate)++;
-	pthread_mutex_unlock(&(rules->forks[philo->left_fork_id]));
-	pthread_mutex_unlock(&(rules->forks[philo->right_fork_id]));
+	pthread_mutex_unlock(&(data->forks[philo->left_fork_id]));
+	pthread_mutex_unlock(&(data->forks[philo->right_fork_id]));
 }
 
 void	*p_thread(void *void_philosopher)
 {
 	int				i;
 	t_philosopher	*philo;
-	t_rules			*rules;
+	t_data			*data;
 
 	i = 0;
 	philo = (t_philosopher *)void_philosopher;
-	rules = philo->rules;
+	data = philo->data;
 	if (philo->id % 2)
 		usleep(15000);
-	while (!(rules->died))
+	while (!(data->died))
 	{
 		eat(philo);
-		if (rules->all_ate)
+		if (data->all_ate)
 			break ;
-		print_action(rules, philo->id, "is sleeping");
-		smart_sleep(rules->time_sleep, rules);
-		print_action(rules, philo->id, "is thinking");
+		print_action(data, philo->id, "is sleeping");
+		smart_sleep(data->time_sleep, data);
+		print_action(data, philo->id, "is thinking");
 		i++;
 	}
 	return (NULL);
 }
 
-void	quit_launcher(t_rules *rules, t_philosopher *philos)
+void	quit_launcher(t_data *data, t_philosopher *philos)
 {
 	int	i;
 
 	i = -1;
-	while (++i < rules->nb_philo)
+	while (++i < data->nb_philo)
 		pthread_join(philos[i].thread_id, NULL);
 	i = -1;
-	while (++i < rules->nb_philo)
-		pthread_mutex_destroy(&(rules->forks[i]));
-	pthread_mutex_destroy(&(rules->writing));
+	while (++i < data->nb_philo)
+		pthread_mutex_destroy(&(data->forks[i]));
+	pthread_mutex_destroy(&(data->writing));
 }
 
-void	death_checker(t_rules *r, t_philosopher *p)
+void	death_checker(t_data *r, t_philosopher *p)
 {
 	int	i;
 
@@ -97,22 +97,22 @@ void	death_checker(t_rules *r, t_philosopher *p)
 	}
 }
 
-int	launcher(t_rules *rules)
+int	launcher(t_data *data)
 {
 	int				i;
 	t_philosopher	*phi;
 
 	i = 0;
-	phi = rules->philosophers;
-	rules->first_time = get_time();
-	while (i < rules->nb_philo)
+	phi = data->philosophers;
+	data->first_time = get_time();
+	while (i < data->nb_philo)
 	{
 		if (pthread_create(&(phi[i].thread_id), NULL, p_thread, &(phi[i])))
 			return (1);
 		phi[i].t_last_meal = get_time();
 		i++;
 	}
-	death_checker(rules, rules->philosophers);
-	quit_launcher(rules, phi);
+	death_checker(data, data->philosophers);
+	quit_launcher(data, phi);
 	return (0);
 }

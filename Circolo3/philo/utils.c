@@ -6,33 +6,34 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 18:59:07 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/27 18:25:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:53:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *s)
 {
-	long int	n;
-	int			sign;
+	int	value;
+	int	sign;
 
-	n = 0;
 	sign = 1;
-	while ((*str <= 13 && *str >= 9) || *str == 32)
-		str++;
-	if (*str == '-')
-		return (-1);
-	else if (*str == '+')
-		str++;
-	while (*str)
+	value = 0;
+	while (*s == 32 || (*s >= 9 && *s <= 13))
+		s++;
+	if (*s == '-' || *s == '+')
 	{
-		if (*str >= '0' && *str <= '9')
-			n = n * 10 + (*str++ - '0');
-		else
-			return (-1);
+		if (*s == '-')
+			sign = -1;
+		s++;
 	}
-	return ((int)(n * sign));
+	while (*s >= '0' && *s <= '9')
+	{
+		value *= 10;
+		value += *s - 48;
+		s++;
+	}
+	return (value * sign);
 }
 
 long long	get_time(void)
@@ -48,12 +49,12 @@ long long	time_delta(long long past, long long pres)
 	return (pres - past);
 }
 
-void	smart_sleep(long long time, t_rules *rules)
+void	smart_sleep(long long time, t_data *data)
 {
 	long long	i;
 
 	i = get_time();
-	while (!(rules->died))
+	while (!(data->died))
 	{
 		if (time_delta(i, get_time()) >= time)
 			break ;
@@ -61,15 +62,15 @@ void	smart_sleep(long long time, t_rules *rules)
 	}
 }
 
-void	print_action(t_rules *rules, int id, char *string)
+void	print_action(t_data *data, int id, char *string)
 {
-	pthread_mutex_lock(&(rules->writing));
-	if (!(rules->died))
+	pthread_mutex_lock(&(data->writing));
+	if (!(data->died))
 	{
-		printf("%lli ", get_time() - rules->first_time);
+		printf("%lli ", get_time() - data->first_time);
 		printf("%i ", id + 1);
 		printf("%s\n", string);
 	}
-	pthread_mutex_unlock(&(rules->writing));
+	pthread_mutex_unlock(&(data->writing));
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:59:07 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/25 16:18:03 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:30:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ long long	time_delta(long long past, long long pres)
 	return (pres - past);
 }
 
-void	smart_sleep(long long time, t_rules *rules)
+void	smart_sleep(long long time, t_data *data)
 {
 	long long	i;
 
 	i = get_time();
-	while (!(rules->died))
+	while (!(data->died))
 	{
 		if (time_delta(i, get_time()) >= time)
 			break ;
@@ -61,15 +61,15 @@ void	smart_sleep(long long time, t_rules *rules)
 	}
 }
 
-void	print_action(t_rules *rules, int id, char *string)
+void	print_action(t_data *data, int id, char *string)
 {
-	sem_wait(rules->writing);
-	if (!(rules->died))
+	sem_wait(data->writing);
+	if (!(data->died))
 	{
-		printf("%lli ", get_time() - rules->first_time);
+		printf("%lli ", get_time() - data->first_time);
 		printf("%i ", id + 1);
 		printf("%s\n", string);
 	}
-	sem_post(rules->writing);
+	sem_post(data->writing);
 	return ;
 }

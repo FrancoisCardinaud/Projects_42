@@ -6,19 +6,17 @@
 #    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 20:46:11 by fcardina          #+#    #+#              #
-#    Updated: 2023/05/27 18:25:10 by fcardina         ###   ########.fr        #
+#    Updated: 2023/05/31 15:55:06 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= main.c
-
-SRCS	+= error.c init.c utils.c launcher.c
+SRCS	= main.c init.c launcher.c utils.c
 
 OBJS	= $(SRCS:.c=.o)
 
 NAME	= philo
 
-CLANG	= clang
+CC	= gcc
 
 FLAGS	= -Wall -Wextra -Werror
 
@@ -27,15 +25,15 @@ INCLUDE	= -lpthread
 HEADER	= philo.h
 
 $(NAME): $(OBJS)
-	$(CLANG) $(INCLUDE) $(FLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(INCLUDE) $(FLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.c $(HEADER)
-	$(CLANG) $(FLAGS) -c $<  -o $(<:.c=.o)
+	$(CC) $(FLAGS) -c $<  -o $(<:.c=.o)
 
 all:	$(NAME)
 
 clean:
-	rm -f $(OBJS) $(B_OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME) $(BONUS)

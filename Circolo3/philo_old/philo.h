@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:30:58 by fcardina          #+#    #+#             */
-/*   Updated: 2023/05/27 18:09:35 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:30:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-struct	s_rules;
+struct	s_data;
 
 typedef struct s_philosopher
 {
@@ -34,12 +34,12 @@ typedef struct s_philosopher
 	int				left_fork_id;
 	int				right_fork_id;
 	long long		t_last_meal;
-	struct s_rules	*rules;
+	struct s_data	*data;
 	pthread_t		death_check;
 	pid_t			proc_id;
 }					t_philosopher;
 
-typedef struct s_rules
+typedef struct s_data
 {
 	int				nb_philo;
 	int				time_death;
@@ -52,17 +52,17 @@ typedef struct s_rules
 	sem_t			*forks;
 	sem_t			*writing;
 	t_philosopher	philosophers[250];
-}					t_rules;
+}					t_data;
 
 int					print_error(char *str);
 int					error(int err);
-int					init(t_rules *rules, char **argv);
+int					init(t_data *data, char **argv);
 int					ft_atoi(const char *str);
-void				print_action(t_rules *rules, int id, char *string);
+void				print_action(t_data *data, int id, char *string);
 long long			get_time(void);
 long long			time_delta(long long past, long long pres);
-void				smart_sleep(long long time, t_rules *rules);
-int					launcher(t_rules *rules);
-void				quit_launcher(t_rules *rules);
+void				smart_sleep(long long time, t_data *data);
+int					launcher(t_data *data);
+void				quit_launcher(t_data *data);
 
 #endif
