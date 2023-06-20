@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:59:07 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/31 15:53:07 by fcardina         ###   ########.fr       */
+/*   Created: 2023/05/25 18:59:07 by fcardina          #+#    #+#             */
+/*   Updated: 2023/06/07 17:04:10 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	smart_sleep(long long time, t_data *data)
 	}
 }
 
-void	print_action(t_data *data, int id, char *string)
+void	print_action(t_data *data, int nbr, char *string)
 {
 	pthread_mutex_lock(&(data->writing));
 	if (!(data->died))
 	{
 		printf("%lli ", get_time() - data->first_time);
-		printf("%i ", id + 1);
+		printf("%i ", nbr + 1);
 		printf("%s\n", string);
 	}
 	pthread_mutex_unlock(&(data->writing));

@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/01 20:46:11 by fcardina          #+#    #+#              #
-#    Updated: 2023/05/31 15:55:06 by fcardina         ###   ########.fr        #
+#    Created: 2023/05/25 20:46:11 by fcardina          #+#    #+#              #
+#    Updated: 2023/06/07 17:04:07 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= main.c init.c launcher.c utils.c
+SRCS	= main.c initialize.c proceed.c utils.c
 
 OBJS	= $(SRCS:.c=.o)
 

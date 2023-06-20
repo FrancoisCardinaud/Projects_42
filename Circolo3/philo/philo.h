@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/10 18:30:58 by gsmets            #+#    #+#             */
-/*   Updated: 2023/05/31 15:53:08 by fcardina         ###   ########.fr       */
+/*   Created: 2023/05/25 16:57:54 by fcardina          #+#    #+#             */
+/*   Updated: 2023/06/07 17:04:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ struct	s_data;
 
 typedef struct s_philosopher
 {
-	int				id;
-	int				x_ate;
-	int				left_fork_id;
-	int				right_fork_id;
-	long long		t_last_meal;
+	int				nbr;
+	int				philo_ate;
+	int				left_fork_nbr;
+	int				right_fork_nbr;
+	long long		last_meal;
 	struct s_data	*data;
-	pthread_t		thread_id;
+	pthread_t		thread_nbr;
 }					t_philosopher;
 
 typedef struct s_data
 {
-	int				nb_philo;
+	int				philo_nbr;
 	int				time_death;
 	int				time_eat;
 	int				time_sleep;
-	int				nb_eat;
+	int				meals;
 	int				died;
 	int				all_ate;
 	long long		first_time;
@@ -51,10 +51,10 @@ typedef struct s_data
 
 int					ft_atoi(const char *str);
 long long			get_time(void);
-int					init(t_data *data, char **argv);
-int					launcher(t_data *data);
-void				print_action(t_data *data, int id, char *string);
-void				quit_launcher(t_data *data, t_philosopher *philos);
+int					initialize(t_data *data, char **argv);
+int					proceed(t_data *data);
+void				print_action(t_data *data, int nbr, char *string);
+void				quit_proceed(t_data *data, t_philosopher *philos);
 void				smart_sleep(long long time, t_data *data);
 long long			time_delta(long long past, long long pres);
 
