@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "libft.h": "c",
+        "push_swap.h": "c",
+        "libftprintf.h": "c",
+        "mlx.h": "c",
+        "signal.h": "c",
+        "common.h": "c",
+        "sorter.h": "c",
+        "stack.h": "c",
+        "__locale": "c",
+        "ios": "c",
+        "philo.h": "c"
+    }
+}

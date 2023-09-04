@@ -1,0 +1,10 @@
+Esc -> close program
+Space -> reset fractal
+Arrow Up -> move image up
+Arrow Down -> move image down
+Arrow Left -> move image left
+Arrow Right -> move image right
+Enter -> change colors
+C -> reset color
+I -> show number of iterations
+(For Julia) P -> stop mouse

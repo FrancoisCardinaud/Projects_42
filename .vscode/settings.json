@@ -10,6 +10,9 @@
         "stack.h": "c",
         "__locale": "c",
         "ios": "c",
-        "philo.h": "c"
+        "philo.h": "c",
+        "minishell.h": "c",
+        "stddef.h": "c",
+        "sh.h": "c"
     }
 }
