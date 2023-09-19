@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:40:47 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/09/18 23:48:50 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:58:37 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	mini_getpid(t_prompt *p)
 static t_prompt	init_vars(t_prompt prompt, char *str, char **argv)
 {
 	char	*num;
+
+	str = (char*)malloc(strlen(str) + 1); //added line to fix errors
 
 	str = getcwd(NULL, 0);
 	prompt.envp = mini_setenv("PWD", str, prompt.envp, 3);

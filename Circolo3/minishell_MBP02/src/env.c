@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 17:28:02 by mbueno-g          #+#    #+#             */
-/*   Updated: 2023/09/18 23:48:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:50:15 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*mini_getenv(char *var, char **envp, int n)
 	return (NULL);
 }
 
-char	**mini_setenv(char *var, char *value, char **envp, int n)
+char	**mini_setenv(char *var, const char *value, char **envp, int n)
 {
 	int		i[2];
 	char	*aux[2];

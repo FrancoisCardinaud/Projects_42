@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aperez-b <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/04/08 14:44:56 by aperez-b         ###   ########.fr        #
+#    Updated: 2023/09/19 18:27:45 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,20 +38,34 @@ CFLAGS = -Wall -Wextra -Werror -MD -g3
 RM = rm -f
 CC = gcc
 PRINTF = printf
-SRC_DIR = src
-OBJ_DIR = obj
-BIN_DIR = bin
-LIBFT = libft/bin/libft.a
+SRC_DIR = ./src/
+OBJ_DIR = ./obj/
+BIN_DIR = ./bin/
+LIBFT = libft/libft.a
 BIN = minishell
 NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
-LIBFT_SRC = $(shell [ -d libft ] && ls libft/src*/*.c)
+LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
 
-SRC = main.c builtins.c ft_strtrim_all.c exec.c			\
-	  fill_node.c get_params.c ft_cmdtrim.c				\
-	  expand.c heredoc.c error.c env.c custom_cmd.c		\
-	  get_next_line.c get_next_line_utils.c prompt.c	\
-	  ft_cmdsubsplit.c signal.c parse_args.c get_cmd.c
+SRC = $(SRC_PATH)main.c \
+		$(SRC_DIR)builtin/builtin_meryem.c s\
+		$(SRC_DIR)utils/ft_strtrim_all.c \
+		$(SRC_DIR)exec.c \
+		$(SRC_DIR)lexer/fill_node.c \
+		$(SRC_DIR)utils/get_params.c \
+		$(SRC_DIR)utils/ft_cmdtrim.c \
+		$(SRC_DIR)expander/expand.c \
+		$(SRC_DIR)utils/heredoc.c \
+		$(SRC_DIR)utils/error.c \
+		$(SRC_DIR)env.c \
+		$(SRC_DIR)utils/custom_cmd.c \
+		$(SRC_DIR)utils/get_next_line.c \
+		$(SRC_DIR)utils/get_next_line_utils.c \
+		$(SRC_DIR)prompt/prompt.c \
+		$(SRC_DIR)utils/ft_cmdsubsplit.c \ 
+		$(SRC_DIR)utils/signal.c \
+		$(SRC_DIR)parser/parse_args.c \
+		$(SRC_DIR)utils/get_cmd.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
