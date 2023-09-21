@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by fcardina          #+#    #+#              #
-#    Updated: 2023/09/21 17:02:23 by fcardina         ###   ########.fr        #
+#    Updated: 2023/09/21 17:25:32 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,49 +53,27 @@ NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
 LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
 
-#SRC = $(SRC_DIR)main.c \
-$(BUILTIN_DIR)builtin_meryem.c \
-$(UTILS_DIR)ft_strtrim_all.c \
-exec.c \
-lexer/fill_node.c \
-utils/get_params.c \
-utils/ft_cmdtrim.c \
-expander/expand.c \
-utils/heredoc.c \
-utils/error.c \
-env.c \
-utils/custom_cmd.c \
-utils/get_next_line.c \
-utils/get_next_line_utils.c \
-prompt/prompt.c \
-utils/ft_cmdsubsplit.c \
-utils/signal.c \
-parser/parse_args.c \
-utils/get_cmd.c
+BUILTIN = builtin_meryem.c
+ENV = env.c
+EXEC = executor.c
+MAIN = main.c
+PARSING = parser.c
+UTILS = utils.c
+EXP = expander.c
+LEXER = lexer.c
+PROMPT = prompt.c
 
-BUILTIN = builtin_meryem
-ENV = env
-EXEC = executor
-MAIN = main
-PARSING = parser
-UTILS = utils
-EXP = expander
-LEXER = lexer
-PROMPT = prompt
-
-SRC = $(addsuffix .c, $(addprefix srcs/env/, $(ENV))) \
-	  $(addsuffix .c, $(addprefix srcs/builtin/, $(BUILTIN))) \
-	  $(addsuffix .c, $(addprefix srcs/executor/, $(EXEC))) \
-	  $(addsuffix .c, $(addprefix srcs/main/, $(MAIN))) \
-	  $(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \
-	  $(addsuffix .c, $(addprefix srcs/lexer/, $(LEXER))) \
-	  $(addsuffix .c, $(addprefix srcs/prompt/, $(PROMPT))) \
-	  $(addsuffix .c, $(addprefix srcs/expander/, $(EXP))) \
-	  $(addsuffix .c, $(addprefix srcs/utils/, $(UTILS))) \
+SRC = $($(addprefix srcs/env/, $(ENV))) \
+	  $($(addprefix srcs/builtin/, $(BUILTIN))) \
+	  $($(addprefix srcs/executor/, $(EXEC))) \
+	  $($(addprefix srcs/main/, $(MAIN))) \
+	  $($(addprefix srcs/parser/, $(PARSER))) \
+	  $($(addprefix srcs/lexer/, $(LEXER))) \
+	  $($(addprefix srcs/prompt/, $(PROMPT))) \
+	  $($(addprefix srcs/expander/, $(EXP))) \
+	  $($(addprefix srcs/utils/, $(UTILS))) \
 
 OBJ = $(SRC:c=o)
-
-#OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 OBJ_LFT = $(addprefix $(OBJ_LFT_DIR)/, $(SRC_LFT:.c=.o)/)
 
