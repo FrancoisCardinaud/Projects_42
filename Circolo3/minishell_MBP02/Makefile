@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/09/19 18:27:45 by fcardina         ###   ########.fr        #
+#    Created: 2021/10/22 13:38:18 by fcardina          #+#    #+#              #
+#    Updated: 2023/09/21 17:02:23 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,38 +38,66 @@ CFLAGS = -Wall -Wextra -Werror -MD -g3
 RM = rm -f
 CC = gcc
 PRINTF = printf
-SRC_DIR = ./src/
-OBJ_DIR = ./obj/
-BIN_DIR = ./bin/
+SRC_DIR = src
+OBJ_DIR = obj
+BIN_DIR = bin
+BUILTIN_DIR = $(SRC_DIR)builtin/
+LEXER_DIR = $(SRC_DIR)lexer/
+EXP_DIR = $(SRC_DIR)expander/
+PARSER_DIR = $(SRC_DIR)parser/
+EXEC_DIR = $(SRC_DIR)executor/
+UTILS_DIR = $(SRC_DIR)utils/
 LIBFT = libft/libft.a
 BIN = minishell
 NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
 LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
 
-SRC = $(SRC_PATH)main.c \
-		$(SRC_DIR)builtin/builtin_meryem.c s\
-		$(SRC_DIR)utils/ft_strtrim_all.c \
-		$(SRC_DIR)exec.c \
-		$(SRC_DIR)lexer/fill_node.c \
-		$(SRC_DIR)utils/get_params.c \
-		$(SRC_DIR)utils/ft_cmdtrim.c \
-		$(SRC_DIR)expander/expand.c \
-		$(SRC_DIR)utils/heredoc.c \
-		$(SRC_DIR)utils/error.c \
-		$(SRC_DIR)env.c \
-		$(SRC_DIR)utils/custom_cmd.c \
-		$(SRC_DIR)utils/get_next_line.c \
-		$(SRC_DIR)utils/get_next_line_utils.c \
-		$(SRC_DIR)prompt/prompt.c \
-		$(SRC_DIR)utils/ft_cmdsubsplit.c \ 
-		$(SRC_DIR)utils/signal.c \
-		$(SRC_DIR)parser/parse_args.c \
-		$(SRC_DIR)utils/get_cmd.c
+#SRC = $(SRC_DIR)main.c \
+$(BUILTIN_DIR)builtin_meryem.c \
+$(UTILS_DIR)ft_strtrim_all.c \
+exec.c \
+lexer/fill_node.c \
+utils/get_params.c \
+utils/ft_cmdtrim.c \
+expander/expand.c \
+utils/heredoc.c \
+utils/error.c \
+env.c \
+utils/custom_cmd.c \
+utils/get_next_line.c \
+utils/get_next_line_utils.c \
+prompt/prompt.c \
+utils/ft_cmdsubsplit.c \
+utils/signal.c \
+parser/parse_args.c \
+utils/get_cmd.c
 
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+BUILTIN = builtin_meryem
+ENV = env
+EXEC = executor
+MAIN = main
+PARSING = parser
+UTILS = utils
+EXP = expander
+LEXER = lexer
+PROMPT = prompt
 
-OBJ_LFT = $(addprefix $(OBJ_LFT_DIR)/, $(SRC_LFT:.c=.o))
+SRC = $(addsuffix .c, $(addprefix srcs/env/, $(ENV))) \
+	  $(addsuffix .c, $(addprefix srcs/builtin/, $(BUILTIN))) \
+	  $(addsuffix .c, $(addprefix srcs/executor/, $(EXEC))) \
+	  $(addsuffix .c, $(addprefix srcs/main/, $(MAIN))) \
+	  $(addsuffix .c, $(addprefix srcs/parser/, $(PARSER))) \
+	  $(addsuffix .c, $(addprefix srcs/lexer/, $(LEXER))) \
+	  $(addsuffix .c, $(addprefix srcs/prompt/, $(PROMPT))) \
+	  $(addsuffix .c, $(addprefix srcs/expander/, $(EXP))) \
+	  $(addsuffix .c, $(addprefix srcs/utils/, $(UTILS))) \
+
+OBJ = $(SRC:c=o)
+
+#OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+
+OBJ_LFT = $(addprefix $(OBJ_LFT_DIR)/, $(SRC_LFT:.c=.o)/)
 
 # Progress vars
 SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
@@ -80,6 +108,7 @@ SRC_COUNT := 0
 SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
 all: $(NAME)
+%.o:%.c
 
 $(NAME): $(LIBFT) $(OBJ) | $(BIN_DIR)
 	@$(CC) -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBFT) -lreadline -o $@
