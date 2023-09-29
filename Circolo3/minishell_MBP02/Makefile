@@ -63,15 +63,15 @@ EXP = expander.c
 LEXER = lexer.c
 PROMPT = prompt.c
 
-SRC = $($(addprefix srcs/env/, $(ENV))) \
-	  $($(addprefix srcs/builtin/, $(BUILTIN))) \
-	  $($(addprefix srcs/executor/, $(EXEC))) \
-	  $($(addprefix srcs/main/, $(MAIN))) \
-	  $($(addprefix srcs/parser/, $(PARSER))) \
-	  $($(addprefix srcs/lexer/, $(LEXER))) \
-	  $($(addprefix srcs/prompt/, $(PROMPT))) \
-	  $($(addprefix srcs/expander/, $(EXP))) \
-	  $($(addprefix srcs/utils/, $(UTILS))) \
+SRC = $(addprefix src/main/, $(MAIN)) \
+	  $(addprefix src/env/, $(ENV)) \
+	  $(addprefix src/builtin/, $(BUILTIN)) \
+	  $(addprefix src/executor/, $(EXEC)) 
+	  $(addprefix src/parser/, $(PARSER)) \
+	  $(addprefix src/lexer/, $(LEXER)) \
+	  $(addprefix src/prompt/, $(PROMPT)) \
+	  $(addprefix src/expander/, $(EXP)) \
+	  $(addprefix src/utils/, $(UTILS)) \
 
 OBJ = $(SRC:c=o)
 
