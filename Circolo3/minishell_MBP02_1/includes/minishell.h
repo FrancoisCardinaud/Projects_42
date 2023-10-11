@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:08:50 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/10/03 16:15:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/11 03:41:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define MINISHELL_H
 
-# include "../libft/inc/libft.h"
+# include "../libft/libft.h"
 # include "colors.h"
 # include "get_next_line.h"
 # include <fcntl.h>

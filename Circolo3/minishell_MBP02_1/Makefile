@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/03 17:02:39 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/11 03:49:52 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ endif
 
 # Make variables
 AR = ar rcs
-CFLAGS = -Wall -Wextra -Werror -MD -g3 
+CFLAGS = -Wall -Wextra -Werror -MD -g3 -I/usr/local/opt/readline/include
 RM = rm -f
 CC = gcc
 PRINTF = printf
@@ -42,11 +42,11 @@ SRC_DIR = src
 BIN_DIR = bin
 OBJ_DIR = obj
 OBJ_DIRS := $(sort $(dir $(OBJ)))
-LIBFT = libft/bin/libft.a
+LIBFT = libft/libft.a
 BIN = minishell
 NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
-LIBFT_SRC = $(shell [ -d libft ] && ls libft/src*/*.c)
+LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
 
 SRC := $(shell find $(SRC_DIR) -name "*.c")
 
@@ -105,7 +105,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/**/*.c | $(OBJ_DIRS)
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include $(CFLAGS) $(CDEBUG) -c $< -o $@
 
-$(LIBFT): $(LIBFT_SRC) | $(LIBFT_DIR) $(BIN_DIR)
+$(LIBFT): $(LIBFT_SRC) | $(LIBFT_DIR)
 	@make all -C libft
 	@$(AR) $(NAME) $(LIBFT)
 
@@ -120,11 +120,12 @@ run: all
 
 clean: | $(LIBFT_DIR)
 	@$(PRINTF) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)\n"
+
 	@make clean -C libft
-	@$(RM) -r $(OBJ_DIR)
+	@$(RM) $(wildcard $(OBJ_DIR)/*.o)
 
 fclean: clean
-	@$(RM) -r $(BIN_DIR)
+	@$(RM) $(BIN_DIR)/minishell
 	$(RM) $(LIBFT)
 	@$(PRINTF) "$(CYAN)Removed $(LIBFT)$(DEFAULT)\n"
 	@$(PRINTF) "$(CYAN)Removed $(NAME)$(DEFAULT)\n"
