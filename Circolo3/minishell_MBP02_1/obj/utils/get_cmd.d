@@ -1,4 +1,4 @@
-obj/lexer/fill_node.o: src/builtin/builtin.c \
+obj/utils/get_cmd.o: src/builtin/builtin.c \
   src/builtin/../../includes/minishell.h \
   src/builtin/../../includes/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \

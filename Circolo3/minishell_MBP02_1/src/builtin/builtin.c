@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   builtin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,6 +13,34 @@
 #include "../../includes/minishell.h"
 
 extern int	g_status;
+
+int	mini_cd(t_prompt *p)
+{
+	char	**str[2];
+	char	*aux;
+
+	g_status = 0;
+	str[0] = ((t_mini *)p->cmds->content)->full_cmd;
+	aux = mini_getenv("HOME", p->envp, 4);
+	if (!aux)
+		aux = ft_strdup("");
+	str[1] = ft_extend_matrix(NULL, aux);
+	free(aux);
+	aux = getcwd(NULL, 0);
+	str[1] = ft_extend_matrix(str[1], aux);
+	free(aux);
+	cd_error(str);
+	if (!g_status)
+		p->envp = mini_setenv("OLDPWD", str[1][1], p->envp, 6);
+	aux = getcwd(NULL, 0);
+	if (!aux)
+		aux = ft_strdup("");
+	str[1] = ft_extend_matrix(str[1], aux);
+	free(aux);
+	p->envp = mini_setenv("PWD", str[1][2], p->envp, 3);
+	ft_free_matrix(&str[1]);
+	return (g_status);
+}
 
 int	builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n)
 {
@@ -68,34 +96,6 @@ int	is_builtin(t_mini *n)
 	if (!ft_strncmp(*n->full_cmd, "exit", l) && l == 4)
 		return (1);
 	return (0);
-}
-
-int	mini_cd(t_prompt *p)
-{
-	char	**str[2];
-	char	*aux;
-
-	g_status = 0;
-	str[0] = ((t_mini *)p->cmds->content)->full_cmd;
-	aux = mini_getenv("HOME", p->envp, 4);
-	if (!aux)
-		aux = ft_strdup("");
-	str[1] = ft_extend_matrix(NULL, aux);
-	free(aux);
-	aux = getcwd(NULL, 0);
-	str[1] = ft_extend_matrix(str[1], aux);
-	free(aux);
-	cd_error(str);
-	if (!g_status)
-		p->envp = mini_setenv("OLDPWD", str[1][1], p->envp, 6);
-	aux = getcwd(NULL, 0);
-	if (!aux)
-		aux = ft_strdup("");
-	str[1] = ft_extend_matrix(str[1], aux);
-	free(aux);
-	p->envp = mini_setenv("PWD", str[1][2], p->envp, 3);
-	ft_free_matrix(&str[1]);
-	return (g_status);
 }
 
 int	mini_pwd(void)

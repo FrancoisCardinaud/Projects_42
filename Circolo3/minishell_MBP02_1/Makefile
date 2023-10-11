@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/11 03:49:52 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/11 05:04:04 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,27 +48,30 @@ NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
 LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
 
-SRC := $(shell find $(SRC_DIR) -name "*.c")
+#SRC_FILES := $(shell find $(SRC_DIR) -name "*.c" -not -name "main.c" -not -name "error.c" -not -name "env.c" -not -name "builtin.c")
+#SRC := $(SRC_DIR)/main/main.c $(SRC_DIR)/utils/error.c $(SRC_DIR)/env/env.c $(SRC_DIR)/builtin/builtin.c $(SRC_FILES)
 
-#SRC = main/main.c \
-	  utils/ft_strtrim_all.c \
-	  builtin/builtins.c \
-	  executor/exec.c \
-	  lexer/fill_node.c \
-	  utils/get_params.c \
-	  utils/ft_cmdtrim.c \
-	  expander/expand.c \
-	  utils/heredoc.c \
-	  utils/error.c \
-	  env/env.c \
-	  utils/custom_cmd.c \
-	  utils/get_next_line.c \
-	  utils/get_next_line_utils.c \
-	  prompt/prompt.c	\
-	  utils/ft_cmdsubsplit.c \
-	  utils/signal.c \
-	  parser/parse_args.c \
-	  utils/get_cmd.c
+#SRC := main/main.c \ $(shell find $(SRC_DIR) -name "*.c")
+
+SRC = $(SRC_DIR)/utils/error.c \
+	  $(SRC_DIR)/main/main.c \
+	  $(SRC_DIR)/utils/ft_strtrim_all.c \
+	  $(SRC_DIR)/builtin/builtins.c \
+	  $(SRC_DIR)/executor/exec.c \
+	  $(SRC_DIR)/lexer/fill_node.c \
+	  $(SRC_DIR)/utils/get_params.c \
+	  $(SRC_DIR)/utils/ft_cmdtrim.c \
+	  $(SRC_DIR)/expander/expand.c \
+	  $(SRC_DIR)/utils/heredoc.c \
+	  $(SRC_DIR)/env/env.c \
+	  $(SRC_DIR)/utils/custom_cmd.c \
+	  $(SRC_DIR)/utils/get_next_line.c \
+	  $(SRC_DIR)/utils/get_next_line_utils.c \
+	  $(SRC_DIR)/prompt/prompt.c	\
+	  $(SRC_DIR)/utils/ft_cmdsubsplit.c \
+	  $(SRC_DIR)/utils/signal.c \
+	  $(SRC_DIR)/parser/parse_args.c \
+	  $(SRC_DIR)/utils/get_cmd.c
 
 OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 

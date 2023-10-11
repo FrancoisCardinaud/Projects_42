@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:08:50 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/10/11 03:41:18 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/11 04:48:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "../libft/libft.h"
 # include "colors.h"
 # include "get_next_line.h"
+# include <stdio.h>
+# include <stdlib.h>
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -64,32 +66,36 @@ char	*mini_readline(t_prompt *prompt, char *str);
 /* Opens two sets of pipes and checks if they are opened correctly */
 void	*mini_here_fd(int fd[2]);
 
+/* Checks for errors and returns whether first arg is a directory */
+void	cd_error(char **str[2]);
+
 /* Handles all builtin functions */
-int		builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n);
+int		builtin_command(t_prompt *prompt, t_list *cmd, int *is_exit, int n);
 
 /* Checks if the first element in full_cmd is a builtin */
 int		is_builtin(t_mini *n);
 
 /* C implementation of the cd shell command */
-int		mini_cd(t_prompt *prompt);
-
-/* Checks for errors and returns whether first arg is a directory */
-void	cd_error(char **str[2]);
+int		build_cd(t_prompt *prompt);
 
 /* C implementation of the pwd shell command */
-int		mini_pwd(void);
+int		pwd(void);
 
 /* C implementation of the echo shell command */
-int		mini_echo(t_list *cmd);
+int		build_echo(t_mini *cmd);
 
 /* C implementation of the export shell command */
-int		mini_export(t_prompt *prompt);
+int		build_export(t_prompt *prompt);
 
 /* C implementation of the unset shell command */
-int		mini_unset(t_prompt *prompt);
+int		build_unset(t_prompt *prompt);
 
 /* C implementation of the exit shell command */
 int		mini_exit(t_list *cmd, int *is_exit);
+
+int		mini_export(t_prompt *prompt);
+
+int		mini_unset(t_prompt *prompt);
 
 /* Splits command string into manageable matrix to store & exec commands */
 void	*check_args(char *out, t_prompt *p);
@@ -155,7 +161,7 @@ void	*mini_perror(int err_type, char *param, int err);
 char	*mini_getenv(char	*var, char **envp, int n);
 
 /* Sets a new environment variable */
-char	**mini_setenv(char *var, char *value, char **envp, int n);
+char	**mini_setenv(char *var, const char *value, char **envp, int n);
 
 /* Returns a colorized string used as prompt for readline */
 char	*mini_getprompt(t_prompt prompt);
