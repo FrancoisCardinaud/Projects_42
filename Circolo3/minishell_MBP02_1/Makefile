@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/11 05:04:04 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/11 05:23:28 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,10 @@ LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
 
 #SRC := main/main.c \ $(shell find $(SRC_DIR) -name "*.c")
 
-SRC = $(SRC_DIR)/utils/error.c \
-	  $(SRC_DIR)/main/main.c \
+SRC = $(SRC_DIR)/main/main.c \
+	  $(SRC_DIR)/utils/error.c \
 	  $(SRC_DIR)/utils/ft_strtrim_all.c \
-	  $(SRC_DIR)/builtin/builtins.c \
+	  $(SRC_DIR)/builtin/builtin.c \
 	  $(SRC_DIR)/executor/exec.c \
 	  $(SRC_DIR)/lexer/fill_node.c \
 	  $(SRC_DIR)/utils/get_params.c \
@@ -74,8 +74,6 @@ SRC = $(SRC_DIR)/utils/error.c \
 	  $(SRC_DIR)/utils/get_cmd.c
 
 OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
-
-
 
 #OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -123,9 +121,8 @@ run: all
 
 clean: | $(LIBFT_DIR)
 	@$(PRINTF) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)\n"
-
 	@make clean -C libft
-	@$(RM) $(wildcard $(OBJ_DIR)/*.o)
+	@$(RM) $(wildcard $(OBJ_DIR)/**/*.o) $(wildcard $(OBJ_DIR)/**/*.d)
 
 fclean: clean
 	@$(RM) $(BIN_DIR)/minishell
