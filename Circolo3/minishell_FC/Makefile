@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/11 05:24:21 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/12 04:22:00 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,50 +34,26 @@ endif
 
 # Make variables
 AR = ar rcs
-CFLAGS = -Wall -Wextra -Werror -MD -g3 -I/usr/local/opt/readline/include
+CFLAGS = -Wall -Wextra -Werror -MD -g3 
 RM = rm -f
 CC = gcc
 PRINTF = printf
 SRC_DIR = src
-BIN_DIR = bin
 OBJ_DIR = obj
-OBJ_DIRS := $(sort $(dir $(OBJ)))
+BIN_DIR = bin
 LIBFT = libft/libft.a
 BIN = minishell
 NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
-LIBFT_SRC = $(shell [ -d libft ] && ls libft/*.c)
+LIBFT_SRC = $(wildcard libft/*.c)
 
-#SRC_FILES := $(shell find $(SRC_DIR) -name "*.c" -not -name "main.c" -not -name "error.c" -not -name "env.c" -not -name "builtin.c")
-#SRC := $(SRC_DIR)/main/main.c $(SRC_DIR)/utils/error.c $(SRC_DIR)/env/env.c $(SRC_DIR)/builtin/builtin.c $(SRC_FILES)
+SRC = main/main.c utils/error.c utils/ft_strtrim_all.c builtin/builtin.c \
+	  executor/exec.c lexer/fill_node.c utils/get_params.c utils/ft_cmdtrim.c \
+	  expander/expand.c utils/heredoc.c env/env.c utils/custom_cmd.c \
+	  utils/get_next_line.c utils/get_next_line_utils.c prompt/prompt.c \
+	  utils/ft_cmdsubsplit.c utils/signal.c parser/parse_args.c utils/get_cmd.c
 
-#SRC := main/main.c \ $(shell find $(SRC_DIR) -name "*.c")
-
-SRC = $(SRC_DIR)/main/main.c \
-	  $(SRC_DIR)/utils/error.c \
-	  $(SRC_DIR)/utils/ft_strtrim_all.c \
-	  $(SRC_DIR)/builtin/builtin.c \
-	  $(SRC_DIR)/executor/exec.c \
-	  $(SRC_DIR)/lexer/fill_node.c \
-	  $(SRC_DIR)/utils/get_params.c \
-	  $(SRC_DIR)/utils/ft_cmdtrim.c \
-	  $(SRC_DIR)/expander/expand.c \
-	  $(SRC_DIR)/utils/heredoc.c \
-	  $(SRC_DIR)/env/env.c \
-	  $(SRC_DIR)/utils/custom_cmd.c \
-	  $(SRC_DIR)/utils/get_next_line.c \
-	  $(SRC_DIR)/utils/get_next_line_utils.c \
-	  $(SRC_DIR)/prompt/prompt.c	\
-	  $(SRC_DIR)/utils/ft_cmdsubsplit.c \
-	  $(SRC_DIR)/utils/signal.c \
-	  $(SRC_DIR)/parser/parse_args.c \
-	  $(SRC_DIR)/utils/get_cmd.c
-
-OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
-
-#OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-
-OBJ_LFT = $(addprefix $(OBJ_LFT_DIR)/, $(SRC_LFT:.c=.o))
+OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
 # Progress vars
 SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
@@ -93,20 +69,12 @@ $(NAME): $(LIBFT) $(OBJ) | $(BIN_DIR)
 	@$(CC) -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBFT) -lreadline -o $@
 	@$(PRINTF) "\r%100s\r$(GREEN)$(BIN) is up to date!$(DEFAULT)\n"
 
-$(OBJ_DIRS):
-	@mkdir -p $@
-
-#$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIRS)
-#	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
-#	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
-#	@$(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include $(CFLAGS) $(CDEBUG) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/**/*.c | $(OBJ_DIRS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%/*.c | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include $(CFLAGS) $(CDEBUG) -c $< -o $@
 
-$(LIBFT): $(LIBFT_SRC) | $(LIBFT_DIR)
+$(LIBFT): $(LIBFT_SRC)
 	@make all -C libft
 	@$(AR) $(NAME) $(LIBFT)
 
@@ -122,10 +90,10 @@ run: all
 clean: | $(LIBFT_DIR)
 	@$(PRINTF) "$(CYAN)Cleaning up object files in $(NAME)...$(DEFAULT)\n"
 	@make clean -C libft
-	@$(RM) $(wildcard $(OBJ_DIR)/**/*.o) $(wildcard $(OBJ_DIR)/**/*.d)
+	@$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	@$(RM) $(BIN_DIR)/minishell
+	@$(RM) -r $(BIN_DIR)
 	$(RM) $(LIBFT)
 	@$(PRINTF) "$(CYAN)Removed $(LIBFT)$(DEFAULT)\n"
 	@$(PRINTF) "$(CYAN)Removed $(NAME)$(DEFAULT)\n"
@@ -147,9 +115,7 @@ $(OBJB_DIR):
 $(BIN_DIR):
 	@mkdir -p $(BIN_DIR)
 
-re:
-	@make -C libft re
-	@find $(OBJ_DIR) -name "*.o" -type f -delete
+re: fclean
 	@make all
 
 git:
@@ -157,8 +123,7 @@ git:
 	git commit
 	git push
 
--include $(wildcard $(OBJ_DIR)/*.d)
--include $(wildcard $(OBJB_DIR)/*.d)
-
+-include $(OBJ_DIR)/*.d
+-include $(OBJB_DIR)/*.d
 
 .PHONY: all clean fclean norminette test compare run git re
