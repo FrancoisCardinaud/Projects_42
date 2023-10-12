@@ -9,13 +9,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
-static t_command	*initialize_command(void)
+static t_mini	*initialize_command(void)
 {
-	t_command	*cmd_data;
+	t_mini	*cmd_data;
 
-	cmd_data = malloc(sizeof(t_command));
+	cmd_data = malloc(sizeof(t_mini));
 	if (!cmd_data)
 		return (NULL);
 	cmd_data->full_cmd = NULL;
@@ -25,7 +25,7 @@ static t_command	*initialize_command(void)
 	return (cmd_data);
 }
 
-static t_command	*extract_parameters(t_command *cmd_data, char **args_set[2], int *index)
+static t_mini	*extract_parameters(t_mini *cmd_data, char **args_set[2], int *index)
 {
 	if (args_set[0][*index])
 	{
@@ -71,7 +71,7 @@ static char	**trim_args(char **args)
 
 static t_list	*terminate_fill(t_list *cmd_list, char **args, char **trimmed_args)
 {
-	clear_command_list(&cmd_list, free_content_data);
+	clear_command_list(&cmd_list, free_content);
 	free_arg_matrix(&trimmed_args);
 	free_arg_matrix(&args);
 	return (NULL);

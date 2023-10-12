@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 extern int	global_stat;
 
-int	execute_builtin(t_shell_data *shell_data, t_list *command, int *exit_flag, int cmd_len)
+int	execute_builtin(t_prompt *shell_data, t_list *command, int *exit_flag, int cmd_len)
 {
 	char	**args;
 
 	while (command)
 	{
-		args = ((t_shell_cmd *)command->content)->complete_cmd;
+		args = ((t_mini *)command->content)->full_cmd;
 		cmd_len = 0;
 		if (args)
 			cmd_len = ft_strlen(*args);
@@ -43,41 +43,41 @@ int	execute_builtin(t_shell_data *shell_data, t_list *command, int *exit_flag, i
 	return (global_stat);
 }
 
-int	check_builtin(t_shell_cmd *cmd_data)
+int	check_builtin(t_mini *cmd_data)
 {
 	int		cmd_length;
 
-	if (!cmd_data->complete_cmd)
+	if (!cmd_data->full_cmd)
 		return (0);
-	if ((cmd_data->complete_cmd && ft_strchr(*cmd_data->complete_cmd, '/')) || (cmd_data->full_path && \
+	if ((cmd_data->full_cmd && ft_strchr(*cmd_data->full_cmd, '/')) || (cmd_data->full_path && \
 		ft_strchr(cmd_data->full_path, '/')))
 		return (0);
-	cmd_length = ft_strlen(*cmd_data->complete_cmd);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "pwd", cmd_length) && cmd_length == 3)
+	cmd_length = ft_strlen(*cmd_data->full_cmd);
+	if (!ft_strncmp(*cmd_data->full_cmd, "pwd", cmd_length) && cmd_length == 3)
 		return (1);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "env", cmd_length) && cmd_length == 3)
+	if (!ft_strncmp(*cmd_data->full_cmd, "env", cmd_length) && cmd_length == 3)
 		return (1);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "cd", cmd_length) && cmd_length == 2)
+	if (!ft_strncmp(*cmd_data->full_cmd, "cd", cmd_length) && cmd_length == 2)
 		return (1);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "export", cmd_length) && cmd_length == 6)
+	if (!ft_strncmp(*cmd_data->full_cmd, "export", cmd_length) && cmd_length == 6)
 		return (1);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "unset", cmd_length) && cmd_length == 5)
+	if (!ft_strncmp(*cmd_data->full_cmd, "unset", cmd_length) && cmd_length == 5)
 		return (1);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "echo", cmd_length) && cmd_length == 4)
+	if (!ft_strncmp(*cmd_data->full_cmd, "echo", cmd_length) && cmd_length == 4)
 		return (1);
-	if (!ft_strncmp(*cmd_data->complete_cmd, "exit", cmd_length) && cmd_length == 4)
+	if (!ft_strncmp(*cmd_data->full_cmd, "exit", cmd_length) && cmd_length == 4)
 		return (1);
 	return (0);
 }
 
-int	shell_cd(t_shell_data *shell_data)
+int	shell_cd(t_prompt *shell_data)
 {
 	char	**path_data[2];
 	char	*temp;
 
 	global_stat = 0;
-	path_data[0] = ((t_shell_cmd *)shell_data->commands->content)->complete_cmd;
-	temp = shell_getenv("HOME", shell_data->env_data, 4);
+	path_data[0] = ((t_mini *)shell_data->cmds->content)->full_cmd;
+	temp = mini_getenv("HOME", shell_data->envp, 4);
 	if (!temp)
 		temp = ft_strdup("");
 	path_data[1] = ft_extend_matrix(NULL, temp);
@@ -87,13 +87,13 @@ int	shell_cd(t_shell_data *shell_data)
 	free(temp);
 	cd_error_handler(path_data);
 	if (!global_stat)
-		shell_data->env_data = shell_setenv("OLDPWD", path_data[1][1], shell_data->env_data, 6);
+		shell_data->envp = mini_setenv("OLDPWD", path_data[1][1], shell_data->envp, 6);
 	temp = getcwd(NULL, 0);
 	if (!temp)
 		temp = ft_strdup("");
 	path_data[1] = ft_extend_matrix(path_data[1], temp);
 	free(temp);
-	shell_data->env_data = shell_setenv("PWD", path_data[1][2], shell_data->env_data, 3);
+	shell_data->envp = mini_setenv("PWD", path_data[1][2], shell_data->envp, 3);
 	ft_free_matrix(&path_data[1]);
 	return (global_stat);
 }
@@ -113,13 +113,13 @@ int	shell_echo(t_list *command)
 	int		newline_flag;
 	int		index[2];
 	char	**args;
-	t_shell_cmd	*cmd_node;
+	t_mini	*cmd_node;
 
 	index[0] = 0;
 	index[1] = 0;
 	newline_flag = 1;
 	cmd_node = command->content;
-	args = cmd_node->complete_cmd;
+	args = cmd_node->full_cmd;
 	while (args && args[++index[0]])
 	{
 		if (!index[1] && !ft_strncmp(args[index[0]], "-n", 2) && \

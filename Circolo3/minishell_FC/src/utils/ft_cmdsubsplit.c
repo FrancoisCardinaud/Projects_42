@@ -9,7 +9,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 static int	count_subwords(char *str, char *delimiters, int count)
 {

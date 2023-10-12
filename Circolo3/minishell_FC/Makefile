@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/12 04:22:00 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/12 16:52:59 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,11 @@ NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
 LIBFT_SRC = $(wildcard libft/*.c)
 
-SRC = main/main.c utils/error.c utils/ft_strtrim_all.c builtin/builtin.c \
-	  executor/exec.c lexer/fill_node.c utils/get_params.c utils/ft_cmdtrim.c \
-	  expander/expand.c utils/heredoc.c env/env.c utils/custom_cmd.c \
-	  utils/get_next_line.c utils/get_next_line_utils.c prompt/prompt.c \
-	  utils/ft_cmdsubsplit.c utils/signal.c parser/parse_args.c utils/get_cmd.c
+SRC = $(SRC_DIR)/main/main.c $(SRC_DIR)/utils/error_handling.c $(SRC_DIR)/utils/ft_strtrim_all.c $(SRC_DIR)/builtin/builtins.c \
+	  $(SRC_DIR)/executor/exec.c $(SRC_DIR)/lexer/fill_node.c $(SRC_DIR)/utils/get_params.c $(SRC_DIR)/utils/ft_cmdtrim.c \
+	  $(SRC_DIR)/expander/expand.c $(SRC_DIR)/utils/heredoc.c $(SRC_DIR)/env/env.c $(SRC_DIR)/utils/custom_cmd.c \
+	  $(SRC_DIR)/utils/get_next_line.c $(SRC_DIR)/utils/get_next_line_utils.c $(SRC_DIR)/prompt/prompt.c \
+	  $(SRC_DIR)/utils/ft_cmdsubsplit.c $(SRC_DIR)/utils/signal.c $(SRC_DIR)/parser/parse_args.c $(SRC_DIR)/utils/get_cmd.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
@@ -72,6 +72,13 @@ $(NAME): $(LIBFT) $(OBJ) | $(BIN_DIR)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%/*.c | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
+	@echo "Compiling source file: $<"
+	@$(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include $(CFLAGS) $(CDEBUG) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/utils/%.c | $(OBJ_DIR)
+	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
+	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
+	@echo "Compiling source file: $<"
 	@$(CC) -I ~/.brew/opt/readline/include -I /usr/local/opt/readline/include $(CFLAGS) $(CDEBUG) -c $< -o $@
 
 $(LIBFT): $(LIBFT_SRC)
@@ -93,7 +100,7 @@ clean: | $(LIBFT_DIR)
 	@$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	@$(RM) -r $(BIN_DIR)
+	@$(RM) $(BIN_DIR)/minishell
 	$(RM) $(LIBFT)
 	@$(PRINTF) "$(CYAN)Removed $(LIBFT)$(DEFAULT)\n"
 	@$(PRINTF) "$(CYAN)Removed $(NAME)$(DEFAULT)\n"

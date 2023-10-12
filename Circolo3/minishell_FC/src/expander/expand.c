@@ -9,7 +9,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 extern int	global_stat;
 
@@ -42,7 +42,7 @@ char	*expand_directory(char *input, int index, int quote_flags[2], char *variabl
 	return (input);
 }
 
-static char	*retrieve_sub_var(char *input, int index, t_shell_data *shell_data)
+static char	*retrieve_sub_var(char *input, int index, t_prompt *shell_data)
 {
 	char	*temp;
 	int		position;
@@ -53,7 +53,7 @@ static char	*retrieve_sub_var(char *input, int index, t_shell_data *shell_data)
 	if (position == -1)
 		position = ft_strlen(input) - 1;
 	temp = ft_substr(input, 0, index - 1);
-	variable = shell_retrieve_env(&input[index], shell_data->env_data, \
+	variable = shell_retrieve_env(&input[index], shell_data->envp, \
 		ft_strchars_i(&input[index], "\"\'$|>< "));
 	if (!variable && input[index] == '$')
 		variable = ft_itoa(shell_data->pid);
@@ -68,7 +68,7 @@ static char	*retrieve_sub_var(char *input, int index, t_shell_data *shell_data)
 	return (temp);
 }
 
-char	*expand_variables(char *input, int index, int quote_flags[2], t_shell_data *shell_data)
+char	*expand_variables(char *input, int index, int quote_flags[2], t_prompt *shell_data)
 {
 	quote_flags[0] = 0;
 	quote_flags[1] = 0;

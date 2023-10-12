@@ -2,21 +2,22 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
-/*   By: [Your Name] <[Your Email]>                  +#+  +:+       +#+        */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 by [Your Name]              #+#    #+#             */
-/*   Updated: 2023/10/12 by [Your Name]              ###   ########.fr       */
+/*   Created: 2023/10/12 16:33:25 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/12 16:49:38 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 extern int	g_status;
 
-void	*display_error(int error_type, char *parameter, int error_code)
+void	*shell_error(int error_type, char *parameter, int error_code)
 {
 	g_status = error_code;
-	static const char *error_messages[] = {
+	char *error_messages[] = {
 		"minishell: error while looking for matching quote\n",
 		"minishell: No such file or directory: ",
 		// ... [Add all the other error messages here]
@@ -100,9 +101,9 @@ void	handle_cd_error(char **arguments[2])
 	if (arguments[0][1] && directory && access(arguments[0][1], F_OK) != -1)
 		chdir(arguments[0][1]);
 	else if (arguments[0][1] && access(arguments[0][1], F_OK) == -1)
-		display_error(NDIR, arguments[0][1], 1);
+		shell_error(NDIR, arguments[0][1], 1);
 	else if (arguments[0][1])
-		display_error(NOT_DIR, arguments[0][1], 1);
+		shell_error(NOT_DIR, arguments[0][1], 1);
 	if (arguments[0][1] && directory)
 		closedir(directory);
 }
@@ -112,7 +113,7 @@ void	release_content(void *content)
 	t_mini	*node;
 
 	node = content;
-	free_arg_matrix(&node->full_cmd);
+	ft_free_matrix(&node->full_cmd);
 	free(node->full_path);
 	if (node->infile != STDIN_FILENO)
 		close(node->infile);

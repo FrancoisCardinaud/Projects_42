@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
-char	*shell_retrieve_env(char *key, char **env_data, int key_len)
+char	*shell_retrieve_env(char *key, char **envp, int key_len)
 {
 	int	i;
 	int	env_key_len;
@@ -20,19 +20,19 @@ char	*shell_retrieve_env(char *key, char **env_data, int key_len)
 	i = 0;
 	if (key_len < 0)
 		key_len = ft_strlen(key);
-	while (!ft_strchr(key, '=') && env_data && env_data[i])
+	while (!ft_strchr(key, '=') && envp && envp[i])
 	{
 		env_key_len = key_len;
-		if (env_key_len < ft_strchr_i(env_data[i], '='))
-			env_key_len = ft_strchr_i(env_data[i], '=');
-		if (!ft_strncmp(env_data[i], key, env_key_len))
-			return (ft_substr(env_data[i], env_key_len + 1, ft_strlen(env_data[i])));
+		if (env_key_len < ft_strchr_i(envp[i], '='))
+			env_key_len = ft_strchr_i(envp[i], '=');
+		if (!ft_strncmp(envp[i], key, env_key_len))
+			return (ft_substr(envp[i], env_key_len + 1, ft_strlen(envp[i])));
 		i++;
 	}
 	return (NULL);
 }
 
-char	**shell_update_env(char *key, char *value, char **env_data, int key_len)
+char	**shell_update_env(char *key, char *value, char **envp, int key_len)
 {
 	int		index[2];
 	char	*temp[2];
@@ -43,25 +43,25 @@ char	**shell_update_env(char *key, char *value, char **env_data, int key_len)
 	temp[0] = ft_strjoin(key, "=");
 	temp[1] = ft_strjoin(temp[0], value);
 	free(temp[0]);
-	while (!ft_strchr(key, '=') && env_data && env_data[++index[0]])
+	while (!ft_strchr(key, '=') && envp && envp[++index[0]])
 	{
 		index[1] = key_len;
-		if (index[1] < ft_strchr_i(env_data[index[0]], '='))
-			index[1] = ft_strchr_i(env_data[index[0]], '=');
-		if (!ft_strncmp(env_data[index[0]], key, index[1]))
+		if (index[1] < ft_strchr_i(envp[index[0]], '='))
+			index[1] = ft_strchr_i(envp[index[0]], '=');
+		if (!ft_strncmp(envp[index[0]], key, index[1]))
 		{
-			temp[0] = env_data[index[0]];
-			env_data[index[0]] = temp[1];
+			temp[0] = envp[index[0]];
+			envp[index[0]] = temp[1];
 			free(temp[0]);
-			return (env_data);
+			return (envp);
 		}
 	}
-	env_data = ft_extend_matrix(env_data, temp[1]);
+	envp = ft_extend_matrix(envp, temp[1]);
 	free(temp[1]);
-	return (env_data);
+	return (envp);
 }
 
-static int	key_exists_in_env(char *arg, char **env_data, int index_pair[2])
+static int	key_exists_in_env(char *arg, char **envp, int index_pair[2])
 {
 	int	key_pos;
 
@@ -69,49 +69,49 @@ static int	key_exists_in_env(char *arg, char **env_data, int index_pair[2])
 	key_pos = ft_strchr_i(arg, '=');
 	if (key_pos == -1)
 		return (-1);
-	while (env_data[index_pair[1]])
+	while (envp[index_pair[1]])
 	{
-		if (!ft_strncmp(env_data[index_pair[1]], arg, key_pos + 1))
+		if (!ft_strncmp(envp[index_pair[1]], arg, key_pos + 1))
 			return (1);
 		index_pair[1]++;
 	}
 	return (0);
 }
 
-int	shell_add_export(t_shell_data *shell_data)
+int	shell_add_export(t_prompt *shell_data)
 {
 	int		index_pair[2];
 	int		key_pos;
 	char	**args;
 
-	args = ((t_shell_cmd *)shell_data->commands->content)->complete_cmd;
+	args = ((t_mini *)shell_data->cmds->content)->full_cmd;
 	if (ft_matrixlen(args) >= 2)
 	{
 		index_pair[0] = 1;
 		while (args[index_pair[0]])
 		{
-			key_pos = key_exists_in_env(args[index_pair[0]], shell_data->env_data, index_pair);
+			key_pos = key_exists_in_env(args[index_pair[0]], shell_data->envp, index_pair);
 			if (key_pos == 1)
 			{
-				free(shell_data->env_data[index_pair[1]]);
-				shell_data->env_data[index_pair[1]] = ft_strdup(args[index_pair[0]]);
+				free(shell_data->envp[index_pair[1]]);
+				shell_data->envp[index_pair[1]] = ft_strdup(args[index_pair[0]]);
 			}
 			else if (!key_pos)
-				shell_data->env_data = ft_extend_matrix(shell_data->env_data, args[index_pair[0]]);
+				shell_data->envp = ft_extend_matrix(shell_data->envp, args[index_pair[0]]);
 			index_pair[0]++;
 		}
 	}
 	return (0);
 }
 
-int	shell_remove_unset(t_shell_data *shell_data)
+int	shell_remove_unset(t_prompt *shell_data)
 {
 	char	**args;
 	char	*temp;
 	int		index_pair[2];
 
 	index_pair[0] = 0;
-	args = ((t_shell_cmd *)shell_data->commands->content)->complete_cmd;
+	args = ((t_mini *)shell_data->cmds->content)->full_cmd;
 	if (ft_matrixlen(args) >= 2)
 	{
 		while (args[++index_pair[0]])
@@ -122,8 +122,8 @@ int	shell_remove_unset(t_shell_data *shell_data)
 				free(args[index_pair[0]]);
 				args[index_pair[0]] = temp;
 			}
-			if (key_exists_in_env(args[index_pair[0]], shell_data->env_data, index_pair))
-				replace_in_matrix(&shell_data->env_data, NULL, index_pair[1]);
+			if (key_exists_in_env(args[index_pair[0]], shell_data->envp, index_pair))
+				replace_in_matrix(&shell_data->envp, NULL, index_pair[1]);
 		}
 	}
 	return (0);

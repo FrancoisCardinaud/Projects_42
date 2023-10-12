@@ -7,11 +7,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 int	g_status;
 
-void	interrupt_signal_handler(int signal_code)
+void	handle_interrupt_signal(int signal_code)
 {
 	if (signal_code == SIGINT)
 	{

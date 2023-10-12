@@ -8,7 +8,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 static int	calculate_trim_length(const char *str)
 {

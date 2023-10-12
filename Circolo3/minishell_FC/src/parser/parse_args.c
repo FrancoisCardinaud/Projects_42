@@ -52,16 +52,16 @@ static void	*process_arguments(char **arguments, t_prompt *prompt_data)
 		g_status = g_status / 255;
 	if (arguments && exit_flag)
 	{
-		clear_command_list(&prompt_data->cmds, free_content_data);
+		clear_command_list(&prompt_data->cmds, free_content);
 		return (NULL);
 	}
 	return (prompt_data);
 }
 
-void	*validate_arguments(char *input, t_prompt *prompt_data)
+void	*check_args(char *input, t_prompt *prompt_data)
 {
 	char	**arg_set;
-	t_command	*cmd_data;
+	t_mini	*cmd_data;
 
 	if (!input)
 	{
@@ -83,6 +83,6 @@ void	*validate_arguments(char *input, t_prompt *prompt_data)
 		prompt_data->envp = set_environment("_", cmd_data->full_cmd[matrix_length(cmd_data->full_cmd) - 1], \
 			prompt_data->envp, 1);
 	if (prompt_data && prompt_data->cmds)
-		clear_command_list(&prompt_data->cmds, free_content_data);
+		clear_command_list(&prompt_data->cmds, free_content);
 	return (prompt_data);
 }

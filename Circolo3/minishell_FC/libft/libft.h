@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:46:20 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/11 03:39:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:48:29 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isnbr(char *str);
 int					ft_isprint(int c);
+int					ft_isspace(char c);
 char				*ft_itoa(int n);
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);

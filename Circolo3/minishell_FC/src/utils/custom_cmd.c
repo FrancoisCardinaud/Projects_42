@@ -9,7 +9,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 static void	refresh_output(char ***output_matrix, int file_descriptor)
 {

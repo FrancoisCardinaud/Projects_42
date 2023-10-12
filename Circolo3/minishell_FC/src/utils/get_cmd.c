@@ -7,7 +7,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 static char	*locate_command(char **env_path, char *cmd)
 {
