@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   custom_cmd.c                                   :+:      :+:    :+:   */
-/*   By: [Your Name] <[Your Email]>                  +#+  +:+       +#+        */
+/*   custom_cmd.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 by [Your Name]              #+#    #+#             */
-/*   Updated: 2023/10/12 by [Your Name]              ###   ########.fr       */
+/*   Created: 2023/10/13 15:47:42 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 static void	refresh_output(char ***output_matrix, int file_descriptor)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: [Your Name] <[Your Email]>                  +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 by [Your Name]              #+#    #+#             */
-/*   Updated: 2023/10/12 by [Your Name]              ###   ########.fr       */
+/*   Created: 2023/10/13 15:46:35 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../includes/minishell.h"
 
 char	*shell_retrieve_env(char *key, char **envp, int key_len)
 {

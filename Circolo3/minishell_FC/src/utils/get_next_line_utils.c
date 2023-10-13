@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 11:12:28 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 03:47:46 by fcardina         ###   ########.fr       */
+/*   Created: 2023/10/13 15:47:05 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 size_t	gnl_strlen(const char *s)
 {

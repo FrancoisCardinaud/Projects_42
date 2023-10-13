@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/12 17:42:35 by fcardina         ###   ########.fr        #
+#    Created: 2023/10/13 15:48:11 by fcardina          #+#    #+#              #
+#    Updated: 2023/10/13 15:48:12 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,7 @@ NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
 LIBFT_SRC = $(wildcard libft/*.c)
 
-
 SRC := $(shell find $(SRC_DIR) -name "*.c")
-#SRC = main.c $(SRC_DIR)/utils/error_handling.c $(SRC_DIR)/utils/ft_strtrim_all.c builtins.c \
-	  exec.c $(SRC_DIR)/lexer/fill_node.c $(SRC_DIR)/utils/get_params.c $(SRC_DIR)/utils/ft_cmdtrim.c \
-	  expand.c $(SRC_DIR)/utils/heredoc.c env.c $(SRC_DIR)/utils/custom_cmd.c \
-	  $(SRC_DIR)/utils/get_next_line.c $(SRC_DIR)/utils/get_next_line_utils.c prompt.c \
-	  $(SRC_DIR)/utils/ft_cmdsubsplit.c $(SRC_DIR)/utils/signal.c parse_args.c $(SRC_DIR)/utils/get_cmd.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
@@ -70,9 +64,6 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJ) | $(BIN_DIR)
 	@$(CC) -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBFT) -lreadline -o $@
 	@$(PRINTF) "\r%100s\r$(GREEN)$(BIN) is up to date!$(DEFAULT)\n"
-
-#$(OBJ_DIR)/builtins.o: $(SRC_DIR)/builtin/builtins.c
-#	@$(CC) $(CFLAGS) -c $< -o $@
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))

@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cmdtrim.c                                         :+:      :+:    :+:   */
-/*   By: [Your Name] <[Your Email]>                  +#+  +:+       +#+        */
+/*   ft_cmdtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 by [Your Name]              #+#    #+#             */
-/*   Updated: 2023/10/12 by [Your Name]              ###   ########.fr       */
+/*   Created: 2023/10/13 15:47:29 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 static int	count_trimmed_words(const char *str, char *delimiters)
 {

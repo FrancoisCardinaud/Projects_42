@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 16:33:25 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 03:51:12 by fcardina         ###   ########.fr       */
+/*   Created: 2023/10/13 15:47:37 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 extern int	g_stat;
 

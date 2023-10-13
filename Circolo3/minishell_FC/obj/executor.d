@@ -1,6 +1,5 @@
-obj/ft_strtrim_all.o: src/utils/ft_strtrim_all.c \
-  src/utils/../../includes/minishell.h \
-  src/utils/../../includes/../libft/libft.h \
+obj/executor.o: src/executor.c src/../includes/minishell.h \
+  src/../includes/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
@@ -88,8 +87,7 @@ obj/ft_strtrim_all.o: src/utils/ft_strtrim_all.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_select.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uuid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/gethostuuid.h \
-  src/utils/../../includes/colors.h \
-  src/utils/../../includes/get_next_line.h \
+  src/../includes/colors.h src/../includes/get_next_line.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_o_sync.h \

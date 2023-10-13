@@ -2,12 +2,15 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
-/*   Created: 2021/11/21 15:51:24 by aperez-b          #+#    #+#             */
-/*   Updated: 2022/03/07 21:27:00 by aperez-b         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 15:47:10 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 static char	*locate_command(char **env_path, char *cmd)
 {

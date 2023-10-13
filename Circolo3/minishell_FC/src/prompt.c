@@ -2,14 +2,15 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
-/*   By: [Your Name] <[Your Email]>                  +#+  +:+       +#+        */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 by [Your Name]              #+#    #+#             */
-/*   Updated: 2023/10/12 by [Your Name]              ###   ########.fr       */
+/*   Created: 2023/10/13 15:46:24 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../includes/minishell.h"
 
 extern int	g_stat;
 

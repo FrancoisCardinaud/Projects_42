@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim_all.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   Created: 2021/11/02 20:59:58 by aperez-b          #+#    #+#             */
-/*   Updated: 2021/11/03 10:11:27 by aperez-b         ###   ########.fr       */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 15:47:14 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 static int	calculate_trim_length(const char *str)
 {

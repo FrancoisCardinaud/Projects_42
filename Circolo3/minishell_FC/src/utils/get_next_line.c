@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 10:59:17 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 03:47:37 by fcardina         ###   ########.fr       */
+/*   Created: 2023/10/13 15:47:00 by fcardina          #+#    #+#             */
+/*   Updated: 2023/10/13 15:59:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../../includes/minishell.h"
 
 char	*get_next_line(int fd)
 {

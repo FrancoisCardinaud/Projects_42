@@ -1,5 +1,5 @@
-obj/prompt.o: src/prompt.c src/../inc/minishell.h \
-  src/../inc/../libft/libft.h \
+obj/prompt.o: src/prompt.c src/../includes/minishell.h \
+  src/../includes/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
@@ -87,7 +87,7 @@ obj/prompt.o: src/prompt.c src/../inc/minishell.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_select.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uuid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/gethostuuid.h \
-  src/../inc/colors.h src/../inc/get_next_line.h \
+  src/../includes/colors.h src/../includes/get_next_line.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_o_sync.h \
@@ -100,6 +100,7 @@ obj/prompt.o: src/prompt.c src/../inc/minishell.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stdbool.h \
   /usr/local/opt/readline/include/readline/readline.h \
   /usr/local/opt/readline/include/readline/rlstdc.h \
   /usr/local/opt/readline/include/readline/rltypedefs.h \

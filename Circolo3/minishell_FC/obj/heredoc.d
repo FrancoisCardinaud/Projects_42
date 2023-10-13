@@ -1,5 +1,5 @@
-obj/heredoc.o: src/utils/heredoc.c src/utils/../../inc/minishell.h \
-  src/utils/../../inc/../libft/libft.h \
+obj/heredoc.o: src/utils/heredoc.c src/utils/../../includes/minishell.h \
+  src/utils/../../includes/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
@@ -87,7 +87,8 @@ obj/heredoc.o: src/utils/heredoc.c src/utils/../../inc/minishell.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_select.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uuid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/gethostuuid.h \
-  src/utils/../../inc/colors.h src/utils/../../inc/get_next_line.h \
+  src/utils/../../includes/colors.h \
+  src/utils/../../includes/get_next_line.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_o_sync.h \
@@ -100,6 +101,7 @@ obj/heredoc.o: src/utils/heredoc.c src/utils/../../inc/minishell.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stdbool.h \
   /usr/local/opt/readline/include/readline/readline.h \
   /usr/local/opt/readline/include/readline/rlstdc.h \
   /usr/local/opt/readline/include/readline/rltypedefs.h \
