@@ -9,13 +9,13 @@
 
 #include "../../inc/minishell.h"
 
-int	g_status;
+int	g_stat;
 
 void	handle_interrupt_signal(int signal_code)
 {
 	if (signal_code == SIGINT)
 	{
-		g_status = 130;
+		g_stat = 130;
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
 		rl_replace_line("", 0);
 		rl_on_new_line();

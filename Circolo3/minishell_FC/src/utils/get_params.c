@@ -9,7 +9,7 @@
 
 #include "../../inc/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 int	determine_fd(int prev_fd, char *path, int mode_flags[2])
 {
@@ -20,11 +20,11 @@ int	determine_fd(int prev_fd, char *path, int mode_flags[2])
 	if (!path)
 		return (-1);
 	if (access(path, F_OK) == -1 && !mode_flags[0])
-		mini_perror(NDIR, path, 127);
+		shell_error(NDIR, path, 127);
 	else if (!mode_flags[0] && access(path, R_OK) == -1)
-		mini_perror(NPERM, path, 126);
+		shell_error(NPERM, path, 126);
 	else if (mode_flags[0] && access(path, W_OK) == -1 && access(path, F_OK) == 0)
-		mini_perror(NPERM, path, 126);
+		shell_error(NPERM, path, 126);
 	if (mode_flags[0] && mode_flags[1])
 		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	else if (mode_flags[0] && !mode_flags[1])
@@ -36,7 +36,7 @@ int	determine_fd(int prev_fd, char *path, int mode_flags[2])
 	return (fd);
 }
 
-t_mini	*set_output_file_single(t_mini *node, char **args, int *index)
+t_mini	*get_outfile1(t_mini *node, char **args, int *index)
 {
 	char	*error_msg;
 	int		mode_flags[2] = {1, 0};
@@ -51,15 +51,15 @@ t_mini	*set_output_file_single(t_mini *node, char **args, int *index)
 		if (node->outfile != -1)
 		{
 			ft_putendl_fd(error_msg, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 		else
-			g_status = 1;
+			g_stat = 1;
 	}
 	return (node);
 }
 
-t_mini	*set_output_file_double(t_mini *node, char **args, int *index)
+t_mini	*get_outfile2(t_mini *node, char **args, int *index)
 {
 	char	*error_msg;
 	int		mode_flags[2] = {1, 1};
@@ -74,15 +74,15 @@ t_mini	*set_output_file_double(t_mini *node, char **args, int *index)
 		if (node->outfile != -1)
 		{
 			ft_putendl_fd(error_msg, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 		else
-			g_status = 1;
+			g_stat = 1;
 	}
 	return (node);
 }
 
-t_mini	*set_input_file_single(t_mini *node, char **args, int *index)
+t_mini	*get_infile1(t_mini *node, char **args, int *index)
 {
 	char	*error_msg;
 	int		mode_flags[2] = {0, 0};
@@ -97,15 +97,15 @@ t_mini	*set_input_file_single(t_mini *node, char **args, int *index)
 		if (node->infile != -1)
 		{
 			ft_putendl_fd(error_msg, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 		else
-			g_status = 1;
+			g_stat = 1;
 	}
 	return (node);
 }
 
-t_mini	*set_input_file_double(t_mini *node, char **args, int *index)
+t_mini	*get_infile2(t_mini *node, char **args, int *index)
 {
 	char	*aux[2];
 	char	*error_msg;
@@ -128,7 +128,7 @@ t_mini	*set_input_file_double(t_mini *node, char **args, int *index)
 		if (node->infile != -1)
 		{
 			ft_putendl_fd(error_msg, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 	}
 	return (node);

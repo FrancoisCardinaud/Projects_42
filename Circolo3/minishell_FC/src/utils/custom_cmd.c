@@ -21,15 +21,15 @@ static void	refresh_output(char ***output_matrix, int file_descriptor)
 	line_content = NULL;
 	while (1)
 	{
-		line_content = retrieve_next_line(file_descriptor);
+		line_content = get_next_line(file_descriptor);
 		if (!line_content)
 			break ;
 		temporary_string = ft_strtrim(line_content, "\n");
 		free(line_content);
-		temporary_matrix = extend_arg_matrix(temporary_matrix, temporary_string);
+		temporary_matrix = ft_extend_matrix(temporary_matrix, temporary_string);
 		free(temporary_string);
 	}
-	free_arg_matrix(output_matrix);
+	ft_free_matrix(output_matrix);
 	*output_matrix = temporary_matrix;
 }
 

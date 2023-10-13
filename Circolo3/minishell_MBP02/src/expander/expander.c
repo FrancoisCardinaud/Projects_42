@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 18:17:55 by fcardina          #+#    #+#             */
-/*   Updated: 2023/09/19 16:45:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 char	*expand_path(char *str, int i, int quotes[2], char *var)
 {
@@ -59,7 +59,7 @@ static char	*get_substr_var(char *str, int i, t_prompt *prompt)
 	if (!var && str[i] == '$')
 		var = ft_itoa(prompt->pid);
 	else if (!var && str[i] == '?')
-		var = ft_itoa(g_status);
+		var = ft_itoa(g_stat);
 	path = ft_strjoin(aux, var);
 	free(aux);
 	aux = ft_strjoin(path, &str[i + pos]);

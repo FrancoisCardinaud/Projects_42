@@ -1,5 +1,4 @@
-obj/main.o: src/main/main.c src/main/../../inc/minishell.h \
-  src/main/../../inc/../libft/libft.h \
+obj/main.o: src/main.c src/../inc/minishell.h src/../inc/../libft/libft.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \
@@ -87,7 +86,7 @@ obj/main.o: src/main/main.c src/main/../../inc/minishell.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_select.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_uuid_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/gethostuuid.h \
-  src/main/../../inc/colors.h src/main/../../inc/get_next_line.h \
+  src/../inc/colors.h src/../inc/get_next_line.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/fcntl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_o_sync.h \

@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 13:38:18 by aperez-b          #+#    #+#              #
-#    Updated: 2023/10/12 16:52:59 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/12 17:42:35 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ endif
 
 # Make variables
 AR = ar rcs
-CFLAGS = -Wall -Wextra -Werror -MD -g3 
+CFLAGS = -Wall -Wextra -Werror -MD -g3 -I/usr/local/opt/readline/include
 RM = rm -f
-CC = gcc
+CC = /usr/bin/gcc
 PRINTF = printf
 SRC_DIR = src
 OBJ_DIR = obj
@@ -47,11 +47,13 @@ NAME = $(BIN_DIR)/$(BIN)
 LIBFT_DIR = libft
 LIBFT_SRC = $(wildcard libft/*.c)
 
-SRC = $(SRC_DIR)/main/main.c $(SRC_DIR)/utils/error_handling.c $(SRC_DIR)/utils/ft_strtrim_all.c $(SRC_DIR)/builtin/builtins.c \
-	  $(SRC_DIR)/executor/exec.c $(SRC_DIR)/lexer/fill_node.c $(SRC_DIR)/utils/get_params.c $(SRC_DIR)/utils/ft_cmdtrim.c \
-	  $(SRC_DIR)/expander/expand.c $(SRC_DIR)/utils/heredoc.c $(SRC_DIR)/env/env.c $(SRC_DIR)/utils/custom_cmd.c \
-	  $(SRC_DIR)/utils/get_next_line.c $(SRC_DIR)/utils/get_next_line_utils.c $(SRC_DIR)/prompt/prompt.c \
-	  $(SRC_DIR)/utils/ft_cmdsubsplit.c $(SRC_DIR)/utils/signal.c $(SRC_DIR)/parser/parse_args.c $(SRC_DIR)/utils/get_cmd.c
+
+SRC := $(shell find $(SRC_DIR) -name "*.c")
+#SRC = main.c $(SRC_DIR)/utils/error_handling.c $(SRC_DIR)/utils/ft_strtrim_all.c builtins.c \
+	  exec.c $(SRC_DIR)/lexer/fill_node.c $(SRC_DIR)/utils/get_params.c $(SRC_DIR)/utils/ft_cmdtrim.c \
+	  expand.c $(SRC_DIR)/utils/heredoc.c env.c $(SRC_DIR)/utils/custom_cmd.c \
+	  $(SRC_DIR)/utils/get_next_line.c $(SRC_DIR)/utils/get_next_line_utils.c prompt.c \
+	  $(SRC_DIR)/utils/ft_cmdsubsplit.c $(SRC_DIR)/utils/signal.c parse_args.c $(SRC_DIR)/utils/get_cmd.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
@@ -69,7 +71,10 @@ $(NAME): $(LIBFT) $(OBJ) | $(BIN_DIR)
 	@$(CC) -L /usr/local/opt/readline/lib -I /usr/local/opt/readline/include -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBFT) -lreadline -o $@
 	@$(PRINTF) "\r%100s\r$(GREEN)$(BIN) is up to date!$(DEFAULT)\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%/*.c | $(OBJ_DIR)
+#$(OBJ_DIR)/builtins.o: $(SRC_DIR)/builtin/builtins.c
+#	@$(CC) $(CFLAGS) -c $< -o $@
+	
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLUE)$<$(DEFAULT)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@echo "Compiling source file: $<"

@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 18:49:29 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/10/11 04:01:54 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 void	child_builtin(t_prompt *prompt, t_mini *n, int l, t_list *cmd)
 {
@@ -22,15 +22,15 @@ void	child_builtin(t_prompt *prompt, t_mini *n, int l, t_list *cmd)
 		execve(n->full_path, n->full_cmd, prompt->envp);
 	else if (n->full_cmd && !ft_strncmp(*n->full_cmd, "pwd", l) \
 		&& l == 3)
-		g_status = mini_pwd();
+		g_stat = mini_pwd();
 	else if (is_builtin(n) && n->full_cmd && \
 		!ft_strncmp(*n->full_cmd, "echo", l) && l == 4)
-		g_status = mini_echo(cmd);
+		g_stat = mini_echo(cmd);
 	else if (is_builtin(n) && n->full_cmd && \
 		!ft_strncmp(*n->full_cmd, "env", l) && l == 3)
 	{
 		ft_putmatrix_fd(prompt->envp, 1, 1);
-		g_status = 0;
+		g_stat = 0;
 	}
 }
 
@@ -70,7 +70,7 @@ void	*child_process(t_prompt *prompt, t_list *cmd, int fd[2])
 	close(fd[READ_END]);
 	child_builtin(prompt, n, l, cmd);
 	ft_lstclear(&prompt->cmds, free_content);
-	exit(g_status);
+	exit(g_stat);
 }
 
 void	exec_fork(t_prompt *prompt, t_list *cmd, int fd[2])
@@ -103,9 +103,9 @@ void	*check_to_fork(t_prompt *prompt, t_list *cmd, int fd[2])
 		exec_fork(prompt, cmd, fd);
 	else if (!is_builtin(n) && ((n->full_path && \
 		!access(n->full_path, F_OK)) || dir))
-		g_status = 126;
+		g_stat = 126;
 	else if (!is_builtin(n) && n->full_cmd)
-		g_status = 127;
+		g_stat = 127;
 	if (dir)
 		closedir(dir);
 	return ("");

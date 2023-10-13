@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:33:50 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 16:50:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:55:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,38 @@ enum	e_mini_error
 };
 
 // Builtin functions
-int		builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n);
-int		is_builtin(t_mini *n);
+int		execute_builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n);
+int		check_builtin(t_mini *n);
 int		mini_cd(t_prompt *prompt);
 void	handle_cd_error(char **str[2]);
-int		mini_pwd(void);
-int		mini_echo(t_list *cmd);
-int		mini_export(t_prompt *prompt);
-int		mini_unset(t_prompt *prompt);
-int		mini_exit(t_list *cmd, int *is_exit);
+int		shell_pwd(void);
+int		shell_echo(t_list *cmd);
+int		shell_export(t_prompt *prompt);
+int		shell_unset(t_prompt *prompt);
+int		handle_exit(t_list *cmd, int *is_exit);
 
 // Utils functions
 char	**ft_cmdtrim(char const *s, char *set);
 char	**ft_cmdsubsplit(char const *s, char *set);
 char	*ft_strtrim_all(char const *s1, int squote, int dquote);
-t_list	*fill_nodes(char **args, int i);
+t_list	*populate_commands(char **args, int i);
 int		get_fd(int oldfd, char *path, int flags[2]);
 t_mini	*get_outfile1(t_mini *node, char **args, int *i);
 t_mini	*get_outfile2(t_mini *node, char **args, int *i);
 t_mini	*get_infile1(t_mini *node, char **args, int *i);
 t_mini	*get_infile2(t_mini *node, char **args, int *i);
-void	exec_custom(char ***out, char *full, char *args, char **envp);
+void	execute_custom_command(char ***output, char *full_path, char *arguments, char **environment);
 void	get_cmd(t_prompt *prompt, t_list *cmd);
-char	*expand_vars(char *str, int i, int quotes[2], t_prompt *prompt);
-char	*expand_path(char *str, int i, int quotes[2], char *var);
+char	*expand_variables(char *str, int i, int quotes[2], t_prompt *prompt);
+char	*expand_directory(char *str, int i, int quotes[2], char *var);
 int		get_here_doc(char *str[2], char *aux[2]);
 void	*shell_error(int err_type, char *param, int err);
-char	*mini_getenv(char	*var, char **envp, int n);
-char	**mini_setenv(char *var, char *value, char **envp, int n);
-char	*mini_getprompt(t_prompt prompt);
-void	free_content(void *content);
+char	*shell_retrieve_env(char	*var, char **envp, int n);
+char	**shell_setenv(char *var, char *value, char **envp, int n);
+char	*shell_getprompt(t_prompt prompt);
+void	release_content(void *content);
 void	handle_interrupt_signal(int sig);
+const char *determine_color(char first_char);
 void	handle_sigint_child(int sig);
 void	*check_args(char *input, t_prompt *prompt_data);
 //char	*mini_readline(t_prompt *prompt, char *str);

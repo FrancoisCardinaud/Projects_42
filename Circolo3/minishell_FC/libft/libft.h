@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:46:20 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 16:48:29 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:35:19 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 int					ft_matrixlen(char **m);
+char				**ft_matrix_replace_in(char ***big, char **small, int n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
@@ -55,11 +56,14 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putendl(char *s);
-void				ft_putendl_fd(char *s, int fd);
+int					ft_putendl_fd(char *s, int fd);
+int					ft_putmatrix_fd(char **m, int nl, int fd);
 void				ft_putnbr_fd(int n, int fd);
-void				ft_putstr_fd(char *s, int fd);
+int					ft_putstr_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
+int					ft_strchars_i(const char *s, char *set);
 char				*ft_strchr(const char *s, int c);
+int					ft_strchr_i(const char *s, int c);
 int					ft_strcmp(char *s1, char *s2);
 void				ft_strdel(char **as);
 char				*ft_strdup(const char *src);

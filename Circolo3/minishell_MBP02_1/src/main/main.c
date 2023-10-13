@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:40:47 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/10/11 04:03:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 static void	mini_getpid(t_prompt *p)
 {
@@ -71,7 +71,7 @@ static t_prompt	init_prompt(char **argv, char **envp)
 	str = NULL;
 	prompt.cmds = NULL;
 	prompt.envp = ft_dup_matrix(envp);
-	g_status = 0;
+	g_stat = 0;
 	mini_getpid(&prompt);
 	prompt = init_vars(prompt, str, argv);
 	return (prompt);
@@ -97,5 +97,5 @@ int	main(int argc, char **argv, char **envp)
 		if (!check_args(out, &prompt))
 			break ;
 	}
-	exit(g_status);
+	exit(g_stat);
 }

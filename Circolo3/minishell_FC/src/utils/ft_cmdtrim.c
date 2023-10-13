@@ -41,7 +41,7 @@ static int	count_trimmed_words(const char *str, char *delimiters)
 
 static char	**populate_trimmed_words(char **result, const char *str, char *delimiters)
 {
-	int		indices[3] = {0, 0, 0};
+	unsigned int		indices[3] = {0, 0, 0};
 	int		quotes[2] = {0, 0};
 
 	while (str[indices[0]])
@@ -63,7 +63,7 @@ static char	**populate_trimmed_words(char **result, const char *str, char *delim
 	return (result);
 }
 
-char	**cmd_trim(const char *str, char *delimiters)
+char	**ft_cmdtrim(const char *str, char *delimiters)
 {
 	char	**result;
 	int		word_count;

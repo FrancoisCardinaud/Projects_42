@@ -6,20 +6,20 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:08:07 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/11 04:13:03 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 int	mini_cd(t_prompt *p)
 {
 	char	**str[2];
 	char	*aux;
 
-	g_status = 0;
+	g_stat = 0;
 	str[0] = ((t_mini *)p->cmds->content)->full_cmd;
 	aux = mini_getenv("HOME", p->envp, 4);
 	if (!aux)
@@ -30,7 +30,7 @@ int	mini_cd(t_prompt *p)
 	str[1] = ft_extend_matrix(str[1], aux);
 	free(aux);
 	cd_error(str);
-	if (!g_status)
+	if (!g_stat)
 		p->envp = mini_setenv("OLDPWD", str[1][1], p->envp, 6);
 	aux = getcwd(NULL, 0);
 	if (!aux)
@@ -39,7 +39,7 @@ int	mini_cd(t_prompt *p)
 	free(aux);
 	p->envp = mini_setenv("PWD", str[1][2], p->envp, 3);
 	ft_free_matrix(&str[1]);
-	return (g_status);
+	return (g_stat);
 }
 
 int	builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n)
@@ -53,13 +53,13 @@ int	builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n)
 		if (a)
 			n = ft_strlen(*a);
 		if (a && !ft_strncmp(*a, "exit", n) && n == 4)
-			g_status = mini_exit(cmd, is_exit);
+			g_stat = mini_exit(cmd, is_exit);
 		else if (!cmd->next && a && !ft_strncmp(*a, "cd", n) && n == 2)
-			g_status = mini_cd(prompt);
+			g_stat = mini_cd(prompt);
 		else if (!cmd->next && a && !ft_strncmp(*a, "export", n) && n == 6)
-			g_status = mini_export(prompt);
+			g_stat = mini_export(prompt);
 		else if (!cmd->next && a && !ft_strncmp(*a, "unset", n) && n == 5)
-			g_status = mini_unset(prompt);
+			g_stat = mini_unset(prompt);
 		else
 		{
 			signal(SIGINT, SIG_IGN);
@@ -68,7 +68,7 @@ int	builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n)
 		}
 		cmd = cmd->next;
 	}
-	return (g_status);
+	return (g_stat);
 }
 
 int	is_builtin(t_mini *n)

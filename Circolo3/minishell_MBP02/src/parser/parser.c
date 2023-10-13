@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 12:08:12 by fcardina          #+#    #+#             */
-/*   Updated: 2023/09/19 16:44:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 static char	**split_all(char **args, t_prompt *prompt)
 {
@@ -44,13 +44,13 @@ static void	*parse_args(char **args, t_prompt *p)
 	if (!p->cmds)
 		return (p);
 	i = ft_lstsize(p->cmds);
-	g_status = builtin_command(p, p->cmds, &is_exit, 0);
+	g_stat = builtin_command(p, p->cmds, &is_exit, 0);
 	while (i-- > 0)
-		waitpid(-1, &g_status, 0);
-	if (!is_exit && g_status == 13)
-		g_status = 0;
-	if (g_status > 255)
-		g_status = g_status / 255;
+		waitpid(-1, &g_stat, 0);
+	if (!is_exit && g_stat == 13)
+		g_stat = 0;
+	if (g_stat > 255)
+		g_stat = g_stat / 255;
 	if (args && is_exit)
 	{
 		ft_lstclear(&p->cmds, free_content);

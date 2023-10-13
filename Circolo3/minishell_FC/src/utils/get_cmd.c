@@ -51,14 +51,14 @@ static DIR	*validate_command(t_prompt *prompt, t_list *cmd, char ***path_split)
 		free(n->full_cmd[0]);
 		n->full_cmd[0] = ft_strdup((*path_split)[ft_matrixlen(*path_split) - 1]);
 	}
-	else if (!is_builtin(n) && n && n->full_cmd && !dir)
+	else if (!check_builtin(n) && n && n->full_cmd && !dir)
 	{
-		path = mini_getenv("PATH", prompt->envp, 4);
+		path = shell_retrieve_env("PATH", prompt->envp, 4);
 		*path_split = ft_split(path, ':');
 		free(path);
 		n->full_path = locate_command(*path_split, *n->full_cmd);
 		if (!n->full_path || !n->full_cmd[0] || !n->full_cmd[0][0])
-			mini_perror(NCMD, *n->full_cmd, 127);
+			shell_error(NCMD, *n->full_cmd, 127);
 	}
 	return (dir);
 }
@@ -70,12 +70,12 @@ void	get_cmd(t_prompt *prompt, t_list *cmd)
 	char	**path_split = NULL;
 
 	dir = validate_command(prompt, cmd, &path_split);
-	if (!is_builtin(n) && n && n->full_cmd && dir)
-		mini_perror(IS_DIR, *n->full_cmd, 126);
-	else if (!is_builtin(n) && n && n->full_path && access(n->full_path, F_OK) == -1)
-		mini_perror(NDIR, n->full_path, 127);
-	else if (!is_builtin(n) && n && n->full_path && access(n->full_path, X_OK) == -1)
-		mini_perror(NPERM, n->full_path, 126);
+	if (!check_builtin(n) && n && n->full_cmd && dir)
+		shell_error(IS_DIR, *n->full_cmd, 126);
+	else if (!check_builtin(n) && n && n->full_path && access(n->full_path, F_OK) == -1)
+		shell_error(NDIR, n->full_path, 127);
+	else if (!check_builtin(n) && n && n->full_path && access(n->full_path, X_OK) == -1)
+		shell_error(NPERM, n->full_path, 126);
 	if (dir)
 		closedir(dir);
 	ft_free_matrix(&path_split);
@@ -87,7 +87,7 @@ void	*exec_cmd(t_prompt *prompt, t_list *cmd)
 
 	get_cmd(prompt, cmd);
 	if (pipe(fd) == -1)
-		return (mini_perror(PIPERR, NULL, 1));
+		return (shell_error(PIPERR, NULL, 1));
 	if (!check_to_fork(prompt, cmd, fd))
 		return (NULL);
 	close(fd[WRITE_END]);

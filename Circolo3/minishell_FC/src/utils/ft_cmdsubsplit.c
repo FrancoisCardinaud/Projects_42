@@ -64,7 +64,7 @@ static char	**populate_subwords(char **result, char *str, char *delimiters, int 
 	return (result);
 }
 
-char	**cmd_subsplit(const char *str, char *delimiters)
+char	**ft_cmdsubsplit(const char *str, char *delimiters)
 {
 	char	**result;
 	int		subword_count;

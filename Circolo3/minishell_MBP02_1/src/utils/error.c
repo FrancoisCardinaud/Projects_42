@@ -6,17 +6,17 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:36:47 by mbueno-g          #+#    #+#             */
-/*   Updated: 2023/10/11 05:15:26 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 void	*mini_perror(int err_type, char *param, int err)
 {
-	g_status = err;
+	g_stat = err;
 	if (err_type == QUOTE)
 		ft_putstr_fd("minishell: error while looking for matching quote\n", 2);
 	else if (err_type == NDIR)
@@ -106,11 +106,11 @@ void	cd_error(char **str[2])
 		dir = opendir(str[0][1]);
 	if (!str[0][1] && str[1][0] && !str[1][0][0])
 	{
-		g_status = 1;
+		g_stat = 1;
 		ft_putstr_fd("minishell: HOME not set\n", 2);
 	}
 	if (str[1][0] && !str[0][1])
-		g_status = chdir(str[1][0]) == -1;
+		g_stat = chdir(str[1][0]) == -1;
 	if (str[0][1] && dir && access(str[0][1], F_OK) != -1)
 		chdir(str[0][1]);
 	else if (str[0][1] && access(str[0][1], F_OK) == -1)

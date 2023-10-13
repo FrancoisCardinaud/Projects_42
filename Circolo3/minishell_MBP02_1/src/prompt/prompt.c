@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:02:33 by fcardina          #+#    #+#             */
-/*   Updated: 2023/09/19 16:45:06 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 static char	*get_home(t_prompt prompt)
 {
@@ -84,7 +84,7 @@ char	*mini_getprompt(t_prompt prompt)
 	temp = ft_strjoin(temp2, aux);
 	free(aux);
 	free(temp2);
-	if (!g_status || g_status == -1)
+	if (!g_stat || g_stat == -1)
 		temp2 = ft_strjoin(temp, BLUE);
 	else
 		temp2 = ft_strjoin(temp, RED);

@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:14 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/09/18 23:48:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:52:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 int	get_fd(int oldfd, char *path, int flags[2])
 {
@@ -56,10 +56,10 @@ t_mini	*get_outfile1(t_mini *node, char **args, int *i)
 		if (node->outfile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 		else
-			g_status = 1;
+			g_stat = 1;
 	}
 	return (node);
 }
@@ -81,10 +81,10 @@ t_mini	*get_outfile2(t_mini *node, char **args, int *i)
 		if (node->outfile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 		else
-			g_status = 1;
+			g_stat = 1;
 	}
 	return (node);
 }
@@ -106,10 +106,10 @@ t_mini	*get_infile1(t_mini *node, char **args, int *i)
 		if (node->infile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 		else
-			g_status = 1;
+			g_stat = 1;
 	}
 	return (node);
 }
@@ -137,7 +137,7 @@ t_mini	*get_infile2(t_mini *node, char **args, int *i)
 		if (node->infile != -1)
 		{
 			ft_putendl_fd(nl, 2);
-			g_status = 2;
+			g_stat = 2;
 		}
 	}
 	return (node);

@@ -6,17 +6,17 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:33:25 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 16:49:38 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/13 03:51:12 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-extern int	g_status;
+extern int	g_stat;
 
 void	*shell_error(int error_type, char *parameter, int error_code)
 {
-	g_status = error_code;
+	g_stat = error_code;
 	char *error_messages[] = {
 		"minishell: error while looking for matching quote\n",
 		"minishell: No such file or directory: ",
@@ -93,11 +93,11 @@ void	handle_cd_error(char **arguments[2])
 		directory = opendir(arguments[0][1]);
 	if (!arguments[0][1] && arguments[1][0] && !arguments[1][0][0])
 	{
-		g_status = 1;
+		g_stat = 1;
 		ft_putstr_fd("minishell: HOME not set\n", 2);
 	}
 	if (arguments[1][0] && !arguments[0][1])
-		g_status = chdir(arguments[1][0]) == -1;
+		g_stat = chdir(arguments[1][0]) == -1;
 	if (arguments[0][1] && directory && access(arguments[0][1], F_OK) != -1)
 		chdir(arguments[0][1]);
 	else if (arguments[0][1] && access(arguments[0][1], F_OK) == -1)
