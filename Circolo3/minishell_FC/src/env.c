@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:35 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 18:59:14 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 00:20:10 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	shell_export(t_prompt *data)
 	int		key_pos;
 	char	**args;
 
-	args = ((t_mini *)data->cmds->content)->full_cmd;
+	args = ((t_mini *)data->cmd->content)->full_cmd;
 	if (ft_matrixlen(args) >= 2)
 	{
 		index_pair[0] = 1;
@@ -112,7 +112,7 @@ int	shell_unset(t_prompt *data)
 	int		index_pair[2];
 
 	index_pair[0] = 0;
-	args = ((t_mini *)data->cmds->content)->full_cmd;
+	args = ((t_mini *)data->cmd->content)->full_cmd;
 	if (ft_matrixlen(args) >= 2)
 	{
 		while (args[++index_pair[0]])

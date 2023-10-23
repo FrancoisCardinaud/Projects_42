@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:37 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 17:47:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 00:40:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ extern int	g_stat;
 
 void	*shell_error(int error_type, char *parameter, int error_code)
 {
-	char	*error_messages[] = {"minishell: error while looking for matching quote\n",
-			"minishell: No such file or directory: ",
-			"minishell: permission denied: ", "minishell: command not found: ",
-			"minishell: dup2 failed\n", "minishell: fork failed\n",
-			"minishell: error creating pipe\n",
-			"minishell: syntax error near unexpected token `|'\n",
-			"minishell: no memory left on device\n",
-			"minishell: Is a directory: ", "minishell: Not a directory: "};
+	char	*error_messages[11];
 
+	error_messages[0] = "minishell: could not find a matching quote\n";
+	error_messages[1] = "minishell: file or directory not found: ";
+	error_messages[2] = "minishell: access denied: ";
+	error_messages[3] = "minishell: unrecognized command: ";
+	error_messages[4] = "minishell: failed to duplicate file descriptor\n";
+	error_messages[5] = "minishell: fork/process creation failed\n";
+	error_messages[6] = "minishell: pipe creation error\n";
+	error_messages[7] = "minishell: unexpected syntax near token '|'\n";
+	error_messages[8] = "minishell: device out of memory\n";
+	error_messages[9] = "minishell: is a directory: ";
+	error_messages[10] = "minishell: is not a directory: ";
 	g_stat = error_code;
 	ft_putstr_fd(error_messages[error_type], 2);
 	if (parameter)

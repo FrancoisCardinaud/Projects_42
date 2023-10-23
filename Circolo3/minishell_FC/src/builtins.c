@@ -20,7 +20,7 @@ int	shell_cd(t_prompt *data)
 	char	*temp;
 
 	g_stat = 0;
-	path_data[0] = ((t_mini *)data->cmds->content)->full_cmd;
+	path_data[0] = ((t_mini *)data->cmd->content)->full_cmd;
 	temp = shell_retrieve_env("HOME", data->envp, 4);
 	if (!temp)
 		temp = ft_strdup("");
@@ -44,22 +44,21 @@ int	shell_cd(t_prompt *data)
 
 int	execute_builtin(t_prompt *data, t_list *cmd, int *exit_flag, int l)
 {
-	char	**args;
+	char	**arg;
 
 	while (cmd)
 	{
-		args = ((t_mini *)cmd->content)->full_cmd;
+		arg = ((t_mini *)cmd->content)->full_cmd;
 		l = 0;
-		if (args)
-			l = ft_strlen(*args);
-		if (args && !ft_strncmp(*args, "exit", l) && l == 4)
+		if (arg)
+			l = ft_strlen(*arg);
+		if (arg && !ft_strncmp(*arg, "exit", l) && l == 4)
 			g_stat = handle_exit(cmd, exit_flag);
-		else if (!cmd->next && args && !ft_strncmp(*args, "cd", l) && l == 2)
+		else if (!cmd->next && arg && !ft_strncmp(*arg, "cd", l) && l == 2)
 			g_stat = shell_cd(data);
-		else if (!cmd->next && args && !ft_strncmp(*args, "export", l)
-			&& l == 6)
+		else if (!cmd->next && arg && !ft_strncmp(*arg, "export", l) && l == 6)
 			g_stat = shell_export(data);
-		else if (!cmd->next && args && !ft_strncmp(*args, "unset", l) && l == 5)
+		else if (!cmd->next && arg && !ft_strncmp(*arg, "unset", l) && l == 5)
 			g_stat = shell_unset(data);
 		else
 		{

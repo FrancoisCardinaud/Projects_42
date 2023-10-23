@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:55 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 17:49:07 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:00:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ int	determine_fd(int prev_fd, char *path, int mode_flags[2])
 t_mini	*get_outfile1(t_mini *node, char **args, int *index)
 {
 	char	*error_msg;
-	int		mode_flags[2] = {1, 0};
+	int		mode_flags[2];
 
-	error_msg = "minishell: syntax error near unexpected token `newline'";
+	mode_flags[0] = 1;
+	mode_flags[1] = 0;
+	error_msg = "minishell: syntax error near unexpected token 'newline'";
 	(*index)++;
 	if (args[*index])
 		node->outfile = determine_fd(node->outfile, args[*index], mode_flags);
@@ -66,9 +68,11 @@ t_mini	*get_outfile1(t_mini *node, char **args, int *index)
 t_mini	*get_outfile2(t_mini *node, char **args, int *index)
 {
 	char	*error_msg;
-	int		mode_flags[2] = {1, 1};
+	int		mode_flags[2];
 
-	error_msg = "minishell: syntax error near unexpected token `newline'";
+	mode_flags[0] = 1;
+	mode_flags[1] = 1;
+	error_msg = "minishell: syntax error near unexpected token 'newline'";
 	(*index)++;
 	if (args[++(*index)])
 		node->outfile = determine_fd(node->outfile, args[*index], mode_flags);
@@ -89,9 +93,11 @@ t_mini	*get_outfile2(t_mini *node, char **args, int *index)
 t_mini	*get_infile1(t_mini *node, char **args, int *index)
 {
 	char	*error_msg;
-	int		mode_flags[2] = {0, 0};
+	int		mode_flags[2];
 
-	error_msg = "minishell: syntax error near unexpected token `newline'";
+	mode_flags[0] = 0;
+	mode_flags[1] = 0;
+	error_msg = "minishell: syntax error near unexpected token 'newline'";
 	(*index)++;
 	if (args[*index])
 		node->infile = determine_fd(node->infile, args[*index], mode_flags);
@@ -118,8 +124,8 @@ t_mini	*get_infile2(t_mini *node, char **args, int *index)
 	str[0] = NULL;
 	str[1] = NULL;
 	aux[0] = NULL;
-	aux[1] = "minishell: warning: here-document delimited by end-of-file";
-	error_msg = "minishell: syntax error near unexpected token `newline'";
+	aux[1] = "minishell: warning: here-doc is delimited by EOF";
+	error_msg = "minishell: syntax error near unexpected token 'newline'";
 	(*index)++;
 	if (args[++(*index)])
 	{

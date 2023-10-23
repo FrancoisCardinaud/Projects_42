@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:10 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 17:48:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:01:21 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*locate_command(char **env_path, char *cmd)
 	return (full_path);
 }
 
-static DIR	*validate_command(t_prompt *prompt, t_list *cmd, char ***path_split)
+static DIR	*validate_command(t_prompt *prompt, t_list *cmd, char ***p_split)
 {
 	t_mini	*n;
 	DIR		*dir;
@@ -53,18 +53,17 @@ static DIR	*validate_command(t_prompt *prompt, t_list *cmd, char ***path_split)
 		dir = opendir(*n->full_cmd);
 	if (n && n->full_cmd && ft_strchr(*n->full_cmd, '/') && !dir)
 	{
-		*path_split = ft_split(*n->full_cmd, '/');
+		*p_split = ft_split(*n->full_cmd, '/');
 		n->full_path = ft_strdup(*n->full_cmd);
 		free(n->full_cmd[0]);
-		n->full_cmd[0] = ft_strdup((*path_split)[ft_matrixlen(*path_split)
-				- 1]);
+		n->full_cmd[0] = ft_strdup((*p_split)[ft_matrixlen(*p_split) - 1]);
 	}
 	else if (!check_builtin(n) && n && n->full_cmd && !dir)
 	{
 		path = shell_retrieve_env("PATH", prompt->envp, 4);
-		*path_split = ft_split(path, ':');
+		*p_split = ft_split(path, ':');
 		free(path);
-		n->full_path = locate_command(*path_split, *n->full_cmd);
+		n->full_path = locate_command(*p_split, *n->full_cmd);
 		if (!n->full_path || !n->full_cmd[0] || !n->full_cmd[0][0])
 			shell_error(NCMD, *n->full_cmd, 127);
 	}
@@ -75,11 +74,11 @@ void	get_cmd(t_prompt *prompt, t_list *cmd)
 {
 	t_mini	*n;
 	DIR		*dir;
-	char	**path_split;
+	char	**p_split;
 
 	n = cmd->content;
-	path_split = NULL;
-	dir = validate_command(prompt, cmd, &path_split);
+	p_split = NULL;
+	dir = validate_command(prompt, cmd, &p_split);
 	if (!check_builtin(n) && n && n->full_cmd && dir)
 		shell_error(IS_DIR, *n->full_cmd, 126);
 	else if (!check_builtin(n) && n && n->full_path && access(n->full_path,
@@ -90,7 +89,7 @@ void	get_cmd(t_prompt *prompt, t_list *cmd)
 		shell_error(NPERM, n->full_path, 126);
 	if (dir)
 		closedir(dir);
-	ft_free_matrix(&path_split);
+	ft_free_matrix(&p_split);
 }
 
 void	*exec_cmd(t_prompt *prompt, t_list *cmd)

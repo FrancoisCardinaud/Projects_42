@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:33:50 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 19:19:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:06:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 typedef struct s_prompt
 {
-	t_list	*cmds;
+	t_list	*cmd;
 	char	**envp;
 	pid_t	pid;
 }			t_prompt;
@@ -98,7 +98,7 @@ void		release_content(void *content);
 void		handle_interrupt_signal(int sig);
 const char	*determine_color(char first_char);
 void		handle_sigint_child(int sig);
-void		*check_args(char *input, t_prompt *prompt_data);
+void		*check_args(char *input, t_prompt *p);
 // char	*mini_readline(t_prompt *prompt, char *str);
 // void 	*mini_here_fd(int fd[2]);
 void		*exec_cmd(t_prompt *prompt, t_list *cmd);

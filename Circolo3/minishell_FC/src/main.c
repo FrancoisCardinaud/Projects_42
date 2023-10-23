@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:17 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 18:59:29 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:11:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_prompt	initialize_shell(char **args, char **envp)
 	char		*temp_str;
 
 	temp_str = NULL;
-	data.cmds = NULL;
+	data.cmd = NULL;
 	data.envp = ft_dup_matrix(envp);
 	g_stat = 0;
 	shell_get_process_id(&data);
@@ -77,9 +77,9 @@ static t_prompt	initialize_shell(char **args, char **envp)
 
 int	main(int arg_count, char **args, char **envp)
 {
-	char *temp_str;
-	char *output;
-	t_prompt data;
+	char		*temp_str;
+	char		*output;
+	t_prompt	data;
 
 	data = initialize_shell(args, envp);
 	while (args && arg_count)

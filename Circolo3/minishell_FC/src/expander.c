@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:45:42 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 19:13:07 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 00:07:39 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*retrieve_sub_var(char *input, int index, t_prompt *data)
 	char	*variable;
 
 	position = ft_strchars_i(&input[index], "|\"\'$?>< ") + (ft_strchr("$?",
-			input[index]) != 0);
+				input[index]) != 0);
 	if (position == -1)
 		position = ft_strlen(input) - 1;
 	temp = ft_substr(input, 0, index - 1);

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:24 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 18:59:37 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:10:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,40 @@
 
 extern int	g_stat;
 
-static char	*retrieve_home_directory(t_prompt prompt_data)
+static char	*retrieve_home_dir(t_prompt prompt_data)
 {
 	char	*temporary;
-	char	*current_directory;
+	char	*current_dir;
 	char	*home_directory;
 
-	current_directory = getcwd(NULL, 0);
-	if (!current_directory)
-		current_directory = ft_strdup("∅ ");
+	current_dir = getcwd(NULL, 0);
+	if (!current_dir)
+		current_dir = ft_strdup("∅ ");
 	home_directory = shell_retrieve_env("HOME", prompt_data.envp, 4);
-	if (home_directory && home_directory[0] && ft_strnstr(current_directory,
-			home_directory, ft_strlen(current_directory)))
+	if (home_directory && home_directory[0] && ft_strnstr(current_dir,
+			home_directory, ft_strlen(current_dir)))
 	{
-		temporary = current_directory;
-		current_directory = ft_strjoin("~",
-				&current_directory[ft_strlen(home_directory)]);
+		temporary = current_dir;
+		current_dir = ft_strjoin("~", &current_dir[ft_strlen(home_directory)]);
 		free(temporary);
 	}
 	free(home_directory);
-	home_directory = ft_strjoin(BLUE, current_directory);
-	free(current_directory);
-	current_directory = ft_strjoin(home_directory, " ");
+	home_directory = ft_strjoin(BLUE, current_dir);
+	free(current_dir);
+	current_dir = ft_strjoin(home_directory, " ");
 	free(home_directory);
-	home_directory = ft_strjoin(" ", current_directory);
-	free(current_directory);
-	current_directory = ft_strjoin(home_directory, DEFAULT);
+	home_directory = ft_strjoin(" ", current_dir);
+	free(current_dir);
+	current_dir = ft_strjoin(home_directory, DEFAULT);
 	free(home_directory);
-	return (current_directory);
+	return (current_dir);
 }
 
 const char	*determine_color(char first_char)
 {
-	switch (first_char % 5)
-	{
-	case 0:
-		return (CYAN);
-	case 1:
-		return (GRAY);
-	case 2:
-		return (GREEN);
-	case 3:
-		return (MAGENTA);
-	default:
-		return (YELLOW);
-	}
+	const char	*colors[] = {CYAN, GRAY, GREEN, MAGENTA, YELLOW};
+
+	return (colors[first_char % 5]);
 }
 
 static char	*retrieve_username(t_prompt prompt_data)
@@ -92,7 +81,7 @@ char	*shell_getprompt(t_prompt prompt_data)
 	temporary = retrieve_username(prompt_data);
 	temporary2 = ft_strjoin(temporary, "@minishell");
 	free(temporary);
-	auxiliary = retrieve_home_directory(prompt_data);
+	auxiliary = retrieve_home_dir(prompt_data);
 	temporary = ft_strjoin(temporary2, auxiliary);
 	free(auxiliary);
 	free(temporary2);

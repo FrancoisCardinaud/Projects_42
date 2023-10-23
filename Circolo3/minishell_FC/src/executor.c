@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:45:54 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 18:59:18 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 00:20:10 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	*child_routine(t_prompt *data, t_list *cmd_list, int pipe_fd[2])
 	child_redirect(cmd_list, pipe_fd);
 	close(pipe_fd[READ_END]);
 	child_execute(data, cmd_data, len, cmd_list);
-	ft_lstclear(&data->cmds, release_content);
+	ft_lstclear(&data->cmd, release_content);
 	exit(g_stat);
 }
 
