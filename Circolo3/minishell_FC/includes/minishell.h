@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:33:50 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 17:52:13 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:19:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ enum		e_mini_error
 };
 
 // Builtin functions
-int			execute_builtin(t_prompt *prompt, t_list *cmd, int *is_exit, int n);
+int			execute_builtin(t_prompt *data, t_list *cmd, int *exit_flag, int l);
 int			check_builtin(t_mini *n);
 int			mini_cd(t_prompt *prompt);
 void		handle_cd_error(char **str[2]);
@@ -77,7 +77,7 @@ int			handle_exit(t_list *cmd, int *is_exit);
 char		**ft_cmdtrim(char const *s, char *set);
 char		**ft_cmdsubsplit(char const *s, char *set);
 char		*ft_strtrim_all(char const *s1, int squote, int dquote);
-t_list		*populate_commands(char **args, int i);
+t_list		*populate_commands(char **args, int c);
 int			get_fd(int oldfd, char *path, int flags[2]);
 t_mini		*get_outfile1(t_mini *node, char **args, int *i);
 t_mini		*get_outfile2(t_mini *node, char **args, int *i);
@@ -88,7 +88,7 @@ void		execute_custom_command(char ***output, char *full_path,
 void		get_cmd(t_prompt *prompt, t_list *cmd);
 char		*expand_variables(char *str, int i, int quotes[2],
 				t_prompt *prompt);
-char		*expand_directory(char *str, int i, int quotes[2], char *var);
+char		*expand_dir(char *str, int i, int quote[2], char *var);
 int			get_here_doc(char *str[2], char *aux[2]);
 void		*shell_error(int err_type, char *param, int err);
 char		*shell_retrieve_env(char *var, char **envp, int n);

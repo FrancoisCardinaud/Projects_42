@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:35 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 17:49:37 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:59:14 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,42 +78,41 @@ static int	key_exists_in_env(char *arg, char **envp, int index_pair[2])
 	return (0);
 }
 
-int	shell_export(t_prompt *shell_data)
+int	shell_export(t_prompt *data)
 {
 	int		index_pair[2];
 	int		key_pos;
 	char	**args;
 
-	args = ((t_mini *)shell_data->cmds->content)->full_cmd;
+	args = ((t_mini *)data->cmds->content)->full_cmd;
 	if (ft_matrixlen(args) >= 2)
 	{
 		index_pair[0] = 1;
 		while (args[index_pair[0]])
 		{
-			key_pos = key_exists_in_env(args[index_pair[0]], shell_data->envp,
+			key_pos = key_exists_in_env(args[index_pair[0]], data->envp,
 					index_pair);
 			if (key_pos == 1)
 			{
-				free(shell_data->envp[index_pair[1]]);
-				shell_data->envp[index_pair[1]] = ft_strdup(args[index_pair[0]]);
+				free(data->envp[index_pair[1]]);
+				data->envp[index_pair[1]] = ft_strdup(args[index_pair[0]]);
 			}
 			else if (!key_pos)
-				shell_data->envp = ft_extend_matrix(shell_data->envp,
-						args[index_pair[0]]);
+				data->envp = ft_extend_matrix(data->envp, args[index_pair[0]]);
 			index_pair[0]++;
 		}
 	}
 	return (0);
 }
 
-int	shell_unset(t_prompt *shell_data)
+int	shell_unset(t_prompt *data)
 {
 	char	**args;
 	char	*temp;
 	int		index_pair[2];
 
 	index_pair[0] = 0;
-	args = ((t_mini *)shell_data->cmds->content)->full_cmd;
+	args = ((t_mini *)data->cmds->content)->full_cmd;
 	if (ft_matrixlen(args) >= 2)
 	{
 		while (args[++index_pair[0]])
@@ -124,9 +123,8 @@ int	shell_unset(t_prompt *shell_data)
 				free(args[index_pair[0]]);
 				args[index_pair[0]] = temp;
 			}
-			if (key_exists_in_env(args[index_pair[0]], shell_data->envp,
-					index_pair))
-				ft_matrix_replace_in(&shell_data->envp, NULL, index_pair[1]);
+			if (key_exists_in_env(args[index_pair[0]], data->envp, index_pair))
+				ft_matrix_replace_in(&data->envp, NULL, index_pair[1]);
 		}
 	}
 	return (0);

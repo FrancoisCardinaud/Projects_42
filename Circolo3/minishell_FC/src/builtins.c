@@ -14,14 +14,14 @@
 
 extern int	g_stat;
 
-int	shell_cd(t_prompt *shell_data)
+int	shell_cd(t_prompt *data)
 {
 	char	**path_data[2];
 	char	*temp;
 
 	g_stat = 0;
-	path_data[0] = ((t_mini *)shell_data->cmds->content)->full_cmd;
-	temp = shell_retrieve_env("HOME", shell_data->envp, 4);
+	path_data[0] = ((t_mini *)data->cmds->content)->full_cmd;
+	temp = shell_retrieve_env("HOME", data->envp, 4);
 	if (!temp)
 		temp = ft_strdup("");
 	path_data[1] = ft_extend_matrix(NULL, temp);
@@ -31,48 +31,43 @@ int	shell_cd(t_prompt *shell_data)
 	free(temp);
 	handle_cd_error(path_data);
 	if (!g_stat)
-		shell_data->envp = shell_setenv("OLDPWD", path_data[1][1],
-				shell_data->envp, 6);
+		data->envp = shell_setenv("OLDPWD", path_data[1][1], data->envp, 6);
 	temp = getcwd(NULL, 0);
 	if (!temp)
 		temp = ft_strdup("");
 	path_data[1] = ft_extend_matrix(path_data[1], temp);
 	free(temp);
-	shell_data->envp = shell_setenv("PWD", path_data[1][2], shell_data->envp,
-			3);
+	data->envp = shell_setenv("PWD", path_data[1][2], data->envp, 3);
 	ft_free_matrix(&path_data[1]);
 	return (g_stat);
 }
 
-int	execute_builtin(t_prompt *shell_data, t_list *command, int *exit_flag,
-		int cmd_len)
+int	execute_builtin(t_prompt *data, t_list *cmd, int *exit_flag, int l)
 {
 	char	**args;
 
-	while (command)
+	while (cmd)
 	{
-		args = ((t_mini *)command->content)->full_cmd;
-		cmd_len = 0;
+		args = ((t_mini *)cmd->content)->full_cmd;
+		l = 0;
 		if (args)
-			cmd_len = ft_strlen(*args);
-		if (args && !ft_strncmp(*args, "exit", cmd_len) && cmd_len == 4)
-			g_stat = handle_exit(command, exit_flag);
-		else if (!command->next && args && !ft_strncmp(*args, "cd", cmd_len)
-			&& cmd_len == 2)
-			g_stat = shell_cd(shell_data);
-		else if (!command->next && args && !ft_strncmp(*args, "export", cmd_len)
-			&& cmd_len == 6)
-			g_stat = shell_export(shell_data);
-		else if (!command->next && args && !ft_strncmp(*args, "unset", cmd_len)
-			&& cmd_len == 5)
-			g_stat = shell_unset(shell_data);
+			l = ft_strlen(*args);
+		if (args && !ft_strncmp(*args, "exit", l) && l == 4)
+			g_stat = handle_exit(cmd, exit_flag);
+		else if (!cmd->next && args && !ft_strncmp(*args, "cd", l) && l == 2)
+			g_stat = shell_cd(data);
+		else if (!cmd->next && args && !ft_strncmp(*args, "export", l)
+			&& l == 6)
+			g_stat = shell_export(data);
+		else if (!cmd->next && args && !ft_strncmp(*args, "unset", l) && l == 5)
+			g_stat = shell_unset(data);
 		else
 		{
 			signal(SIGINT, SIG_IGN);
 			signal(SIGQUIT, SIG_IGN);
-			exec_cmd(shell_data, command);
+			exec_cmd(data, cmd);
 		}
-		command = command->next;
+		cmd = cmd->next;
 	}
 	return (g_stat);
 }

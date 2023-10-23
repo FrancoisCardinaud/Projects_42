@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:10 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/23 17:50:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 19:21:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	**divide_and_expand(char **arguments, t_prompt *prompt_data)
 	{
 		arguments[counter] = expand_variables(arguments[counter], -1,
 				quote_flags, prompt_data);
-		arguments[counter] = expand_directory(arguments[counter], -1,
+		arguments[counter] = expand_dir(arguments[counter], -1,
 				quote_flags, shell_retrieve_env("HOME", prompt_data->envp, 4));
 		sub_divided = ft_cmdsubsplit(arguments[counter], "<|>");
 		ft_matrix_replace_in(&arguments, sub_divided, counter);
