@@ -110,7 +110,7 @@ int	shell_pwd(void)
 	return (0);
 }
 
-int	shell_echo(t_list *command)
+int	shell_echo(t_list *cmd)
 {
 	int		newline_flag;
 	int		index[2];
@@ -120,7 +120,7 @@ int	shell_echo(t_list *command)
 	index[0] = 0;
 	index[1] = 0;
 	newline_flag = 1;
-	cmd_node = command->content;
+	cmd_node = cmd->content;
 	args = cmd_node->full_cmd;
 	while (args && args[++index[0]])
 	{

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:37 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 00:40:33 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:41:39 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ int	convert_string_to_int(const char *string, long *number)
 	return (0);
 }
 
-int	handle_exit(t_list *command, int *exit_flag)
+int	handle_exit(t_list *cmd, int *exit_flag)
 {
 	t_mini	*node;
 	long	exit_status[2];
 
-	node = command->content;
-	*exit_flag = !command->next;
+	node = cmd->content;
+	*exit_flag = !cmd->next;
 	if (*exit_flag)
 		ft_putstr_fd("exit\n", 2);
 	if (!node->full_cmd || !node->full_cmd[1])

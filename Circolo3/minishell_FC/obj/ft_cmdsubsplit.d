@@ -99,7 +99,6 @@ obj/ft_cmdsubsplit.o: src/utils/ft_cmdsubsplit.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/dirent.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/dirent.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_ino_t.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_va_list.h \
@@ -127,6 +126,7 @@ obj/ft_cmdsubsplit.o: src/utils/ft_cmdsubsplit.c \
   /usr/local/opt/readline/include/readline/tilde.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/signal.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_t.h \
+  /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stdbool.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/ioctl.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/ttycom.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/ioccom.h \

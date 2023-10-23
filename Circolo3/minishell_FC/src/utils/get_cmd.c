@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:10 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 01:01:21 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:41:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static DIR	*validate_command(t_prompt *prompt, t_list *cmd, char ***p_split)
 	return (dir);
 }
 
-void	get_cmd(t_prompt *prompt, t_list *cmd)
+void	get_cmd(t_prompt *data, t_list *cmd)
 {
 	t_mini	*n;
 	DIR		*dir;
@@ -78,7 +78,7 @@ void	get_cmd(t_prompt *prompt, t_list *cmd)
 
 	n = cmd->content;
 	p_split = NULL;
-	dir = validate_command(prompt, cmd, &p_split);
+	dir = validate_command(data, cmd, &p_split);
 	if (!check_builtin(n) && n && n->full_cmd && dir)
 		shell_error(IS_DIR, *n->full_cmd, 126);
 	else if (!check_builtin(n) && n && n->full_path && access(n->full_path,

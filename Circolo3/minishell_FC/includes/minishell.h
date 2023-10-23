@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:33:50 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 01:06:35 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 01:46:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include "get_next_line.h"
 # include <dirent.h>
 # include <fcntl.h>
-# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
+# include <stdbool.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
 # include <unistd.h>
@@ -62,48 +62,66 @@ enum		e_mini_error
 	NOT_DIR = 13
 };
 
-// Builtin functions
+// Builtins
 int			execute_builtin(t_prompt *data, t_list *cmd, int *exit_flag, int l);
-int			check_builtin(t_mini *n);
-int			mini_cd(t_prompt *prompt);
-void		handle_cd_error(char **str[2]);
+int			check_builtin(t_mini *cmd_data);
+int			shell_cd(t_prompt *data);
 int			shell_pwd(void);
 int			shell_echo(t_list *cmd);
-int			shell_export(t_prompt *prompt);
-int			shell_unset(t_prompt *prompt);
+
+// Env
+int			shell_export(t_prompt *data);
+int			shell_unset(t_prompt *data);
+
+// Error handling
 int			handle_exit(t_list *cmd, int *is_exit);
+void		handle_cd_error(char **arguments[2]);
+void		*shell_error(int error_type, char *parameter, int error_code);
+void		release_content(void *content);
+
+// Lexer
+t_list		*populate_commands(char **args, int c);
+
+// Expander
+char		*expand_variables(char *input, int index, int quote_flags[2],
+				t_prompt *data);
+char		*expand_dir(char *input, int index, int quote[2], char *var);
+
+// Executor
+void		*check_to_fork(t_prompt *data, t_list *cmd_list, int pipe_fd[2]);
+void		execute_child(t_prompt *data, t_list *cmd_list, int pipe_fd[2]);
+
+// Env
+char		*shell_retrieve_env(char *key, char **envp, int key_len);
+char		**shell_setenv(char *key, char *value, char **envp, int key_len);
+
+// Prompt
+char		*shell_getprompt(t_prompt prompt_data);
+const char	*determine_color(char first_char);
+
+// Parser
+void		*check_args(char *output, t_prompt *p);
 
 // Utils functions
-char		**ft_cmdtrim(char const *s, char *set);
-char		**ft_cmdsubsplit(char const *s, char *set);
-char		*ft_strtrim_all(char const *s1, int squote, int dquote);
-t_list		*populate_commands(char **args, int c);
-int			get_fd(int oldfd, char *path, int flags[2]);
-t_mini		*get_outfile1(t_mini *node, char **args, int *i);
-t_mini		*get_outfile2(t_mini *node, char **args, int *i);
-t_mini		*get_infile1(t_mini *node, char **args, int *i);
-t_mini		*get_infile2(t_mini *node, char **args, int *i);
+char		**ft_cmdtrim(char const *str, char *delimiters);
+char		**ft_cmdsubsplit(char const *str, char *delimiters);
+char		*ft_strtrim_all(char const *str, int quote, int quotes);
+t_mini		*get_outfile1(t_mini *node, char **args, int *index);
+t_mini		*get_outfile2(t_mini *node, char **args, int *index);
+t_mini		*get_infile1(t_mini *node, char **args, int *index);
+t_mini		*get_infile2(t_mini *node, char **args, int *index);
 void		execute_custom_command(char ***output, char *full_path,
 				char *arguments, char **environment);
-void		get_cmd(t_prompt *prompt, t_list *cmd);
-char		*expand_variables(char *str, int i, int quotes[2],
-				t_prompt *prompt);
-char		*expand_dir(char *str, int i, int quote[2], char *var);
-int			get_here_doc(char *str[2], char *aux[2]);
-void		*shell_error(int err_type, char *param, int err);
-char		*shell_retrieve_env(char *var, char **envp, int n);
-char		**shell_setenv(char *var, char *value, char **envp, int n);
-char		*shell_getprompt(t_prompt prompt);
-void		release_content(void *content);
-void		handle_interrupt_signal(int sig);
-const char	*determine_color(char first_char);
-void		handle_sigint_child(int sig);
-void		*check_args(char *input, t_prompt *p);
+void		get_cmd(t_prompt *data, t_list *cmd);
+int			get_here_doc(char *input_str[2], char *auxiliary[2]);
+void		handle_interrupt_signal(int signal_code);
+void		*exec_cmd(t_prompt *prompt, t_list *cmd);
+
+// Unused functions
+// int			get_fd(int oldfd, char *path, int flags[2]);
+// void		handle_sigint_child(int sig);
 // char	*mini_readline(t_prompt *prompt, char *str);
 // void 	*mini_here_fd(int fd[2]);
-void		*exec_cmd(t_prompt *prompt, t_list *cmd);
-void		*check_to_fork(t_prompt *prompt, t_list *cmd, int fd[2]);
-void		child_execute(t_prompt *prompt, t_mini *n, int l, t_list *cmd);
 // int 	exec_builtin(t_prompt *prompt, int (*func)(t_prompt *));
 
 #endif
