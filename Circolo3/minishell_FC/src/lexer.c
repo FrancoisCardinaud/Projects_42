@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:45:04 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:55 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:50:13 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,24 @@ static t_mini	*initialize_command(void)
 	return (cmd_data);
 }
 
-static t_mini	*extract_parameters(t_mini *cmd_data, char **args_set[2], int *index)
+static t_mini	*extract_parameters(t_mini *cmd_data, char **args_set[2],
+		int *index)
 {
 	if (args_set[0][*index])
 	{
-		if (args_set[0][*index][0] == '>' && args_set[0][*index + 1] && args_set[0][*index + 1][0] == '>')
+		if (args_set[0][*index][0] == '>' && args_set[0][*index + 1]
+			&& args_set[0][*index + 1][0] == '>')
 			cmd_data = get_outfile2(cmd_data, args_set[1], index);
 		else if (args_set[0][*index][0] == '>')
 			cmd_data = get_outfile1(cmd_data, args_set[1], index);
-		else if (args_set[0][*index][0] == '<' && args_set[0][*index + 1] && \
-			args_set[0][*index + 1][0] == '<')
+		else if (args_set[0][*index][0] == '<' && args_set[0][*index + 1]
+			&& args_set[0][*index + 1][0] == '<')
 			cmd_data = get_infile2(cmd_data, args_set[1], index);
 		else if (args_set[0][*index][0] == '<')
 			cmd_data = get_infile1(cmd_data, args_set[1], index);
 		else if (args_set[0][*index][0] != '|')
-			cmd_data->full_cmd = ft_extend_matrix(cmd_data->full_cmd, args_set[1][*index]);
+			cmd_data->full_cmd = ft_extend_matrix(cmd_data->full_cmd,
+					args_set[1][*index]);
 		else
 		{
 			shell_error(PIPENDERR, NULL, 2);
@@ -70,7 +73,8 @@ static char	**trim_args(char **args)
 	return (trimmed_args);
 }
 
-static t_list	*terminate_fill(t_list *cmd_list, char **args, char **trimmed_args)
+static t_list	*terminate_fill(t_list *cmd_list, char **args,
+		char **trimmed_args)
 {
 	ft_lstclear(&cmd_list, release_content);
 	ft_free_matrix(&trimmed_args);
@@ -88,14 +92,16 @@ t_list	*populate_commands(char **args, int counter)
 	while (args[++counter])
 	{
 		cmd_list_set[1] = ft_lstlast(cmd_list_set[0]);
-		if (counter == 0 || (args[counter][0] == '|' && args[counter + 1] && args[counter + 1][0]))
+		if (counter == 0 || (args[counter][0] == '|' && args[counter + 1]
+				&& args[counter + 1][0]))
 		{
 			counter += args[counter][0] == '|';
 			ft_lstadd_back(&cmd_list_set[0], ft_lstnew(initialize_command()));
 			cmd_list_set[1] = ft_lstlast(cmd_list_set[0]);
 		}
 		trimmed_args_set[0] = args;
-		cmd_list_set[1]->content = extract_parameters(cmd_list_set[1]->content, trimmed_args_set, &counter);
+		cmd_list_set[1]->content = extract_parameters(cmd_list_set[1]->content,
+				trimmed_args_set, &counter);
 		if (counter < 0)
 			return (terminate_fill(cmd_list_set[0], args, trimmed_args_set[1]));
 		if (!args[counter])

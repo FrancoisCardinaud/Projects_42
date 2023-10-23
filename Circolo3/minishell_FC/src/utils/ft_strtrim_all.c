@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:14 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:48 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:48:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,23 @@
 
 static int	calculate_trim_length(const char *str)
 {
-	int	count = 0;
-	int	index = 0;
-	int	double_quote = 0;
-	int	single_quote = 0;
+	int	count;
+	int	index;
+	int	double_quote;
+	int	single_quote;
 
+	count = 0;
+	index = 0;
+	double_quote = 0;
+	single_quote = 0;
 	while (str && str[index])
 	{
-		single_quote = (single_quote + (!double_quote && str[index] == '\'')) % 2;
-		double_quote = (double_quote + (!single_quote && str[index] == '\"')) % 2;
-		if ((str[index] == '\"' && !single_quote) || (str[index] == '\'' && !double_quote))
+		single_quote = (single_quote + (!double_quote && str[index] == '\''))
+					% 2;
+		double_quote = (double_quote + (!single_quote && str[index] == '\"'))
+			% 2;
+		if ((str[index] == '\"' && !single_quote) || (str[index] == '\''
+				&& !double_quote))
 			count++;
 		index++;
 	}
@@ -46,9 +53,12 @@ char	*ft_strtrim_all(const char *str, int single_quote, int double_quote)
 		return (NULL);
 	while (str[indices[0]])
 	{
-		single_quote = (single_quote + (!double_quote && str[indices[0]] == '\'')) % 2;
-		double_quote = (double_quote + (!single_quote && str[indices[0]] == '\"')) % 2;
-		if ((str[indices[0]] != '\"' || single_quote) && (str[indices[0]] != '\'' || double_quote))
+		single_quote = (single_quote + (!double_quote
+					&& str[indices[0]] == '\'')) % 2;
+		double_quote = (double_quote + (!single_quote
+					&& str[indices[0]] == '\"')) % 2;
+		if ((str[indices[0]] != '\"' || single_quote)
+			&& (str[indices[0]] != '\'' || double_quote))
 			trimmed_str[++indices[1]] = str[indices[0]];
 		indices[0]++;
 	}

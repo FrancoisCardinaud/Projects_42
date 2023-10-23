@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:17 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:56 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:50:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-extern int	g_stat;
+extern int		g_stat;
 
 static void	shell_get_process_id(t_prompt *shell_data)
 {
@@ -51,8 +51,9 @@ static t_prompt	setup_vars(t_prompt shell_data, char *temp_str, char **args)
 	free(level_str);
 	temp_str = shell_retrieve_env("PATH", shell_data.envp, 4);
 	if (!temp_str)
-		shell_data.envp = shell_setenv("PATH", \
-		"/usr/local/sbin:/usr/local/bin:/usr/bin:/bin", shell_data.envp, 4);
+		shell_data.envp = shell_setenv("PATH",
+				"/usr/local/sbin:/usr/local/bin:/usr/bin:/bin", shell_data.envp,
+				4);
 	free(temp_str);
 	temp_str = shell_retrieve_env("_", shell_data.envp, 1);
 	if (!temp_str)
@@ -64,7 +65,7 @@ static t_prompt	setup_vars(t_prompt shell_data, char *temp_str, char **args)
 static t_prompt	initialize_shell(char **args, char **envp)
 {
 	t_prompt	shell_data;
-	char			*temp_str;
+	char		*temp_str;
 
 	temp_str = NULL;
 	shell_data.cmds = NULL;
@@ -77,9 +78,9 @@ static t_prompt	initialize_shell(char **args, char **envp)
 
 int	main(int arg_count, char **args, char **envp)
 {
-	char			*temp_str;
-	char			*output;
-	t_prompt	shell_data;
+	char *temp_str;
+	char *output;
+	t_prompt shell_data;
 
 	shell_data = initialize_shell(args, envp);
 	while (args && arg_count)

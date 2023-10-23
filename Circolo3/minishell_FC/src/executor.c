@@ -6,29 +6,29 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:45:54 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:54 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:49:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <stdlib.h>
 
 extern int	g_stat;
 
-void	child_execute(t_prompt *shell_data, t_mini *cmd_data, int len, t_list *cmd_list)
+void	child_execute(t_prompt *shell_data, t_mini *cmd_data, int len,
+		t_list *cmd_list)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	if (!check_builtin(cmd_data) && cmd_data->full_cmd)
 		execve(cmd_data->full_path, cmd_data->full_cmd, shell_data->envp);
-	else if (cmd_data->full_cmd && !ft_strncmp(*cmd_data->full_cmd, "pwd", len) \
+	else if (cmd_data->full_cmd && !ft_strncmp(*cmd_data->full_cmd, "pwd", len)
 		&& len == 3)
 		g_stat = shell_pwd();
-	else if (check_builtin(cmd_data) && cmd_data->full_cmd && \
-		!ft_strncmp(*cmd_data->full_cmd, "echo", len) && len == 4)
+	else if (check_builtin(cmd_data) && cmd_data->full_cmd
+		&& !ft_strncmp(*cmd_data->full_cmd, "echo", len) && len == 4)
 		g_stat = shell_echo(cmd_list);
-	else if (check_builtin(cmd_data) && cmd_data->full_cmd && \
-		!ft_strncmp(*cmd_data->full_cmd, "env", len) && len == 3)
+	else if (check_builtin(cmd_data) && cmd_data->full_cmd
+		&& !ft_strncmp(*cmd_data->full_cmd, "env", len) && len == 3)
 	{
 		ft_putmatrix_fd(shell_data->envp, 1, 1);
 		g_stat = 0;
@@ -100,10 +100,11 @@ void	*check_to_fork(t_prompt *shell_data, t_list *cmd_list, int pipe_fd[2])
 		directory = opendir(*cmd_data->full_cmd);
 	if (cmd_data->infile == -1 || cmd_data->outfile == -1)
 		return (NULL);
-	if ((cmd_data->full_path && access(cmd_data->full_path, X_OK) == 0) || check_builtin(cmd_data))
+	if ((cmd_data->full_path && access(cmd_data->full_path, X_OK) == 0)
+		|| check_builtin(cmd_data))
 		execute_child(shell_data, cmd_list, pipe_fd);
-	else if (!check_builtin(cmd_data) && ((cmd_data->full_path && \
-		!access(cmd_data->full_path, F_OK)) || directory))
+	else if (!check_builtin(cmd_data) && ((cmd_data->full_path
+				&& !access(cmd_data->full_path, F_OK)) || directory))
 		g_stat = 126;
 	else if (!check_builtin(cmd_data) && cmd_data->full_cmd)
 		g_stat = 127;

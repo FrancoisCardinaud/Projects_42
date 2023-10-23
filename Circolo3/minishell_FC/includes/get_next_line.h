@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:51 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:47:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:50:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 

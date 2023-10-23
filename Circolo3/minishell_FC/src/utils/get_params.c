@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:55 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:49:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	determine_fd(int prev_fd, char *path, int mode_flags[2])
 		shell_error(NDIR, path, 127);
 	else if (!mode_flags[0] && access(path, R_OK) == -1)
 		shell_error(NPERM, path, 126);
-	else if (mode_flags[0] && access(path, W_OK) == -1 && access(path, F_OK) == 0)
+	else if (mode_flags[0] && access(path, W_OK) == -1 && access(path,
+			F_OK) == 0)
 		shell_error(NPERM, path, 126);
 	if (mode_flags[0] && mode_flags[1])
 		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0666);

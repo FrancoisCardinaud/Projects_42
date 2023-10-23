@@ -31,18 +31,21 @@ int	shell_cd(t_prompt *shell_data)
 	free(temp);
 	handle_cd_error(path_data);
 	if (!g_stat)
-		shell_data->envp = shell_setenv("OLDPWD", path_data[1][1], shell_data->envp, 6);
+		shell_data->envp = shell_setenv("OLDPWD", path_data[1][1],
+				shell_data->envp, 6);
 	temp = getcwd(NULL, 0);
 	if (!temp)
 		temp = ft_strdup("");
 	path_data[1] = ft_extend_matrix(path_data[1], temp);
 	free(temp);
-	shell_data->envp = shell_setenv("PWD", path_data[1][2], shell_data->envp, 3);
+	shell_data->envp = shell_setenv("PWD", path_data[1][2], shell_data->envp,
+			3);
 	ft_free_matrix(&path_data[1]);
 	return (g_stat);
 }
 
-int	execute_builtin(t_prompt *shell_data, t_list *command, int *exit_flag, int cmd_len)
+int	execute_builtin(t_prompt *shell_data, t_list *command, int *exit_flag,
+		int cmd_len)
 {
 	char	**args;
 
@@ -54,11 +57,14 @@ int	execute_builtin(t_prompt *shell_data, t_list *command, int *exit_flag, int c
 			cmd_len = ft_strlen(*args);
 		if (args && !ft_strncmp(*args, "exit", cmd_len) && cmd_len == 4)
 			g_stat = handle_exit(command, exit_flag);
-		else if (!command->next && args && !ft_strncmp(*args, "cd", cmd_len) && cmd_len == 2)
+		else if (!command->next && args && !ft_strncmp(*args, "cd", cmd_len)
+			&& cmd_len == 2)
 			g_stat = shell_cd(shell_data);
-		else if (!command->next && args && !ft_strncmp(*args, "export", cmd_len) && cmd_len == 6)
+		else if (!command->next && args && !ft_strncmp(*args, "export", cmd_len)
+			&& cmd_len == 6)
 			g_stat = shell_export(shell_data);
-		else if (!command->next && args && !ft_strncmp(*args, "unset", cmd_len) && cmd_len == 5)
+		else if (!command->next && args && !ft_strncmp(*args, "unset", cmd_len)
+			&& cmd_len == 5)
 			g_stat = shell_unset(shell_data);
 		else
 		{
@@ -73,12 +79,12 @@ int	execute_builtin(t_prompt *shell_data, t_list *command, int *exit_flag, int c
 
 int	check_builtin(t_mini *cmd_data)
 {
-	int		cmd_length;
+	int	cmd_length;
 
 	if (!cmd_data->full_cmd)
 		return (0);
-	if ((cmd_data->full_cmd && ft_strchr(*cmd_data->full_cmd, '/')) || (cmd_data->full_path && \
-		ft_strchr(cmd_data->full_path, '/')))
+	if ((cmd_data->full_cmd && ft_strchr(*cmd_data->full_cmd, '/'))
+		|| (cmd_data->full_path && ft_strchr(cmd_data->full_path, '/')))
 		return (0);
 	cmd_length = ft_strlen(*cmd_data->full_cmd);
 	if (!ft_strncmp(*cmd_data->full_cmd, "pwd", cmd_length) && cmd_length == 3)
@@ -87,9 +93,11 @@ int	check_builtin(t_mini *cmd_data)
 		return (1);
 	if (!ft_strncmp(*cmd_data->full_cmd, "cd", cmd_length) && cmd_length == 2)
 		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "export", cmd_length) && cmd_length == 6)
+	if (!ft_strncmp(*cmd_data->full_cmd, "export", cmd_length)
+		&& cmd_length == 6)
 		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "unset", cmd_length) && cmd_length == 5)
+	if (!ft_strncmp(*cmd_data->full_cmd, "unset", cmd_length)
+		&& cmd_length == 5)
 		return (1);
 	if (!ft_strncmp(*cmd_data->full_cmd, "echo", cmd_length) && cmd_length == 4)
 		return (1);
@@ -122,9 +130,9 @@ int	shell_echo(t_list *command)
 	args = cmd_node->full_cmd;
 	while (args && args[++index[0]])
 	{
-		if (!index[1] && !ft_strncmp(args[index[0]], "-n", 2) && \
-			(ft_countchar(args[index[0]], 'n') == \
-			(int)(ft_strlen(args[index[0]]) - 1)))
+		if (!index[1] && !ft_strncmp(args[index[0]], "-n", 2)
+			&& (ft_countchar(args[index[0]],
+					'n') == (int)(ft_strlen(args[index[0]]) - 1)))
 			newline_flag = 0;
 		else
 		{

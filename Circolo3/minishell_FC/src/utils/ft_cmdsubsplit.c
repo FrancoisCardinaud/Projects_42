@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:33 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:47 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:48:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	count_subwords(char *str, char *delimiters, int count)
 {
-	int		quotes[2];
-	int		index;
+	int	quotes[2];
+	int	index;
 
 	index = 0;
 	quotes[0] = 0;
@@ -25,10 +25,13 @@ static int	count_subwords(char *str, char *delimiters, int count)
 		count++;
 		if (!ft_strchr(delimiters, str[index]))
 		{
-			while ((!ft_strchr(delimiters, str[index]) || quotes[0] || quotes[1]) && str[index] != '\0')
+			while ((!ft_strchr(delimiters, str[index]) || quotes[0]
+					|| quotes[1]) && str[index] != '\0')
 			{
-				quotes[0] = (quotes[0] + (!quotes[1] && str[index] == '\'')) % 2;
-				quotes[1] = (quotes[1] + (!quotes[0] && str[index] == '\"')) % 2;
+				quotes[0] = (quotes[0] + (!quotes[1] && str[index] == '\''))
+							% 2;
+				quotes[1] = (quotes[1] + (!quotes[0] && str[index] == '\"'))
+					% 2;
 				index++;
 			}
 			if (quotes[0] || quotes[1])
@@ -40,9 +43,10 @@ static int	count_subwords(char *str, char *delimiters, int count)
 	return (count);
 }
 
-static char	**populate_subwords(char **result, char *str, char *delimiters, int indices[3])
+static char	**populate_subwords(char **result, char *str, char *delimiters,
+		int indices[3])
 {
-	int		quotes[2];
+	int	quotes[2];
 
 	quotes[0] = 0;
 	quotes[1] = 0;
@@ -51,16 +55,20 @@ static char	**populate_subwords(char **result, char *str, char *delimiters, int 
 		indices[1] = indices[0];
 		if (!ft_strchr(delimiters, str[indices[0]]))
 		{
-			while ((!ft_strchr(delimiters, str[indices[0]]) || quotes[0] || quotes[1]) && str[indices[0]])
+			while ((!ft_strchr(delimiters, str[indices[0]]) || quotes[0]
+					|| quotes[1]) && str[indices[0]])
 			{
-				quotes[0] = (quotes[0] + (!quotes[1] && str[indices[0]] == '\'')) % 2;
-				quotes[1] = (quotes[1] + (!quotes[0] && str[indices[0]] == '\"')) % 2;
+				quotes[0] = (quotes[0] + (!quotes[1]
+							&& str[indices[0]] == '\'')) % 2;
+				quotes[1] = (quotes[1] + (!quotes[0]
+							&& str[indices[0]] == '\"')) % 2;
 				indices[0]++;
 			}
 		}
 		else
 			indices[0]++;
-		result[indices[2]++] = ft_substr(str, indices[1], indices[0] - indices[1]);
+		result[indices[2]++] = ft_substr(str, indices[1], indices[0]
+				- indices[1]);
 	}
 	return (result);
 }

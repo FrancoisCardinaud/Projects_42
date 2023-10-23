@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:37 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:47:59 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ extern int	g_stat;
 
 void	*shell_error(int error_type, char *parameter, int error_code)
 {
+	char	*error_messages[] = {"minishell: error while looking for matching quote\n",
+			"minishell: No such file or directory: ",
+			"minishell: permission denied: ", "minishell: command not found: ",
+			"minishell: dup2 failed\n", "minishell: fork failed\n",
+			"minishell: error creating pipe\n",
+			"minishell: syntax error near unexpected token `|'\n",
+			"minishell: no memory left on device\n",
+			"minishell: Is a directory: ", "minishell: Not a directory: "};
+
 	g_stat = error_code;
-	char *error_messages[] = {
-		"minishell: error while looking for matching quote\n",
-		"minishell: No such file or directory: ",
-		// ... [Add all the other error messages here]
-		"minishell: Not a directory: "
-	};
-	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(error_messages[error_type], 2);
 	if (parameter)
 		ft_putendl_fd(parameter, 2);
@@ -32,7 +34,7 @@ void	*shell_error(int error_type, char *parameter, int error_code)
 
 int	convert_string_to_int(const char *string, long *number)
 {
-	int		sign;
+	int	sign;
 
 	sign = 1;
 	*number = 0;
@@ -86,7 +88,7 @@ int	handle_exit(t_list *command, int *exit_flag)
 
 void	handle_cd_error(char **arguments[2])
 {
-	DIR		*directory;
+	DIR	*directory;
 
 	directory = NULL;
 	if (arguments[0][1])

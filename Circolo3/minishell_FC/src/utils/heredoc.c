@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:51 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:49:12 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 extern int	g_stat;
 
-char	*assemble_here_string(char *input_str[2], size_t length, char *delimiter, char *warning)
+char	*assemble_here_string(char *input_str[2], size_t length,
+		char *delimiter, char *warning)
 {
 	char	*temp_str;
 
-	while (g_stat != 130 && (!input_str[0] || ft_strncmp(input_str[0], delimiter, length) \
-		|| ft_strlen(delimiter) != length))
+	while (g_stat != 130 && (!input_str[0] || ft_strncmp(input_str[0],
+				delimiter, length) || ft_strlen(delimiter) != length))
 	{
 		temp_str = input_str[1];
 		input_str[1] = ft_strjoin(input_str[1], input_str[0]);
@@ -42,7 +43,7 @@ char	*assemble_here_string(char *input_str[2], size_t length, char *delimiter, c
 
 int	get_here_doc(char *input_str[2], char *auxiliary[2])
 {
-	int		file_descriptors[2];
+	int	file_descriptors[2];
 
 	g_stat = 0;
 	if (pipe(file_descriptors) == -1)
@@ -50,7 +51,8 @@ int	get_here_doc(char *input_str[2], char *auxiliary[2])
 		shell_error(PIPERR, NULL, 1);
 		return (-1);
 	}
-	input_str[1] = assemble_here_string(input_str, 0, auxiliary[0], auxiliary[1]);
+	input_str[1] = assemble_here_string(input_str, 0, auxiliary[0],
+			auxiliary[1]);
 	write(file_descriptors[WRITE_END], input_str[1], ft_strlen(input_str[1]));
 	free(input_str[1]);
 	close(file_descriptors[WRITE_END]);

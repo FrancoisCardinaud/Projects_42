@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:42 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 15:59:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:48:21 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	refresh_output(char ***output_matrix, int file_descriptor)
 	*output_matrix = temporary_matrix;
 }
 
-void	execute_custom_command(char ***output, char *full_path, char *arguments, char **environment)
+void	execute_custom_command(char ***output, char *full_path, char *arguments,
+		char **environment)
 {
 	pid_t	process_id;
 	int		file_descriptors[2];
