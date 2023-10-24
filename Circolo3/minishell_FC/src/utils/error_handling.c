@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:37 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 15:28:06 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:42:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,31 @@ extern int	g_stat;
 
 void	*shell_error(int error_type, char *parameter, int error_code)
 {
-	char	*error_messages[11];
-
-	error_messages[0] = "minishell: could not find a matching quote\n";
-	error_messages[1] = "minishell: file or directory not found: ";
-	error_messages[2] = "minishell: access denied: ";
-	error_messages[3] = "minishell: unrecognized command: ";
-	error_messages[4] = "minishell: failed to duplicate file descriptor\n";
-	error_messages[5] = "minishell: fork/process creation failed\n";
-	error_messages[6] = "minishell: pipe creation error\n";
-	error_messages[7] = "minishell: unexpected syntax near token '|'\n";
-	error_messages[8] = "minishell: device out of memory\n";
-	error_messages[9] = "minishell: is a directory: ";
-	error_messages[10] = "minishell: is not a directory: ";
 	g_stat = error_code;
-	ft_putstr_fd(error_messages[error_type], 2);
-	if (parameter)
-		ft_putendl_fd(parameter, 2);
+	
+	if (error_type == QUOTE)
+		ft_putstr_fd("minishell: could not find a matching quote\n", 2);
+	else if (error_type == NDIR)
+		ft_putstr_fd("minishell: file or directory not found: ", 2);
+	else if (error_type == NPERM)
+		ft_putstr_fd("minishell: access denied: ", 2);
+	else if (error_type == NCMD)
+		ft_putstr_fd("minishell: unrecognized command: ", 2);
+	else if (error_type == DUPERR)
+		ft_putstr_fd("minishell: failed to duplicate file descriptor\n", 2);
+	else if (error_type == FORKERR)
+		ft_putstr_fd("minishell: fork/process creation failed\n", 2);
+	else if (error_type == PIPERR)
+		ft_putstr_fd("minishell: pipe creation error\n", 2);
+	else if (error_type == PIPENDERR)
+		ft_putstr_fd("minishell: unexpected syntax near token '|'\n", 2);
+	else if (error_type == MEM)
+		ft_putstr_fd("minishell: device out of memory\n", 2);
+	else if (error_type == IS_DIR)
+		ft_putstr_fd("minishell: is a directory: ", 2);
+	else if (error_type == NOT_DIR)
+		ft_putstr_fd("minishell: is not a directory: ", 2);
+	ft_putendl_fd(parameter, 2);
 	return (NULL);
 }
 
