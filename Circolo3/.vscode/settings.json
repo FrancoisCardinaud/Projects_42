@@ -2,6 +2,7 @@
     "files.associations": {
         "time.h": "c",
         "ioctl.h": "c",
-        "history.h": "c"
+        "history.h": "c",
+        "minishell.h": "c"
     }
 }

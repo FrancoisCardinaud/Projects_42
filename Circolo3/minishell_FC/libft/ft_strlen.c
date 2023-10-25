@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 23:43:27 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 18:48:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:55:55 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ unsigned int	ft_strlen(const char *s)
 {
 	int	i;
 
+	i = 0;
 	if (!s)
-		return (0);
+		return (i);
 	i = 0;
 	while (s[i])
 		i++;

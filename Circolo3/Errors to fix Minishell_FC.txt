@@ -1,8 +1,6 @@
-- Figur
-- Export -> creates variables even for commands like "-p"
-- Check all the functions in minishell.h
+- Export -> creates variables even for commands like "-p", ENV
 - Check norminette
 - Check .DS_Store
 - Get explanation of what each file does
-- Figure out why the name on the prompt is "guest"
 - Make sure Valgrind
+- Try out tests provided by Madebypixel02
