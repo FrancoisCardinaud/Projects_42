@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:47:37 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 19:42:16 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:49:06 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ extern int	g_stat;
 void	*shell_error(int error_type, char *parameter, int error_code)
 {
 	g_stat = error_code;
-	
 	if (error_type == QUOTE)
 		ft_putstr_fd("minishell: could not find a matching quote\n", 2);
 	else if (error_type == NDIR)

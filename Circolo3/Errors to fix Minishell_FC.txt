@@ -3,3 +3,6 @@
 - Check all the functions in minishell.h
 - Check norminette
 - Check .DS_Store
+- Get explanation of what each file does
+- Figure out why the name on the prompt is "guest"
+- Make sure Valgrind

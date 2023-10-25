@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:24 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 01:41:48 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:53:38 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,19 @@ const char	*determine_color(char first_char)
 
 static char	*retrieve_username(t_prompt prompt_data)
 {
-	char	**username;
-	char	*temporary;
-	char	*color_code;
+	char		*username;
+	char		*temporary;
+	const char	*color_code;
 
-	username = NULL;
-	color_code = NULL;
-	execute_custom_command(&username, "/usr/bin/whoami", "whoami",
-		prompt_data.envp);
+	username = shell_retrieve_env("USER", prompt_data.envp, 4);
 	if (!username)
-		username = ft_extend_matrix(username, "guest");
-	if (!ft_strncmp(username[0], "root", 4))
-		color_code = ft_strjoin(NULL, RED);
+		username = ft_strdup("guest");
+	if (!ft_strncmp(username, "root", 4))
+		color_code = RED;
 	else
-		color_code = ft_strjoin(NULL, determine_color(username[0][0]));
-	temporary = ft_strjoin(color_code, *username);
-	free(color_code);
-	ft_free_matrix(&username);
+		color_code = determine_color(username[0]);
+	temporary = ft_strjoin(color_code, username);
+	free(username);
 	return (temporary);
 }
 

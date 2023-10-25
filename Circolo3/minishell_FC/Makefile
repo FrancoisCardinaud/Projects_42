@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/13 15:48:11 by fcardina          #+#    #+#              #
-#    Updated: 2023/10/13 15:48:12 by fcardina         ###   ########.fr        #
+#    Updated: 2023/10/25 16:27:08 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/utils/%.c | $(OBJ_DIR)
 
 $(LIBFT): $(LIBFT_SRC)
 	@make all -C libft
-	@$(AR) $(NAME) $(LIBFT)
+#	@$(AR) $(NAME) $(LIBFT)
 
 compare: all
 	@cd tests && ./compare.sh && cd ..
