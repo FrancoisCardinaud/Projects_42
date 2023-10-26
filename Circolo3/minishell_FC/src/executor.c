@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:45:54 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/24 01:41:41 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/26 03:07:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern int	g_stat;
 
-void	child_execute(t_prompt *data, t_mini *cmd_data, int len,
+void	child_builtin(t_prompt *data, t_mini *cmd_data, int len,
 		t_list *cmd_list)
 {
 	signal(SIGINT, SIG_DFL);
@@ -69,7 +69,7 @@ void	*child_routine(t_prompt *data, t_list *cmd_list, int pipe_fd[2])
 		len = ft_strlen(*cmd_data->full_cmd);
 	child_redirect(cmd_list, pipe_fd);
 	close(pipe_fd[READ_END]);
-	child_execute(data, cmd_data, len, cmd_list);
+	child_builtin(data, cmd_data, len, cmd_list);
 	ft_lstclear(&data->cmd, release_content);
 	exit(g_stat);
 }

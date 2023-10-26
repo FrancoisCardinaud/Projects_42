@@ -1,4 +1,3 @@
-- Export -> creates variables even for commands like "-p", ENV
 - Check norminette
 - Check .DS_Store
 - Get explanation of what each file does

@@ -42,64 +42,6 @@ int	shell_cd(t_prompt *data)
 	return (g_stat);
 }
 
-int	execute_builtin(t_prompt *data, t_list *cmd, int *exit_flag, int l)
-{
-	char	**arg;
-
-	while (cmd)
-	{
-		arg = ((t_mini *)cmd->content)->full_cmd;
-		l = 0;
-		if (arg)
-			l = ft_strlen(*arg);
-		if (arg && !ft_strncmp(*arg, "exit", l) && l == 4)
-			g_stat = handle_exit(cmd, exit_flag);
-		else if (!cmd->next && arg && !ft_strncmp(*arg, "cd", l) && l == 2)
-			g_stat = shell_cd(data);
-		else if (!cmd->next && arg && !ft_strncmp(*arg, "export", l) && l == 6)
-			g_stat = shell_export(data);
-		else if (!cmd->next && arg && !ft_strncmp(*arg, "unset", l) && l == 5)
-			g_stat = shell_unset(data);
-		else
-		{
-			signal(SIGINT, SIG_IGN);
-			signal(SIGQUIT, SIG_IGN);
-			exec_cmd(data, cmd);
-		}
-		cmd = cmd->next;
-	}
-	return (g_stat);
-}
-
-int	check_builtin(t_mini *cmd_data)
-{
-	int	cmd_length;
-
-	if (!cmd_data->full_cmd)
-		return (0);
-	if ((cmd_data->full_cmd && ft_strchr(*cmd_data->full_cmd, '/'))
-		|| (cmd_data->full_path && ft_strchr(cmd_data->full_path, '/')))
-		return (0);
-	cmd_length = ft_strlen(*cmd_data->full_cmd);
-	if (!ft_strncmp(*cmd_data->full_cmd, "pwd", cmd_length) && cmd_length == 3)
-		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "env", cmd_length) && cmd_length == 3)
-		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "cd", cmd_length) && cmd_length == 2)
-		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "export", cmd_length)
-		&& cmd_length == 6)
-		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "unset", cmd_length)
-		&& cmd_length == 5)
-		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "echo", cmd_length) && cmd_length == 4)
-		return (1);
-	if (!ft_strncmp(*cmd_data->full_cmd, "exit", cmd_length) && cmd_length == 4)
-		return (1);
-	return (0);
-}
-
 int	shell_pwd(void)
 {
 	char	*directory;
@@ -137,4 +79,62 @@ int	shell_echo(t_list *cmd)
 		}
 	}
 	return (write(1, "\n", newline_flag) == 2);
+}
+
+int	check_builtin(t_mini *cmd_data)
+{
+	int	cmd_length;
+
+	if (!cmd_data->full_cmd)
+		return (0);
+	if ((cmd_data->full_cmd && ft_strchr(*cmd_data->full_cmd, '/'))
+		|| (cmd_data->full_path && ft_strchr(cmd_data->full_path, '/')))
+		return (0);
+	cmd_length = ft_strlen(*cmd_data->full_cmd);
+	if (!ft_strncmp(*cmd_data->full_cmd, "pwd", cmd_length) && cmd_length == 3)
+		return (1);
+	if (!ft_strncmp(*cmd_data->full_cmd, "env", cmd_length) && cmd_length == 3)
+		return (1);
+	if (!ft_strncmp(*cmd_data->full_cmd, "cd", cmd_length) && cmd_length == 2)
+		return (1);
+	if (!ft_strncmp(*cmd_data->full_cmd, "export", cmd_length)
+		&& cmd_length == 6)
+		return (1);
+	if (!ft_strncmp(*cmd_data->full_cmd, "unset", cmd_length)
+		&& cmd_length == 5)
+		return (1);
+	if (!ft_strncmp(*cmd_data->full_cmd, "echo", cmd_length) && cmd_length == 4)
+		return (1);
+	if (!ft_strncmp(*cmd_data->full_cmd, "exit", cmd_length) && cmd_length == 4)
+		return (1);
+	return (0);
+}
+
+int	execute_builtin(t_prompt *data, t_list *cmd, int *exit_flag, int l)
+{
+	char	**arg;
+
+	while (cmd)
+	{
+		arg = ((t_mini *)cmd->content)->full_cmd;
+		l = 0;
+		if (arg)
+			l = ft_strlen(*arg);
+		if (arg && !ft_strncmp(*arg, "exit", l) && l == 4)
+			g_stat = handle_exit(cmd, exit_flag);
+		else if (!cmd->next && arg && !ft_strncmp(*arg, "cd", l) && l == 2)
+			g_stat = shell_cd(data);
+		else if (!cmd->next && arg && !ft_strncmp(*arg, "export", l) && l == 6)
+			g_stat = shell_export(data);
+		else if (!cmd->next && arg && !ft_strncmp(*arg, "unset", l) && l == 5)
+			g_stat = shell_unset(data);
+		else
+		{
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
+			exec_cmd(data, cmd);
+		}
+		cmd = cmd->next;
+	}
+	return (g_stat);
 }

@@ -50,7 +50,7 @@ print_result()
 }
 
 read -p "Enter builtin: " builtin
-while [ "$builtin" != "all" ] && [ "$builtin" != "cd" ] && [ "$builtin" != "echo" ] && [ "$builtin" != "exit" ] && [ "$builtin" != "redir" ] && [ "$builtin" != "export" ]
+while [ "$builtin" != "all" ] && [ "$builtin" != "cd" ] && [ "$builtin" != "echo" ] && [ "$builtin" != "exit" ] && [ "$builtin" != "redir" ] && [ "$builtin" != "export" ] && [ "$builtin" != "env" ]
 do
 	printf "\nUse a valid builtin! (all, cd, echo exit, redir, export)\n"
 	read -p "Enter builtin: " builtin
