@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:17 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/25 17:57:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:51:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int arg_count, char **args, char **envp)
 	t_prompt	data;
 
 	rl_bind_key('\t', rl_insert);
+	rl_catch_signals = 0;
 	data = initialize_shell(args, envp);
 	while (args && arg_count)
 	{
