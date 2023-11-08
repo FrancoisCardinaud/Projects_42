@@ -10,8 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	@clear
-	c++ *.cpp -Wall -Wextra -Werror -o phonebook
-	./phonebook
-	@rm phonebook
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror
+TARGET = phonebook
+SRC = main.cpp
+
+all: $(TARGET)
+
+$(TARGET): $(SRC) phonebook.hpp
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+
+clean:
+	rm -f $(TARGET)
+
+re: clean all
+
+.PHONY: all clean re

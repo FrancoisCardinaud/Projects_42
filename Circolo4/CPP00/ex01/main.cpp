@@ -14,7 +14,7 @@
 #include "iostream"
 #include <string>
 
-void	putst(std::string temp)
+void	ft_putstr(std::string temp)
 {
 	std::cout << " | ";
 	if (temp.size() > 10)
@@ -89,11 +89,11 @@ int	main(void)
 			{
 				std::string temp;
 				std::cout << i + 1;
-				putst(PB.Cons[i].name);
-				putst(PB.Cons[i].Last_name);
-				putst(PB.Cons[i].Nick_name);
-				putst(PB.Cons[i].phone);
-				putst(PB.Cons[i].secret);
+				ft_putstr(PB.Cons[i].name);
+				ft_putstr(PB.Cons[i].Last_name);
+				ft_putstr(PB.Cons[i].Nick_name);
+				ft_putstr(PB.Cons[i].phone);
+				ft_putstr(PB.Cons[i].secret);
 				std::cout << " | " << std::endl;
 			}
 

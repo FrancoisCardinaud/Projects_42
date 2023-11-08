@@ -5,24 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/08 02:54:57 by fcardina          #+#    #+#              #
-#    Updated: 2023/11/08 02:55:41 by fcardina         ###   ########.fr        #
+#    Created: 2023/11/08 20:11:00 by fcardina          #+#    #+#              #
+#    Updated: 2023/11/08 20:27:43 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror
-TARGET = megaphone
-SRC = megaphone.cpp
+SRC = Account.cpp tests.cpp
+OBJ = $(SRC:.cpp=.o)
+CC = g++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-all: $(TARGET)
+UNAME = $(shell uname -s)
 
-$(TARGET):
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+ifeq ($(UNAME), Linux)
+CPPFLAGS = -Wall -Wextra -pedantic
+$(warning Linux detected! Disabling -Werror and -std=c++98...)
+endif
+
+NAME = dream
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
-	rm -f $(TARGET)
+	$(RM) $(OBJ)
 
-re: clean all
+fclean: clean
+	$(RM) $(NAME)
 
-.PHONY: all clean re
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re
