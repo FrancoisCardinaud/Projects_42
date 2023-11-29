@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 02:57:13 by fcardina          #+#    #+#             */
-/*   Updated: 2023/11/08 03:08:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:37:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,22 +97,34 @@ int	main(void)
 				std::cout << " | " << std::endl;
 			}
 
-			std::cin >> selector;
-			selector--;
-			system("clear");
+			std::string input;
+			std::cin >> input;
 
-			if (selector < PB.num || selector < 0)
-			{
-				std::cout << PB.Cons[selector].name << std::endl;
-				std::cout << PB.Cons[selector].Last_name << std::endl;
-				std::cout << PB.Cons[selector].Nick_name << std::endl;
-				std::cout << PB.Cons[selector].phone << std::endl;
-				std::cout << PB.Cons[selector].secret << std::endl;
+			// Check if the input is a valid integer
+			if (std::isdigit(input[0])) {
+				selector = std::stoi(input);
+				selector--; // Adjust the index since we're using 1-based indexing
+				system("clear");
+
+				if (selector >= 0 && selector < PB.num)
+				{
+					std::cout << PB.Cons[selector].name << std::endl;
+					std::cout << PB.Cons[selector].Last_name << std::endl;
+					std::cout << PB.Cons[selector].Nick_name << std::endl;
+					std::cout << PB.Cons[selector].phone << std::endl;
+					std::cout << PB.Cons[selector].secret << std::endl;
+				}
+				else
+				{
+					std::cout << "invalid" << std::endl;
+					command = "1";
+				}
 			}
 			else
 			{
-				std::cout << "invalid" << std::endl;
-				command = "1";
+				std::cout << "Invalid input. Please enter a valid number." << std::endl;
+				// Optionally, you can clear the input buffer to prevent further issues
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			}
 			while (1)
 			{
