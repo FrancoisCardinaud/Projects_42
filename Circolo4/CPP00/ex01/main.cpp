@@ -10,13 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-#include "iostream"
-#include <string>
+#include "PhoneBook.hpp"
 
-void	ft_putstr(std::string temp)
+/*void	ft_putstr(std::string temp)
 {
-	std::cout << " | ";
+	std::cout << "|";
 	if (temp.size() > 10)
 	{
 		temp.resize(9);
@@ -25,7 +23,20 @@ void	ft_putstr(std::string temp)
 	}
 	else
 		std::cout << temp;
+}*/
+
+void ft_sputstr(std::string temp)
+{
+    const int fieldWidth = 10; // Define the total width of the field
+
+    if (temp.size() > 10)
+    {
+        temp = temp.substr(0, 9) + "."; // Truncate and add a dot if longer than 10 characters
+    }
+	std::cout << "|";
+    std::cout << std::right << std::setw(fieldWidth) << temp;
 }
+
 
 int	main(void)
 {
@@ -37,66 +48,53 @@ int	main(void)
 	while (1)
 	{
 		system("clear");
-		std::cout << "command - ADD 1, SEARCH 2, EXIT 3" << std::endl;
+		std::cout << "command - ADD 1, SEARCH 2, EXIT 3" << std::endl; 
 		std::cin >> command;
 		
 		if (command == "ADD" || command == "1")
 		{
+			int index = PB.num >= 8 ? PB.oldestIndex : PB.num;
+
+			if (PB.num >= 8)  //Check if PB is full
+                PB.oldestIndex = (PB.oldestIndex + 1) % 8;  //Update the index of the oldest contact
+            else
+                PB.num++;
+
 			system("clear");
 			std::cout << "ADD New Contact"<< std::endl;
 			
-			for (int i = PB.num - 1; i >= 0; i--)
-    				PB.Cons[i+1] = PB.Cons[i];
-			std::cout << "first name of contact  -> last name -> nick name -> number -> darkest secret" << std::endl;
-			std::cin >> PB.Cons[0].name;
-			while (PB.Cons[0].name.size() < 10)
-				PB.Cons[0].name.append(" ");
+			std::cout << "first name -> last name -> nick name -> number -> darkest secret" << std::endl;
+			std::cin >> PB.Contact[index].name;
 			system("clear");
 
-			std::cout << "last name number of -> nick name -> number -> darkest secret";
-			std::cout << PB.Cons[0].name << std::endl;
-			std::cin >> PB.Cons[0].Last_name;
-			while (PB.Cons[0].Last_name.size() < 10)
-				PB.Cons[0].Last_name.append(" ");
+			std::cout << "last name -> nick name -> number -> darkest secret" << std::endl;
+			std::cin >> PB.Contact[index].last_name;
 			system("clear");
 
-			std::cout << "nick name number of -> number -> darkest secret";
-			std::cout << PB.Cons[0].name << std::endl;
-			std::cin >> PB.Cons[0].Nick_name;
-			while (PB.Cons[0].Nick_name.size() < 10)
-				PB.Cons[0].Nick_name.append(" ");
+			std::cout << "nick name -> number -> darkest secret" << std::endl;
+			std::cin >> PB.Contact[index].nickname;
 			system("clear");
 
-			std::cout << "phone number of -> darkest secret";
-			std::cout << PB.Cons[0].name << std::endl;
-			std::cin >> PB.Cons[0].phone;
-			while (PB.Cons[0].phone.size() < 10)
-				PB.Cons[0].phone.append(" ");
+			std::cout << "number -> darkest secret" << std::endl;
+			std::cin >> PB.Contact[index].number;
 			system("clear");
 
-			std::cout << "darkest secret of ";
-			std::cout << PB.Cons[0].name << std::endl;
-			std::cin >> PB.Cons[0].secret;
-			while (PB.Cons[0].secret.size() < 10)
-				PB.Cons[0].secret.append(" ");
-			if (PB.num < 8)
-				PB.num++;
+			std::cout << "darkest secret" << std::endl;
+			std::cin >> PB.Contact[index].secret;
+			system("clear");
 		}
 
 		else if (command == "SEARCH" || command == "2")
 		{
 			for (int i = 0; i < PB.num; i++)
 			{
-				std::string temp;
 				std::cout << i + 1;
-				ft_putstr(PB.Cons[i].name);
-				ft_putstr(PB.Cons[i].Last_name);
-				ft_putstr(PB.Cons[i].Nick_name);
-				ft_putstr(PB.Cons[i].phone);
-				ft_putstr(PB.Cons[i].secret);
-				std::cout << " | " << std::endl;
+				ft_sputstr(PB.Contact[i].name);
+				ft_sputstr(PB.Contact[i].last_name);
+				ft_sputstr(PB.Contact[i].nickname);
+				std::cout << "|" << std::endl;
 			}
-
+			std::cout << "Choose a contact to display: " << std::endl;
 			std::string input;
 			std::cin >> input;
 
@@ -108,16 +106,21 @@ int	main(void)
 
 				if (selector >= 0 && selector < PB.num)
 				{
-					std::cout << PB.Cons[selector].name << std::endl;
-					std::cout << PB.Cons[selector].Last_name << std::endl;
-					std::cout << PB.Cons[selector].Nick_name << std::endl;
-					std::cout << PB.Cons[selector].phone << std::endl;
-					std::cout << PB.Cons[selector].secret << std::endl;
+					std::cout << "First name:      ";
+					std::cout << PB.Contact[selector].name << std::endl;
+					std::cout << "Last name:       ";
+					std::cout << PB.Contact[selector].last_name << std::endl;
+					std::cout << "Nickname:        ";
+					std::cout << PB.Contact[selector].nickname << std::endl;
+					std::cout << "Number:          ";
+					std::cout << PB.Contact[selector].number << std::endl;
+					std::cout << "Darkest secret:  ";
+					std::cout << PB.Contact[selector].secret << std::endl << "\n";
 				}
 				else
 				{
-					std::cout << "invalid" << std::endl;
-					command = "1";
+					std::cout << "Invalid index" << std::endl;
+					//command = "1";
 				}
 			}
 			else

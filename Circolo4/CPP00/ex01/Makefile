@@ -17,7 +17,7 @@ SRC = main.cpp
 
 all: $(TARGET)
 
-$(TARGET): $(SRC) phonebook.hpp
+$(TARGET): $(SRC) PhoneBook.hpp
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
 clean:

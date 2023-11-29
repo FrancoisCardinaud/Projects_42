@@ -16,29 +16,33 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
+# include <limits>
 
 class Contact
 {
 	public:
 	std::string		name;
-	std::string		Last_name;
-	std::string		Nick_name;
+	std::string		last_name;
+	std::string		nickname;
+	std::string		number;
 	std::string		secret;
-	std::string		phone;
 
 	void	display(void)
 	{
 		std::cout << name;
 		std::cout << " : ";
-		std::cout << phone << std::endl;
+		std::cout << number << std::endl;
 	}
 };
 
 class PhoneBook
 {
-	public:
-	Contact Cons[8];
-	int		num;
+    public:
+        Contact Contact[8];
+        int num;
+        int oldestIndex; // Index of the oldest contact
+
+        PhoneBook() : num(0), oldestIndex(0) {} // Constructor to initialize
 };
 
 #endif
