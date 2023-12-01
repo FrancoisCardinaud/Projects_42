@@ -6,24 +6,11 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 02:57:13 by fcardina          #+#    #+#             */
-/*   Updated: 2023/11/28 16:37:18 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:55:51 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-
-/*void	ft_putstr(std::string temp)
-{
-	std::cout << "|";
-	if (temp.size() > 10)
-	{
-		temp.resize(9);
-		std::cout << temp;
-		std::cout << ".";
-	}
-	else
-		std::cout << temp;
-}*/
 
 void ft_sputstr(std::string temp)
 {
@@ -43,7 +30,6 @@ int	main(void)
 	PhoneBook PB;
 	std::string	command;
 	int	selector;
-	PB.num = 0;
 
 	while (1)
 	{
@@ -53,46 +39,51 @@ int	main(void)
 		
 		if (command == "ADD" || command == "1")
 		{
-			int index = PB.num >= 8 ? PB.oldestIndex : PB.num;
+			int index = PB.getNum() >= 8 ? PB.getOldestIndex() : PB.getNum();
 
-			if (PB.num >= 8)  //Check if PB is full
-                PB.oldestIndex = (PB.oldestIndex + 1) % 8;  //Update the index of the oldest contact
-            else
-                PB.num++;
+			if (PB.getNum() >= 8) 
+			{
+				PB.setOldestIndex((PB.getOldestIndex() + 1) % 8);
+			}
+			else 
+			{
+				PB.setNum(PB.getNum() + 1);
+			}
 
 			system("clear");
 			std::cout << "ADD New Contact"<< std::endl;
 			
-			std::cout << "first name -> last name -> nick name -> number -> darkest secret" << std::endl;
-			std::cin >> PB.Contact[index].name;
-			system("clear");
+			std::string input;
+			std::cout << "Enter first name: ";
+			std::cin >> input;
+			PB.getContact(index).setName(input);
 
-			std::cout << "last name -> nick name -> number -> darkest secret" << std::endl;
-			std::cin >> PB.Contact[index].last_name;
-			system("clear");
+			std::cout << "Enter last name: ";
+			std::cin >> input;
+			PB.getContact(index).setLastName(input);
 
-			std::cout << "nick name -> number -> darkest secret" << std::endl;
-			std::cin >> PB.Contact[index].nickname;
-			system("clear");
+			std::cout << "Enter nickname: ";
+			std::cin >> input;
+			PB.getContact(index).setNickname(input);
 
-			std::cout << "number -> darkest secret" << std::endl;
-			std::cin >> PB.Contact[index].number;
-			system("clear");
+			std::cout << "Enter number: ";
+			std::cin >> input;
+			PB.getContact(index).setNumber(input);
 
-			std::cout << "darkest secret" << std::endl;
-			std::cin >> PB.Contact[index].secret;
-			system("clear");
+			std::cout << "Enter darkest secret: ";
+			std::cin >> input;
+			PB.getContact(index).setSecret(input);
 		}
 
 		else if (command == "SEARCH" || command == "2")
 		{
-			for (int i = 0; i < PB.num; i++)
+			for (int i = 0; i < PB.getNum(); i++)
 			{
 				std::cout << i + 1;
-				ft_sputstr(PB.Contact[i].name);
-				ft_sputstr(PB.Contact[i].last_name);
-				ft_sputstr(PB.Contact[i].nickname);
-				std::cout << "|" << std::endl;
+				ft_sputstr(PB.getContact(i).getName());
+				ft_sputstr(PB.getContact(i).getLastName());
+				ft_sputstr(PB.getContact(i).getNickname());
+				std::cout << std::endl;
 			}
 			std::cout << "Choose a contact to display: " << std::endl;
 			std::string input;
@@ -104,18 +95,14 @@ int	main(void)
 				selector--; // Adjust the index since we're using 1-based indexing
 				system("clear");
 
-				if (selector >= 0 && selector < PB.num)
+				if (selector >= 0 && selector < PB.getNum())
 				{
-					std::cout << "First name:      ";
-					std::cout << PB.Contact[selector].name << std::endl;
-					std::cout << "Last name:       ";
-					std::cout << PB.Contact[selector].last_name << std::endl;
-					std::cout << "Nickname:        ";
-					std::cout << PB.Contact[selector].nickname << std::endl;
-					std::cout << "Number:          ";
-					std::cout << PB.Contact[selector].number << std::endl;
-					std::cout << "Darkest secret:  ";
-					std::cout << PB.Contact[selector].secret << std::endl << "\n";
+					std::cout << "First name: " << PB.getContact(selector).getName() << std::endl;
+					std::cout << "Last name: " << PB.getContact(selector).getLastName() << std::endl;
+					std::cout << "Nickname: " << PB.getContact(selector).getNickname() << std::endl;
+					std::cout << "Number: " << PB.getContact(selector).getNumber() << std::endl;
+					std::cout << "Darkest secret: " << PB.getContact(selector).getSecret() << std::endl;
+					std::cout << "\n";
 				}
 				else
 				{

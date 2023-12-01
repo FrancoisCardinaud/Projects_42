@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 02:57:01 by fcardina          #+#    #+#             */
-/*   Updated: 2023/11/08 02:57:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:48:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,54 @@
 
 class Contact
 {
-	public:
-	std::string		name;
-	std::string		last_name;
-	std::string		nickname;
-	std::string		number;
-	std::string		secret;
+private:
+    std::string name;
+    std::string last_name;
+    std::string nickname;
+    std::string number;
+    std::string secret;
 
-	void	display(void)
-	{
-		std::cout << name;
-		std::cout << " : ";
-		std::cout << number << std::endl;
-	}
+public:
+    // Getters
+    std::string getName() const { return name; }
+    std::string getLastName() const { return last_name; }
+    std::string getNickname() const { return nickname; }
+    std::string getNumber() const { return number; }
+    std::string getSecret() const { return secret; }
+
+    // Setters
+    void setName(const std::string &newName) { name = newName; }
+    void setLastName(const std::string &newLastName) { last_name = newLastName; }
+    void setNickname(const std::string &newNickname) { nickname = newNickname; }
+    void setNumber(const std::string &newNumber) { number = newNumber; }
+    void setSecret(const std::string &newSecret) { secret = newSecret; }
+
+    // Other methods
+    void display() const {
+        std::cout << name << " : " << number << std::endl;
+    }
 };
 
-class PhoneBook
-{
-    public:
-        Contact Contact[8];
-        int num;
-        int oldestIndex; // Index of the oldest contact
+class PhoneBook {
+private:
+    Contact Cont[8];
+    int num;
+    int oldestIndex; // Index of the oldest contact
 
-        PhoneBook() : num(0), oldestIndex(0) {} // Constructor to initialize
+public:
+    PhoneBook() : num(0), oldestIndex(0) {}
+
+    // Accessor for Contact objects
+    Contact& getContact(int index) {
+        return Cont[index];
+    }
+
+    // Getters and Setters for num and oldestIndex
+    int getNum() const { return num; }
+    void setNum(int newNum) { num = newNum; }
+
+    int getOldestIndex() const { return oldestIndex; }
+    void setOldestIndex(int newIndex) { oldestIndex = newIndex; }
 };
 
 #endif
