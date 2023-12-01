@@ -34,10 +34,10 @@ int	main(void)
 	while (1)
 	{
 		system("clear");
-		std::cout << "command - ADD 1, SEARCH 2, EXIT 3" << std::endl; 
+		std::cout << "Choose a command: ADD (1), SEARCH (2), EXIT (3)" << std::endl; 
 		std::cin >> command;
 		
-		if (command == "ADD" || command == "1")
+		if (command == "ADD" || command == "1" || command == "add")
 		{
 			int index = PB.getNum() >= 8 ? PB.getOldestIndex() : PB.getNum();
 
@@ -75,7 +75,7 @@ int	main(void)
 			PB.getContact(index).setSecret(input);
 		}
 
-		else if (command == "SEARCH" || command == "2")
+		else if (command == "SEARCH" || command == "2" || command == "search")
 		{
 			for (int i = 0; i < PB.getNum(); i++)
 			{
@@ -83,7 +83,7 @@ int	main(void)
 				ft_sputstr(PB.getContact(i).getName());
 				ft_sputstr(PB.getContact(i).getLastName());
 				ft_sputstr(PB.getContact(i).getNickname());
-				std::cout << std::endl;
+				std::cout << "|" << std::endl;
 			}
 			std::cout << "Choose a contact to display: " << std::endl;
 			std::string input;
@@ -124,7 +124,7 @@ int	main(void)
 				std::cin >> command;
 			}
 		}
-		else if (command == "EXIT"  || command == "3")
+		else if (command == "EXIT"  || command == "3" || command == "exit")
 			break ;
 		command = "N";
 	}

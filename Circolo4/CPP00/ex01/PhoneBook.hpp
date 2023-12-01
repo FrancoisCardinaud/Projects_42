@@ -41,11 +41,6 @@ public:
     void setNickname(const std::string &newNickname) { nickname = newNickname; }
     void setNumber(const std::string &newNumber) { number = newNumber; }
     void setSecret(const std::string &newSecret) { secret = newSecret; }
-
-    // Other methods
-    void display() const {
-        std::cout << name << " : " << number << std::endl;
-    }
 };
 
 class PhoneBook {
