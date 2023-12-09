@@ -6,12 +6,23 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/03 12:07:31 by fcardina          #+#    #+#              #
-#    Updated: 2023/12/03 12:37:01 by fcardina         ###   ########.fr        #
+#    Updated: 2023/12/07 03:41:52 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	@clear
-	c++ *.cpp -Wall -Wextra -Werror -o zombie -std=c++98
-	./zombie
-	@rm zombie
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+TARGET = zombie
+SRC = *.cpp
+
+all: $(TARGET)
+
+$(TARGET):
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
+
+clean:
+	rm -f $(TARGET)
+
+re: clean all
+
+.PHONY: all clean re

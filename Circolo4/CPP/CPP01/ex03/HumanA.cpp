@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 12:50:20 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/09 17:05:42 by fcardina         ###   ########.fr       */
+/*   Created: 2023/12/03 12:48:28 by fcardina          #+#    #+#             */
+/*   Updated: 2023/12/09 17:10:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
-#include "HumanB.hpp"
-#include "Weapon.hpp"
 
-int main(void)
+// Constructor
+HumanA::HumanA(std::string name, Weapon &weapon):_weapon(weapon)
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
+	this->_name = name;
+	std::cout << this->_name <<" grabbed a " << this->_weapon.getType() << std::endl;
+}
+
+// Deconstructor
+HumanA::~HumanA(void)
+{
+ 	return ;
+}
+
+// Public Methods
+void HumanA::attack(void)
+{
+    std::cout << this->_name << " attacks with his " << this->_weapon.getType() << std::endl;
 }

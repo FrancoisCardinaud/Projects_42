@@ -6,19 +6,28 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:37:28 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/03 12:40:21 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:46:02 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
-Zombie* zombieHorde( int N, std::string name )
+Zombie	*zombieHorde(int N, std::string name)
 {
-    Zombie *zom;
-    std::string n;
-
-    zom = (Zombie *)malloc(sizeof(Zombie) * N);
-    for (int i = 0; i < N; i++)
-        zom[i].setname(name + " (" + std::to_string(i+1)+")");
-    return (zom);
+    Zombie *horde = new Zombie[N];
+    
+	if (N < 1)
+	{
+		std::cout << "A Horde can not contain less than 1 zombie." << std::endl;
+		return (NULL);
+	}
+	
+    if (horde == NULL)
+	{
+		std::cout << "Allocation of the horde failed." << std::endl;
+		return (NULL);
+	}
+	for (int i = 0; i <= N; i++)
+		horde[i].setname(name);
+	return (horde);
 }

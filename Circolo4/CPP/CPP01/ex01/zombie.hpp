@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:38:00 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/03 12:38:01 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:46:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@
 
 class Zombie 
 {
-	private:
-
-	std::string name;
-
 	public:
 
-	void announce( void )
+	void announce(void)
 	{
 		std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 	};
@@ -33,12 +29,16 @@ class Zombie
 	{
 		this->name = name;
 	};
-	void distroyz(void)
+	void destroy(void)
 	{
-		std::cout << this->name << ": destroying"<< std::endl;
+		std::cout << this->name << ": destroyed"<< std::endl;
 	};
+
+	private:
+
+	std::string name;
 };
 
-Zombie* zombieHorde( int N, std::string name );
+Zombie* zombieHorde(int N, std::string name);
 
 # endif

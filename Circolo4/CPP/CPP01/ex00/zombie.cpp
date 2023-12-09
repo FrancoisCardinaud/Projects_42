@@ -6,11 +6,11 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:08:29 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/03 12:31:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:42:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
 Zombie::Zombie(void)
 {
@@ -24,7 +24,7 @@ Zombie::Zombie(std::string name)
 
 Zombie::~Zombie(void)
 {
-    std::cout << "<" << this->_name << "> " << "Gharrrgl...\n";
+    std::cout << this->_name << ": I'm dead...\n";
 }
 
 void Zombie::set_name(std::string name)
@@ -34,18 +34,18 @@ void Zombie::set_name(std::string name)
 
 void Zombie::announce(void)
 {
-    std::cout << "<" << this->_name << "> BraiiiiiiinnnzzzZ...\n";
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
+}
+
+Zombie* newZombie(std::string name)
+{
+    Zombie *new_zombie = new Zombie;
+    new_zombie->set_name(name);
+    return (new_zombie);
 }
 
 void randomChump(std::string name)
 {
     Zombie randomZombie(name); 
     randomZombie.announce();
-}
-
-Zombie* newZombie(std::string name)
-{
-    Zombie *my_zombie = new Zombie;
-    my_zombie->set_name(name);
-    return (my_zombie);
 }

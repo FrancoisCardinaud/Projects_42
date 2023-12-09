@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:38:24 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/03 12:40:47 by fcardina         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:33:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int	main(void)
 	std::string	name;
 	Zombie 		*z;
 	
-	z = zombieHorde(number, name);
-	std::cout << "name of zombie" << std::endl;
+	std::cout << "Name of zombie:" << std::endl;
 	std::cin >> name;
-	std::cout << "number of zombies" << std::endl;
+	std::cout << "Number of zombies:" << std::endl;
 	std::cin >> number;
+	z = zombieHorde(number, name);
 
 	for (int i = 0; i < number; i++)
 		z[i].announce();
 	for (int i = 0; i < number; i++)
-		z[i].distroyz();
-	free(z);
+		z[i].destroy();
+	delete[] z;
 }
