@@ -31,7 +31,7 @@ class Zombie
 	};
 	void destroy(void)
 	{
-		std::cout << this->name << ": destroyed"<< std::endl;
+		std::cout << this->name << ": destroyed" << std::endl;
 	};
 
 	private:

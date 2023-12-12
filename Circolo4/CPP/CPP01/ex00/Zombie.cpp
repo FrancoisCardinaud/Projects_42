@@ -5,29 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 12:37:28 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/09 16:46:02 by fcardina         ###   ########.fr       */
+/*   Created: 2023/12/03 12:08:29 by fcardina          #+#    #+#             */
+/*   Updated: 2023/12/09 16:42:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie	*zombieHorde(int N, std::string name)
+Zombie::Zombie(void)
 {
-    Zombie *horde = new Zombie[N];
-    
-	if (N < 1)
-	{
-		std::cout << "A Horde can not contain less than 1 zombie." << std::endl;
-		return (NULL);
-	}
-	
-    if (horde == NULL)
-	{
-		std::cout << "Allocation of the horde failed." << std::endl;
-		return (NULL);
-	}
-	for (int i = 0; i <= N; i++)
-		horde[i].setname(name);
-	return (horde);
+    this->_name = "Unnamed";
+}
+
+Zombie::Zombie(std::string name)
+{
+    this->set_name(name);
+}
+
+void Zombie::set_name(std::string name)
+{
+    this->_name = name;
+}
+
+Zombie::~Zombie(void)
+{
+    std::cout << this->_name << ": I'm dead...\n";
+}
+
+void Zombie::announce(void)
+{
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
+}
+
+Zombie* newZombie(std::string name)
+{
+    Zombie *new_zombie = new Zombie;
+    new_zombie->set_name(name);
+    return (new_zombie);
+}
+
+void randomChump(std::string name)
+{
+    Zombie randomZombie(name); 
+    randomZombie.announce();
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "zombie.hpp"
+# include "Zombie.hpp"
 
 int main(void) 
 {
@@ -21,5 +21,5 @@ int main(void)
 	randomChump("Stack");
 
 	delete heap;
-	return 0;
+	return (0);
 }

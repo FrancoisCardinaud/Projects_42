@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
 int	main(void)
 {
@@ -29,4 +29,5 @@ int	main(void)
 	for (int i = 0; i < number; i++)
 		z[i].destroy();
 	delete[] z;
+	return (0);
 }
