@@ -12,42 +12,42 @@
 
 #include "Harl.hpp"
 
-Harl::Harl() 
+Harl::Harl()
 {
-	lut[0].level = "DEBUG";
-	lut[0].f = &Harl::debug;
-	lut[1].level = "INFO";
-	lut[1].f = &Harl::info;
-	lut[2].level = "WARNING";
-	lut[2].f = &Harl::warning;
-	lut[3].level = "ERROR";
-	lut[3].f = &Harl::error;
 }
 
-void	Harl::debug(void) 
+Harl::~Harl()
 {
-	cout << "[DEBUG] I love having extra bacon for my 7XL-double-cheese-triple-pickle-special ketchup burger. I really do!\n";
 }
 
-void	Harl::info(void) 
+void	Harl::debug(void)
 {
-	cout << "[INFO] I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!\n";
+	std::cout << "[DEBUG]\nI love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
 }
 
-void	Harl::warning(void) 
+void	Harl::info(void)
 {
-	cout << "[WARNING] I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month.\n";
+	std::cout << "[INFO]\nI cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
 }
 
-void	Harl::error(void) 
+void	Harl::warning(void)
 {
-	cout << "[ERROR] This is unacceptable! I want to speak to the manager now.\n";
+	std::cout << "[WARNING]\nI think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." << std::endl;
+}
+
+void	Harl::error(void)
+{
+	std::cout << "[ERROR]\nThis is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
 void	Harl::complain( std::string level ) 
 {
-	static int i = -1;
-	if (i <= 3)
-		level == lut[++i].level ? (this->*lut[i].f)() : complain(level) ;
-	i = -1;
+	void    (Harl::*function_pointer[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string complains[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (complains[i] == level)
+			(this->*function_pointer[i])();
+	}
 }

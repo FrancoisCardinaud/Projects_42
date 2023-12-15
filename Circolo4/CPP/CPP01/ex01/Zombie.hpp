@@ -14,25 +14,16 @@
 # define ZOMBIE_HPP
 
 #include <iostream>
-#include <stdio.h>
 #include <string>
 
 class Zombie 
 {
 	public:
 
-	void announce(void)
-	{
-		std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-	};
-	void setname(std::string name)
-	{
-		this->name = name;
-	};
-	void destroy(void)
-	{
-		std::cout << this->name << ": destroyed" << std::endl;
-	};
+	Zombie();
+	~Zombie();
+	void	announce(void);
+	void	setname(std::string name);
 
 	private:
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombie.cpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,21 +12,22 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie	*zombieHorde(int N, std::string name)
 {
+	if (N < 1)
+	{
+		std::cout << "Enter a valid number." << std::endl;
+		return (NULL);
+	}
+
+    Zombie *horde = new Zombie[N];
+	
+    if (horde == NULL)
+	{
+		std::cout << "Horde allocation failed." << std::endl;
+		return (NULL);
+	}
+	for (int i = 0; i < N; i++)
+		horde[i].setname(name);
+	return (horde);
 }
-
-Zombie::~Zombie()
-{
-	std::cout << this->name << ": I'm dead..." << std::endl;
-};
-
-void Zombie::announce(void)
-{
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-};
-
-void Zombie::setname(std::string name)
-{
-	this->name = name;
-};

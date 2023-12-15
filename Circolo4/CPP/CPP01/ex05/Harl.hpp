@@ -16,6 +16,7 @@
 
 # include <string>
 # include <iostream>
+# include <cstdlib>
 
 using	std::string;
 using	std::cout;
@@ -25,21 +26,17 @@ using	std::endl;
 class Harl 
 {
 	public:
+
 	Harl();
+	~Harl();
 	void	complain(std::string level);
 
 	private:
-	struct _lut
-	{
-		string	level;
-		void	(Harl::*f)(void);
-	};
-	struct _lut	lut[4];
+
 	void	debug(void);
 	void	info(void);
 	void	warning(void);
 	void	error(void);
-
 };
 
 #endif

@@ -16,18 +16,16 @@ int	main(void)
 {
 	int number = 0;
 	std::string	name;
-	Zombie 		*z;
+	Zombie 		*horde;
 	
 	std::cout << "Name of zombie:" << std::endl;
 	std::cin >> name;
 	std::cout << "Number of zombies:" << std::endl;
 	std::cin >> number;
-	z = zombieHorde(number, name);
+	horde = zombieHorde(number, name);
 
 	for (int i = 0; i < number; i++)
-		z[i].announce();
-	for (int i = 0; i < number; i++)
-		z[i].destroy();
-	delete[] z;
+		horde[i].announce();
+	delete[] horde;
 	return (0);
 }

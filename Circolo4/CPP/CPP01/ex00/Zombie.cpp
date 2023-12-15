@@ -36,16 +36,3 @@ void Zombie::announce(void)
 {
     std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
 }
-
-Zombie* newZombie(std::string name)
-{
-    Zombie *new_zombie = new Zombie;
-    new_zombie->set_name(name);
-    return (new_zombie);
-}
-
-void randomChump(std::string name)
-{
-    Zombie randomZombie(name); 
-    randomZombie.announce();
-}
