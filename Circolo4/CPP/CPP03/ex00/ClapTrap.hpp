@@ -16,21 +16,24 @@
 # include <string>
 
 class ClapTrap {
+
+	private:
+		std::string name;
+		unsigned int _hit_points;
+		unsigned int _energy_points;
+		unsigned int _attack_damage;
+
 	public:
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &to_copy);
-		ClapTrap& operator=(const ClapTrap &original);
-		~ClapTrap(void);
+		ClapTrap(std::string name); //Default constructor
+		ClapTrap(const ClapTrap &to_copy); //Copy constructor
+		ClapTrap& operator=(const ClapTrap &original); //Copy assignment operator
+		~ClapTrap(void); //Destructor
 
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-	private:
-		std::string name;
-		unsigned int hit_points;
-		unsigned int energy_points;
-		unsigned int attack_damage;
+
 };
 
-#endif // CLAPTRAP_HPP
+#endif

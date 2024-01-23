@@ -18,9 +18,9 @@ using std::endl;
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	this->hit_points = 100;
-	this->energy_points = 100;
-	this->attack_damage = 30;
+	this->_hit_points = 100;
+	this->_energy_points = 100;
+	this->_attack_damage = 30;
 	cout << "Sub Class (FragTrap) constructor has been called" << endl;
 }
 
@@ -29,10 +29,10 @@ FragTrap::~FragTrap(void) {
 }
 
 void FragTrap::highFivesGuys(void) {
-	if (this->energy_points == 0) {
+	if (this->_energy_points == 0) {
         cout << "FragTrap "<< this->name << " is out of energy points!" << endl;
         return;
     }
 	cout << "FragTrap " << this->name << " says: High Fives!" << endl;
-    this->energy_points -= 1;
+    this->_energy_points -= 1;
 }

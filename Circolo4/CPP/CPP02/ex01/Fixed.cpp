@@ -56,7 +56,7 @@ Fixed::Fixed(const int integer)
 Fixed::Fixed(const float floating_point)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_RawBits = std::roundf(floating_point * (1 << Fixed::_bits));
+	this->_RawBits = roundf(floating_point * (1 << Fixed::_bits));
 	//Transforming a floating-point number into a fixed-point number by scaling it according to the number of fractional bits (_bits), rounding the result, and then storing it in an integer member variable (_RawBits).
 }
 

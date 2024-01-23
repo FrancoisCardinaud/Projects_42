@@ -54,7 +54,7 @@ Fixed::Fixed(const int integer)
 Fixed::Fixed(const float floating_point)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->setRawBits(std::roundf(floating_point * (1 << Fixed::_bits)));
+	this->setRawBits(roundf(floating_point * (1 << Fixed::_bits)));
 }
 
 float	Fixed::toFloat(void) const

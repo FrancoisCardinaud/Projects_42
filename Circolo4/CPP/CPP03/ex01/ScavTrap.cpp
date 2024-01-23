@@ -18,9 +18,9 @@ using std::endl;
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	this->hit_points = 100;
-	this->energy_points = 50;
-	this->attack_damage = 20;
+	this->_hit_points = 100;
+	this->_energy_points = 50;
+	this->_attack_damage = 20;
 	cout << "Sub Class (ScavTrap) constructor has been called" << endl;
 }
 
@@ -30,7 +30,7 @@ ScavTrap::~ScavTrap(void) {
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (this->energy_points == 0)
+	if (this->_energy_points == 0)
 	{
 		cout << "ScavTrap is out of energy points!" << endl;
 		return;
@@ -39,7 +39,7 @@ void ScavTrap::attack(const std::string& target)
 	     << " attacks " << target 
 		 << " causing <amount> " 
 		 << "points of damage!" << endl;
-	this->energy_points -= 1;
+	this->_energy_points -= 1;
 }
 
 void ScavTrap::guardGate(void) {
