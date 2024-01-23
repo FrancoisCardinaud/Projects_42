@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.cpp                                          :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:41:07 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/04 23:41:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:34:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-//C++ Module 02 - ex00
 
 Fixed::Fixed() : _RawBits(0)
 {
@@ -32,7 +30,7 @@ Fixed::Fixed(const Fixed &f)
 
 Fixed	&Fixed::operator=(const Fixed &f2)
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "Cop assignment operator called" << std::endl;
 	this->setRawBits(f2.getRawBits());
 	return (*this);
 }
@@ -46,8 +44,6 @@ void	Fixed::setRawBits(int const raw)
 {
 	this->_RawBits = raw;
 }
-
-//C++ Module 02 - ex01
 
 Fixed::Fixed(const int integer)
 {
@@ -77,7 +73,7 @@ std::ostream	&operator<<(std::ostream &stream, Fixed const &f)
 	return (stream);
 }
 
-//C++ Module 02 - ex02
+////////////////////////////////////////////
 
 bool	Fixed::operator>(Fixed const &f) const
 {
@@ -145,30 +141,30 @@ Fixed	Fixed::operator/(Fixed const &f)
 	return (*this);
 }
 
-Fixed	Fixed::operator++()
+Fixed	Fixed::operator++() //Pre-Increment
 {
 	this->_RawBits++;
 	return (*this);
 }
 
-Fixed	Fixed::operator++(int)
+Fixed	Fixed::operator++(int) //Post-Increment
 {
-	Fixed	temp(*this);
+	Fixed	nb(*this);
 	++(*this);
-	return (temp);
+	return (nb);
 }
 
-Fixed	Fixed::operator--()
+Fixed	Fixed::operator--() //Pre-Decrement
 {
 	this->_RawBits--;
 	return (*this);
 }
 
-Fixed	Fixed::operator--(int)
+Fixed	Fixed::operator--(int) //Post-Decrement
 {
-	Fixed	temp(*this);
+	Fixed	nb(*this);
 	--(*this);
-	return (temp);
+	return (nb);
 }
 
 Fixed const	&Fixed::min(Fixed const &a, Fixed const &b)

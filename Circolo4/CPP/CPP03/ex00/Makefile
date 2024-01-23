@@ -6,48 +6,23 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 18:53:51 by fcardina          #+#    #+#              #
-#    Updated: 2024/01/02 18:53:52 by fcardina         ###   ########.fr        #
+#    Updated: 2024/01/19 17:17:38 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
-INCLUDE = -I./includes
-VPATH = srcs
-RM = rm -rf
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+TARGET = ClapTrap
+SRC = *.cpp
 
-GENERAL = ClapTrap
+all: $(TARGET)
 
-NAME = ex00
-SRCS = $(addsuffix .cpp, $(GENERAL))\
-	   main.cpp
-
-OBJ_DIR = obj
-OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-$(OBJ_DIR):
-	mkdir -p obj
-
-$(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+$(TARGET):
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
 clean:
-	$(RM) $(OBJ_DIR)
+	rm -f $(TARGET)
 
-fclean: clean
-	$(RM) $(NAME)
+re: clean all
 
-re: fclean all
-
-run: all clean
-	echo ""
-	./ex00
-
-.PHONY: all clean fclean re run
-
-#.SILENT:
+.PHONY: all clean re

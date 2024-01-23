@@ -6,48 +6,27 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 18:53:51 by fcardina          #+#    #+#              #
-#    Updated: 2024/01/02 18:57:06 by fcardina         ###   ########.fr        #
+#    Updated: 2024/01/19 17:38:05 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 INCLUDE = -I./includes
-VPATH = srcs
-RM = rm -rf
+SRC = srcs/ClapTrap.cpp srcs/ScavTrap.cpp srcs/FragTrap.cpp srcs/main.cpp
+TARGET = ex02
 
-GENERAL = ClapTrap ScavTrap FragTrap
+all: $(TARGET)
 
-NAME = ex02
-SRCS = $(addsuffix .cpp, $(GENERAL))\
-	   main.cpp
-
-OBJ_DIR = obj
-OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-$(OBJ_DIR):
-	mkdir -p obj
-
-$(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(SRC) -o $(TARGET)
 
 clean:
-	$(RM) $(OBJ_DIR)
+	rm -f $(TARGET)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(TARGET)
 
 re: fclean all
 
-run: all clean
-	echo ""
-	./ex02
-
-.PHONY: all clean fclean re run
-
-#.SILENT:
+.PHONY: all clean fclean re

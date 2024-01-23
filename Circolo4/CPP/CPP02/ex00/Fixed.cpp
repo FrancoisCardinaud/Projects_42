@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.cpp                                          :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:38:15 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/11 04:39:42 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:12:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _RawBits(0)
+Fixed::Fixed() : _RawBits(0)//initialization
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -23,10 +23,10 @@ Fixed::Fixed(const Fixed &f)
 	this->setRawBits(f.getRawBits());
 }
 
-Fixed	&Fixed::operator=(const Fixed &f2)
+Fixed &Fixed::operator=(const Fixed &f_1)
 {
-	std::cout << "Assignation operator called" << std::endl;
-	this->setRawBits(f2.getRawBits());
+	std::cout << "Copy assignment operator called" << std::endl;
+	this->setRawBits(f_1.getRawBits());
 	return (*this);
 }
 

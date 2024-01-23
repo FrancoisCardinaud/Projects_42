@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.hpp                                          :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:40:26 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/11 04:51:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:21:20 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ class	Fixed
 		Fixed(const int integer);
 		Fixed(const float floating_point);
 
-		float	toFloat( void ) const;
 		int		toInt( void ) const;
+		float	toFloat( void ) const;
 };
 
 std::ostream	&operator<<(std::ostream &stream, Fixed const &f);

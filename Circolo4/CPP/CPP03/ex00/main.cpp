@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:54:05 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 18:54:06 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:43:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,32 @@ using std::endl;
 
 int main(void)
 {
-	ClapTrap Jubileus("Jubileus");
-	ClapTrap Robert("Robert");
+	ClapTrap Jim("Jim");
+	ClapTrap Bob("Bob");
 
 	cout << endl;
 
-	Jubileus.attack("Robert");
-	Robert.takeDamage(5);
+	Jim.attack("Bob");
+	Bob.takeDamage(5);
 
 	cout << endl;
 
-	Jubileus.attack("Robert");
-	Robert.takeDamage(1);
+	Jim.attack("Bob");
+	Bob.takeDamage(1);
 
 	cout << endl;
 
-	Jubileus.attack("Robert");
-	Robert.takeDamage(1);
+	Jim.attack("Bob");
+	Bob.takeDamage(1);
 
 	cout << endl;
 
-	Robert.beRepaired(7);
+	Bob.beRepaired(7);
 
 	cout << endl;
 
-	Jubileus.attack("Robert");
-	Robert.takeDamage(10);
+	Jim.attack("Bob");
+	Bob.takeDamage(10);
 
 	cout << endl;
 

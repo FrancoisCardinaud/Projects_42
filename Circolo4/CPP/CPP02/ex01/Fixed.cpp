@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.cpp                                          :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:40:36 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/11 04:39:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:20:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-//C++ Module 02 - ex00
 
 Fixed::Fixed() : _RawBits(0)
 {
@@ -27,7 +25,7 @@ Fixed::Fixed(const Fixed &f)
 
 Fixed	&Fixed::operator=(const Fixed &f2)
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	this->setRawBits(f2.getRawBits());
 	return (*this);
 }
@@ -47,7 +45,7 @@ void	Fixed::setRawBits(int const raw)
 	this->_RawBits = raw;
 }
 
-//C++ Module 02 - ex01
+////////////////////////////////////
 
 Fixed::Fixed(const int integer)
 {
@@ -59,19 +57,20 @@ Fixed::Fixed(const float floating_point)
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->_RawBits = std::roundf(floating_point * (1 << Fixed::_bits));
+	//Transforming a floating-point number into a fixed-point number by scaling it according to the number of fractional bits (_bits), rounding the result, and then storing it in an integer member variable (_RawBits).
 }
 
-float	Fixed::toFloat(void) const
+float Fixed::toFloat(void) const
 {
 	return ((float)this->_RawBits / (float)(1 << Fixed::_bits));
 }
 
-int		Fixed::toInt(void) const
+int	Fixed::toInt(void) const
 {
 	return (this->_RawBits >> Fixed::_bits);
 }
 
-std::ostream	&operator<<(std::ostream &stream, Fixed const &f)
+std::ostream &operator<<(std::ostream &stream, Fixed const &f)
 {
 	stream << f.toFloat();
 	return (stream);

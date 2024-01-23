@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.hpp                                          :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 23:38:32 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/11 04:32:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:12:51 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ class	Fixed
 		static const int	_bits = 8;
 	
 	public:
-		Fixed();
-		Fixed(const Fixed &f);
-		Fixed	&operator=(const Fixed &f2);
-        ~Fixed();
+		Fixed(); //Default constructor
+		Fixed(const Fixed &f); //Copy constructor
+		Fixed &operator=(const Fixed &f_1); //Copy assignment operator
+        ~Fixed(); //Destructor
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
