@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:54:05 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 18:58:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:33:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,48 @@ using std::endl;
 
 int main(void)
 {
-	FragTrap John("John");
-	FragTrap Albert("Albert");
+	FragTrap Jim("Jim");
+	FragTrap Bob("Bob");
 
 	cout << endl;
 
-	John.attack("Albert");
-	Albert.takeDamage(30);
+	Jim.attack("Bob");
+	Bob.takeDamage(30);
 
 	cout << endl;
 
-	John.attack("Albert");
-	Albert.takeDamage(30);
+	Jim.attack("Bob");
+	Bob.takeDamage(20);
 
 	cout << endl;
 
-	John.attack("Albert");
-	Albert.takeDamage(30);
+	Bob.attack("Jim");
+	Jim.takeDamage(99);
 
 	cout << endl;
 
-	John.attack("Albert");
-	Albert.takeDamage(30);
+	Jim.attack("Bob");
+	Bob.takeDamage(40);
 
 	cout << endl;
 
-	Albert.beRepaired(100);
+	Bob.beRepaired(10);
 
 	cout << endl;
 
-	Albert.highFivesGuys();
+	Jim.attack("Bob");
+	Bob.takeDamage(10);
 
 	cout << endl;
 
-	Albert.takeDamage(100);
+	Bob.highFivesGuys();
+
+	cout << endl;
+
+	Jim.attack("Bob");
+	Bob.takeDamage(200);
+
+	cout << endl;
 
 	return EXIT_SUCCESS;
 }

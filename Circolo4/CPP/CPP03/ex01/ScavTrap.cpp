@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:55:49 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 18:55:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/25 00:27:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,21 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->_hit_points = 100;
 	this->_energy_points = 50;
 	this->_attack_damage = 20;
-	cout << "Sub Class (ScavTrap) constructor has been called" << endl;
+	cout << "Default ScavTrap constructor "<< name <<" has been called" << endl;
 }
 
 ScavTrap::~ScavTrap(void) {
-	cout << "Sub Class (ScavTrap) destructor has been called" << endl;
+	cout << "ScavTrap destructor "<< name <<" has been called" << endl;
 }
 
 void ScavTrap::attack(const std::string& target)
 {
 	if (this->_energy_points == 0)
 	{
-		cout << "ScavTrap is out of energy points!" << endl;
+		cout << "ScavTrap "<< name <<" has no more energy points!" << endl;
 		return;
 	}
-	cout << "ScavTrap " << this->name
-	     << " attacks " << target 
-		 << " causing <amount> " 
-		 << "points of damage!" << endl;
+	std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->_attack_damage << " points of damage!" << std::endl;
 	this->_energy_points -= 1;
 }
 
