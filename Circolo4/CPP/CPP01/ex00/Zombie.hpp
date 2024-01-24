@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombie.hpp                                         :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:09:03 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/03 12:33:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ class Zombie
     Zombie(std::string name);
     ~Zombie(void);
     
-    void    set_name(std::string name);
+    void    setname(std::string name);
     void    announce(void);
 
     private:
 
-    std::string _name;
+    std::string name;
 };
 
 Zombie* newZombie(std::string name);

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:46:57 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/09 17:05:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanB
 		void		setWeapon(Weapon &weapon);
         
     private:
-		std::string _name;
+		std::string name;
 		Weapon *_weapon;
 		bool _is_armed;
 };

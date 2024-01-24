@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:49:42 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/09 17:02:13 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanA
 		void		attack(void);
 		
 	private:
-		std::string	_name;
+		std::string	name;
 		Weapon		_weapon;
 };
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 02:57:01 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/01 16:48:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Contact
 {
 private:
     std::string name;
-    std::string last_name;
+    std::string lastname;
     std::string nickname;
     std::string number;
     std::string secret;
@@ -30,14 +30,14 @@ private:
 public:
     // Getters
     std::string getName() const { return name; }
-    std::string getLastName() const { return last_name; }
+    std::string getLastName() const { return lastname; }
     std::string getNickname() const { return nickname; }
     std::string getNumber() const { return number; }
     std::string getSecret() const { return secret; }
 
     // Setters
     void setName(const std::string &newName) { name = newName; }
-    void setLastName(const std::string &newLastName) { last_name = newLastName; }
+    void setLastName(const std::string &newLastName) { lastname = newLastName; }
     void setNickname(const std::string &newNickname) { nickname = newNickname; }
     void setNumber(const std::string &newNumber) { number = newNumber; }
     void setSecret(const std::string &newSecret) { secret = newSecret; }

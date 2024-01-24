@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:32 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:32 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Bureaucrat {
 
         void incrementGrade(void);
         void decrementGrade(void);
-        void signForm(std::string form_name, bool was_signed);
+        void signForm(std::string formname, bool was_signed);
 
         void executeForm(AForm const& form);
 

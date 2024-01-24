@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:35 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:36 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ AForm *Intern::makeForm(std::string name, std::string target)
 {
     AForm *choosen_form = NULL;
 
-    const std::string form_names[] = {
+    const std::string formnames[] = {
         "robotomy request",
         "presidential pardon",
         "shrubbery creation"
@@ -78,7 +78,7 @@ AForm *Intern::makeForm(std::string name, std::string target)
 
     for (size_t i = 0; i < 3; i += 1)
     {
-        if (name == form_names[i])
+        if (name == formnames[i])
         {
             cout << "Intern creates " << name << endl;
             choosen_form = form_constructors[i](target);;

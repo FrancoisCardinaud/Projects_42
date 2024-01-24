@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:35 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:24:36 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void Bureaucrat::decrementGrade(void)
 		this->grade += 1;
 }
 
-void Bureaucrat::signForm(std::string form_name, bool is_signed)
+void Bureaucrat::signForm(std::string formname, bool is_signed)
 {
 	if (is_signed)
-		cout << this->getName() << " signed " << form_name << endl;
+		cout << this->getName() << " signed " << formname << endl;
 	else
-		cout << this->getName() << " couldn't sign " << form_name
+		cout << this->getName() << " couldn't sign " << formname
 			 << " because the grade was too low and was nervoxhinhu 🥺" << endl;
 }
 

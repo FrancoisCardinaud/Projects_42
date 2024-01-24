@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:21:04 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/03 12:35:15 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 Zombie* newZombie(std::string name)
 {
     Zombie *new_zombie = new Zombie;
-    new_zombie->set_name(name);
+    new_zombie->setname(name);
     return (new_zombie);
 }

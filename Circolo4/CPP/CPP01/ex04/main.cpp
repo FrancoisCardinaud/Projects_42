@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 12:46:59 by fcardina          #+#    #+#             */
-/*   Updated: 2023/12/09 17:38:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 4)
 	{
-		std::cout << "Wrong number of arguments" << std::endl << "How to use: ./s2 <file_name> <s1> <s2>" << std::endl;
+		std::cout << "Wrong number of arguments" << std::endl << "How to use: ./s2 <filename> <s1> <s2>" << std::endl;
 	}
 	else
 	{
