@@ -17,14 +17,14 @@
 
 class FragTrap : public ClapTrap
 {
+	private:
+		FragTrap(void);
+
 	public:
 		FragTrap(std::string name);
 		~FragTrap(void);
 
 		void highFivesGuys(void);
-
-	private:
-		FragTrap(void);
 };
 
-#endif // FRAGTRAP_HPP
+#endif

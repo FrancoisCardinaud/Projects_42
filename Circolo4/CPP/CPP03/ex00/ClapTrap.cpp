@@ -16,10 +16,10 @@
 using std::cout;
 using std::endl;
 
-ClapTrap::ClapTrap(std::string name)
-: name(name), _hit_points(10), _energy_points(10), _attack_damage(0) {
-	cout << "Default constructor " << name << " has been called!" << endl;
-}
+ClapTrap::ClapTrap(std::string name) : name(name), _hit_points(10), _energy_points(10), _attack_damage(0) 
+{
+	cout << "Default constructor " << name << " was called!" << endl;
+}//Default constructor
 
 ClapTrap::ClapTrap(const ClapTrap &to_copy)
 {
@@ -27,8 +27,8 @@ ClapTrap::ClapTrap(const ClapTrap &to_copy)
 	this->_hit_points = to_copy._hit_points;
 	this->_energy_points = to_copy._energy_points;
 	this->_attack_damage = to_copy._attack_damage;
-	cout << "Copy constructor has been called!" << endl;
-}
+	cout << "Copy constructor was called!" << endl;
+}//Copy constructor
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &original)
 {
@@ -39,52 +39,54 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &original)
 		this->_energy_points = original._energy_points;
 		this->_attack_damage = original._attack_damage;
 	}
-	cout << "Copy assignment constructor has been called!" << endl;
+	cout << "Copy assignment constructor was called!" << endl;
 	return *this;
-}
+}//Copy assignment operator
 
-ClapTrap::~ClapTrap(void) {
+ClapTrap::~ClapTrap(void) 
+{
 	cout << "Destructor was called for " << name << endl;
-};
+};//Destructor
 
-void	ClapTrap::attack(const std::string &target)
+void	ClapTrap::attack(const std::string &target, const int points)
 {
 	if (this->_energy_points > 0 && this->_hit_points > 0)
 	{
-		std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->_attack_damage << " points of damage!" << std::endl;
+		std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << points << " points of damage!" << std::endl;
 		this->_energy_points--;
 	}
 	else if (this->_energy_points == 0)
-		std::cout << "\033[31mClapTrap " << this->name << " is not able to attack " << target << ", because he has no energy points left.\033[0m" << std::endl;
-	else
-		std::cout << "\033[31mClapTrap " << this->name << " is not able to attack " << target << ", because he has not enough hit points.\033[0m" << std::endl;
+		std::cout << "ClapTrap " << this->name << " cannot attack " << target << ", because he has no energy points left." << std::endl;
+	else if (this->_hit_points == 0)
+		std::cout << "ClapTrap " << this->name << " cannot attack " << target << ", because he does not have enough hit points." << std::endl;
 }
 
-void	ClapTrap::takeDamage(unsigned int amount)
+void	ClapTrap::takeDamage(unsigned int points)
 {
-	if (this->_hit_points > amount)
+	if (this->_hit_points > points)
 	{
-		this->_hit_points -= amount;
+		this->_hit_points -= points;
+		std::cout << "ClapTrap " << this->name << " was attacked, he now has " << this->_hit_points << " hit points." << std::endl;
 	}
-	else if (this->_hit_points <= amount)
+	else if (this->_hit_points <= points)
 	{
-		cout << "ClapTrap " << this->name << " has died..." << endl;
 		this->_hit_points = 0;
+		std::cout << "ClapTrap " << this->name << " was attacked, he now has " << this->_hit_points << " hit points." << std::endl;
+		cout << "ClapTrap " << this->name << " has died :(" << endl;
 	}
-	std::cout << "ClapTrap " << this->name << " was attacked and lost " << amount << " hit points, he now has " << this->_hit_points << " hit points." << std::endl;
 }
-void	ClapTrap::beRepaired(unsigned int amount)
+void	ClapTrap::beRepaired(unsigned int points)
 {
-	if (this->_energy_points > 0 && this->_hit_points > 0 && this->_hit_points + amount <= 10)
+	if (this->_energy_points > 0 && this->_hit_points > 0 && this->_hit_points + points <= 10)
 	{
-		this->_hit_points += amount;
-		std::cout << "ClapTrap " << this->name << " repaired himself and gained " << amount << " of hit points, he now has " << this->_hit_points << " hit points." << std::endl;
+		this->_hit_points += points;
+		std::cout << "ClapTrap " << this->name << " repaired himself and gained " << points << " of hit points, he now has " << this->_hit_points << " hit points." << std::endl;
 		this->_energy_points--;
 	}
 	else if (this->_energy_points == 0)
-		std::cout << "ClapTrap " << this->name << " is not able to repair himself, because he doesn't have enough energy points." << std::endl;
+		std::cout << "ClapTrap " << this->name << " cannot repair himself, because he does not have enough energy points." << std::endl;
 	else if (this->_hit_points == 0)
-		std::cout << "ClapTrap " << this->name << " is not able to repair himself, because he doesn't have enough hit points." << std::endl;
+		std::cout << "ClapTrap " << this->name << " cannot repair himself, because he does not have enough hit points." << std::endl;
 	else
-		std::cout << "ClapTrap " << this->name << " can't be repaired to have more than 10 hit points." << std::endl;
+		std::cout << "ClapTrap " << this->name << " cannot be repaired to have more than 10 hit points." << std::endl;
 }

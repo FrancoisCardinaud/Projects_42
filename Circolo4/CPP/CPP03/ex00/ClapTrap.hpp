@@ -15,8 +15,8 @@
 
 # include <string>
 
-class ClapTrap {
-
+class ClapTrap 
+{
 	private:
 		std::string name;
 		unsigned int _hit_points;
@@ -29,9 +29,9 @@ class ClapTrap {
 		ClapTrap& operator=(const ClapTrap &original); //Copy assignment operator
 		~ClapTrap(void); //Destructor
 
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		void attack(const std::string& target, const int points);
+		void takeDamage(unsigned int points);
+		void beRepaired(unsigned int points);
 
 
 };

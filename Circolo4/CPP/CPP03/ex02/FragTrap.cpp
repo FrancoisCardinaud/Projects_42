@@ -21,14 +21,16 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	this->_hit_points = 100;
 	this->_energy_points = 100;
 	this->_attack_damage = 30;
-	cout << "FragTrap constructor "<< name <<" has been called" << endl;
+	cout << "Default FragTrap constructor "<< name <<" was called!" << endl;
 }
 
-FragTrap::~FragTrap(void) {
+FragTrap::~FragTrap(void)
+{
 	cout << "FragTrap destructor "<< name <<" has been called" << endl;
 }
 
-void FragTrap::highFivesGuys(void) {
+void FragTrap::highFivesGuys(void)
+{
 	if (this->_energy_points == 0) {
         cout << "FragTrap "<< this->name << " has no more energy points!" << endl;
         return;

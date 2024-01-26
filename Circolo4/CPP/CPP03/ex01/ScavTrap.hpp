@@ -15,16 +15,17 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : public ClapTrap 
+{
+	private:
+		ScavTrap(void);
+
 	public:
 		ScavTrap(std::string name);
 		~ScavTrap(void);
 
-		void attack(const std::string& target);
+		void attack(const std::string& target, const int points);
 		void guardGate(void);
-
-	private:
-		ScavTrap(void);
 };
 
 #endif

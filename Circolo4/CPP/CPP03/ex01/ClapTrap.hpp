@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:53:25 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/25 00:01:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:30:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <string>
 
-class ClapTrap {
-
+class ClapTrap 
+{
 	protected:
 		std::string name;
 		unsigned int _hit_points;
@@ -29,9 +29,9 @@ class ClapTrap {
 		ClapTrap& operator=(const ClapTrap &original); //Copy assignment operator
 		~ClapTrap(void); //Destructor
 
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		void attack(const std::string& target, const int points);
+		void takeDamage(unsigned int points);
+		void beRepaired(unsigned int points);
 
 
 };

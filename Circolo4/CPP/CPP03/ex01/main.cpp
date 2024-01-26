@@ -24,17 +24,17 @@ int main(void)
 
 	cout << endl;
 
-	Jim.attack("Bob");
+	Jim.attack("Bob", 5);
 	Bob.takeDamage(5);
 
 	cout << endl;
 
-	Jim.attack("Bob");
+	Jim.attack("Bob", 1);
 	Bob.takeDamage(1);
 
 	cout << endl;
 
-	Jim.attack("Bob");
+	Jim.attack("Bob", 1);
 	Bob.takeDamage(1);
 
 	cout << endl;
@@ -43,13 +43,17 @@ int main(void)
 
 	cout << endl;
 
-	Jim.attack("Bob");
+	Jim.attack("Bob", 10);
 	Bob.takeDamage(10);
 
 	cout << endl;
 
-	Jim.attack("Bob");
+	Jim.attack("Bob", 200);
 	Bob.takeDamage(200);
+
+	cout << endl;
+	
+	Bob.attack("Jim", 10);
 
 	cout << endl;
 
