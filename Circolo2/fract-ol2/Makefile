@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 12:18:57 by fcardina          #+#    #+#              #
-#    Updated: 2023/05/08 16:51:13 by fcardina         ###   ########.fr        #
+#    Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRC_PATH = srcs
-SRC_NAME = burningship.c julia.c keyboard.c main.c mandelbrot.c mouse.c tools.c 
+SRCname = burningship.c julia.c keyboard.c main.c mandelbrot.c mouse.c tools.c 
 
 OBJ_PATH = objs
-OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJname = $(SRCname:.c=.o)
 
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
@@ -26,8 +26,8 @@ CPPFLAGS = -I includes -I libft/includes
 LDFLAGS = -L libft
 LDLIBS = -O2 -lft -lm -lmlx -framework OpenGL -framework AppKit
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+SRC = $(addprefix $(SRC_PATH)/,$(SRCname))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJname))
 
 all: $(NAME)
 
