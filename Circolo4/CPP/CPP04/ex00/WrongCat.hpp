@@ -6,16 +6,17 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:12:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:06:01 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #ifndef WRONGCAT_HPP
+#ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
 # include "WrongAnimal.hpp"
 
-class WrongCat : public WrongAnimal {
+class WrongCat : public WrongAnimal
+{
 	public:
 		WrongCat(void);
 		WrongCat(const WrongCat &original);
@@ -25,4 +26,4 @@ class WrongCat : public WrongAnimal {
 		void makeSound(void) const;
 };
 
-#endif // WRONGCAT_HPP
+#endif

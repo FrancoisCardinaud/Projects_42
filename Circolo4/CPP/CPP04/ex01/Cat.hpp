@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:13:02 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:13:03 by fcardina         ###   ########.fr       */
+/*   Created: 2024/01/02 19:11:46 by fcardina          #+#    #+#             */
+/*   Updated: 2024/02/02 20:16:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
-class Cat : public Animal {
+class Cat : public Animal //Derived class
+{
+	private:
+		Brain* brain;
+		std::string type;
+		
 	public:
 		Cat(void);
-		Cat(const Cat &to_copy);
+		Cat(const Cat &original);
 		Cat &operator=(const Cat &to_copy);
 		~Cat(void);
 
-		void makeSound(void) const;
-
-	private:
-		Brain* brain;
+		void makeSound(void) const; //Polymorphic behavior
+		Brain* getBrain(void) const;
 };
 
-#endif // CAT_HPP
+#endif

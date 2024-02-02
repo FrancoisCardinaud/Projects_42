@@ -5,47 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:13:17 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:18:02 by fcardina         ###   ########.fr       */
+/*   Created: 2024/01/02 19:12:38 by fcardina          #+#    #+#             */
+/*   Updated: 2024/02/02 18:43:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "WrongAnimal.hpp"
 
-using std::cout;
-using std::endl;
-
-WrongAnimal::WrongAnimal(void) {
-	cout << "[WrongAnimal] default constructor has been called" << endl;
+WrongAnimal::WrongAnimal(void)
+{
+	std::cout << "WRONG ANIMAL default constructor has been called" << std::endl;
 };
 
 WrongAnimal::WrongAnimal(const WrongAnimal &to_copy)
 {
-	this->type = to_copy.type;
-	cout << "[WrongAnimal] copy constructor has been called" << endl;
+	*this = to_copy;
+	std::cout << "WRONG ANIMAL copy constructor has been called" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal &to_copy)
 {
-	if (this != &to_copy)
-		this->type = to_copy.type;
-	cout << "[WrongAnimal] copy assignment constructor has been called" << endl;
+	this->type = to_copy.type;
+	std::cout << "WRONG ANIMAL copy assignment constructor has been called" << std::endl;
 	return *this;
 }
 
-WrongAnimal::~WrongAnimal(void) {
-	cout << "[WrongAnimal] default destructor has been called" << endl;
+WrongAnimal::~WrongAnimal(void)
+{
+	std::cout << "WRONG ANIMAL default destructor has been called" << std::endl;
 }
 
-string WrongAnimal::getType(void) const {
+std::string WrongAnimal::getType(void) const
+{
 	return this->type;
 }
 
-void WrongAnimal::setType(string type) {
+void WrongAnimal::setType(std::string type)
+{
 	this->type = type;
 }
 
-void WrongAnimal::makeSound(void) const {
-	cout << "[WrongAnimal] makeSound() has been called" << endl;
+void WrongAnimal::makeSound(void) const
+{
+	std::cout << "WRONG ANIMAL makeSound() has been called" << std::endl;
 }

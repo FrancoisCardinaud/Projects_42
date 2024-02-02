@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:15:01 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:15:02 by fcardina         ###   ########.fr       */
+/*   Created: 2024/01/02 19:12:57 by fcardina          #+#    #+#             */
+/*   Updated: 2024/02/02 18:43:02 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 
 # include <string>
 
-class Brain {
+class Brain
+{
+	private:
+		std::string ideas[100];
+		
 	public:
 		Brain(void);
 		Brain(const Brain &to_copy);
 		Brain &operator=(const Brain &to_copy);
 		~Brain(void);
 
-	private:
-		std::string ideas[100];
+		std::string getIdea(int index) const;
 };
 
-#endif // BRAIN_HPP
+#endif

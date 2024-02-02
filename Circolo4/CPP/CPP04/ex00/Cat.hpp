@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:46 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:11:50 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/01 01:43:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "Animal.hpp"
 
-class Cat : public Animal {
+class Cat : public Animal
+{
 	public:
 		Cat(void);
 		Cat(const Cat &original);
@@ -25,4 +26,4 @@ class Cat : public Animal {
 		void makeSound(void) const;
 };
 
-#endif // CAT_HPP
+#endif

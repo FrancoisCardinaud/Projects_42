@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:40 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:12:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:06:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include <string>
 
-class WrongAnimal {
+class WrongAnimal
+{	
+	protected:
+		std::string type;
+		
 	public:
 		WrongAnimal(void);
 		WrongAnimal(const WrongAnimal &original);
@@ -25,10 +29,7 @@ class WrongAnimal {
 		std::string getType(void) const;
 		void setType(std::string type);
 
-		void makeSound(void) const;
-
-	protected:
-		std::string type;
+		virtual void makeSound(void) const;
 };
 
-#endif // WRONGANIMAL_HPP
+#endif

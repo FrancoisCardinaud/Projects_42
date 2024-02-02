@@ -6,52 +6,23 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:15:16 by fcardina          #+#    #+#              #
-#    Updated: 2024/01/02 19:15:17 by fcardina         ###   ########.fr        #
+#    Updated: 2024/02/01 01:36:32 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -O3 -Wshadow -Wno-shadow -fsanitize=address
-INCLUDE = -I./includes
-VPATH = srcs
-RM = rm -rf
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+TARGET = ex02
+SRC = *.cpp
 
-GENERAL = AAnimal Brain Cat Dog 
+all: $(TARGET)
 
-NAME = ex02
-SRCS = $(addsuffix .cpp, $(GENERAL))\
-	   main.cpp
+$(TARGET):
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
-OBJ_DIR = obj
-OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-$(OBJ_DIR):
-	mkdir -p obj
-
-$(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
-
-clean:
-	$(RM) $(OBJ_DIR)
-
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	rm -f $(TARGET)
 
 re: fclean all
 
-run: re clean
-	echo ""
-	./$(NAME)
-
-leaks: re clean
-	echo ""
-	valgrind --leak-check=full -s ./$(NAME)
-
-.PHONY: all clean fclean re run
-
-#.SILENT:
+.PHONY: all clean re

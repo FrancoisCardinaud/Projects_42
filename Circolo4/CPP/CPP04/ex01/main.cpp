@@ -6,53 +6,57 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:13:11 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:13:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:02:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
 #include <cstdlib>
 #include <iostream>
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "Brain.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
-#define NBR_ANIMALS 4
-
-using std::cout;
-using std::endl;
-
-int main(void)
+int main()
 {
-	const Animal* Bisteca = new Dog();
-	cout << endl;
+    // Create an array of Animal pointers
+    const int numAnimals = 5;
+    Animal *animals[numAnimals];
 
-	const Animal* Junim = new Cat();
-	cout << endl;
+    // Fill the array with half Dog and half Cat objects
+    for (int i = 0; i < numAnimals; i++)
+    {
+        if (i < numAnimals / 2)
+            animals[i] = new Dog();
+        else
+            animals[i] = new Cat();
+    }
 
-	cout << "------------------- ZOO -------------------" << endl;
-	const Animal* zoo[NBR_ANIMALS];
+    // Make some deep copies of animals
+    for (int i = 0; i < numAnimals; i++) {
+        Animal *animal = animals[i];
+        if (animal->getType() == "Dog") {
+            Dog *dog = dynamic_cast<Dog*>(animal);
+            Dog dogCopy(*dog);  // Create a copy using the copy constructor
+            dogCopy.getBrain()->setIdea(0, "New Dog Idea");  // Modify the copy
+            std::cout << "Original Dog's Idea: " << dog->getBrain()->getIdea(0) << std::endl;
+            std::cout << "Copied Dog's Idea: " << dogCopy.getBrain()->getIdea(0) << std::endl;
+        } else if (animal->getType() == "Cat") {
+            Cat *cat = dynamic_cast<Cat*>(animal);
+            Cat catCopy(*cat);  // Create a copy using the copy constructor
+            catCopy.getBrain()->setIdea(0, "New Cat Idea");  // Modify the copy
+            std::cout << "Original Cat's Idea: " << cat->getBrain()->getIdea(0) << std::endl;
+            std::cout << "Copied Cat's Idea: " << catCopy.getBrain()->getIdea(0) << std::endl;
+        }
+    }
 
-	cout << "------------------- DOGS -------------------" << endl;
-	for (size_t i = 0; i < 2; i += 1) {
-		zoo[i] = new Dog();
-		cout << endl;
-	}
+    // Delete the original animals and their brains
+    for (int i = 0; i < numAnimals; i++)
+    {
+        delete animals[i];
+    }
 
-	cout << "------------------- CATS -------------------" << endl;
-	for (size_t i = 2; i < 4; i += 1) {
-		zoo[i] = new Cat();
-		cout << endl;
-	}
-
-	cout << "---------------- DELETE ZOO ---------------" << endl;
-	for (size_t i = 0; i < NBR_ANIMALS; i += 1) {
-		delete zoo[i];
-	}
-	cout << "--------------- ZOO DELETED ---------------" << endl;
-	cout << endl;
-
-	delete Bisteca;
-	delete Junim;
-
-	return EXIT_SUCCESS; 
+    return (0);
 }
