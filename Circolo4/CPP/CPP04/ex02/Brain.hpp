@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:57 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 18:43:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:54:53 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Brain
 		~Brain(void);
 
 		std::string getIdea(int index) const;
+		void setIdea(int index, const std::string& idea);
 };
 
 #endif

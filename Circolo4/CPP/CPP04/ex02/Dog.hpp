@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 01:20:26 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 18:43:07 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:16:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class Dog : public Animal //Derived class
 {
 	private:
 		Brain* brain;
+		std::string type;
 		
 	public:
 		Dog(void);

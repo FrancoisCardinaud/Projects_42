@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:41 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 18:43:03 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 20:19:30 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ Cat::Cat(void) : Animal()
 {
 	this->setType("Cat");
 	this->brain = new Brain();
+	brain->setIdea(0, "Original Cat Idea");
 	std::cout << "CAT default constructor has been called" << std::endl;
 }
 

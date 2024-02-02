@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 19:09:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:54:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ std::string Brain::getIdea(int index) const
         return ideas[index];
 	else
         return "Invalid Index";
+}
+
+void Brain::setIdea(int index, const std::string& idea) {
+    if (index >= 0 && index < 100) {
+        ideas[index] = idea;
+    }
 }
