@@ -6,17 +6,17 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:46 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:16:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:34:57 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
-class Cat : public Animal //Derived class
+class Cat : public AAnimal //Derived class
 {
 	private:
 		Brain* brain;

@@ -6,14 +6,14 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:41 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:19:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:35:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Cat.hpp"
 
-Cat::Cat(void) : Animal()
+Cat::Cat(void) : AAnimal()
 {
 	this->setType("Cat");
 	this->brain = new Brain();
@@ -21,7 +21,7 @@ Cat::Cat(void) : Animal()
 	std::cout << "CAT default constructor has been called" << std::endl;
 }
 
-Cat::Cat(const Cat &to_copy) : Animal(to_copy)
+Cat::Cat(const Cat &to_copy) : AAnimal(to_copy)
 {
     this->brain = new Brain();
 	*this = to_copy;

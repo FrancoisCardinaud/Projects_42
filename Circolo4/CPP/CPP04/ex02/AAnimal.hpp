@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:14:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/01 01:22:16 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:32:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include <string>
 # include "Brain.hpp"
 
-class AAnimal {
+class AAnimal
+{
+	protected:
+		std::string type;
+		
 	public:
 		AAnimal(void);
 		AAnimal(const AAnimal &to_copy);
@@ -27,9 +31,6 @@ class AAnimal {
 		void setType(std::string type);
 
 		virtual void makeSound(void) const = 0;
-
-	protected:
-		std::string type;
 };
 
-#endif // AANIMAL_HPP
+#endif

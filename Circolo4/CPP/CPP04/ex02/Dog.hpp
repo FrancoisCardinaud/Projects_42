@@ -6,17 +6,17 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 01:20:26 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:16:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:35:02 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
-class Dog : public Animal //Derived class
+class Dog : public AAnimal //Derived class
 {
 	private:
 		Brain* brain;
