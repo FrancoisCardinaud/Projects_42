@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:32 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:12:33 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:53:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,46 +18,52 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-using std::cout;
-using std::endl;
+int main() {
+    // Create Animal, Dog, and Cat
+    const Animal* animal = new Animal();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
 
-int	main(void)
-{
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
-	const Animal* meta_animal = new Animal();
+	std::cout << std::endl;
 
-	cout << dog->getType() << "-> "; 
-	dog->makeSound();
+    // Test getType() function
+    std::cout << "Animal type: " << animal->getType() << std::endl; // Empty type
+    std::cout << "Dog type: " << dog->getType() << std::endl;       // "Dog"
+    std::cout << "Cat type: " << cat->getType() << std::endl;       // "Cat"
 
-	cout << cat->getType() << "-> "; 
-	cat->makeSound();
+	std::cout << std::endl;
 
-	cout << endl;
+    // Test makeSound() function
+    animal->makeSound(); // Default sound
+    dog->makeSound();    // "Woof!"
+    cat->makeSound();    // "Meow!"
 
-	meta_animal->makeSound();
+	std::cout << std::endl;
 
-	cout << endl;
+    // Create instances of WrongAnimal and WrongCat
+    const WrongAnimal* wrongAnimal = new WrongAnimal();
+    const WrongAnimal* wrongCat = new WrongCat();
 
-	cout << "---------- WrongAnimal & WrongCat ----------" << endl;
+	std::cout << std::endl;
 
-	const WrongAnimal* wrong_cat = new WrongCat();
-	const WrongAnimal* meta_wrong_animal = new WrongAnimal();
+    // Test getType() function for WrongAnimal and WrongCat
+    std::cout << "WrongAnimal type: " << wrongAnimal->getType() << std::endl; // Empty type
+    std::cout << "WrongCat type: " << wrongCat->getType() << std::endl;       // Empty type
 
-	cout << endl;
+	std::cout << std::endl;
 
-	cout << wrong_cat->getType() << "-> "; 
-	wrong_cat->makeSound();
+    // Test makeSound() function for WrongCat
+	wrongAnimal->makeSound();
+    wrongCat->makeSound(); // Default sound for WrongCat
 
-	meta_wrong_animal->makeSound();
+	std::cout << std::endl;
 
-	cout << endl;
+    // Clean up memory
+    delete animal;
+    delete dog;
+    delete cat;
+    delete wrongAnimal;
+    delete wrongCat;
 
-	delete dog;
-	delete cat;
-	delete meta_animal;
-	delete wrong_cat;
-	delete meta_wrong_animal;
-
-	return EXIT_SUCCESS;
+    return 0;
 }

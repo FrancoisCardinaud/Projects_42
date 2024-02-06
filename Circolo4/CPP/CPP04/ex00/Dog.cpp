@@ -6,38 +6,38 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:11:54 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:14:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Dog.hpp"
 
-using std::cout;
-using std::endl;
-
-Dog::Dog(void) : Animal() {
-	cout << "[Dog] default constructor has been called" << endl;
+Dog::Dog(void) : Animal()
+{
+	std::cout << "DOG default constructor has been called" << std::endl;
 	this->setType("Dog");
 }
 
 Dog::Dog(const Dog &to_copy) : Animal(to_copy)
 {
 	*this = to_copy;
-	cout << "[Dog] copy constructor has been called " << endl;
+	std::cout << "DOG copy constructor has been called " << std::endl;
 }
 
 Dog& Dog::operator=(const Dog &to_copy)
 {
-	*this = to_copy;
-	cout << "[Dog] copy assignment constructor has been called " << endl;
-	return *this;
+    this->type = to_copy.type;
+	std::cout << "DOG copy assignment constructor has been called " << std::endl;
+    return *this;
 }
 
-Dog::~Dog(void) {
-	cout << "[Dog] default destructor has been called" << endl;
+Dog::~Dog(void)
+{
+	std::cout << "DOG default destructor has been called" << std::endl;
 }
 
-void Dog::makeSound(void) const {
-	cout << "AuAu 🐕" << endl;
+void Dog::makeSound(void) const
+{
+	std::cout << "\"Arf!\"" << std::endl;
 }

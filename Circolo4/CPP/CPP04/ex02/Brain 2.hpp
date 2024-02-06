@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:11:46 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:16:49 by fcardina         ###   ########.fr       */
+/*   Created: 2024/01/02 19:12:57 by fcardina          #+#    #+#             */
+/*   Updated: 2024/02/02 18:43:02 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include <string>
 
-class Cat : public Animal //Derived class
+class Brain
 {
 	private:
-		Brain* brain;
-		std::string type;
+		std::string ideas[100];
 		
 	public:
-		Cat(void);
-		Cat(const Cat &original);
-		Cat &operator=(const Cat &to_copy);
-		~Cat(void);
+		Brain(void);
+		Brain(const Brain &to_copy);
+		Brain &operator=(const Brain &to_copy);
+		~Brain(void);
 
-		void makeSound(void) const; //Polymorphic behavior
-		Brain* getBrain(void) const;
+		std::string getIdea(int index) const;
 };
 
 #endif

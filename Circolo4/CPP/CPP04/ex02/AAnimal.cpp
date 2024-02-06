@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:14:52 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:14:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:32:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ using std::cout;
 using std::endl;
 
 AAnimal::AAnimal(void) {
-	cout << "[AAnimal] default constructor has been called" << endl;
+	cout << "AANIMAL default constructor has been called" << endl;
 }
 
 AAnimal::AAnimal(const AAnimal &to_copy)
 {
 	this->type = to_copy.type;
-	cout << "[AAnimal] copy constructor has been called" << endl;
+	cout << "AANIMAL copy constructor has been called" << endl;
 }
 
 AAnimal& AAnimal::operator=(const AAnimal &to_copy)
 {
 	if (this != &to_copy)
 		this->type = to_copy.type;
-	cout << "[AAnimal] copy assignment constructor has been called" << endl;
+	cout << "AANIMAL copy assignment constructor has been called" << endl;
 	return *this;
 }
 
 AAnimal::~AAnimal(void) {
-	cout << "[AAnimal] default destructor has been called" << endl;
+	cout << "AANIMAL default destructor has been called" << endl;
 }
 
 std::string AAnimal::getType(void) const {
@@ -47,5 +47,5 @@ void AAnimal::setType(std::string type) {
 }
 
 void AAnimal::makeSound(void) const {
-	cout << "[AAnimal] makeSound() has been called" << endl;
+	cout << "AANIMAL makeSound() has been called" << endl;
 }

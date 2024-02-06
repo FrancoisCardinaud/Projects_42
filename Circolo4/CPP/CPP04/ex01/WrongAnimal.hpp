@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:13:19 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:13:20 by fcardina         ###   ########.fr       */
+/*   Created: 2024/01/02 19:12:40 by fcardina          #+#    #+#             */
+/*   Updated: 2024/02/02 18:43:12 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 
 # include <string>
 
-class WrongAnimal {
+class WrongAnimal
+{	
+	protected:
+		std::string type;
+		
 	public:
 		WrongAnimal(void);
-		WrongAnimal(const WrongAnimal &to_copy);
+		WrongAnimal(const WrongAnimal &original);
 		WrongAnimal &operator=(const WrongAnimal &to_copy);
-		~WrongAnimal(void);
+		virtual ~WrongAnimal(void);
 
 		std::string getType(void) const;
 		void setType(std::string type);
 
-		void makeSound(void) const;
-
-	protected:
-		std::string type;
+		virtual void makeSound(void) const;
 };
 
-#endif // WRONGANIMAL_HPP
+#endif
