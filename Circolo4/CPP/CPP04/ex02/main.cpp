@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:15:14 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/06 03:49:48 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:20:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,10 @@
 #include <cstdlib>
 #include <iostream>
 
-#define NBR_ANIMALS 4
-
-using std::cout;
-using std::endl;
-/*
-int main(void)
-{
-	const AAnimal* dog = new Dog();
-	cout << endl;
-
-	const AAnimal* cat = new Cat();
-	cout << endl;
-
-	const AAnimal* zoo[NBR_ANIMALS];
-
-	for (size_t i = 0; i < 2; i += 1) {
-		zoo[i] = new Dog();
-		cout << endl;
-	}
-
-	for (size_t i = 2; i < 4; i += 1) {
-		zoo[i] = new Cat();
-		cout << endl;
-	}
-
-	for (size_t i = 0; i < NBR_ANIMALS; i += 1) {
-		delete zoo[i];
-	}
-	cout << endl;
-
-	delete dog;
-	delete cat;
-
-	// Test instantiation of AAnimal:
-	//	AAnimal	test = new AAnimal();
-
-	return EXIT_SUCCESS; 
-}*/
-
 int main()
 {
+	//AAnimal *aanimal = new AAnimal();
+
     // Create an array of Animal pointers
     const int numAnimals = 2;
     AAnimal *aanimals[numAnimals];

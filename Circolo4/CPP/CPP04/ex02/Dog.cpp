@@ -6,14 +6,14 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:20:07 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:06:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Dog.hpp"
 
-Dog::Dog(void) : Animal()
+Dog::Dog(void) : AAnimal()
 {
 	this->setType("Dog");
 	this->brain = new Brain();
@@ -21,7 +21,7 @@ Dog::Dog(void) : Animal()
 	std::cout << "DOG default constructor has been called" << std::endl;
 }
 
-Dog::Dog(const Dog &to_copy) : Animal(to_copy)
+Dog::Dog(const Dog &to_copy) : AAnimal(to_copy)
 {
     this->brain = new Brain();
 	*this = to_copy;

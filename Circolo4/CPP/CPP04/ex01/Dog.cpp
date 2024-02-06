@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:20:07 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:54:30 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void Dog::makeSound(void) const
 
 void	Dog::getIdea(void)const
 {
-	for (int i = 0; i < 3; i++)// change the 3 to 100 to show all ideas
-		std::cout << "\tIdea " << i << " of the Dog is: \"" << this->brain->getIdea(i) << "\" at the address " << this->brain->getIdeaAddress(i) << std::endl;
+	for (int i = 0; i < 5; i++)
+		std::cout << "\t""Dog's idea " << i << " is: \"" << this->brain->getIdea(i) << "\" at the address " << this->brain->getIdeaAddress(i) << std::endl;
 }
 
 Brain* Dog::getBrain(void) const

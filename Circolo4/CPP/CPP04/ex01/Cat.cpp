@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:41 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:19:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:54:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void Cat::makeSound(void) const
 
 void	Cat::getIdea(void)const
 {
-	for (int i = 0; i < 3; i++)// change the 3 to 100 to show all ideas
-		std::cout << "\tIdea " << i << " of the Cat is: \"" << this->brain->getIdea(i) << "\" at the address " << this->brain->getIdeaAddress(i) << std::endl;
+	for (int i = 0; i < 5; i++) // change 5 to whatever value needed
+		std::cout << "\t""Cat's idea " << i << " is: \"" << this->brain->getIdea(i) << "\" at the address " << this->brain->getIdeaAddress(i) << std::endl;
 }
 
 Brain* Cat::getBrain(void) const
