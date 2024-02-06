@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:39 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 16:01:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:16:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ class Animal  //Base class
 		Animal(void);
 		Animal(const Animal &to_copy);
 		Animal &operator=(const Animal &to_copy);
-		virtual ~Animal(void); //Polymorphism
+		virtual ~Animal(void);
 
 		std::string getType(void) const;
 		void setType(std::string type);
 
-		virtual void makeSound(void) const;
+		virtual void makeSound(void) const; //virtual -> Polymorphism
 };
 
 #endif

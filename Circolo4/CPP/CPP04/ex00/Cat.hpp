@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:46 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/01 01:43:32 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:14:39 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Cat : public Animal
 		Cat &operator=(const Cat &to_copy);
 		~Cat(void);
 
-		void makeSound(void) const;
+		void makeSound(void) const; //Attribute: polymorphic behavior
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 16:06:43 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:14:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ Dog::Dog(const Dog &to_copy) : Animal(to_copy)
 
 Dog& Dog::operator=(const Dog &to_copy)
 {
-    if (this != &to_copy) // Check for self-assignment
-    {
-        *this = to_copy;
-        std::cout << "DOG copy assignment constructor has been called " << std::endl;
-    }
+    this->type = to_copy.type;
+	std::cout << "DOG copy assignment constructor has been called " << std::endl;
     return *this;
 }
 

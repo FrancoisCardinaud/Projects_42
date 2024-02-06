@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 01:20:26 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 15:20:06 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:14:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Dog : public Animal //Derived class
 		Dog &operator=(const Dog &to_copy);
 		~Dog(void);
 
-		void makeSound(void) const; //Polymorphic behavior
+		void makeSound(void) const; //Attribute: polymorphic behavior
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:14:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/03 19:32:48 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/06 03:41:15 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class AAnimal
 		void setType(std::string type);
 
 		virtual void makeSound(void) const = 0;
+		//Pure virtual function: Any class deriving from AAnimal 
+		// must provide its own implementation of makeSound()
 };
 
 #endif
