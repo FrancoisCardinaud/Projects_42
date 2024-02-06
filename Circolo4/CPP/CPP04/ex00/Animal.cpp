@@ -27,7 +27,7 @@ Animal::Animal(const Animal &to_copy)
 Animal& Animal::operator=(const Animal &to_copy)
 {
 	this->type = to_copy.type;
-	std::cout << "ANIMAL copy assignment constructor has been called" << std::endl;
+	std::cout << "ANIMAL assignment operator has been called" << std::endl;
 	return *this;
 }
 

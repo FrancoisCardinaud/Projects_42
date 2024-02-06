@@ -19,7 +19,7 @@
 #include "WrongCat.hpp"
 
 int main() {
-    // Create Animal, Dog, and Cat
+    // Create Animal, Dog, & Cat
     const Animal* animal = new Animal();
     const Animal* dog = new Dog();
     const Animal* cat = new Cat();
@@ -41,28 +41,32 @@ int main() {
 	std::cout << std::endl;
 
     // Create instances of WrongAnimal and WrongCat
-    const WrongAnimal* wrongAnimal = new WrongAnimal();
-    const WrongAnimal* wrongCat = new WrongCat();
+    const WrongAnimal *wrongAnimalOne = new WrongAnimal();
+    const WrongAnimal *wrongAnimalTwo = new WrongCat();
+    const WrongCat *wrongCat = new WrongCat();
 
 	std::cout << std::endl;
 
-    // Test getType() function for WrongAnimal and WrongCat
-    std::cout << "WrongAnimal type: " << wrongAnimal->getType() << std::endl; // Empty type
-    std::cout << "WrongCat type: " << wrongCat->getType() << std::endl;       // Empty type
+    // Test getType() function for WrongAnimals and WrongCat
+    std::cout << "WrongAnimalOne type: " << wrongAnimalOne->getType() << std::endl;
+    std::cout << "WrongAnimalTwo type: " << wrongAnimalTwo->getType() << std::endl;
+    std::cout << "WrongCat type: " << wrongCat->getType() << std::endl;       
 
 	std::cout << std::endl;
 
     // Test makeSound() function for WrongCat
-	wrongAnimal->makeSound();
-    wrongCat->makeSound(); // Default sound for WrongCat
+	wrongAnimalOne->makeSound();
+    wrongAnimalTwo->makeSound();
+    wrongCat->makeSound();
 
 	std::cout << std::endl;
 
     // Clean up memory
     delete animal;
-    delete dog;
     delete cat;
-    delete wrongAnimal;
+    delete dog;
+    delete wrongAnimalOne;
+    delete wrongAnimalTwo;
     delete wrongCat;
 
     return 0;

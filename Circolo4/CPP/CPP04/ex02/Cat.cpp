@@ -32,7 +32,7 @@ Cat& Cat::operator=(const Cat &to_copy)
 {
 	this->type = to_copy.type;
 	*(this->brain) = *(to_copy.brain);
-    std::cout << "CAT copy assignment constructor has been called " << std::endl;
+    std::cout << "CAT assignment operator has been called " << std::endl;
     return *this;
 }
 

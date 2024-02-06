@@ -30,7 +30,7 @@ AAnimal& AAnimal::operator=(const AAnimal &to_copy)
 {
 	if (this != &to_copy)
 		this->type = to_copy.type;
-	cout << "AANIMAL copy assignment constructor has been called" << endl;
+	cout << "AANIMAL assignment operator has been called" << endl;
 	return *this;
 }
 

@@ -29,7 +29,7 @@ WrongCat& WrongCat::operator=(const WrongCat &to_copy)
 {
 	if (this != &to_copy)
 		this->type = to_copy.type;
-	std::cout << "WRONG CAT copy assignment constructor has been called " << std::endl;
+	std::cout << "WRONG CAT assignment operator has been called " << std::endl;
 	return *this;
 }
 

@@ -32,7 +32,7 @@ Dog& Dog::operator=(const Dog &to_copy)
 {
 	this->type = to_copy.type;
 	*(this->brain) = *(to_copy.brain);
-    std::cout << "DOG copy assignment constructor has been called " << std::endl;
+    std::cout << "DOG assignment operator has been called " << std::endl;
     return *this;
 }
 

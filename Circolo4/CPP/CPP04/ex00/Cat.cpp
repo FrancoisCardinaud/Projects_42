@@ -13,7 +13,7 @@
 #include <iostream>
 #include "Cat.hpp"
 
-Cat::Cat(void) : Animal()
+Cat::Cat(void) : Animal() //inheritance
 {
 	std::cout << "CAT default constructor has been called" << std::endl;
 	this->setType("Cat");
@@ -28,7 +28,7 @@ Cat::Cat(const Cat &to_copy) : Animal(to_copy)
 Cat& Cat::operator=(const Cat &to_copy)
 {
 	this->type = to_copy.type;
-	std::cout << "CAT copy assignment constructor has been called " << std::endl;
+	std::cout << "CAT assignment operator has been called " << std::endl;
 	return *this;
 }
 

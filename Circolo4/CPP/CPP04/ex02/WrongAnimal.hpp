@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:40 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 18:43:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:06:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class WrongAnimal
 		std::string getType(void) const;
 		void setType(std::string type);
 
-		virtual void makeSound(void) const;
+		void makeSound(void) const;
 };
 
 #endif

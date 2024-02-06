@@ -37,7 +37,7 @@ Brain& Brain::operator=(const Brain &to_copy)
         {
             this->ideas[i] = to_copy.ideas[i];
         }
-        cout << "BRAIN copy assignment constructor has been called" << endl;
+        cout << "BRAIN assignment operator has been called" << endl;
     }
     return *this;
 }

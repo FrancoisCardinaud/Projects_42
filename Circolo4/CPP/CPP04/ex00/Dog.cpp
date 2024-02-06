@@ -13,7 +13,7 @@
 #include <iostream>
 #include "Dog.hpp"
 
-Dog::Dog(void) : Animal()
+Dog::Dog(void) : Animal() //inheritance
 {
 	std::cout << "DOG default constructor has been called" << std::endl;
 	this->setType("Dog");
@@ -28,7 +28,7 @@ Dog::Dog(const Dog &to_copy) : Animal(to_copy)
 Dog& Dog::operator=(const Dog &to_copy)
 {
     this->type = to_copy.type;
-	std::cout << "DOG copy assignment constructor has been called " << std::endl;
+	std::cout << "DOG assignment operator has been called " << std::endl;
     return *this;
 }
 
