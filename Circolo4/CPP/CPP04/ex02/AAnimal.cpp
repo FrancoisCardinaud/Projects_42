@@ -13,29 +13,26 @@
 #include <iostream>
 #include "AAnimal.hpp"
 
-using std::cout;
-using std::endl;
-
 AAnimal::AAnimal(void) {
-	cout << "AANIMAL default constructor has been called" << endl;
+	std::cout << "AANIMAL default constructor has been called" << std::endl;
 }
 
 AAnimal::AAnimal(const AAnimal &to_copy)
 {
 	this->type = to_copy.type;
-	cout << "AANIMAL copy constructor has been called" << endl;
+	std::cout << "AANIMAL copy constructor has been called" << std::endl;
 }
 
 AAnimal& AAnimal::operator=(const AAnimal &to_copy)
 {
 	if (this != &to_copy)
 		this->type = to_copy.type;
-	cout << "AANIMAL assignment operator has been called" << endl;
+	std::cout << "AANIMAL assignment operator has been called" << std::endl;
 	return *this;
 }
 
 AAnimal::~AAnimal(void) {
-	cout << "AANIMAL default destructor has been called" << endl;
+	std::cout << "AANIMAL default destructor has been called" << std::endl;
 }
 
 std::string AAnimal::getType(void) const {
@@ -47,5 +44,5 @@ void AAnimal::setType(std::string type) {
 }
 
 void AAnimal::makeSound(void) const {
-	cout << "AANIMAL makeSound() has been called" << endl;
+	std::cout << "AANIMAL makeSound() has been called" << std::endl;
 }

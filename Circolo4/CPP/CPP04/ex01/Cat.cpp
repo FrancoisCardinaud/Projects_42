@@ -17,7 +17,7 @@ Cat::Cat(void) : Animal()
 {
 	this->setType("Cat");
 	this->brain = new Brain();
-	brain->setIdea(0, "Original Cat Idea");
+	//brain->setIdea(0, "Original Cat Idea");
 	std::cout << "CAT default constructor has been called" << std::endl;
 }
 
@@ -45,6 +45,12 @@ Cat::~Cat(void)
 void Cat::makeSound(void) const
 {
 	std::cout << "\"Meow...\"" << std::endl;
+}
+
+void	Cat::getIdea(void)const
+{
+	for (int i = 0; i < 3; i++)// change the 3 to 100 to show all ideas
+		std::cout << "\tIdea " << i << " of the Cat is: \"" << this->brain->getIdea(i) << "\" at the address " << this->brain->getIdeaAddress(i) << std::endl;
 }
 
 Brain* Cat::getBrain(void) const

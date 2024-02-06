@@ -13,11 +13,8 @@
 #include <iostream>
 #include "Brain.hpp"
 
-using std::cout;
-using std::endl;
-
 Brain::Brain(void) {
-	cout << "BRAIN default constructor has been called" << endl;
+	std::cout << "BRAIN default constructor has been called" << std::endl;
 };
 
 Brain::Brain(const Brain &to_copy)
@@ -26,7 +23,7 @@ Brain::Brain(const Brain &to_copy)
     {
         this->ideas[i] = to_copy.ideas[i];
     }
-    cout << "BRAIN copy constructor has been called" << endl;
+    std::cout << "BRAIN copy constructor has been called" << std::endl;
 }
 
 Brain& Brain::operator=(const Brain &to_copy)
@@ -37,13 +34,13 @@ Brain& Brain::operator=(const Brain &to_copy)
         {
             this->ideas[i] = to_copy.ideas[i];
         }
-        cout << "BRAIN assignment operator has been called" << endl;
+        std::cout << "BRAIN assignment operator has been called" << std::endl;
     }
     return *this;
 }
 
 Brain::~Brain(void) {
-	cout << "BRAIN default destructor has been called" << endl;
+	std::cout << "BRAIN default destructor has been called" << std::endl;
 }
 
 std::string Brain::getIdea(int index) const
@@ -58,4 +55,15 @@ void Brain::setIdea(int index, const std::string& idea) {
     if (index >= 0 && index < 100) {
         ideas[index] = idea;
     }
+}
+
+const std::string *Brain::getIdeaAddress(size_t i)const
+{
+	if (i < 100)
+	{
+		const std::string &stringREF = this->ideas[i];
+		return(&stringREF);
+	}
+	else
+		return (NULL);
 }

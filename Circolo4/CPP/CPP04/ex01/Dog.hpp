@@ -29,6 +29,7 @@ class Dog : public Animal //Derived class
 		~Dog(void);
 
 		void makeSound(void) const; //Polymorphic behavior
+		void getIdea(void)const;
 		Brain* getBrain(void) const;
 };
 
