@@ -6,13 +6,13 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2024/01/16 14:23:29 by fcardina         ###   ########.fr        #
+#    Updated: 2024/02/26 16:38:47 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= miniRT
 
-MLX_FLAGS	= -lbsd -lmlx -lXext -lX11 -lm -framework OpenGL -framework AppKit
+MLX_FLAGS	= -lbsd -lmlx -L/usr/X11/lib -lXext -lX11 -lm -framework OpenGL -framework AppKit
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 LIBFT		= $(LIBFT_DIR)libft.a
@@ -36,7 +36,7 @@ OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 
 $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
 			@mkdir -p $(DIR_OBJS) $(OBJS_DIRS)
-			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCLUDES) -Imlx -c -o $@ $<
 
 all:		$(NAME)
 
@@ -44,7 +44,7 @@ $(LIBFT):
 			@make --no-print-directory -C $(LIBFT_DIR)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIB_FLAGS)
+			@$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(LIB_FLAGS)
 
 clean:
 			@make clean --no-print-directory -C $(LIBFT_DIR)

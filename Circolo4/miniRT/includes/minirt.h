@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2024/01/16 14:27:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:07:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdbool.h>
 # include <math.h>
 # include <mlx.h>
-# include "libft.h"
+# include "../libft/libft.h"
 # include "errors.h"
 # include "scene.h"
 # include "vectors.h"
