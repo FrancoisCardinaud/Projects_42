@@ -50,7 +50,7 @@ void		error_msg_and_exit(char *code)
 {
 	if (errno && ft_strcmp(code, SYSERR) == 0)
 		perror("\033[1m\033[38;5;199mSystem error\033[0m");
-	else if (code != SYSERR)
+	else if (ft_strcmp(code, SYSERR) != 0)
 		print_error_msg(code);
 	else
 		ft_putstr_fd("Fatal Error\n", STDERR_FILENO);

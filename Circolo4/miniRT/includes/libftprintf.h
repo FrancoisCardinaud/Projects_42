@@ -14,6 +14,7 @@
 # define LIBFTPRINTF_H
 
 # include <stdarg.h>
+# include <stdint.h>
 # include <unistd.h>
 # include "../libft/libft.h"
 

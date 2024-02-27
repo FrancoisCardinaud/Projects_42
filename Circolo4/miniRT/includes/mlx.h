@@ -44,6 +44,7 @@ void	*mlx_init();
 */
 
 void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char const *title);
+int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 /*
 **  return void *0 if failed
 */

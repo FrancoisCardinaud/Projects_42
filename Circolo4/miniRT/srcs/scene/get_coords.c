@@ -27,7 +27,7 @@ t_coord	get_coord(char *str, char *code)
 	char	**split;
 
 	split = ft_split(str, ',');
-	if (ft_strlen_2(split) != 3 || !(ft_str_isfloat(split[0]) == 1 &&
+	if (ft_strlen_const(split) != 3 || !(ft_str_isfloat(split[0]) == 1 &&
 			ft_str_isfloat(split[1]) == 1 && ft_str_isfloat(split[2]) == 1))
 	{
 		ft_split_free(split);

@@ -23,6 +23,7 @@
 # include "../libft/libft.h"
 # include "errors.h"
 # include "scene.h"
+# include <string.h> 
 # include "vectors.h"
 
 /*

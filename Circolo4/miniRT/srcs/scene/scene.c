@@ -35,7 +35,7 @@ static void	scene_line_split(t_scene *scene, short int elem_id,
 		i++;
 	}
 	scene->split = ft_split(scene->line, ' ');
-	if (ft_strlen_2(scene->split) != (size_t)info_qty[elem_id])
+	if (ft_strlen_const(scene->split) != (size_t)info_qty[elem_id])
 		error_msg_and_exit(get_error_code(1, elem_id, err_id));
 }
 

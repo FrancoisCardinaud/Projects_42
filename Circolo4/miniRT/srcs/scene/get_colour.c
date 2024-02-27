@@ -27,7 +27,7 @@ int		get_colour(char *str, char *code)
 	int		i;
 
 	split = ft_split(str, ',');
-	if (ft_strlen_2(split) != 3)
+	if (ft_strlen_const(split) != 3)
 		error_msg_and_exit(code);
 	colour = 0;
 	i = 0;
@@ -37,7 +37,9 @@ int		get_colour(char *str, char *code)
 			error_msg_and_exit(code);
 		aux = ft_atoi(split[i]);
 		if (ft_isrgb(aux) == false)
+		{
 			error_msg_and_exit(code);\
+		}
 		colour = (colour << 8) | aux;
 		i++;
 	}
