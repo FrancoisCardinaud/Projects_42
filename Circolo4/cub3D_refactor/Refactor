@@ -1,0 +1,164 @@
+Original: initialize_data
+Modified: initialize_data
+
+Original: clean_initialize_img
+Modified: clean_initialize_img
+
+Original: initialize_rays
+Modified: initialize_ray
+
+Original: initialize_mlx
+Modified: initialize_mlx
+
+Original: initialize_img
+Modified: initialize_img
+
+Original: initialize_texture_image
+Modified: initialize_texture_image
+
+Original: initialize_textures
+Modified: initialize_textures
+
+Original: initialize_texture_data
+Modified: initialize_texture_data
+
+Original: validate_file
+Modified: validate_file
+
+Original: parse_data
+Modified: parse_data_file
+
+Original: retrieve_file_data
+Modified: retrieve_file_data
+
+Original: fill_textures_color_data
+Modified: fill_textures_color_data_data
+
+Original: validate_textures
+Modified: validate_textures
+
+Original: validate_map
+Modified: validate_map
+
+Original: validate_map_borders
+Modified: validate_map_borders
+
+Original: check_white_space
+Modified: check_white_space
+
+Original: find_largest_length
+Modified: find_largest_length
+
+Original: trace
+Modified: draw
+
+Original: trace_images
+Modified: trace_images_data
+
+Original: perform_raycasting
+Modified: perform_perform_raycasting
+
+Original: initialize_texture_pixels
+Modified: initialize_texture_pixels
+
+Original: update_texture_pixels
+Modified: update_texture_pixels_data
+
+Original: set_image_pixel
+Modified: adjust_image_pixel
+
+Original: trace_minimap
+Modified: trace_minimap_data
+
+Original: trace_minimap_image
+Modified: trace_minimap_image_data
+
+Original: await_input
+Modified: await_input
+
+Original: set_player_direction
+Modified: set_player_direction
+
+Original: validate_move
+Modified: validate_move_data
+
+Original: move_character
+Modified: move_character_data
+
+Original: rotate_character
+Modified: rotate_character_data
+
+Original: exit_cleanup
+Modified: exit_cleanup
+
+Original: quit_program
+Modified: quit_program
+
+Original: free_memory
+Modified: free_memory
+
+Original: free_all_data
+Modified: free_all_data
+
+Original: display_error_message
+Modified: display_error_message
+
+Original: display_error_message_validation
+Modified: display_error_message_validation
+
+Original: display_debug_data
+Modified: display_debug_data
+
+Original: debug_display_minimap
+Modified: display_debug_minimap
+
+Original: debug_display_player
+Modified: display_debug_player
+
+Original: debug_print_char_tab
+Modified: print_character_tab
+
+
+
+
+DEBUG_TEXT : DEBUG_MESSAGE
+DEBUG_MINIMAP : DEBUG_MMAP_ENABLED
+BONUS : ENABLE_BONUS
+WINDOW_W : WINDOW_WIDTH
+WINDOW_H : WINDOW_HEIGHT
+TEXTURE_SIZE : TEXTURE_SIZE
+T_SPEED : MOVEMENT_SPEED
+R_SPEED : ROTATION_SPEED
+MOUSE_WRAP_DISTANCE : MOUSE_WRAP_DISTANCE
+MINIMAP_VIEW_DISTANCE : MINIMAP_PIXEL_SIZE
+MMAP_VIEW_DIST : MINIMAP_VIEW_DISTANCE
+MINIMAP_CHARACTER_COLOR : MINIMAP_COLOR_PLAYER
+MINIMAP_WALL_COLOR : MINIMAP_COLOR_WALL
+MINIMAP_FLOOR_COLOR : MINIMAP_COLOR_FLOOR
+MINIMAP_SPACE_COLOR : MINIMAP_COLOR_SPACE
+DIR_FLAG : DIRECTORY_FLAG
+
+ERR_USAGE : USAGE_ERROR
+ERR_FILE_NOT_CUB : INVALID_CUB_FILE
+ERR_FILE_NOT_XPM : INVALID_XPM_FILE
+ERR_FILE_IS_DIR : DIRECTORY_ERROR
+ERR_FLOOR_CEILING : INVALID_FLOOR_CEILING_COLOR
+ERR_COLOR_FLOOR : INVALID_FLOOR_COLOR
+ERR_COLOR_CEILING : INVALID_CEILING_COLOR
+ERR_INVALID_MAP : INVALID_MAP_DESCRIPTION
+ERR_INV_LETTER : INVALID_MAP_CHARACTER
+ERR_NUM_PLAYER : MULTIPLE_PLAYERS_ERROR
+ERR_TEX_RGB_VAL : INVALID_TEXTURE_RGB_VALUE
+ERR_TEX_MISSING : MISSING_TEXTURE_ERROR
+ERR_TEX_INVALID : INVALID_TEXTURE_ERROR
+ERR_COLOR_MISSING : MISSING_COLOR_ERROR
+ERR_MAP_MISSING : MISSING_MAP_ERROR
+ERR_MAP_TOO_SMALL : SMALL_MAP_ERROR
+ERR_MAP_NO_WALLS : NO_WALLS_ERROR
+ERR_MAP_LAST : NOT_LAST_MAP_ELEMENT
+ERR_PLAYER_POS : INVALID_PLAYER_POSITION
+ERR_PLAYER_DIR : MISSING_PLAYER_DIRECTION
+ERR_MALLOC : MEMORY_ALLOCATION_ERROR
+ERR_MLX_START : MLX_INITIALIZATION_ERROR
+ERR_MLX_WIN : MLX_WINDOW_CREATION_ERROR
+ERR_MLX_IMG : MLX_IMAGE_CREATION_ERROR
