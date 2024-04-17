@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 11:32:29 by mcombeau          #+#    #+#             */
-/*   Updated: 2024/04/07 04:35:16 by fcardina         ###   ########.fr       */
+/*   Created: 2024/03/09 11:32:29 by fcardina          #+#    #+#             */
+/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ void	debug_display_mapinfo(t_data *data)
 	printf("Texture west: %s\n", data->texture_data.west);
 }
 
-void	debug_display_player(t_data *data)
+void	debug_display_character(t_data *data)
 {
 	printf(YELLOW "\n---- PLAYER\n" RESET);
 	printf("Player pos: ");
-	printf("x = %f, y = %f\n", data->player.pos_x, data->player.pos_y);
-	printf("Player direction: %c ", data->player.dir);
-	printf("(x = %f, y = %f)\n", data->player.dir_x, data->player.dir_y);
+	printf("x = %f, y = %f\n", data->character.pos_x, data->character.pos_y);
+	printf("Player direction: %c ", data->character.dir);
+	printf("(x = %f, y = %f)\n", data->character.dir_x, data->character.dir_y);
 }
 
 void	display_debug_data(t_data *data)
 {
 	debug_display_mapinfo(data);
-	debug_display_player(data);
+	debug_display_character(data);
 	printf("\n");
 }

@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 11:30:04 by mcombeau          #+#    #+#             */
+/*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
 /*   Updated: 2024/04/06 19:51:47 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -49,7 +49,7 @@ static void	trace_raycast(t_data *data)
 {
 	initialize_texture_pixels(data);
 	initialize_rays(&data->ray);
-	perform_raycasting(&data->player, data);
+	perform_raycasting(&data->character, data);
 	trace_frame(data);
 }
 
@@ -62,8 +62,8 @@ void	trace_images(t_data *data)
 
 int	trace(t_data *data)
 {
-	data->player.has_moved += move_character(data);
-	if (data->player.has_moved == 0)
+	data->character.has_moved += move_character(data);
+	if (data->character.has_moved == 0)
 		return (0);
 	trace_images(data);
 	return (0);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 22:44:18 by alexa             #+#    #+#             */
-/*   Updated: 2024/04/07 04:35:16 by fcardina         ###   ########.fr       */
+/*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
+/*   Updated: 2024/04/17 03:30:26 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	parse_args(t_data *data, char **av)
 		return (free_all_data(data));
 	if (validate_textures(data, &data->texture_data) == FAILURE)
 		return (free_all_data(data));
-	set_player_direction(data);
+	set_character_direction(data);
 	if (DEBUG_TEXT)
 		display_debug_data(data);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_trace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 11:29:15 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/09 12:29:37 by mcombeau         ###   ########.fr       */
+/*   Created: 2024/03/09 11:29:15 by fcardina          #+#    #+#             */
+/*   Updated: 2024/03/09 12:29:37 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static char	*add_minimap_line(t_data *d, t_minimap *m, int y)
 		if (!is_valid_map_coord(y + m->offset_y, d->mapinfo.height)
 			|| !is_valid_map_coord(x + m->offset_x, d->mapinfo.width))
 			line[x] = '\0';
-		else if ((int)d->player.pos_x == (x + m->offset_x)
-			&& (int)d->player.pos_y == (y + m->offset_y))
+		else if ((int)d->character.pos_x == (x + m->offset_x)
+			&& (int)d->character.pos_y == (y + m->offset_y))
 			line[x] = 'P';
 		else if (d->map[y + m->offset_y][x + m->offset_x] == '1')
 			line[x] = '1';
@@ -88,9 +88,9 @@ void	trace_minimap(t_data *data)
 	minimap.size = (2 * minimap.view_dist) + 1;
 	minimap.tile_size = MINIMAP_VIEW_DISTANCE / (2 * minimap.view_dist);
 	minimap.offset_x = get_mmap_offset(&minimap,
-			data->mapinfo.width, (int)data->player.pos_x);
+			data->mapinfo.width, (int)data->character.pos_x);
 	minimap.offset_y = get_mmap_offset(&minimap,
-			data->mapinfo.height, (int)data->player.pos_y);
+			data->mapinfo.height, (int)data->character.pos_y);
 	minimap.map = generate_minimap(data, &minimap);
 	if (!minimap.map)
 	{

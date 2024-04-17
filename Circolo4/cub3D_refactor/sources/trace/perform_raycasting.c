@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 22:40:40 by alexa             #+#    #+#             */
+/*   Created: 2024/03/09 22:40:40 by fcardina          #+#    #+#             */
 /*   Updated: 2024/04/06 19:51:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -20,14 +20,14 @@ We initialize the set up for the rays
 - deltadist_x/y = distance to go to the next x or y.
 */
 
-static void	initialize_rayscasting_info(int x, t_ray *ray, t_player *player)
+static void	initialize_rayscasting_info(int x, t_ray *ray, t_character *character)
 {
 	initialize_rays(ray);
 	ray->camera_x = 2 * x / (double)WINDOW_W - 1;
-	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
-	ray->map_x = (int)player->pos_x;
-	ray->map_y = (int)player->pos_y;
+	ray->dir_x = character->dir_x + character->plane_x * ray->camera_x;
+	ray->dir_y = character->dir_y + character->plane_y * ray->camera_x;
+	ray->map_x = (int)character->pos_x;
+	ray->map_y = (int)character->pos_y;
 	ray->deltadist_x = fabs(1 / ray->dir_x);
 	ray->deltadist_y = fabs(1 / ray->dir_y);
 }
@@ -41,27 +41,27 @@ static void	initialize_rayscasting_info(int x, t_ray *ray, t_player *player)
 - if x or y > 0 go the next x or y to the right
 */
 
-static void	set_dda(t_ray *ray, t_player *player)
+static void	set_dda(t_ray *ray, t_character *character)
 {
 	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->sidedist_x = (player->pos_x - ray->map_x) * ray->deltadist_x;
+		ray->sidedist_x = (character->pos_x - ray->map_x) * ray->deltadist_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->sidedist_x = (ray->map_x + 1.0 - player->pos_x) * ray->deltadist_x;
+		ray->sidedist_x = (ray->map_x + 1.0 - character->pos_x) * ray->deltadist_x;
 	}
 	if (ray->dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->sidedist_y = (player->pos_y - ray->map_y) * ray->deltadist_y;
+		ray->sidedist_y = (character->pos_y - ray->map_y) * ray->deltadist_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->sidedist_y = (ray->map_y + 1.0 - player->pos_y) * ray->deltadist_y;
+		ray->sidedist_y = (ray->map_y + 1.0 - character->pos_y) * ray->deltadist_y;
 	}
 }
 
@@ -100,7 +100,7 @@ static void	perform_dda(t_data *data, t_ray *ray)
 	}
 }
 
-static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
+static void	calculate_line_height(t_ray *ray, t_data *data, t_character *character)
 {
 	if (ray->side == 0)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
@@ -114,13 +114,13 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 	if (ray->draw_end >= data->win_height)
 		ray->draw_end = data->win_height - 1;
 	if (ray->side == 0)
-		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
+		ray->wall_x = character->pos_y + ray->wall_dist * ray->dir_y;
 	else
-		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
+		ray->wall_x = character->pos_x + ray->wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
-int	perform_raycasting(t_player *player, t_data *data)
+int	perform_raycasting(t_character *character, t_data *data)
 {
 	t_ray	ray;
 	int		x;
@@ -129,10 +129,10 @@ int	perform_raycasting(t_player *player, t_data *data)
 	ray = data->ray;
 	while (x < data->win_width)
 	{
-		initialize_rayscasting_info(x, &ray, player);
-		set_dda(&ray, player);
+		initialize_rayscasting_info(x, &ray, character);
+		set_dda(&ray, character);
 		perform_dda(data, &ray);
-		calculate_line_height(&ray, data, player);
+		calculate_line_height(&ray, data, character);
 		update_texture_pixels(data, &data->texture_data, &ray, x);
 		x++;
 	}

@@ -1,7 +1,7 @@
 # cub3D
 
 <p align="center">
-  <img src="https://github.com/mcombeau/mcombeau/blob/main/42_badges/cub3de.png" alt="Cub3D 42 project badge"/>
+  <img src="https://github.com/fcardina/fcardina/blob/main/42_badges/cub3de.png" alt="Cub3D 42 project badge"/>
 </p>
 
 Cub3D is a 42 school team project to create a dynamic view inside a 3D maze. Using the [MiniLibX library](https://github.com/42Paris/minilibx-linux), we must implement perform_raycasting in the style of the famous [Wolfenstein 3D](http://users.atw.hu/wolf3d/) game, the first true FPS in videogame history.
@@ -15,13 +15,13 @@ Validated 12/02/2023. Grade: 115%.
 Clone the repository including the MiniLibX submodule:
 
 ```shell
-git clone --recursive https://github.com/mcombeau/cub3D.git
+git clone --recursive https://github.com/fcardina/cub3D.git
 ```
 
 Or:
 
 ```shell
-git clone https://github.com/mcombeau/cub3D.git
+git clone https://github.com/fcardina/cub3D.git
 git submodule update --init --recursive
 ```
 
@@ -80,4 +80,4 @@ Useful resources for this project are:
 - Movement: [Calculating heading in 2d games: Using trigonometric functions part 1](http://gamecodeschool.com/essentials/calculating-heading-in-2d-games-using-trigonometric-functions-part-1/)
 
 ---
-Made by aquesada and mcombeau
+Made by aquesada and fcardina

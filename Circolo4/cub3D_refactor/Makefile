@@ -37,10 +37,10 @@ SRC		= 	main.c \
 			parsing/fill_textures_color_data.c \
 			parsing/parsing_utils.c \
 			movement/input_handler.c \
-			movement/player_dir.c \
-			movement/player_pos.c \
-			movement/player_move.c \
-			movement/player_rotate.c \
+			movement/character_dir.c \
+			movement/character_pos.c \
+			movement/character_move.c \
+			movement/character_rotate.c \
 			trace/perform_raycasting.c \
 			trace/trace.c \
 			trace/texture.c \

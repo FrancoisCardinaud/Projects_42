@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:25:39 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/07 04:35:16 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/04/17 03:29:36 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* Includes */
 # include "colors.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include "mlx.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -71,7 +71,7 @@
 # define ERR_COLOR_CEILING "Invalid ceiling RGB color"
 # define ERR_INVALID_MAP "Map description is either wrong or incomplete"
 # define ERR_INV_LETTER "Invalid character in map"
-# define ERR_NUM_PLAYER "Map has more than one player"
+# define ERR_NUM_PLAYER "Map has more than one character"
 # define ERR_TEX_RGB_VAL "Invalid RGB value (min: 0, max: 255)"
 # define ERR_TEX_MISSING "Missing texture(s)"
 # define ERR_TEX_INVALID "Invalid texture(s)"
@@ -80,8 +80,8 @@
 # define ERR_MAP_TOO_SMALL "Map is not at least 3 lines high"
 # define ERR_MAP_NO_WALLS "Map is not surrounded by walls"
 # define ERR_MAP_LAST "Map is not the last element in file"
-# define ERR_PLAYER_POS "Invalid player position"
-# define ERR_PLAYER_DIR "Map has no player position (expected N, S, E or W)"
+# define ERR_PLAYER_POS "Invalid character position"
+# define ERR_PLAYER_DIR "Map has no character position (expected N, S, E or W)"
 # define ERR_MALLOC "Could not allocate memory"
 # define ERR_MLX_START "Could not start mlx"
 # define ERR_MLX_WIN "Could not create mlx window"
@@ -176,7 +176,7 @@ typedef struct s_ray
     int     draw_end;
 }   t_ray;
 
-typedef struct s_player
+typedef struct s_character
 {
     char    dir;
     double  pos_x;
@@ -189,7 +189,7 @@ typedef struct s_player
     int     move_x;
     int     move_y;
     int     rotate;
-}   t_player;
+}   t_character;
 
 typedef struct s_data
 {
@@ -199,7 +199,7 @@ typedef struct s_data
     int     win_width;
     t_mapinfo   mapinfo;
     char    **map;
-    t_player    player;
+    t_character    character;
     t_ray   ray;
     int     **texture_pixels;
     int     **textures;
@@ -228,14 +228,14 @@ int     check_white_space(char c);
 size_t  find_largest_length(t_mapinfo *map, int i);
 int     trace(t_data *data);
 void    trace_images(t_data *data);
-int     perform_raycasting(t_player *player, t_data *data);
+int     perform_raycasting(t_character *character, t_data *data);
 void    initialize_texture_pixels(t_data *data);
 void    update_texture_pixels(t_data *data, t_texture_data *tex, t_ray *ray, int x);
 void    set_image_pixel(t_img *image, int x, int y, int color);
 void    trace_minimap(t_data *data);
 void    trace_minimap_image(t_data *data, t_minimap *minimap);
 void    await_input(t_data *data);
-void    set_player_direction(t_data *data);
+void    set_character_direction(t_data *data);
 int     validate_move(t_data *data, double new_x, double new_y);
 int     move_character(t_data *data);
 int     rotate_character(t_data *data, double rotdir);
@@ -247,7 +247,7 @@ int     display_error_message(char *detail, char *str, int code);
 int     display_error_message_validation(int detail, char *str, int code);
 void    display_debug_data(t_data *data);
 void    debug_display_minimap(t_minimap *minimap);
-void    debug_display_player(t_data *data);
+void    debug_display_character(t_data *data);
 void    debug_print_char_tab(char **tab);
 
 #endif

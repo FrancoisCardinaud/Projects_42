@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_rotate.c                                    :+:      :+:    :+:   */
+/*   character_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 11:31:34 by mcombeau          #+#    #+#             */
+/*   Created: 2024/03/09 11:31:34 by fcardina          #+#    #+#             */
 /*   Updated: 2024/04/07 04:12:19 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,10 +14,10 @@
 
 static int	rotate_left_right(t_data *data, double rotspeed)
 {
-	t_player	*p;
+	t_character	*p;
 	double		tmp_x;
 
-	p = &data->player;
+	p = &data->character;
 	tmp_x = p->dir_x;
 	p->dir_x = p->dir_x * cos(rotspeed) - p->dir_y * sin(rotspeed);
 	p->dir_y = tmp_x * sin(rotspeed) + p->dir_y * cos(rotspeed);

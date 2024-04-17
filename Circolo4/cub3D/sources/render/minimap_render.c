@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_render.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 11:29:15 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/02/09 12:29:37 by mcombeau         ###   ########.fr       */
+/*   Created: 2024/03/09 11:29:15 by fcardina          #+#    #+#             */
+/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

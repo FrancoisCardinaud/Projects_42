@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexa <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 22:39:50 by alexa             #+#    #+#             */
-/*   Updated: 2023/02/10 12:44:04 by mcombeau         ###   ########.fr       */
+/*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
+/*   Updated: 2024/03/10 12:44:04 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->index_end_of_map = 0;
 }
 
-static void	init_player(t_player *player)
+static void	init_character(t_character *character)
 {
-	player->dir = '\0';
-	player->pos_x = 0.0;
-	player->pos_y = 0.0;
-	player->dir_x = 0.0;
-	player->dir_y = 0.0;
-	player->plane_x = 0.0;
-	player->plane_y = 0.0;
-	player->has_moved = 0;
-	player->move_x = 0;
-	player->move_y = 0;
-	player->rotate = 0;
+	character->dir = '\0';
+	character->pos_x = 0.0;
+	character->pos_y = 0.0;
+	character->dir_x = 0.0;
+	character->dir_y = 0.0;
+	character->plane_x = 0.0;
+	character->plane_y = 0.0;
+	character->has_moved = 0;
+	character->move_x = 0;
+	character->move_y = 0;
+	character->rotate = 0;
 }
 
 void	initialize_data(t_data *data)
@@ -74,7 +74,7 @@ void	initialize_data(t_data *data)
 	data->win = NULL;
 	data->win_height = WINDOW_H;
 	data->win_width = WINDOW_W;
-	init_player(&data->player);
+	init_character(&data->character);
 	initialize_texture_data(&data->texture_data);
 	data->map = NULL;
 	init_mapinfo(&data->mapinfo);

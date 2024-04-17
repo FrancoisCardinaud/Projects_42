@@ -76,8 +76,8 @@ Modified: trace_minimap_image_data
 Original: await_input
 Modified: await_input
 
-Original: set_player_direction
-Modified: set_player_direction
+Original: set_character_direction
+Modified: set_character_direction
 
 Original: validate_move
 Modified: validate_move_data
@@ -112,8 +112,8 @@ Modified: display_debug_data
 Original: debug_display_minimap
 Modified: display_debug_minimap
 
-Original: debug_display_player
-Modified: display_debug_player
+Original: debug_display_character
+Modified: display_debug_character
 
 Original: debug_print_char_tab
 Modified: print_character_tab
