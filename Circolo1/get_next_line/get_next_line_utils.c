@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francoiscardinaud <marvin@42.fr>           +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 01:42:24 by francoiscardi     #+#    #+#             */
-/*   Updated: 2023/02/03 13:52:50 by fcardina         ###   ########.fr       */
+/*   Created: 2023/01/25 01:42:24 by francoiscar       #+#    #+#             */
+/*   Updated: 2024/04/17 03:21:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

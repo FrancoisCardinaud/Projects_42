@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnbr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 22:55:24 by francoiscar       #+#    #+#             */
-/*   Updated: 2023/04/18 13:29:24 by fcardina         ###   ########.fr       */
+/*   Created: 2024/03/28 22:55:24 by francoiscar       #+#    #+#             */
+/*   Updated: 2024/04/17 03:21:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
