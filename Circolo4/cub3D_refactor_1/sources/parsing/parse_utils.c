@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:44:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:46:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_whitespace(char character)
 }
 
 /* Finds the length of the longest line in the map file */
-size_t	find_longest_line(t_mapinfo *map_info, int line_index)
+size_t	find_max_length(t_mapinfo *map_info, int line_index)
 {
 	size_t	longest_length;
 

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:31:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 17:59:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:41:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	handle_mouse_motion(int mouse_x, int mouse_y, t_data *game_data)
 }
 
 /* Initializes input event listeners */
-void	initialize_input_listeners(t_data *game_data)
+void	listen_input(t_data *game_data)
 {
 	mlx_hook(game_data->win, ClientMessage, NoEventMask, exit_game, game_data);
 	mlx_hook(game_data->win, KeyPress, KeyPressMask, handle_key_press, game_data);

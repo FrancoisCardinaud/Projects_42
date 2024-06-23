@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:45:47 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:47:20 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	validate_top_or_bottom_border(char **map_array, int row, int col)
 }
 
 /* Verifies that the map is enclosed by walls on all sides */
-int	verify_map_borders(t_mapinfo *map_info, char **map_array)
+int	validate_map_borders(t_mapinfo *map_info, char **map_array)
 {
 	int	row;
 	int	col;

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:29:15 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 17:56:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:55:20 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	draw_minimap(t_data *game_data)
 		return ;
 	}
 	if (MMAP_DEBUG_MSG)
-		debug_display_minimap(&mini_map);
+		show_minimap_debug(&mini_map);
 	display_minimap(game_data, &mini_map);
 	release_memory((void **)mini_map.map);
 }

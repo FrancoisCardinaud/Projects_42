@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/21 20:08:18 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:46:02 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	process_arguments(t_data *game_data, char **argv)
 		return (release_resources(game_data));
 	if (validate_textures(game_data, &game_data->texinfo) == FAILURE)
 		return (release_resources(game_data));
-	set_player_direction(game_data);
+	initialize_player_direction(game_data);
 	if (DEBUG_MSG)
 		show_debug_info(game_data);
 	return (0);
@@ -56,7 +56,7 @@ static int	setup_game(t_data *game_data, char **argv)
 	if (process_arguments(game_data, argv) != 0)
 		return (1);
 	initialize_graphics(game_data);
-	load_textures(game_data);
+	initialize_textures(game_data);
 	show_controls();
 	return (0);
 }
@@ -70,8 +70,8 @@ int	main(int argc, char **argv)
 	if (setup_game(&game_data, argv) != 0)
 		return (1);
 	render_images(&game_data);
-	handle_input_events(&game_data);
-	mlx_loop_hook(game_data.mlx, render_frame, &game_data);
+	listen_input(&game_data);
+	mlx_loop_hook(game_data.mlx, update_frame, &game_data);
 	mlx_loop(game_data.mlx);
 	return (0);
 }

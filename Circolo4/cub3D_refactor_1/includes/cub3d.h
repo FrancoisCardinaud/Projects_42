@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 18:05:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:55:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ void	initialize_image(t_data *game_data, t_img *image, int width, int height);
 void	initialize_texture_image(t_data *game_data, t_img *image, char *path);
 
 /* init/load_textures.c */
-void	load_textures(t_data *game_data);
+void	initialize_textures(t_data *game_data);
 void	initialize_texture_info(t_texinfo *texture_info);
 
 /* parsing/verify_file.c */
@@ -267,36 +267,34 @@ int		is_whitespace(char c);
 size_t	find_max_length(t_mapinfo *map_info, int start_index);
 
 /* render/render_frame.c */
-int		render_frame(t_data *game_data);
+int		update_frame(t_data *game_data);
 void	render_images(t_data *game_data);
 
 /* render/cast_rays.c */
-int		cast_rays(t_player *player, t_data *game_data);
+int		perform_raycast(t_player *player, t_data *game_data);
 
 /* render/update_texture.c */
 void	initialize_texture_pixels(t_data *game_data);
-void	update_texture_pixels(t_data *game_data, t_texinfo *texture_info, t_ray *ray, int x);
+void	refresh_texture_pixels(t_data *game_data, t_texinfo *texture_info, t_ray *ray, int x);
 
 /* render/image_helpers.c */
-void	set_pixel_in_image(t_img *image, int x, int y, int color);
+void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /* render/draw_minimap.c */
 void	draw_minimap(t_data *game_data);
 
 /* render/draw_minimap_image.c */
-void	draw_minimap_image(t_data *game_data, t_minimap *mini_map);
+void	display_minimap(t_data *game_data, t_minimap *mini_map);
 
 /* movement/handle_input.c */
-void	handle_input_events(t_data *game_data);
+void	listen_input(t_data *game_data);
 
 /* movement/set_player_direction.c */
-void	set_player_direction(t_data *game_data);
-
-/* movement/validate_player_position.c */
-static bool		validate_position(t_data *game_data, double pos_x, double pos_y);
+void	initialize_player_direction(t_data *game_data);
 
 /* movement/execute_player_move.c */
 int		execute_player_move(t_data *game_data);
+int		validate_move(t_data *game_data, double next_x, double next_y);
 
 /* movement/rotate_player_view.c */
 int		rotate_player_direction(t_data *game_data, double rotation_direction);

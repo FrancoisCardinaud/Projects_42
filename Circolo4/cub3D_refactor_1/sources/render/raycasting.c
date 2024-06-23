@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:41:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:50:43 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	perform_raycast(t_player *player_data, t_data *game_data)
 		setup_dda(&raycast, player_data);
 		execute_dda(game_data, &raycast);
 		compute_line_height(&raycast, game_data, player_data);
-		update_texture_pixels(game_data, &game_data->texinfo, &raycast, column);
+		refresh_texture_pixels(game_data, &game_data->texinfo, &raycast, column);
 		column++;
 	}
 	return (SUCCESS);

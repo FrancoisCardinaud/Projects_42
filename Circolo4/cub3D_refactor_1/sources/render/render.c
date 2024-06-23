@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:41:04 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:52:47 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	draw_frame(t_data *game_data)
 	int		pixel_y;
 
 	frame.img = NULL;
-	setup_image(game_data, &frame, game_data->win_width, game_data->win_height);
+	initialize_image(game_data, &frame, game_data->win_width, game_data->win_height);
 	pixel_y = 0;
 	while (pixel_y < game_data->win_height)
 	{
@@ -52,7 +52,7 @@ static void	perform_raycasting(t_data *game_data)
 {
 	initialize_texture_pixels(game_data);
 	initialize_ray(&game_data->ray);
-	raycasting(&game_data->player, game_data);
+	perform_raycast(&game_data->player, game_data);
 	draw_frame(game_data);
 }
 
@@ -61,13 +61,13 @@ void	render_images(t_data *game_data)
 {
 	perform_raycasting(game_data);
 	if (BONUS)
-		render_minimap(game_data);
+		draw_minimap(game_data);
 }
 
 /* Updates the frame based on player movement */
 int	update_frame(t_data *game_data)
 {
-	game_data->player.has_moved += move_player(game_data);
+	game_data->player.has_moved += execute_player_move(game_data);
 	if (game_data->player.has_moved == 0)
 		return (0);
 	render_images(game_data);

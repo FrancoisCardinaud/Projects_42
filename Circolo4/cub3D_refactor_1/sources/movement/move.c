@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:31:24 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:42:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:52:36 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	strafe_right(t_data *game_data)
 }
 
 /* Executes the player's movement based on input */
-int	execute_player_movement(t_data *game_data)
+int	execute_player_move(t_data *game_data)
 {
 	int	movement_occurred;
 
@@ -71,6 +71,6 @@ int	execute_player_movement(t_data *game_data)
 	if (game_data->player.move_x == 1)
 		movement_occurred += strafe_right(game_data);
 	if (game_data->player.rotate != 0)
-		movement_occurred += rotate_player(game_data, game_data->player.rotate);
+		movement_occurred += rotate_player_direction(game_data, game_data->player.rotate);
 	return (movement_occurred);
 }
