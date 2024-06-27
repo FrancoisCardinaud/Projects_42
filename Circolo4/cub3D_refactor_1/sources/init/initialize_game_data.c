@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 16:03:53 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:41:19 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	initialize_game_data(t_data *game_data)
 	initialize_texture_info(&game_data->texinfo);
 	game_data->map = NULL;
 	setup_map_info(&game_data->mapinfo);
-	reset_image(&game_data->minimap);
 	game_data->texture_pixels = NULL;
 	game_data->textures = NULL;
 }

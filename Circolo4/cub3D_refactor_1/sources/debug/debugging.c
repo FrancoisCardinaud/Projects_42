@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:38:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:50:51 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ void	print_char_array_debug(char **char_array)
 		index++;
 	}
 	printf("\n");
-}
-
-/* Displays minimap information for debugging */
-void	show_minimap_debug(t_minimap *mini_map)
-{
-	printf(YELLOW "\n---- MINIMAP\n" RESET);
-	printf("Minimap view distance: %d\n", mini_map->view_dist);
-	printf("Minimap size: %d * %d\n", mini_map->size, mini_map->size);
-	print_char_array_debug(mini_map->map);
 }
 
 /* Displays map information for debugging */

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/23 17:55:17 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:38:31 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@
 # define ROTSPEED 0.015
 
 # define DIST_EDGE_MOUSE_WRAP 20
-
-/* MINIMAP MACROS */
-# define MMAP_PIXEL_SIZE 128
-# define MMAP_VIEW_DIST 4
-# define MMAP_COLOR_PLAYER 0x00FF00
-# define MMAP_COLOR_WALL 0x808080
-# define MMAP_COLOR_FLOOR 0xE6E6E6
-# define MMAP_COLOR_SPACE 0x404040
 
 // ERROR MESSAGES
 # define ERR_USAGE "usage: ./cub3d <path/to/map.cub>"
@@ -146,17 +138,6 @@ typedef struct s_texinfo
 	int				y;
 }	t_texinfo;
 
-typedef struct s_minimap
-{
-	char	**map;
-	t_img	*img;
-	int		size;
-	int		offset_x;
-	int		offset_y;
-	int		view_dist;
-	int		tile_size;
-}	t_minimap;
-
 typedef struct s_mapinfo
 {
 	int			fd;
@@ -217,7 +198,6 @@ typedef struct s_data
 	int			**texture_pixels;
 	int			**textures;
 	t_texinfo	texinfo;
-	t_img		minimap;
 }	t_data;
 
 /* ---------------------------------------------------------------------------*
@@ -280,12 +260,6 @@ void	refresh_texture_pixels(t_data *game_data, t_texinfo *texture_info, t_ray *r
 /* render/image_helpers.c */
 void	set_image_pixel(t_img *image, int x, int y, int color);
 
-/* render/draw_minimap.c */
-void	draw_minimap(t_data *game_data);
-
-/* render/draw_minimap_image.c */
-void	display_minimap(t_data *game_data, t_minimap *mini_map);
-
 /* movement/handle_input.c */
 void	listen_input(t_data *game_data);
 
@@ -313,7 +287,6 @@ int		display_error_with_value(int detail, char *message, int code);
 
 /* debug/debug_helpers.c */
 void	show_debug_info(t_data *game_data);
-void	show_minimap_debug(t_minimap *mini_map);
 void	show_player_debug(t_data *game_data);
 void	print_char_array_debug(char **char_array);
 

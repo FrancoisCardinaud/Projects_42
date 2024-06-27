@@ -44,8 +44,6 @@ SRC		= 	main.c \
 			render/render.c \
 			render/manage_textures.c \
 			render/render_utils.c \
-			render/render_minimap.c \
-			render/create_minimap_image.c \
 			exit/terminate_program.c \
 			exit/free_resources.c \
 			debug/debugging.c \
@@ -81,7 +79,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 # Project file rule
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX) -lXext -lX11 -lm
+	$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(OBJS) -o $@ $(LIBFT) $(MLX) -lXext -lX11 -lm
 
 # Libft rule
 $(LIBFT):
