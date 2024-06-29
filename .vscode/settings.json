@@ -81,6 +81,7 @@
         "compare": "cpp",
         "concepts": "cpp",
         "algorithm": "cpp",
-        "get_next_line.h": "c"
+        "get_next_line.h": "c",
+        "cub3d.h": "c"
     }
 }

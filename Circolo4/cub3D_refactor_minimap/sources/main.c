@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 16:17:24 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:43:52 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,31 @@ static int	setup_game(t_data *game_data, char **argv)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int update_game(t_data *game_data)
 {
-	t_data	game_data;
-
-	if (argc != 2)
-		return (display_error_message("Usage", ERR_USAGE, 1));
-	if (setup_game(&game_data, argv) != 0)
-		return (1);
-	render_images(&game_data);
-	listen_input(&game_data);
-	mlx_loop_hook(game_data.mlx, update_frame, &game_data);
-	mlx_loop(game_data.mlx);
+    // Update player's jump state
+    if (game_data->player.pos_z > 0)
+    {
+        game_data->player.pos_z -= 0.1; // Simulate gravity
+        if (game_data->player.pos_z < 0)
+            game_data->player.pos_z = 0;
+    }
 	return (0);
+    // Any other updates needed
+}
+
+int main(int argc, char **argv)
+{
+    t_data game_data;
+
+    if (argc != 2)
+        return (display_error_message("Usage", ERR_USAGE, 1));
+    if (setup_game(&game_data, argv) != 0)
+        return (1);
+    render_images(&game_data);
+    listen_input(&game_data);
+    mlx_loop_hook(game_data.mlx, update_frame, &game_data);
+    mlx_loop_hook(game_data.mlx, update_game, &game_data);
+    mlx_loop(game_data.mlx);
+    return (0);
 }

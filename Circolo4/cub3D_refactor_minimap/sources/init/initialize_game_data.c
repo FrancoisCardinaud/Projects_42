@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 16:03:53 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:33:27 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	initialize_player(t_player *player_data)
 	player_data->dir = '\0';
 	player_data->pos_x = 0.0;
 	player_data->pos_y = 0.0;
+	player_data->pos_z = 0.0; 
 	player_data->dir_x = 0.0;
 	player_data->dir_y = 0.0;
 	player_data->plane_x = 0.0;

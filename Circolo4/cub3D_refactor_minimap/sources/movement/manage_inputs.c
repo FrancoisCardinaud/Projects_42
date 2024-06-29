@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:31:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 16:06:55 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:43:04 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ static int	handle_key_press(int key_code, t_data *game_data)
 		game_data->player.move_x = 1;
 	if (key_code == XK_Shift_L)
         game_data->player.running = 1;
+	if (key_code == XK_space) // Jump
+    {
+        game_data->player.pos_z += 1.0; // Simple jump, increase height
+    }
 	return (0);
 }
 

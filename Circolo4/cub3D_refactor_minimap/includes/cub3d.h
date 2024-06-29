@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 16:14:09 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:34:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@
 # define MOVESPEED 0.0125
 # define RUNSPEED 0.030 // Define a speed for running
 # define ROTSPEED 0.015
+
+# define JUMP_HEIGHT 20
+# define JUMP_SPEED 0.2
+# define GRAVITY 0.1
 
 # define DIST_EDGE_MOUSE_WRAP 20
 
@@ -195,6 +199,7 @@ typedef struct s_player
 	char	dir;
 	double	pos_x;
 	double	pos_y;
+	double  pos_z;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
@@ -288,17 +293,18 @@ void	draw_minimap(t_data *game_data);
 /* render/draw_minimap_image.c */
 void	display_minimap(t_data *game_data, t_minimap *mini_map);
 
-/* movement/handle_input.c */
+/* move/handle_input.c */
 void	listen_input(t_data *game_data);
 
-/* movement/set_player_direction.c */
+/* move/set_player_direction.c */
 void	initialize_player_direction(t_data *game_data);
 
-/* movement/execute_player_move.c */
+/* move/execute_player_move.c */
+void 	update_player_jump(t_data *game_data);
 int		execute_player_move(t_data *game_data);
 int		validate_move(t_data *game_data, double next_x, double next_y);
 
-/* movement/rotate_player_view.c */
+/* move/rotate_player_view.c */
 int		rotate_player_direction(t_data *game_data, double rotation_direction);
 
 /* exit/clean_exit.c */
