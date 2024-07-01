@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 18:43:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:02:29 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ static void	show_controls(void)
 	printf(CYAN "\t<" RESET ": rotate left\t");
 	printf(CYAN "\t>" RESET ": rotate right\n");
 	printf(CYAN "\tL-SHIFT" RESET ": sprint\n");
-	if (BONUS)
-		printf(CYAN "\tMouse" RESET ": rotate view\n");
-	printf("\n");
 }
 
 /* Processes the command-line arguments and initializes the game data */
@@ -40,7 +37,7 @@ static int	process_arguments(t_data *game_data, char **argv)
 		return (release_resources(game_data));
 	if (validate_textures(game_data, &game_data->texinfo) == FAILURE)
 		return (release_resources(game_data));
-	initialize_player_direction(game_data);
+	set_player_direction(game_data);
 	if (DEBUG_MSG)
 		show_debug_info(game_data);
 	return (0);
@@ -58,31 +55,17 @@ static int	setup_game(t_data *game_data, char **argv)
 	return (0);
 }
 
-int update_game(t_data *game_data)
+int	main(int argc, char **argv)
 {
-    // Update player's jump state
-    if (game_data->player.pos_z > 0)
-    {
-        game_data->player.pos_z -= 0.1; // Simulate gravity
-        if (game_data->player.pos_z < 0)
-            game_data->player.pos_z = 0;
-    }
+	t_data	game_data;
+
+	if (argc != 2)
+		return (display_error_message("Usage", ERR_USAGE, 1));
+	if (setup_game(&game_data, argv) != 0)
+		return (1);
+	render_images(&game_data);
+	listen_input(&game_data);
+	mlx_loop_hook(game_data.mlx, update_frame, &game_data);
+	mlx_loop(game_data.mlx);
 	return (0);
-    // Any other updates needed
-}
-
-int main(int argc, char **argv)
-{
-    t_data game_data;
-
-    if (argc != 2)
-        return (display_error_message("Usage", ERR_USAGE, 1));
-    if (setup_game(&game_data, argv) != 0)
-        return (1);
-    render_images(&game_data);
-    listen_input(&game_data);
-    mlx_loop_hook(game_data.mlx, update_frame, &game_data);
-    mlx_loop_hook(game_data.mlx, update_game, &game_data);
-    mlx_loop(game_data.mlx);
-    return (0);
 }

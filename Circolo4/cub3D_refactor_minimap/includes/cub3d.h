@@ -6,15 +6,15 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 18:34:00 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:04:42 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "colors.h"
 # include "../libft/libft.h"
+# include "colors.h"
 # include "mlx.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -41,9 +41,6 @@
 #  define MMAP_DEBUG_MSG 0
 # endif
 
-# ifndef BONUS
-#  define BONUS 1
-# endif
 
 /* # define WIN_WIDTH 960 */
 /* # define WIN_HEIGHT 720 */
@@ -57,14 +54,15 @@
 # endif
 
 # define MOVESPEED 0.0125
-# define RUNSPEED 0.030 // Define a speed for running
-# define ROTSPEED 0.015
+# define RUNSPEED 0.035
+# define ROTSPEED 0.025
 
 # define JUMP_HEIGHT 20
 # define JUMP_SPEED 0.2
 # define GRAVITY 0.1
 
-# define DIST_EDGE_MOUSE_WRAP 20
+#define CROSSHAIR_SIZE 5
+#define CROSSHAIR_COLOR 0xFFFFFF
 
 /* MINIMAP MACROS */
 # define MMAP_PIXEL_SIZE 128
@@ -297,7 +295,7 @@ void	display_minimap(t_data *game_data, t_minimap *mini_map);
 void	listen_input(t_data *game_data);
 
 /* move/set_player_direction.c */
-void	initialize_player_direction(t_data *game_data);
+void	set_player_direction(t_data *game_data);
 
 /* move/execute_player_move.c */
 void 	update_player_jump(t_data *game_data);

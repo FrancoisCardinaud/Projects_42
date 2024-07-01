@@ -77,11 +77,11 @@ $(OBJ_PATH):
 
 # Objects rule
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) -c $< -o $@ $(INC)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 # Project file rule
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX) -lXext -lX11 -lm
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX) -lXext -lX11 -lm
 
 # Libft rule
 $(LIBFT):
@@ -90,9 +90,6 @@ $(LIBFT):
 # MLX rule
 $(MLX):
 	make -sC $(MLX_PATH)
-
-bonus:
-	make all BONUS=1
 
 # Clean up build files rule
 clean:

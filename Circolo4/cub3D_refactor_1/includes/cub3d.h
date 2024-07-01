@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 15:38:31 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:39:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,7 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
 void	listen_input(t_data *game_data);
 
 /* movement/set_player_direction.c */
-void	initialize_player_direction(t_data *game_data);
+void	set_player_direction(t_data *game_data);
 
 /* movement/execute_player_move.c */
 int		execute_player_move(t_data *game_data);

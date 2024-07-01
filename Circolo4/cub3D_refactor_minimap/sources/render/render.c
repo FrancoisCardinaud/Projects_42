@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 18:42:32 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:22:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	draw_frame(t_data *game_data)
 	t_img	frame;
 	int		pixel_x;
 	int		pixel_y;
-	double player_height = game_data->player.pos_z;
 
 	frame.img = NULL;
 	initialize_image(game_data, &frame, game_data->win_width, game_data->win_height);
@@ -61,8 +60,6 @@ static void	perform_raycasting(t_data *game_data)
 void	render_images(t_data *game_data)
 {
 	perform_raycasting(game_data);
-	if (BONUS)
-		draw_minimap(game_data);
 }
 
 /* Updates the frame based on player movement */

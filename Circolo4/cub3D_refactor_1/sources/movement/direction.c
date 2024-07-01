@@ -6,10 +6,9 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 15:43:33 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:39:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/cub3d.h"
 
@@ -52,7 +51,7 @@ static void	set_player_east_west(t_player *player_data)
 }
 
 /* Initializes the player's direction based on the initial orientation */
-void	initialize_player_direction(t_data *game_data)
+void	set_player_direction(t_data *game_data)
 {
 	set_player_north_south(&game_data->player);
 	set_player_east_west(&game_data->player);

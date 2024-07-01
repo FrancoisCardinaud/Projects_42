@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/23 17:46:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:39:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	process_arguments(t_data *game_data, char **argv)
 		return (release_resources(game_data));
 	if (validate_textures(game_data, &game_data->texinfo) == FAILURE)
 		return (release_resources(game_data));
-	initialize_player_direction(game_data);
+	set_player_direction(game_data);
 	if (DEBUG_MSG)
 		show_debug_info(game_data);
 	return (0);

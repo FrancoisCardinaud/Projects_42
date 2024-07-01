@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 18:09:27 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:08:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ static bool	validate_map_bounds(t_data *game_data, double pos_x, double pos_y)
 /* Validates the position based on map bounds and wall collision */
 static bool	validate_position(t_data *game_data, double pos_x, double pos_y)
 {
-	if (!BONUS && validate_map_bounds(game_data, pos_x, pos_y))
-		return (true);
-	if (BONUS && validate_wall_collision(game_data, pos_x, pos_y))
+	if (validate_map_bounds(game_data, pos_x, pos_y) && validate_wall_collision(game_data, pos_x, pos_y))
 		return (true);
 	return (false);
 }

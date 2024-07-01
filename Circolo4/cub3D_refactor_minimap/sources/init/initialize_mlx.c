@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 16:30:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:02:14 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,4 @@ void	initialize_graphics(t_data *game_data)
 	game_data->win = mlx_new_window(game_data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!game_data->win)
 		clean_exit(game_data, display_error_message("mlx", ERR_MLX_WIN, 1));
-	if (BONUS)
-		mlx_mouse_move(game_data->mlx, game_data->win, game_data->win_width / 2,
-			game_data->win_height / 2);
 }
