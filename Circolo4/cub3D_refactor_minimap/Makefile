@@ -23,18 +23,18 @@ LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 # Sources
 SRC_PATH = ./sources/
 SRC		= 	main.c \
-			init/initialize_game_data.c \
-			init/initialize_mlx.c \
-			init/initialize_textures.c \
-			parsing/validate_arguments.c \
+			configuration/config_game_data.c \
+			configuration/config_mlx.c \
+			configuration/config_textures.c \
 			parsing/parse_data.c \
 			parsing/retrieve_data.c \
 			parsing/build_map.c \
-			parsing/validate_map_textures.c \
-			parsing/validate_map.c \
-			parsing/validate_map_borders.c \
 			parsing/assign_coltex.c \
 			parsing/parse_utils.c \
+			validation/validate_arguments.c \
+			validation/validate_map_textures.c \
+			validation/validate_map.c \
+			validation/validate_map_borders.c \
 			movement/manage_inputs.c \
 			movement/direction.c \
 			movement/position.c \
