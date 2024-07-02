@@ -48,8 +48,7 @@ SRC		= 	main.c \
 			render/create_minimap_image.c \
 			exit/terminate_program.c \
 			exit/free_resources.c \
-			debug/debugging.c \
-			debug/error.c
+			error.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
@@ -68,11 +67,11 @@ all: $(OBJ_PATH) $(MLX) $(LIBFT) $(NAME)
 # Objects directory rule
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
-	mkdir -p $(OBJ_PATH)/init
+	mkdir -p $(OBJ_PATH)/configuration
 	mkdir -p $(OBJ_PATH)/parsing
 	mkdir -p $(OBJ_PATH)/movement
 	mkdir -p $(OBJ_PATH)/render
-	mkdir -p $(OBJ_PATH)/debug
+	mkdir -p $(OBJ_PATH)/validation
 	mkdir -p $(OBJ_PATH)/exit
 
 # Objects rule

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/01 20:04:42 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:12:59 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@
 /* ---------------------------------------------------------------------------*
 							MACROS
  --------------------------------------------------------------------------- */
-
-# ifndef DEBUG_MSG
-#  define DEBUG_MSG 0
-# endif
-
-# ifndef MMAP_DEBUG_MSG
-#  define MMAP_DEBUG_MSG 0
-# endif
-
 
 /* # define WIN_WIDTH 960 */
 /* # define WIN_HEIGHT 720 */
@@ -316,11 +307,5 @@ int		release_resources(t_data *game_data);
 /* error.c */
 int		display_error_message(char *detail, char *message, int code);
 int		display_error_with_value(int detail, char *message, int code);
-
-/* debug/debug_helpers.c */
-void	show_debug_info(t_data *game_data);
-void	show_minimap_debug(t_minimap *mini_map);
-void	show_player_debug(t_data *game_data);
-void	print_char_array_debug(char **char_array);
 
 #endif
