@@ -6,11 +6,28 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/23 17:46:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:51:20 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+/* Checks if the string contains no digits */
+bool	contains_no_digits(char *string)
+{
+	int		char_index;
+	bool	found_no_digit;
+
+	char_index = 0;
+	found_no_digit = true;
+	while (string[char_index])
+	{
+		if (ft_isdigit(string[char_index]) == 1)
+			found_no_digit = false;
+		char_index++;
+	}
+	return (found_no_digit);
+}
 
 /* Checks if the character is a whitespace */
 int	is_whitespace(char character)
@@ -20,6 +37,31 @@ int	is_whitespace(char character)
 		return (FAILURE);
 	else
 		return (SUCCESS);
+}
+
+/* Counts the number of lines in the file */
+int	count_lines_in_file(char *file_path)
+{
+	int		fd;
+	char	*current_line;
+	int		total_lines;
+
+	total_lines = 0;
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+		display_error_message(file_path, strerror(errno), errno);
+	else
+	{
+		current_line = get_next_line(fd);
+		while (current_line != NULL)
+		{
+			total_lines++;
+			free(current_line);
+			current_line = get_next_line(fd);
+		}
+		close(fd);
+	}
+	return (total_lines);
 }
 
 /* Finds the length of the longest line in the map file */

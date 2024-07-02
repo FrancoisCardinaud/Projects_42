@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/02 20:10:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:31:26 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 /* Displays the game controls to the console */
 static void	show_controls(void)
 {
-	printf(RESET "\n");
-	printf(CYAN "\tW" RESET ": move forward\t");
-	printf(CYAN "\tS" RESET ": move backward\n");
-	printf(CYAN "\tA" RESET ": strafe left\t");
-	printf(CYAN "\tD" RESET ": strafe right\n");
-	printf(CYAN "\t<" RESET ": rotate left\t");
-	printf(CYAN "\t>" RESET ": rotate right\n");
-	printf(CYAN "\tL-SHIFT" RESET ": sprint\n");
+	printf("\n");
+	printf("\tW: move forward\t");
+	printf("\tS: move backward\n");
+	printf("\tA: strafe left\t");
+	printf("\tD: strafe right\n");
+	printf("\t<-: rotate left\t");
+	printf("\t->: rotate right\n");
+	printf("\tL-SHIFT: sprint\n");
 }
 
 /* Processes the command-line arguments and initializes the game data */

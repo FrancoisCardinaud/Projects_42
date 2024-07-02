@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/02 20:12:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:51:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
-# include "colors.h"
 # include "mlx.h"
 # include <errno.h>
 # include <fcntl.h>
@@ -239,6 +238,9 @@ int		verify_file(char *arg, bool is_cub_file);
 
 /* parsing/read_file_data.c */
 void	read_file_data(char *path, t_data *game_data);
+bool	contains_no_digits(char *string);
+int		count_lines_in_file(char *file_path);
+int		*populate_rgb_array(char **rgb_parts, int *rgb_array);
 
 /* parsing/retrieve_file_data.c */
 int		retrieve_file_data(t_data *game_data, char **file_data);
@@ -289,7 +291,6 @@ void	listen_input(t_data *game_data);
 void	set_player_direction(t_data *game_data);
 
 /* move/execute_player_move.c */
-void 	update_player_jump(t_data *game_data);
 int		execute_player_move(t_data *game_data);
 int		validate_move(t_data *game_data, double next_x, double next_y);
 

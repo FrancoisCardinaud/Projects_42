@@ -6,31 +6,14 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/22 17:56:47 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:46:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-/* Checks if the string contains no digits */
-static bool	contains_no_digits(char *string)
-{
-	int		char_index;
-	bool	found_no_digit;
-
-	char_index = 0;
-	found_no_digit = true;
-	while (string[char_index])
-	{
-		if (ft_isdigit(string[char_index]) == 1)
-			found_no_digit = false;
-		char_index++;
-	}
-	return (found_no_digit);
-}
-
 /* Populates the RGB array from the parts of the split string */
-static int	*populate_rgb_array(char **rgb_parts, int *rgb_array)
+int	*populate_rgb_array(char **rgb_parts, int *rgb_array)
 {
 	int		part_index;
 

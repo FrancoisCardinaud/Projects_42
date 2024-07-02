@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_game_data.c                             :+:      :+:    :+:   */
+/*   config_game_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/27 18:33:27 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:39:03 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ void	reset_image(t_img *image)
 }
 
 /* Initializes the raycasting structure */
-void	initialize_ray(t_ray *raycast)
+void	initialize_ray(t_ray *ray)
 {
-	raycast->camera_x = 0;
-	raycast->dir_x = 0;
-	raycast->dir_y = 0;
-	raycast->map_x = 0;
-	raycast->map_y = 0;
-	raycast->step_x = 0;
-	raycast->step_y = 0;
-	raycast->sidedist_x = 0;
-	raycast->sidedist_y = 0;
-	raycast->deltadist_x = 0;
-	raycast->deltadist_y = 0;
-	raycast->wall_dist = 0;
-	raycast->wall_x = 0;
-	raycast->side = 0;
-	raycast->line_height = 0;
-	raycast->draw_start = 0;
-	raycast->draw_end = 0;
+	ray->camera_x = 0;
+	ray->dir_x = 0;
+	ray->dir_y = 0;
+	ray->map_x = 0;
+	ray->map_y = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->sidedist_x = 0;
+	ray->sidedist_y = 0;
+	ray->deltadist_x = 0;
+	ray->deltadist_y = 0;
+	ray->wall_dist = 0;
+	ray->wall_x = 0;
+	ray->side = 0;
+	ray->line_height = 0;
+	ray->draw_start = 0;
+	ray->draw_end = 0;
 }
 
 /* Sets up the map information structure */
-static void	setup_map_info(t_mapinfo *map_info)
+static void	initialize_map_info(t_mapinfo *map_info)
 {
 	map_info->fd = 0;
 	map_info->line_count = 0;
@@ -83,7 +83,7 @@ void	initialize_game_data(t_data *game_data)
 	initialize_player(&game_data->player);
 	initialize_texture_info(&game_data->texinfo);
 	game_data->map = NULL;
-	setup_map_info(&game_data->mapinfo);
+	initialize_map_info(&game_data->mapinfo);
 	reset_image(&game_data->minimap);
 	game_data->texture_pixels = NULL;
 	game_data->textures = NULL;
