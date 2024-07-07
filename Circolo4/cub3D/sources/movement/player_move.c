@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:31:24 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/07 04:25:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	move_player_forward(t_data *data)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.pos_x + data->player.dir_x * MOVESPEED;
-	new_y = data->player.pos_y + data->player.dir_y * MOVESPEED;
+	new_x = data->player.pos_x + data->player.dir_x * WALKSPEED;
+	new_y = data->player.pos_y + data->player.dir_y * WALKSPEED;
 	return (validate_move(data, new_x, new_y));
 }
 
@@ -27,8 +27,8 @@ static int	move_player_backward(t_data *data)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.pos_x - data->player.dir_x * MOVESPEED;
-	new_y = data->player.pos_y - data->player.dir_y * MOVESPEED;
+	new_x = data->player.pos_x - data->player.dir_x * WALKSPEED;
+	new_y = data->player.pos_y - data->player.dir_y * WALKSPEED;
 	return (validate_move(data, new_x, new_y));
 }
 
@@ -37,8 +37,8 @@ static int	move_player_left(t_data *data)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.pos_x + data->player.dir_y * MOVESPEED;
-	new_y = data->player.pos_y - data->player.dir_x * MOVESPEED;
+	new_x = data->player.pos_x + data->player.dir_y * WALKSPEED;
+	new_y = data->player.pos_y - data->player.dir_x * WALKSPEED;
 	return (validate_move(data, new_x, new_y));
 }
 
@@ -47,8 +47,8 @@ static int	move_player_right(t_data *data)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.pos_x - data->player.dir_y * MOVESPEED;
-	new_y = data->player.pos_y + data->player.dir_x * MOVESPEED;
+	new_x = data->player.pos_x - data->player.dir_y * WALKSPEED;
+	new_y = data->player.pos_y + data->player.dir_x * WALKSPEED;
 	return (validate_move(data, new_x, new_y));
 }
 

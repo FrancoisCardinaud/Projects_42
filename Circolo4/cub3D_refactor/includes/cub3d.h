@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/03 20:45:53 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:26:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 #  define O_DIRECTORY 00200000
 # endif
 
-# define MOVESPEED 0.0125
+# define WALKSPEED 0.0125
 # define RUNSPEED 0.035
 # define ROTSPEED 0.025
 
@@ -273,15 +273,15 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
 void	listen_input(t_data *game_data);
 
 /* player_controls/direction.c */
-void	set_player_north_south(t_player *player_data);
-void	set_player_east_west(t_player *player_data);
+void	config_player_north_south(t_player *player_data);
+void	config_player_east_west(t_player *player_data);
 
 /* move/execute_player_move.c */
 int		execute_player_move(t_data *game_data);
-int		validate_move(t_data *game_data, double next_x, double next_y);
+int		validate_move(t_data *game_data, float next_x, float next_y);
 
 /* move/rotate_player_view.c */
-int		rotate_player_direction(t_data *game_data, double rotation_direction);
+int		rotate_player_direction(t_data *game_data, float rotation_direction);
 
 /* exit/clean_exit.c */
 void	clean_exit(t_data *game_data, int exit_code);

@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_mlx.c                                   :+:      :+:    :+:   */
+/*   config_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/01 20:02:14 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:25:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+/* Resets the image structure */
+void	reset_image(t_img *image)
+{
+	image->img = NULL;
+	image->addr = NULL;
+	image->pixel_bits = 0;
+	image->size_line = 0;
+	image->endian = 0;
+}
 
 /* Sets up a new image in the given dimensions */
 void	initialize_image(t_data *game_data, t_img *img, int width, int height)

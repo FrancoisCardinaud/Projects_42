@@ -6,21 +6,11 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/03 17:23:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:25:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-/* Resets the image structure */
-void	reset_image(t_img *image)
-{
-	image->img = NULL;
-	image->addr = NULL;
-	image->pixel_bits = 0;
-	image->size_line = 0;
-	image->endian = 0;
-}
 
 /* Initializes the raycasting structure */
 void	initialize_ray(t_ray *ray)

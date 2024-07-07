@@ -33,18 +33,18 @@ SRC		= 	main.c \
 			configuration/config_game_data.c \
 			configuration/config_mlx.c \
 			configuration/config_textures.c \
+			configuration/config_direction.c \
 			parsing/parse_data.c \
 			parsing/retrieve_data.c \
 			parsing/build_map.c \
 			parsing/assign_coltex.c \
 			parsing/parse_utils.c \
 			validation/validate_arguments.c \
-			validation/validate_map_textures.c \
+			validation/validate_textures.c \
 			validation/validate_map.c \
 			validation/validate_map_borders.c \
+			validation/validate_position.c \
 			player_controls/manage_inputs.c \
-			player_controls/direction.c \
-			player_controls/position.c \
 			player_controls/move.c \
 			player_controls/rotate.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))

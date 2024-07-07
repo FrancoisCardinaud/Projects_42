@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/03 17:33:50 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:23:51 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 /* Displays the game controls to the console */
 static void	show_controls(void)
 {
+	printf("\033[0;33m");
 	printf("\n");
-	printf("\tW: move forward\t");
+	printf("\tW/Z: move forward\n");
 	printf("\tS: move backward\n");
-	printf("\tA: strafe left\t");
-	printf("\tD: strafe right\n");
-	printf("\t<-: rotate left\t");
-	printf("\t->: rotate right\n");
+	printf("\tA/Q: move left\n");
+	printf("\tD: move right\n");
+	printf("\t<-: turn left\n");
+	printf("\t->: turn right\n");
 	printf("\tL-SHIFT: sprint\n");
+	printf("\033[0m");
 }
 
 /* Processes the command-line arguments and initializes the game data */
@@ -37,8 +39,8 @@ static int	process_arguments(t_data *game_data, char **argv)
 		return (release_resources(game_data));
 	if (validate_textures(game_data, &game_data->texinfo) == FAILURE)
 		return (release_resources(game_data));
-	set_player_north_south(&game_data->player);
-	set_player_east_west(&game_data->player);
+	config_player_north_south(&game_data->player);
+	config_player_east_west(&game_data->player);
 	return (0);
 }
 

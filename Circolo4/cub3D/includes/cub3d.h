@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:47:42 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/21 19:07:26 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/07 04:25:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 #  define O_DIRECTORY 00200000
 # endif
 
-# define MOVESPEED 0.0125
+# define WALKSPEED 0.0125
 # define ROTSPEED 0.015
 
 # define DIST_EDGE_MOUSE_WRAP 20
