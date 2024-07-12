@@ -1,0 +1,18 @@
+NO textures/wood.xpm
+SO textures/purplestone.xpm
+WE textures/eagle.xpm
+EA textures/bluestone.xpm
+F 34,139,34  # Forest floor color (Forest Green)
+C 135,206,235  # Sky color (Sky Blue)
+
+1111111111111
+1000001000001
+1011011011011
+1000000000001
+1110111011101
+1000100010001
+1011111011101
+1010000N10101
+1011111110101
+1000000000101
+1111111111111

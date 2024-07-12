@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/03 16:56:29 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	render_raycast(t_data *data)
 void	render_images(t_data *data)
 {
 	render_raycast(data);
+	if (BONUS)
+		render_minimap(data);
 }
 
 int	render(t_data *data)

@@ -6,11 +6,11 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 21:10:19 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/21 18:18:24 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:30:34 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../inc/libftprintf.h"
 #include "libft.h"
 
 int	ft_ptr_len(uintptr_t num)

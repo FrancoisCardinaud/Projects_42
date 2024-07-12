@@ -21,19 +21,18 @@ LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Sources
-SRC_PATH = ./sources/
-SRC		= 	main.c \
-			error.c \
-			engine/raycasting.c \
-			engine/render.c \
-			engine/manage_textures.c \
-			engine/render_utils.c \
-			exit/terminate_program.c \
-			exit/free_resources.c \
+SRC_PATH = ./src/
+SRC		= 	system/main.c \
+			system/free_resources.c \
+			system/system_functions.c \
 			configuration/config_game_data.c \
 			configuration/config_mlx.c \
 			configuration/config_textures.c \
 			configuration/config_direction.c \
+			engine/raycasting.c \
+			engine/render.c \
+			engine/manage_textures.c \
+			engine/render_utils.c \
 			parsing/parse_data.c \
 			parsing/retrieve_data.c \
 			parsing/build_map.c \
@@ -50,12 +49,12 @@ SRC		= 	main.c \
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
-OBJ_PATH	= ./objects/
+OBJ_PATH	= ./obj/
 OBJ			= $(SRC:.c=.o)
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 
-# Includes
-INC			=	-I ./includes/\
+# inc
+INC			=	-I ./inc/\
 				-I ./libft/\
 				-I ./minilibx-linux/
 
@@ -65,12 +64,12 @@ all: $(OBJ_PATH) $(MLX) $(LIBFT) $(NAME)
 # Objects directory rule
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
+	mkdir -p $(OBJ_PATH)/system
 	mkdir -p $(OBJ_PATH)/configuration
-	mkdir -p $(OBJ_PATH)/parsing
-	mkdir -p $(OBJ_PATH)/player_controls
 	mkdir -p $(OBJ_PATH)/engine
+	mkdir -p $(OBJ_PATH)/parsing
 	mkdir -p $(OBJ_PATH)/validation
-	mkdir -p $(OBJ_PATH)/exit
+	mkdir -p $(OBJ_PATH)/player_controls
 
 # Objects rule
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

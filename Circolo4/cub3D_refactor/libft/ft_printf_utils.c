@@ -6,11 +6,11 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 21:10:49 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/21 18:18:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:30:38 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../inc/libftprintf.h"
 #include "libft.h"
 #include <stdlib.h>
 
