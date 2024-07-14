@@ -6,19 +6,19 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:29:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Applies rotation to the player's direction first, and then of the plane */
-static int	apply_rotation(t_data *game_data, float rotation_speed)
+static int	apply_rotation(t_info *game_info, float rotation_speed)
 {
 	t_player	*player_data;
 	float		temp_x;
 
-	player_data = &game_data->player;
+	player_data = &game_info->player;
 	temp_x = player_data->dir_x;
 	player_data->dir_x = player_data->dir_x * cos(rotation_speed)
 		- player_data->dir_y * sin(rotation_speed);
@@ -34,13 +34,13 @@ static int	apply_rotation(t_data *game_data, float rotation_speed)
 }
 
 /* Rotates the player's direction based on input */
-int	rotate_player_direction(t_data *game_data, float rotation_direction)
+int	rotate_player_direction(t_info *game_info, float rotation_direction)
 {
 	int		rotation_occurred;
 	float	rotation_speed;
 
 	rotation_occurred = 0;
 	rotation_speed = ROTSPEED * rotation_direction;
-	rotation_occurred += apply_rotation(game_data, rotation_speed);
+	rotation_occurred += apply_rotation(game_info, rotation_speed);
 	return (rotation_occurred);
 }

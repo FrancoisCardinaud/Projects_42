@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:29:30 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:22:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	count_map_lines(t_data *data, char **file, int i)
+static int	count_map_lines(t_info *data, char **file, int i)
 {
 	int	index_value;
 	int	j;
@@ -44,7 +44,7 @@ static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 		j = 0;
 		map_tab[i] = malloc(sizeof(char) * (mapinfo->width + 1));
 		if (!map_tab[i])
-			return (err_msg(NULL, ERR_MALLOC, FAILURE));
+			return (err_msg(NULL, ERR_MALLOC, FAIL));
 		while (mapinfo->file[index][j] && mapinfo->file[index][j] != '\n')
 		{
 			map_tab[i][j] = mapinfo->file[index][j];
@@ -59,18 +59,18 @@ static int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	return (SUCCESS);
 }
 
-static int	get_map_info(t_data *data, char **file, int i)
+static int	get_map_info(t_info *data, char **file, int i)
 {
 	data->mapinfo.height = count_map_lines(data, file, i);
 	data->map = malloc(sizeof(char *) * (data->mapinfo.height + 1));
 	if (!data->map)
-		return (err_msg(NULL, ERR_MALLOC, FAILURE));
-	if (fill_map_tab(&data->mapinfo, data->map, i) == FAILURE)
-		return (FAILURE);
+		return (err_msg(NULL, ERR_MALLOC, FAIL));
+	if (fill_map_tab(&data->mapinfo, data->map, i) == FAIL)
+		return (FAIL);
 	return (SUCCESS);
 }
 
-static void	change_space_into_wall(t_data *data)
+static void	change_space_into_wall(t_info *data)
 {
 	int	i;
 	int	j;
@@ -93,10 +93,10 @@ static void	change_space_into_wall(t_data *data)
 	}
 }
 
-int	create_map(t_data *data, char **file, int i)
+int	create_map(t_info *data, char **file, int i)
 {
-	if (get_map_info(data, file, i) == FAILURE)
-		return (FAILURE);
+	if (get_map_info(data, file, i) == FAIL)
+		return (FAIL);
 	change_space_into_wall(data);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:30 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	free_texinfo(t_texinfo *textures)
 		free(textures->ceiling);
 }
 
-static void	free_map(t_data *data)
+static void	free_map(t_info *data)
 {
 	if (data->mapinfo.fd > 0)
 		close(data->mapinfo.fd);
@@ -55,7 +55,7 @@ static void	free_map(t_data *data)
 		free_tab((void **)data->map);
 }
 
-int	free_data(t_data *data)
+int	free_data(t_info *data)
 {
 	if (data->textures)
 		free_tab((void **)data->textures);
@@ -63,5 +63,5 @@ int	free_data(t_data *data)
 		free_tab((void **)data->texture_pixels);
 	free_texinfo(&data->texinfo);
 	free_map(data);
-	return (FAILURE);
+	return (FAIL);
 }

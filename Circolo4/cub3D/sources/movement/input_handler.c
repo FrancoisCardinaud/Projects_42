@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:31:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	key_press_handler(int key, t_data *data)
+static int	key_press_handler(int key, t_info *data)
 {
 	if (key == XK_Escape)
 		quit_cub3d(data);
@@ -31,7 +31,7 @@ static int	key_press_handler(int key, t_data *data)
 	return (0);
 }
 
-static int	key_release_handler(int key, t_data *data)
+static int	key_release_handler(int key, t_info *data)
 {
 	if (key == XK_Escape)
 		quit_cub3d(data);
@@ -50,7 +50,7 @@ static int	key_release_handler(int key, t_data *data)
 	return (0);
 }
 
-static void	wrap_mouse_position(t_data *data, int x, int y)
+static void	wrap_mouse_position(t_info *data, int x, int y)
 {
 	if (x > data->win_width - DIST_EDGE_MOUSE_WRAP)
 	{
@@ -64,7 +64,7 @@ static void	wrap_mouse_position(t_data *data, int x, int y)
 	}
 }
 
-static int	mouse_motion_handler(int x, int y, t_data *data)
+static int	mouse_motion_handler(int x, int y, t_info *data)
 {
 	static int	old_x = WIN_WIDTH / 2;
 
@@ -79,7 +79,7 @@ static int	mouse_motion_handler(int x, int y, t_data *data)
 	return (0);
 }
 
-void	listen_for_input(t_data *data)
+void	listen_for_input(t_info *data)
 {
 	mlx_hook(data->win, ClientMessage, NoEventMask, quit_cub3d, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, key_press_handler, data);

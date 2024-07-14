@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:02 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	clean_exit(t_data *data, int code)
+void	clean_exit(t_info *data, int code)
 {
 	if (!data)
 		exit(code);
@@ -28,7 +28,7 @@ void	clean_exit(t_data *data, int code)
 	exit(code);
 }
 
-int	quit_cub3d(t_data *data)
+int	quit_cub3d(t_info *data)
 {
 	clean_exit(data, 0);
 	return (0);

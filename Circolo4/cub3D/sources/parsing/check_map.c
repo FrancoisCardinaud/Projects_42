@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:18:24 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:22:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_map_elements(t_data *data, char **map_tab)
+static int	check_map_elements(t_info *data, char **map_tab)
 {
 	int	i;
 	int	j;
@@ -29,9 +29,9 @@ static int	check_map_elements(t_data *data, char **map_tab)
 			|| data->map[i][j] == '\v' || data->map[i][j] == '\f')
 				j++;
 			if (!(ft_strchr("10NSEW", map_tab[i][j])))
-				return (err_msg(data->mapinfo.path, ERR_INV_LETTER, FAILURE));
+				return (err_msg(data->mapinfo.path, ERR_INV_LETTER, FAIL));
 			if (ft_strchr("NSEW", map_tab[i][j]) && data->player.dir != '0')
-				return (err_msg(data->mapinfo.path, ERR_NUM_PLAYER, FAILURE));
+				return (err_msg(data->mapinfo.path, ERR_NUM_PLAYER, FAIL));
 			if (ft_strchr("NSEW", map_tab[i][j]) && data->player.dir == '0')
 				data->player.dir = map_tab[i][j];
 			j++;
@@ -41,7 +41,7 @@ static int	check_map_elements(t_data *data, char **map_tab)
 	return (SUCCESS);
 }
 
-static int	check_position_is_valid(t_data *data, char **map_tab)
+static int	check_position_is_valid(t_info *data, char **map_tab)
 {
 	int	i;
 	int	j;
@@ -54,17 +54,17 @@ static int	check_position_is_valid(t_data *data, char **map_tab)
 		|| is_a_white_space(map_tab[i][j + 1]) == SUCCESS
 		|| is_a_white_space(map_tab[i - 1][j]) == SUCCESS
 		|| is_a_white_space(map_tab[i + 1][j]) == SUCCESS)
-		return (FAILURE);
+		return (FAIL);
 	return (SUCCESS);
 }
 
-static int	check_player_position(t_data *data, char **map_tab)
+static int	check_player_position(t_info *data, char **map_tab)
 {
 	int	i;
 	int	j;
 
 	if (data->player.dir == '0')
-		return (err_msg(data->mapinfo.path, ERR_PLAYER_DIR, FAILURE));
+		return (err_msg(data->mapinfo.path, ERR_PLAYER_DIR, FAIL));
 	i = 0;
 	while (map_tab[i])
 	{
@@ -81,8 +81,8 @@ static int	check_player_position(t_data *data, char **map_tab)
 		}
 		i++;
 	}
-	if (check_position_is_valid(data, map_tab) == FAILURE)
-		return (err_msg(data->mapinfo.path, ERR_PLAYER_POS, FAILURE));
+	if (check_position_is_valid(data, map_tab) == FAIL)
+		return (err_msg(data->mapinfo.path, ERR_PLAYER_POS, FAIL));
 	return (SUCCESS);
 }
 
@@ -100,7 +100,7 @@ static int	check_map_is_at_the_end(t_mapinfo *map)
 			if (map->file[i][j] != ' ' && map->file[i][j] != '\t'
 				&& map->file[i][j] != '\r' && map->file[i][j] != '\n'
 				&& map->file[i][j] != '\v' && map->file[i][j] != '\f')
-				return (FAILURE);
+				return (FAIL);
 			j++;
 		}
 		i++;
@@ -108,19 +108,19 @@ static int	check_map_is_at_the_end(t_mapinfo *map)
 	return (SUCCESS);
 }
 
-int	check_map_validity(t_data *data, char **map_tab)
+int	check_map_validity(t_info *data, char **map_tab)
 {
 	if (!data->map)
-		return (err_msg(data->mapinfo.path, ERR_MAP_MISSING, FAILURE));
-	if (check_map_sides(&data->mapinfo, map_tab) == FAILURE)
-		return (err_msg(data->mapinfo.path, ERR_MAP_NO_WALLS, FAILURE));
+		return (err_msg(data->mapinfo.path, ERR_MAP_MISSING, FAIL));
+	if (check_map_sides(&data->mapinfo, map_tab) == FAIL)
+		return (err_msg(data->mapinfo.path, ERR_MAP_NO_WALLS, FAIL));
 	if (data->mapinfo.height < 3)
-		return (err_msg(data->mapinfo.path, ERR_MAP_TOO_SMALL, FAILURE));
-	if (check_map_elements(data, map_tab) == FAILURE)
-		return (FAILURE);
-	if (check_player_position(data, map_tab) == FAILURE)
-		return (FAILURE);
-	if (check_map_is_at_the_end(&data->mapinfo) == FAILURE)
-		return (err_msg(data->mapinfo.path, ERR_MAP_LAST, FAILURE));
+		return (err_msg(data->mapinfo.path, ERR_MAP_TOO_SMALL, FAIL));
+	if (check_map_elements(data, map_tab) == FAIL)
+		return (FAIL);
+	if (check_player_position(data, map_tab) == FAIL)
+		return (FAIL);
+	if (check_map_is_at_the_end(&data->mapinfo) == FAIL)
+		return (err_msg(data->mapinfo.path, ERR_MAP_LAST, FAIL));
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:29:15 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	is_valid_map_coord(int coord, int size)
 	return (false);
 }
 
-static char	*add_minimap_line(t_data *d, t_minimap *m, int y)
+static char	*add_minimap_line(t_info *d, t_minimap *m, int y)
 {
 	char	*line;
 	int		x;
@@ -56,7 +56,7 @@ static char	*add_minimap_line(t_data *d, t_minimap *m, int y)
 	return (line);
 }
 
-static char	**generate_minimap(t_data *data, t_minimap *minimap)
+static char	**generate_minimap(t_info *data, t_minimap *minimap)
 {
 	char	**mmap;
 	int		y;
@@ -78,7 +78,7 @@ static char	**generate_minimap(t_data *data, t_minimap *minimap)
 	return (mmap);
 }
 
-void	render_minimap(t_data *data)
+void	render_minimap(t_info *data)
 {
 	t_minimap	minimap;
 

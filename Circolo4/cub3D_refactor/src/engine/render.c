@@ -6,73 +6,69 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:30:27 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:57:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Sets a pixel in the frame image based on the game data */
-static void	set_pixel_in_frame(t_data *game_data, t_img *frame, int pixel_x,
-		int pixel_y)
+static void	draw_pixel_in_frame(t_info *info, t_img *frame, int x, int y)
 {
-	if (game_data->texture_pixels[pixel_y][pixel_x] > 0)
-		set_image_pixel(frame, pixel_x, pixel_y,
-			game_data->texture_pixels[pixel_y][pixel_x]);
-	else if (pixel_y < game_data->win_height / 2)
-		set_image_pixel(frame, pixel_x, pixel_y,
-			game_data->texinfo.hex_ceiling);
-	else if (pixel_y < game_data->win_height - 1)
-		set_image_pixel(frame, pixel_x, pixel_y, game_data->texinfo.hex_floor);
+	if (info->texture_pixels[y][x] > 0)
+		set_image_pixel(frame, x, y, info->texture_pixels[y][x]);
+	else if (y < info->win_height / 2)
+		set_image_pixel(frame, x, y, info->texinfo.hex_ceiling);
+	else if (y < info->win_height - 1)
+		set_image_pixel(frame, x, y, info->texinfo.hex_floor);
 }
 
-/* Draws the entire frame image */
-static void	draw_frame(t_data *game_data)
+/* Renders the entire frame image */
+static void	render_frame(t_info *info)
 {
 	t_img	frame;
-	int		pixel_x;
-	int		pixel_y;
+	int		x;
+	int		y;
 
 	frame.img = NULL;
-	initialize_image(game_data, &frame, game_data->win_width,
-		game_data->win_height);
-	pixel_y = 0;
-	while (pixel_y < game_data->win_height)
+	initialize_image(info, &frame, info->win_width, info->win_height);
+	y = 0;
+	while (y < info->win_height)
 	{
-		pixel_x = 0;
-		while (pixel_x < game_data->win_width)
+		x = 0;
+		while (x < info->win_width)
 		{
-			set_pixel_in_frame(game_data, &frame, pixel_x, pixel_y);
-			pixel_x++;
+			draw_pixel_in_frame(info, &frame, x, y);
+			x++;
 		}
-		pixel_y++;
+		y++;
 	}
-	display_crosshair(&frame, game_data);
-	mlx_put_image_to_window(game_data->mlx, game_data->win, frame.img, 0, 0);
-	mlx_destroy_image(game_data->mlx, frame.img);
+	display_crosshair(&frame, info);
+	mlx_put_image_to_window(info->mlx, info->win, frame.img, 0, 0);
+	mlx_destroy_image(info->mlx, frame.img);
 }
 
-/* Performs raycasting and prepares the frame for rendering */
-static void	perform_raycasting(t_data *game_data)
+/* Executes raycasting and prepares the frame for rendering */
+static void	execute_raycasting(t_info *info)
 {
-	initialize_texture_pixels(game_data);
-	initialize_ray(&game_data->ray);
-	perform_raycast(&game_data->player, game_data);
-	draw_frame(game_data);
+	initialize_texture_pixels(info);
+	initialize_ray(&info->ray);
+	perform_raycast(&info->player, info);
+	render_frame(info);
 }
 
 /* Displays images on the screen */
-void	render_images(t_data *game_data)
+void	render_images(t_info *info)
 {
-	perform_raycasting(game_data);
+	execute_raycasting(info);
 }
 
 /* Updates the frame based on player movement */
-int	update_frame(t_data *game_data)
+int	update_frame(t_info *info)
 {
-	game_data->player.has_moved += execute_player_move(game_data);
-	if (game_data->player.has_moved == 0)
+	info->player.has_moved += execute_player_move(info);
+	if (info->player.has_moved == 0)
 		return (0);
-	render_images(game_data);
+	render_images(info);
 	return (0);
 }

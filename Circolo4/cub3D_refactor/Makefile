@@ -22,7 +22,7 @@ SRC_PATH = ./src/
 SRC		= 	system/main.c \
 			system/free_resources.c \
 			system/system_functions.c \
-			config/config_game_data.c \
+			config/config_game_info.c \
 			config/config_mlx.c \
 			config/config_textures.c \
 			config/config_direction.c \

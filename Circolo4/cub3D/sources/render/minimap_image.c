@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:26:51 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	draw_minimap(t_minimap *minimap)
 	set_minimap_border_image_pixels(minimap, MMAP_COLOR_SPACE);
 }
 
-void	render_minimap_image(t_data *data, t_minimap *minimap)
+void	render_minimap_image(t_info *data, t_minimap *minimap)
 {
 	int	img_size;
 

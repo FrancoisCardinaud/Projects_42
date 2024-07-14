@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:34:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	*xpm_to_img(t_data *data, char *path)
+static int	*xpm_to_img(t_info *data, char *path)
 {
 	t_img	tmp;
 	int		*buffer;
@@ -40,7 +40,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	return (buffer);
 }
 
-void	init_textures(t_data *data)
+void	init_textures(t_info *data)
 {
 	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)

@@ -24,7 +24,7 @@ LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 SRC_PATH = ./sources/
 SRC		= 	main.c \
 			error.c \
-			init/init_data.c \
+			init/init_info.c \
 			init/init_mlx.c \
 			init/init_textures.c \
 			parsing/check_args.c \

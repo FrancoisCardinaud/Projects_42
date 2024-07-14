@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:32:29 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	debug_display_minimap(t_minimap *minimap)
 	debug_print_char_tab(minimap->map);
 }
 
-void	debug_display_mapinfo(t_data *data)
+void	debug_display_mapinfo(t_info *data)
 {
 	printf(YELLOW "\n---- MAP\n" RESET);
 	printf("Map height: %d\n", data->mapinfo.height);
@@ -49,7 +49,7 @@ void	debug_display_mapinfo(t_data *data)
 	printf("Texture west: %s\n", data->texinfo.west);
 }
 
-void	debug_display_player(t_data *data)
+void	debug_display_player(t_info *data)
 {
 	printf(YELLOW "\n---- PLAYER\n" RESET);
 	printf("Player pos: ");
@@ -58,7 +58,7 @@ void	debug_display_player(t_data *data)
 	printf("(x = %f, y = %f)\n", data->player.dir_x, data->player.dir_y);
 }
 
-void	debug_display_data(t_data *data)
+void	debug_display_data(t_info *data)
 {
 	debug_display_mapinfo(data);
 	debug_display_player(data);

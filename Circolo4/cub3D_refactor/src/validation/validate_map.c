@@ -6,75 +6,75 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:29:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Validates the elements in the map grid */
-static int	validate_map_elements(t_data *game_data, char **map_grid)
+static int	validate_map_elements(t_info *game_info, char **map_grid)
 {
 	int	row;
 	int	col;
 
 	row = 0;
-	game_data->player.dir = '0';
+	game_info->player.dir = '0';
 	while (map_grid[row] != NULL)
 	{
 		col = 0;
 		while (map_grid[row][col])
 		{
-			while (game_data->map[row][col] == ' '
-				|| game_data->map[row][col] == '\t'
-				|| game_data->map[row][col] == '\r'
-				|| game_data->map[row][col] == '\v'
-				|| game_data->map[row][col] == '\f')
+			while (game_info->map[row][col] == ' '
+				|| game_info->map[row][col] == '\t'
+				|| game_info->map[row][col] == '\r'
+				|| game_info->map[row][col] == '\v'
+				|| game_info->map[row][col] == '\f')
 				col++;
 			if (!(ft_strchr("10NSEW", map_grid[row][col])))
-				return (display_error_message(game_data->mapinfo.path,
-						ERR_INV_LETTER, FAILURE));
+				return (display_error_message(game_info->mapinfo.path,
+						INV_LETTER, NOT_OK));
 			if (ft_strchr("NSEW", map_grid[row][col])
-				&& game_data->player.dir != '0')
-				return (display_error_message(game_data->mapinfo.path,
-						ERR_NUM_PLAYER, FAILURE));
+				&& game_info->player.dir != '0')
+				return (display_error_message(game_info->mapinfo.path,
+						NUM_PLAYER, NOT_OK));
 			if (ft_strchr("NSEW", map_grid[row][col])
-				&& game_data->player.dir == '0')
-				game_data->player.dir = map_grid[row][col];
+				&& game_info->player.dir == '0')
+				game_info->player.dir = map_grid[row][col];
 			col++;
 		}
 		row++;
 	}
-	return (SUCCESS);
+	return (OK);
 }
 
 /* Verifies if the player's position is valid */
-static int	verify_position_validity(t_data *game_data, char **map_grid)
+static int	verify_position_validity(t_info *game_info, char **map_grid)
 {
 	int	row;
 	int	col;
 
-	row = (int)game_data->player.pos_y;
-	col = (int)game_data->player.pos_x;
+	row = (int)game_info->player.pos_y;
+	col = (int)game_info->player.pos_x;
 	if (ft_strlen(map_grid[row - 1]) < (size_t)col || ft_strlen(map_grid[row
 			+ 1]) < (size_t)col || is_whitespace(map_grid[row][col
-				- 1]) == SUCCESS || is_whitespace(map_grid[row][col + 1])
-					== SUCCESS
-		|| is_whitespace(map_grid[row - 1][col]) == SUCCESS
-		|| is_whitespace(map_grid[row + 1][col]) == SUCCESS)
-		return (FAILURE);
-	return (SUCCESS);
+				- 1]) == OK || is_whitespace(map_grid[row][col + 1])
+					== OK
+		|| is_whitespace(map_grid[row - 1][col]) == OK
+		|| is_whitespace(map_grid[row + 1][col]) == OK)
+		return (NOT_OK);
+	return (OK);
 }
 
 /* Validates the player's position on the map */
-static int	validate_player_position(t_data *game_data, char **map_grid)
+static int	validate_player_position(t_info *game_info, char **map_grid)
 {
 	int	row;
 	int	col;
 
-	if (game_data->player.dir == '0')
-		return (display_error_message(game_data->mapinfo.path, ERR_PLAYER_DIR,
-				FAILURE));
+	if (game_info->player.dir == '0')
+		return (display_error_message(game_info->mapinfo.path, PLAYER_DIR,
+				NOT_OK));
 	row = 0;
 	while (map_grid[row])
 	{
@@ -83,18 +83,18 @@ static int	validate_player_position(t_data *game_data, char **map_grid)
 		{
 			if (ft_strchr("NSEW", map_grid[row][col]))
 			{
-				game_data->player.pos_x = (double)col + 0.5;
-				game_data->player.pos_y = (double)row + 0.5;
+				game_info->player.pos_x = (double)col + 0.5;
+				game_info->player.pos_y = (double)row + 0.5;
 				map_grid[row][col] = '0';
 			}
 			col++;
 		}
 		row++;
 	}
-	if (verify_position_validity(game_data, map_grid) == FAILURE)
-		return (display_error_message(game_data->mapinfo.path, ERR_PLAYER_POS,
-				FAILURE));
-	return (SUCCESS);
+	if (verify_position_validity(game_info, map_grid) == NOT_OK)
+		return (display_error_message(game_info->mapinfo.path, PLAYER_POS,
+				NOT_OK));
+	return (OK);
 }
 
 /* Verifies that the map is at the end of the file */
@@ -115,32 +115,32 @@ static int	verify_map_termination(t_mapinfo *map_info)
 				&& map_info->file[row][col] != '\n'
 				&& map_info->file[row][col] != '\v'
 				&& map_info->file[row][col] != '\f')
-				return (FAILURE);
+				return (NOT_OK);
 			col++;
 		}
 		row++;
 	}
-	return (SUCCESS);
+	return (OK);
 }
 
 /* Validates the overall map validity */
-int	validate_map(t_data *game_data, char **map_grid)
+int	validate_map(t_info *game_info, char **map_grid)
 {
-	if (!game_data->map)
-		return (display_error_message(game_data->mapinfo.path, ERR_MAP_MISSING,
-				FAILURE));
-	if (validate_map_borders(&game_data->mapinfo, map_grid) == FAILURE)
-		return (display_error_message(game_data->mapinfo.path, ERR_MAP_NO_WALLS,
-				FAILURE));
-	if (game_data->mapinfo.height < 3)
-		return (display_error_message(game_data->mapinfo.path,
-				ERR_MAP_TOO_SMALL, FAILURE));
-	if (validate_map_elements(game_data, map_grid) == FAILURE)
-		return (FAILURE);
-	if (validate_player_position(game_data, map_grid) == FAILURE)
-		return (FAILURE);
-	if (verify_map_termination(&game_data->mapinfo) == FAILURE)
-		return (display_error_message(game_data->mapinfo.path, ERR_MAP_LAST,
-				FAILURE));
-	return (SUCCESS);
+	if (!game_info->map)
+		return (display_error_message(game_info->mapinfo.path, MAP_MISSING,
+				NOT_OK));
+	if (validate_map_borders(&game_info->mapinfo, map_grid) == NOT_OK)
+		return (display_error_message(game_info->mapinfo.path, MAP_NO_WALLS,
+				NOT_OK));
+	if (game_info->mapinfo.height < 3)
+		return (display_error_message(game_info->mapinfo.path,
+				MAP_TOO_SMALL, NOT_OK));
+	if (validate_map_elements(game_info, map_grid) == NOT_OK)
+		return (NOT_OK);
+	if (validate_player_position(game_info, map_grid) == NOT_OK)
+		return (NOT_OK);
+	if (verify_map_termination(&game_info->mapinfo) == NOT_OK)
+		return (display_error_message(game_info->mapinfo.path, MAP_LAST,
+				NOT_OK));
+	return (OK);
 }

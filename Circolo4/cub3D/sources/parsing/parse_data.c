@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:30:28 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:22:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	get_number_of_lines(char *path)
 	return (line_count);
 }
 
-static void	fill_tab(int row, int column, int i, t_data *data)
+static void	fill_tab(int row, int column, int i, t_info *data)
 {
 	char	*line;
 
@@ -60,7 +60,7 @@ static void	fill_tab(int row, int column, int i, t_data *data)
 	data->mapinfo.file[row] = NULL;
 }
 
-void	parse_data(char *path, t_data *data)
+void	parse_data(char *path, t_info *data)
 {
 	int		row;
 	int		i;
@@ -80,7 +80,7 @@ void	parse_data(char *path, t_data *data)
 	}
 	data->mapinfo.fd = open(path, O_RDONLY);
 	if (data->mapinfo.fd < 0)
-		err_msg(path, strerror(errno), FAILURE);
+		err_msg(path, strerror(errno), FAIL);
 	else
 	{
 		fill_tab(row, column, i, data);

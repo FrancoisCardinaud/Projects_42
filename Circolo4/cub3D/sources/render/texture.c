@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:33 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:21:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_texture_pixels(t_data *data)
+void	init_texture_pixels(t_info *data)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ void	init_texture_pixels(t_data *data)
 	}
 }
 
-static void	get_texture_index(t_data *data, t_ray *ray)
+static void	get_texture_index(t_info *data, t_ray *ray)
 {
 	if (ray->side == 0)
 	{
@@ -51,7 +51,7 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	}
 }
 
-void	update_texture_pixels(t_data *data, t_texinfo *tex, t_ray *ray, int x)
+void	update_texture_pixels(t_info *data, t_texinfo *tex, t_ray *ray, int x)
 {
 	int			y;
 	int			color;

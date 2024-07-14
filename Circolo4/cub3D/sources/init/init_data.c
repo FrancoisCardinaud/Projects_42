@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:22:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	init_player(t_player *player)
 	player->rotate = 0;
 }
 
-void	init_data(t_data *data)
+void	init_info(t_info *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;

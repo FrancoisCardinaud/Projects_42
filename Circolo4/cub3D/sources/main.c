@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/06/21 19:07:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ static void	print_controls(void)
 	printf("\n");
 }
 
-static int	parse_args(t_data *data, char **av)
+static int	parse_args(t_info *data, char **av)
 {
-	if (check_file(av[1], true) == FAILURE)
-		clean_exit(data, FAILURE);
+	if (check_file(av[1], true) == FAIL)
+		clean_exit(data, FAIL);
 	parse_data(av[1], data);
-	if (get_file_data(data, data->mapinfo.file) == FAILURE)
+	if (get_file_data(data, data->mapinfo.file) == FAIL)
 		return (free_data(data));
-	if (check_map_validity(data, data->map) == FAILURE)
+	if (check_map_validity(data, data->map) == FAIL)
 		return (free_data(data));
-	if (check_textures_validity(data, &data->texinfo) == FAILURE)
+	if (check_textures_validity(data, &data->texinfo) == FAIL)
 		return (free_data(data));
 	init_player_direction(data);
 	if (DEBUG_MSG)
@@ -49,11 +49,11 @@ static int	parse_args(t_data *data, char **av)
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_info	data;
 
 	if (ac != 2)
 		return (err_msg("Usage", ERR_USAGE, 1));
-	init_data(&data);
+	init_info(&data);
 	if (parse_args(&data, av) != 0)
 		return (1);
 	init_mlx(&data);

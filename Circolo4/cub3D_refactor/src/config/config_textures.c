@@ -6,56 +6,56 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:34:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/13 18:21:56 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Loads an XPM image file into a buffer */
-static int	*convert_xpm(t_data *game_data, char *file_path)
+static int	*convert_xpm(t_info *game_info, char *file_path)
 {
 	t_img	temp_img;
 	int		*texture_buffer;
 	int		width;
 	int		height;
 
-	initialize_texture_image(game_data, &temp_img, file_path);
+	initialize_texture_image(game_info, &temp_img, file_path);
 	texture_buffer = ft_calloc(1, sizeof(*texture_buffer)
-			* game_data->texinfo.size * game_data->texinfo.size);
+			* game_info->texinfo.size * game_info->texinfo.size);
 	if (!texture_buffer)
-		clean_exit(game_data, display_error_message(NULL, ERR_MALLOC, 1));
+		clean_exit(game_info, display_error_message(NULL, MALLOC, 1));
 	height = 0;
-	while (height < game_data->texinfo.size)
+	while (height < game_info->texinfo.size)
 	{
 		width = 0;
-		while (width < game_data->texinfo.size)
+		while (width < game_info->texinfo.size)
 		{
-			texture_buffer[height * game_data->texinfo.size
-				+ width] = temp_img.addr[height * game_data->texinfo.size
+			texture_buffer[height * game_info->texinfo.size
+				+ width] = temp_img.addr[height * game_info->texinfo.size
 				+ width];
 			++width;
 		}
 		height++;
 	}
-	mlx_destroy_image(game_data->mlx, temp_img.img);
+	mlx_destroy_image(game_info->mlx, temp_img.img);
 	return (texture_buffer);
 }
 
 /* Initializes textures from XPM files */
-void	initialize_textures(t_data *game_data)
+void	initialize_textures(t_info *game_info)
 {
-	game_data->textures = ft_calloc(5, sizeof(*game_data->textures));
-	if (!game_data->textures)
-		clean_exit(game_data, display_error_message(NULL, ERR_MALLOC, 1));
-	game_data->textures[NORTH] = convert_xpm(game_data,
-			game_data->texinfo.north);
-	game_data->textures[SOUTH] = convert_xpm(game_data,
-			game_data->texinfo.south);
-	game_data->textures[EAST] = convert_xpm(game_data,
-			game_data->texinfo.east);
-	game_data->textures[WEST] = convert_xpm(game_data,
-			game_data->texinfo.west);
+	game_info->textures = ft_calloc(5, sizeof(*game_info->textures));
+	if (!game_info->textures)
+		clean_exit(game_info, display_error_message(NULL, MALLOC, 1));
+	game_info->textures[NORTH] = convert_xpm(game_info,
+			game_info->texinfo.north);
+	game_info->textures[SOUTH] = convert_xpm(game_info,
+			game_info->texinfo.south);
+	game_info->textures[EAST] = convert_xpm(game_info,
+			game_info->texinfo.east);
+	game_info->textures[WEST] = convert_xpm(game_info,
+			game_info->texinfo.west);
 }
 
 /* Initializes the texture information structure */

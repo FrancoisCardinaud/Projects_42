@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/13 17:50:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:32:03 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 /*
 **	Checks whether the argument is a correct .cub extension,
-**	checks that it exists and isn't a folder instead of a file.
+**	checks that it exists and isn't a directory instead of a file.
 */
 
 int	is_whitespace(char character)
 {
 	if (character != ' ' && character != '\t' && character != '\r'
 		&& character != '\n' && character != '\v' && character != '\f')
-		return (FAILURE);
+		return (NOT_OK);
 	else
-		return (SUCCESS);
+		return (OK);
 }
 
 /* Checks if the file path points to a directory */
@@ -74,14 +74,14 @@ int	verify_file(char *file_path, bool is_cub)
 	int	file_descriptor;
 
 	if (check_is_directory(file_path))
-		return (display_error_message(file_path, ERR_FILE_IS_DIR, FAILURE));
+		return (display_error_message(file_path, FILE_IS_DIR, NOT_OK));
 	file_descriptor = open(file_path, O_RDONLY);
 	if (file_descriptor == -1)
-		return (display_error_message(file_path, strerror(errno), FAILURE));
+		return (display_error_message(file_path, strerror(errno), NOT_OK));
 	close(file_descriptor);
 	if (is_cub && !validate_cub_file(file_path))
-		return (display_error_message(file_path, ERR_FILE_NOT_CUB, FAILURE));
+		return (display_error_message(file_path, FILE_NOT_CUB, NOT_OK));
 	if (!is_cub && !validate_xpm_file(file_path))
-		return (display_error_message(file_path, ERR_FILE_NOT_XPM, FAILURE));
-	return (SUCCESS);
+		return (display_error_message(file_path, FILE_NOT_XPM, NOT_OK));
+	return (OK);
 }

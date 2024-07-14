@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:17:27 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:22:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int	check_file(char *arg, bool cub)
 	int	fd;
 
 	if (is_dir(arg))
-		return (err_msg(arg, ERR_FILE_IS_DIR, FAILURE));
+		return (err_msg(arg, ERR_FILE_IS_DIR, FAIL));
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return (err_msg(arg, strerror(errno), FAILURE));
+		return (err_msg(arg, strerror(errno), FAIL));
 	close(fd);
 	if (cub && !is_cub_file(arg))
-		return (err_msg(arg, ERR_FILE_NOT_CUB, FAILURE));
+		return (err_msg(arg, ERR_FILE_NOT_CUB, FAIL));
 	if (!cub && !is_xpm_file(arg))
-		return (err_msg(arg, ERR_FILE_NOT_XPM, FAILURE));
+		return (err_msg(arg, ERR_FILE_NOT_XPM, FAIL));
 	return (SUCCESS);
 }

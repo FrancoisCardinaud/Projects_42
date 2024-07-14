@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:30 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:29:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ static void	release_texture_info(t_texinfo *texture_info)
 }
 
 /* Releases allocated memory for the map */
-static void	release_map(t_data *game_data)
+static void	release_map(t_info *game_info)
 {
-	if (game_data->mapinfo.fd > 0)
-		close(game_data->mapinfo.fd);
-	if (game_data->mapinfo.file)
-		release_memory((void **)game_data->mapinfo.file);
-	if (game_data->map)
-		release_memory((void **)game_data->map);
+	if (game_info->mapinfo.fd > 0)
+		close(game_info->mapinfo.fd);
+	if (game_info->mapinfo.file)
+		release_memory((void **)game_info->mapinfo.file);
+	if (game_info->map)
+		release_memory((void **)game_info->map);
 }
 
-/* Releases all allocated resources and returns FAILURE */
-int	release_resources(t_data *game_data)
+/* Releases all allocated resources and returns NOT_OK */
+int	release_resources(t_info *game_info)
 {
-	if (game_data->textures)
-		release_memory((void **)game_data->textures);
-	if (game_data->texture_pixels)
-		release_memory((void **)game_data->texture_pixels);
-	release_texture_info(&game_data->texinfo);
-	release_map(game_data);
-	return (FAILURE);
+	if (game_info->textures)
+		release_memory((void **)game_info->textures);
+	if (game_info->texture_pixels)
+		release_memory((void **)game_info->texture_pixels);
+	release_texture_info(&game_info->texinfo);
+	release_map(game_info);
+	return (NOT_OK);
 }

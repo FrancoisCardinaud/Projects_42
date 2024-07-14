@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:29:52 by fcardina          #+#    #+#             */
-/*   Updated: 2024/04/17 03:22:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	fill_direction_textures(t_texinfo *textures, char *line, int j)
 	return (SUCCESS);
 }
 
-static int	ignore_whitespaces_get_info(t_data *data, char **map, int i, int j)
+static int	ignore_whitespaces_get_info(t_info *data, char **map, int i, int j)
 {
 	while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\n')
 		j++;
@@ -67,26 +67,26 @@ static int	ignore_whitespaces_get_info(t_data *data, char **map, int i, int j)
 			&& !ft_isdigit(map[i][j]))
 		{
 			if (fill_direction_textures(&data->texinfo, map[i], j) == ERR)
-				return (err_msg(data->mapinfo.path, ERR_TEX_INVALID, FAILURE));
+				return (err_msg(data->mapinfo.path, ERR_TEX_INVALID, FAIL));
 			return (BREAK);
 		}	
 		else
 		{
 			if (fill_color_textures(data, &data->texinfo, map[i], j) == ERR)
-				return (FAILURE);
+				return (FAIL);
 			return (BREAK);
 		}	
 	}
 	else if (ft_isdigit(map[i][j]))
 	{
-		if (create_map(data, map, i) == FAILURE)
-			return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
+		if (create_map(data, map, i) == FAIL)
+			return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAIL));
 		return (SUCCESS);
 	}
 	return (CONTINUE);
 }
 
-int	get_file_data(t_data *data, char **map)
+int	get_file_data(t_info *data, char **map)
 {
 	int	i;
 	int	j;
@@ -101,8 +101,8 @@ int	get_file_data(t_data *data, char **map)
 			ret = ignore_whitespaces_get_info(data, map, i, j);
 			if (ret == BREAK)
 				break ;
-			else if (ret == FAILURE)
-				return (FAILURE);
+			else if (ret == FAIL)
+				return (FAIL);
 			else if (ret == SUCCESS)
 				return (SUCCESS);
 			j++;

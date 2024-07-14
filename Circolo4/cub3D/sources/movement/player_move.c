@@ -6,13 +6,13 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:31:24 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/07 04:25:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	move_player_forward(t_data *data)
+static int	move_player_forward(t_info *data)
 {
 	double	new_x;
 	double	new_y;
@@ -22,7 +22,7 @@ static int	move_player_forward(t_data *data)
 	return (validate_move(data, new_x, new_y));
 }
 
-static int	move_player_backward(t_data *data)
+static int	move_player_backward(t_info *data)
 {
 	double	new_x;
 	double	new_y;
@@ -32,7 +32,7 @@ static int	move_player_backward(t_data *data)
 	return (validate_move(data, new_x, new_y));
 }
 
-static int	move_player_left(t_data *data)
+static int	move_player_left(t_info *data)
 {
 	double	new_x;
 	double	new_y;
@@ -42,7 +42,7 @@ static int	move_player_left(t_data *data)
 	return (validate_move(data, new_x, new_y));
 }
 
-static int	move_player_right(t_data *data)
+static int	move_player_right(t_info *data)
 {
 	double	new_x;
 	double	new_y;
@@ -52,7 +52,7 @@ static int	move_player_right(t_data *data)
 	return (validate_move(data, new_x, new_y));
 }
 
-int	move_player(t_data *data)
+int	move_player(t_info *data)
 {
 	int	moved;
 

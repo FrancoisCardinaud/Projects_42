@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:47:42 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/07 04:25:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@
 enum e_output
 {
 	SUCCESS = 0,
-	FAILURE = 1,
+	FAIL = 1,
 	ERR = 2,
 	BREAK = 3,
 	CONTINUE = 4
@@ -218,47 +218,47 @@ typedef struct s_data
 	int			**textures;
 	t_texinfo	texinfo;
 	t_img		minimap;
-}	t_data;
+}	t_info;
 
 /* ---------------------------------------------------------------------------*
 							FUNCTIONS
  --------------------------------------------------------------------------- */
 
-/* init/init_data.c */
-void	init_data(t_data *data);
+/* init/init_info.c */
+void	init_info(t_info *data);
 void	init_img_clean(t_img *img);
 void	init_ray(t_ray *ray);
 
 /* init/init_mlx.c */
-void	init_mlx(t_data *data);
-void	init_img(t_data *data, t_img *image, int width, int height);
-void	init_texture_img(t_data *data, t_img *image, char *path);
+void	init_mlx(t_info *data);
+void	init_img(t_info *data, t_img *image, int width, int height);
+void	init_texture_img(t_info *data, t_img *image, char *path);
 
 /* init/init_textures.c */
-void	init_textures(t_data *data);
+void	init_textures(t_info *data);
 void	init_texinfo(t_texinfo *textures);
 
 /* parsing/check_args.c */
 int		check_file(char *arg, bool cub);
 
 /* parsing/parse_data.c */
-void	parse_data(char *path, t_data *data);
+void	parse_data(char *path, t_info *data);
 
 /* parsing/get_file_data.c */
-int		get_file_data(t_data *data, char **map);
+int		get_file_data(t_info *data, char **map);
 
 /* parsing/fill_color_textures.c */
-int		fill_color_textures(t_data *data, t_texinfo *textures,
+int		fill_color_textures(t_info *data, t_texinfo *textures,
 			char *line, int j);
 
 /* parsing/create_game_map.c */
-int		create_map(t_data *data, char **map, int i);
+int		create_map(t_info *data, char **map, int i);
 
 /* parsing/check_textures.c */
-int		check_textures_validity(t_data *data, t_texinfo *textures);
+int		check_textures_validity(t_info *data, t_texinfo *textures);
 
 /* parsing/check_map.c */
-int		check_map_validity(t_data *data, char **map_tab);
+int		check_map_validity(t_info *data, char **map_tab);
 
 /* parsing/check_map_borders.c */
 int		check_map_sides(t_mapinfo *map, char **map_tab);
@@ -268,56 +268,56 @@ int		is_a_white_space(char c);
 size_t	find_biggest_len(t_mapinfo *map, int i);
 
 /* render/render.c */
-int		render(t_data *data);
-void	render_images(t_data *data);
+int		render(t_info *data);
+void	render_images(t_info *data);
 
 /* render/raycasting.c */
-int		raycasting(t_player *player, t_data *data);
+int		raycasting(t_player *player, t_info *data);
 
 /* render/texture.c */
-void	init_texture_pixels(t_data *data);
-void	update_texture_pixels(t_data *data, t_texinfo *tex, t_ray *ray, int x);
+void	init_texture_pixels(t_info *data);
+void	update_texture_pixels(t_info *data, t_texinfo *tex, t_ray *ray, int x);
 
 /* render/image_utils.c */
 void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /* render/minimap_render.c */
-void	render_minimap(t_data *data);
+void	render_minimap(t_info *data);
 
 /* render/minimap_image.c */
-void	render_minimap_image(t_data *data, t_minimap *minimap);
+void	render_minimap_image(t_info *data, t_minimap *minimap);
 
 /* movement/input_handler.c */
-void	listen_for_input(t_data *data);
+void	listen_for_input(t_info *data);
 
 /* movement/player_dir.c */
-void	init_player_direction(t_data *data);
+void	init_player_direction(t_info *data);
 
 /* movement/player_pos.c */
-int		validate_move(t_data *data, double new_x, double new_y);
+int		validate_move(t_info *data, double new_x, double new_y);
 
 /* movement/player_move.c */
-int		move_player(t_data *data);
+int		move_player(t_info *data);
 
 /* movement/player_rotate.c */
-int		rotate_player(t_data *data, double rotdir);
+int		rotate_player(t_info *data, double rotdir);
 
 /* exit/exit.c */
-void	clean_exit(t_data *data, int code);
-int		quit_cub3d(t_data *data);
+void	clean_exit(t_info *data, int code);
+int		quit_cub3d(t_info *data);
 
 /* exit/free_data.c */
 void	free_tab(void **tab);
-int		free_data(t_data *data);
+int		free_data(t_info *data);
 
 /* error.c */
 int		err_msg(char *detail, char *str, int code);
 int		err_msg_val(int detail, char *str, int code);
 
 /* debug/debug.c */
-void	debug_display_data(t_data *data);
+void	debug_display_data(t_info *data);
 void	debug_display_minimap(t_minimap *minimap);
-void	debug_display_player(t_data *data);
+void	debug_display_player(t_info *data);
 void	debug_print_char_tab(char **tab);
 
 #endif

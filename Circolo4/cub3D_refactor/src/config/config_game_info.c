@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:30:15 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ static void	initialize_player(t_player *player_data)
 }
 
 /* Initializes the main game data structure */
-void	initialize_game_data(t_data *game_data)
+void	initialize_game_info(t_info *game_info)
 {
-	game_data->mlx = NULL;
-	game_data->win = NULL;
-	game_data->win_height = WIN_HEIGHT;
-	game_data->win_width = WIN_WIDTH;
-	initialize_player(&game_data->player);
-	initialize_texture_info(&game_data->texinfo);
-	game_data->map = NULL;
-	initialize_map_info(&game_data->mapinfo);
-	game_data->texture_pixels = NULL;
-	game_data->textures = NULL;
+	game_info->mlx = NULL;
+	game_info->win = NULL;
+	game_info->win_height = WIN_HEIGHT;
+	game_info->win_width = WIN_WIDTH;
+	initialize_player(&game_info->player);
+	initialize_texture_info(&game_info->texinfo);
+	game_info->map = NULL;
+	initialize_map_info(&game_info->mapinfo);
+	game_info->texture_pixels = NULL;
+	game_info->textures = NULL;
 }

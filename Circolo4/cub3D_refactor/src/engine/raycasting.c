@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:30:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:53:31 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static void	setup_dda(t_ray *raycast, t_player *player_data)
 }
 
 /* Execute the DDA algorithm to find the wall hit */
-static void	execute_dda(t_data *game_data, t_ray *raycast)
+static void	execute_dda(t_info *game_info, t_ray *raycast)
 {
 	int	hit;
 
 	hit = 0;
-	while (!hit)
+	while (hit == 0)
 	{
 		if (raycast->sidedist_x < raycast->sidedist_y)
 		{
@@ -77,52 +77,47 @@ static void	execute_dda(t_data *game_data, t_ray *raycast)
 			raycast->map_y += raycast->step_y;
 			raycast->side = 1;
 		}
-		if (game_data->map[raycast->map_y][raycast->map_x] == '1')
+		if (game_info->map[raycast->map_y][raycast->map_x] == '1')
 			hit = 1;
 	}
 }
 
 /* Compute the height of the line to be drawn */
-static void	compute_line_height(t_ray *raycast, t_data *game_data,
-		t_player *player_data)
+static void	compute_line_height(t_ray *raycast, t_info *game_info, t_player *player_data)
 {
 	if (raycast->side == 0)
 		raycast->wall_dist = (raycast->sidedist_x - raycast->deltadist_x);
 	else
 		raycast->wall_dist = (raycast->sidedist_y - raycast->deltadist_y);
-	raycast->line_height = (int)(game_data->win_height / raycast->wall_dist);
-	raycast->draw_start = -(raycast->line_height) / 2 + game_data->win_height
-		/ 2;
+	raycast->line_height = (int)(game_info->win_height / raycast->wall_dist);
+	raycast->draw_start = -raycast->line_height / 2 + game_info->win_height / 2;
 	if (raycast->draw_start < 0)
 		raycast->draw_start = 0;
-	raycast->draw_end = raycast->line_height / 2 + game_data->win_height / 2;
-	if (raycast->draw_end >= game_data->win_height)
-		raycast->draw_end = game_data->win_height - 1;
+	raycast->draw_end = raycast->line_height / 2 + game_info->win_height / 2;
+	if (raycast->draw_end >= game_info->win_height)
+		raycast->draw_end = game_info->win_height - 1;
 	if (raycast->side == 0)
-		raycast->wall_x = player_data->pos_y + raycast->wall_dist
-			* raycast->dir_y;
+		raycast->wall_x = player_data->pos_y + raycast->wall_dist * raycast->dir_y;
 	else
-		raycast->wall_x = player_data->pos_x + raycast->wall_dist
-			* raycast->dir_x;
+		raycast->wall_x = player_data->pos_x + raycast->wall_dist * raycast->dir_x;
 	raycast->wall_x -= floor(raycast->wall_x);
 }
 
-int	perform_raycast(t_player *player_data, t_data *game_data)
+int	perform_raycast(t_player *player_data, t_info *game_info)
 {
 	t_ray	raycast;
 	int		column;
 
 	column = 0;
-	raycast = game_data->ray;
-	while (column < game_data->win_width)
+	raycast = game_info->ray;
+	while (column < game_info->win_width)
 	{
 		initialize_ray_info(column, &raycast, player_data);
 		setup_dda(&raycast, player_data);
-		execute_dda(game_data, &raycast);
-		compute_line_height(&raycast, game_data, player_data);
-		refresh_texture_pixels(game_data, &game_data->texinfo, &raycast,
-			column);
+		execute_dda(game_info, &raycast);
+		compute_line_height(&raycast, game_info, player_data);
+		refresh_texture_pixels(game_info, &game_info->texinfo, &raycast, column);
 		column++;
 	}
-	return (SUCCESS);
+	return (OK);
 }
