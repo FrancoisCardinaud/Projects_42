@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:29:21 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:50:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 **	Checks whether the argument is a correct .cub extension,
 **	checks that it exists and isn't a folder instead of a file.
 */
+
+int	is_whitespace(char character)
+{
+	if (character != ' ' && character != '\t' && character != '\r'
+		&& character != '\n' && character != '\v' && character != '\f')
+		return (FAILURE);
+	else
+		return (SUCCESS);
+}
 
 /* Checks if the file path points to a directory */
 static bool	check_is_directory(char *file_path)

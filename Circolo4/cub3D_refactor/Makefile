@@ -1,14 +1,11 @@
-.PHONY: all re clean fclean bonus
+.PHONY: all re clean fclean
 
 # Program file name
 NAME	= cub3D
 
-# Mode
-BONUS = 0
-
 # Compiler and compilation flags
 CC		= gcc
-CFLAGS	= -Werror -Wextra -Wall -g3 #-fsanitize=address
+CFLAGS	= -Werror -Wextra -Wall -g3
 
 # Minilibx
 MLX_PATH	= minilibx-linux/
@@ -25,10 +22,10 @@ SRC_PATH = ./src/
 SRC		= 	system/main.c \
 			system/free_resources.c \
 			system/system_functions.c \
-			configuration/config_game_data.c \
-			configuration/config_mlx.c \
-			configuration/config_textures.c \
-			configuration/config_direction.c \
+			config/config_game_data.c \
+			config/config_mlx.c \
+			config/config_textures.c \
+			config/config_direction.c \
 			engine/raycasting.c \
 			engine/render.c \
 			engine/manage_textures.c \
@@ -36,8 +33,7 @@ SRC		= 	system/main.c \
 			parsing/parse_data.c \
 			parsing/retrieve_data.c \
 			parsing/build_map.c \
-			parsing/assign_coltex.c \
-			parsing/parse_utils.c \
+			parsing/color_texture.c \
 			validation/validate_arguments.c \
 			validation/validate_textures.c \
 			validation/validate_map.c \
@@ -65,7 +61,7 @@ all: $(OBJ_PATH) $(MLX) $(LIBFT) $(NAME)
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
 	mkdir -p $(OBJ_PATH)/system
-	mkdir -p $(OBJ_PATH)/configuration
+	mkdir -p $(OBJ_PATH)/config
 	mkdir -p $(OBJ_PATH)/engine
 	mkdir -p $(OBJ_PATH)/parsing
 	mkdir -p $(OBJ_PATH)/validation

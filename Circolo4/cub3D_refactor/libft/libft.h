@@ -6,13 +6,16 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:46:20 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 03:35:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:03:30 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <errno.h>
+# include <fcntl.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <unistd.h>
 
 typedef struct s_list
@@ -26,6 +29,7 @@ double				ft_atof(const char *str);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
+bool				contains_no_digits(char *string);
 int					ft_countchar(char *s, char c);
 char				**ft_dup_matrix(char **m);
 char				**ft_extend_matrix(char **in, char *newstr);

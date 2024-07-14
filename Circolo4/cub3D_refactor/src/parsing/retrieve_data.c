@@ -6,11 +6,26 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:29:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:01:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+/* Finds the length of the longest line in the map file */
+size_t	find_max_length(t_mapinfo *map_info, int line_index)
+{
+	size_t	longest_length;
+
+	longest_length = ft_strlen(map_info->file[line_index]);
+	while (map_info->file[line_index])
+	{
+		if (ft_strlen(map_info->file[line_index]) > longest_length)
+			longest_length = ft_strlen(map_info->file[line_index]);
+		line_index++;
+	}
+	return (longest_length);
+}
 
 /* Extracts the texture path from the input line */
 static char	*extract_texture_path(char *in_line, int char_i)

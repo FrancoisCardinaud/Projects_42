@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_coltex.c                                    :+:      :+:    :+:   */
+/*   color_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:29:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:34:38 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	*parse_rgb_values(char *input_line)
 	return (populate_rgb_array(rgb_parts, rgb_array));
 }
 
-/* Assigns the floor and ceiling colors from the input line */
+/* Assign the floor and ceiling colors from the input line */
 int	assign_color_textures(t_data *game_data, t_texinfo *texture_info,
 		char *input_line, int char_index)
 {

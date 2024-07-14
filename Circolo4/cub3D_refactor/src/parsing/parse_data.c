@@ -6,11 +6,35 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:30:03 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:03:06 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+int	count_lines_in_file(char *file_path)
+{
+	int		fd;
+	char	*current_line;
+	int		total_lines;
+
+	total_lines = 0;
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+		display_error_message(file_path, strerror(errno), errno);
+	else
+	{
+		current_line = get_next_line(fd);
+		while (current_line != NULL)
+		{
+			total_lines++;
+			free(current_line);
+			current_line = get_next_line(fd);
+		}
+		close(fd);
+	}
+	return (total_lines);
+}
 
 /* Populates the file lines into the mapinfo structure */
 static void	populate_file_lines(int line_i, int char_i, int temp_i,

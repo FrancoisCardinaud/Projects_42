@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/07 14:26:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:55:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 							MACROS
  --------------------------------------------------------------------------- */
 
-/* # define WIN_WIDTH 960 */
-/* # define WIN_HEIGHT 720 */
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 
@@ -63,7 +61,7 @@
 # define MMAP_COLOR_SPACE 0x404040
 
 // ERROR MESSAGES
-# define ERR_USAGE "usage: ./cub3d <path/to/map.cub>"
+# define ERR_USAGE "./cub3d <path/to/map.cub>"
 
 # define ERR_FILE_NOT_CUB "Not a .cub file"
 # define ERR_FILE_NOT_XPM "Not an .xpm file"

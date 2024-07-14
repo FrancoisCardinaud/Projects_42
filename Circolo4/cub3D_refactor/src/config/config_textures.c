@@ -6,14 +6,14 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:34:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/12 17:30:20 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:21:56 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Loads an XPM image file into a buffer */
-static int	*load_xpm_image(t_data *game_data, char *file_path)
+static int	*convert_xpm(t_data *game_data, char *file_path)
 {
 	t_img	temp_img;
 	int		*texture_buffer;
@@ -48,13 +48,13 @@ void	initialize_textures(t_data *game_data)
 	game_data->textures = ft_calloc(5, sizeof(*game_data->textures));
 	if (!game_data->textures)
 		clean_exit(game_data, display_error_message(NULL, ERR_MALLOC, 1));
-	game_data->textures[NORTH] = load_xpm_image(game_data,
+	game_data->textures[NORTH] = convert_xpm(game_data,
 			game_data->texinfo.north);
-	game_data->textures[SOUTH] = load_xpm_image(game_data,
+	game_data->textures[SOUTH] = convert_xpm(game_data,
 			game_data->texinfo.south);
-	game_data->textures[EAST] = load_xpm_image(game_data,
+	game_data->textures[EAST] = convert_xpm(game_data,
 			game_data->texinfo.east);
-	game_data->textures[WEST] = load_xpm_image(game_data,
+	game_data->textures[WEST] = convert_xpm(game_data,
 			game_data->texinfo.west);
 }
 
