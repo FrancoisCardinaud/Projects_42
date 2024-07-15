@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 21:21:57 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:36:27 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,103 +195,87 @@ enum					e_texture
 };
 
 //FUNCTIONS
-/* init/initialize_game_info.c */
-void					initialize_game_info(t_info *game_info);
-void					reset_image(t_img *img);
-void					initialize_ray(t_ray *ray);
+/* config/config_game_info.c */
+void	initialize_game_info(t_info *game_info);
+void	reset_image(t_img *img);
+void	initialize_ray(t_ray *ray);
 
-/* init/initialize_graphics.c */
-void					initialize_graphics(t_info *game_info);
-void					initialize_image(t_info *game_info, t_img *image,
-							int width, int height);
-void					initialize_texture_image(t_info *game_info, t_img *img,
-							char *file_path);
+/* config/config_mlx.c */
+void	initialize_graphics(t_info *game_info);
+void	initialize_image(t_info *game_info, t_img *image, int width, int height);
+void	initialize_texture_image(t_info *game_info, t_img *img, char *file_path);
 
-/* init/load_textures.c */
-void					initialize_textures(t_info *game_info);
-void					initialize_texture_info(t_texinfo *texture_info);
+/* config/config_textures.c */
+void	initialize_textures(t_info *game_info);
+void	initialize_texture_info(t_texinfo *texture_info);
 
-/* parsing/verify_file.c */
-int						verify_file(char *arg, bool is_cub_file);
+/* parsing/validate_arguments.c */
+int		verify_file(char *arg, bool is_cub_file);
 
-/* parsing/read_file_data.c */
-void					read_file_data(char *path, t_info *game_info);
-bool					contains_no_digits(char *string);
-int						count_lines_in_file(char *file_path);
-int						*populate_rgb_array(char **rgb_parts, int *rgb_array);
+/* parsing/retrieve_data.c */
+void	read_file_data(char *path, t_info *game_info);
+bool	contains_no_digits(char *string);
+int		count_lines_in_file(char *file_path);
+int		*populate_rgb_array(char **rgb_parts, int *rgb_array);
 
-/* parsing/retrieve_file_data.c */
-int						retrieve_file_data(t_info *game_info, char **file_data);
+/* parsing/parse_data.c */
+int		retrieve_file_data(t_info *game_info, char **file_data);
 
-/* parsing/assign_color_textures.c */
-int						assign_color_textures(t_info *game_info,
-							t_texinfo *texture_info, char *line, int index);
+/* parsing/color_texture.c */
+int		assign_color_textures(t_info *game_info, t_texinfo *texture_info, char *line, int index);
 
-/* parsing/generate_map.c */
-int						generate_map(t_info *game_info, char **file_data,
-							int start_index);
+/* parsing/build_map.c */
+int		generate_map(t_info *game_info, char **file_data, int start_index);
 
-/* parsing/validate_textures.c */
-int						validate_textures(t_info *game_info,
-							t_texinfo *texture_info);
+/* validation/validate_textures.c */
+int		validate_textures(t_info *game_info, t_texinfo *texture_info);
 
-/* parsing/validate_map.c */
-int						validate_map(t_info *game_info, char **map_data);
+/* validation/validate_map.c */
+int		validate_map(t_info *game_info, char **map_data);
 
-/* parsing/validate_map_borders.c */
-int						validate_map_borders(t_mapinfo *map_info,
-							char **map_data);
+/* validation/validate_map_borders.c */
+int		validate_map_borders(t_mapinfo *map_info, char **map_data);
 
 /* parsing/parsing_helpers.c */
-int						is_whitespace(char c);
-size_t					find_max_length(t_mapinfo *map_info, int start_index);
+int		is_whitespace(char c);
+size_t	find_max_length(t_mapinfo *map_info, int start_index);
 
 /* engine/render_utils.c */
-void					display_crosshair(t_img *frame, t_info *game_info);
+void	display_crosshair(t_img *frame, t_info *game_info);
 
-/* render/render_frame.c */
-int						update_frame(t_info *game_info);
-void					render_images(t_info *game_info);
+/* engine/render.c */
+int		update_frame(t_info *game_info);
+void	render_images(t_info *game_info);
 
-/* render/cast_rays.c */
-int						perform_raycast(t_player *player, t_info *game_info);
+/* engine/raycasting.c */
+int		perform_raycast(t_player *player, t_info *game_info);
 
-/* render/update_texture.c */
-void					initialize_texture_pixels(t_info *game_info);
-void					refresh_texture_pixels(t_info *game_info,
-							t_texinfo *texture_info, t_ray *ray, int x);
+/* engine/manage_textures.c */
+void	initialize_texture_pixels(t_info *game_info);
+void	refresh_texture_pixels(t_info *game_info, t_texinfo *texture_info, t_ray *ray, int x);
 
-/* render/image_helpers.c */
-void					set_image_pixel(t_img *image, int x, int y, int color);
+/* engine/render_utils.c */
+void	set_image_pixel(t_img *image, int x, int y, int color);
 
-/* move/handle_input.c */
-void					listen_input(t_info *game_info);
+/* player_controls/manage_inputs.c */
+void	listen_input(t_info *game_info);
 
-/* player_controls/direction.c */
-void					config_player_north_south(t_player *player_data);
-void					config_player_east_west(t_player *player_data);
+/* config/config_direction.c */
+void	config_player_north_south(t_player *player_data);
+void	config_player_east_west(t_player *player_data);
 
-/* move/execute_player_move.c */
-int						execute_player_move(t_info *game_info);
-int						validate_move(t_info *game_info, float next_x,
-							float next_y);
+/* player_controls/move.c */
+int		execute_player_move(t_info *game_info);
+int		validate_move(t_info *game_info, float next_x, float next_y);
 
-/* move/rotate_player_view.c */
-int						rotate_player_direction(t_info *game_info,
-							float rotation_direction);
+/* player_controls/rotate.c */
+int		rotate_player_direction(t_info *game_info, float rotation_direction);
 
-/* exit/clean_exit.c */
-void					clean_exit(t_info *game_info, int exit_code);
-int						exit_game(t_info *game_info);
+/* system/clean_exit.c */
+void	clean_exit(t_info *game_info, int exit_code);
+int		exit_game(t_info *game_info);
 
-/* exit/release_resources.c */
-void					release_memory(void **memory_block);
-int						release_resources(t_info *game_info);
-
-/* error.c */
-int						display_error_message(char *detail, char *message,
-							int code);
-int						display_error_with_value(int detail, char *message,
-							int code);
+/* system/free_resources.c */
+void	release
 
 #endif

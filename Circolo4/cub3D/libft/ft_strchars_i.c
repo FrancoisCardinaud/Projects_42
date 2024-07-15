@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 20:42:42 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/13 03:34:41 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:29:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,4 @@ int	ft_strchars_i(const char *s, char *set)
 		i++;
 	}
 	return (-1);
-}	
+}
