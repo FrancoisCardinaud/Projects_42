@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_game_info.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:05:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:50:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void	initialize_game_info(t_info *game_info)
 	initialize_texture_info(&game_info->texinfo);
 	game_info->map = NULL;
 	initialize_map_info(&game_info->mapinfo);
-	game_info->texture_pixels = NULL;
+	game_info->tex_pixels = NULL;
 	game_info->textures = NULL;
 }

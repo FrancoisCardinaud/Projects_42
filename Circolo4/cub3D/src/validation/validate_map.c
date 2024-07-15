@@ -3,65 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:32:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:40:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Validates the elements in the map grid */
-static int	validate_map_elements(t_info *game_info, char **map_grid)
+static int	validate_map_elements(t_info *g_i, char **map_grid)
 {
-	int	row;
-	int	col;
+	int	r;
+	int	c;
 
-	row = 0;
-	game_info->player.dir = '0';
-	while (map_grid[row] != NULL)
+	r = 0;
+	g_i->player.dir = '0';
+	while (map_grid[r] != NULL)
 	{
-		col = 0;
-		while (map_grid[row][col])
+		c = 0;
+		while (map_grid[r][c])
 		{
-			while (game_info->map[row][col] == ' '
-				|| game_info->map[row][col] == '\t'
-				|| game_info->map[row][col] == '\r'
-				|| game_info->map[row][col] == '\v'
-				|| game_info->map[row][col] == '\f')
-				col++;
-			if (!(ft_strchr("10NSEW", map_grid[row][col])))
-				return (display_error_message(game_info->mapinfo.path,
-						INVALID_CHARACTER, NOT_OK));
-			if (ft_strchr("NSEW", map_grid[row][col])
-				&& game_info->player.dir != '0')
-				return (display_error_message(game_info->mapinfo.path,
-						INVALID_PLAYER_NB, NOT_OK));
-			if (ft_strchr("NSEW", map_grid[row][col])
-				&& game_info->player.dir == '0')
-				game_info->player.dir = map_grid[row][col];
-			col++;
+			while (ft_strchr("\t\r\v\f ", g_i->map[r][c]))
+				c++;
+			if (!(ft_strchr("NSEW01", map_grid[r][c])))
+				return (disp_err_msg(g_i->mapinfo.path, INV_CHAR, NOT_OK));
+			if (ft_strchr("NSEW", map_grid[r][c]))
+			{
+				if (g_i->player.dir != '0')
+					return (disp_err_msg(g_i->mapinfo.path, INV_P_NB, NOT_OK));
+				g_i->player.dir = map_grid[r][c];
+			}
+			c++;
 		}
-		row++;
+		r++;
 	}
 	return (OK);
 }
 
 /* Verifies if the player's position is valid */
-static int	verify_position_validity(t_info *game_info, char **map_grid)
+static int	verify_position_validity(t_info *g_i, char **m_g)
 {
-	int	row;
-	int	col;
+	int	r;
+	int	c;
 
-	row = (int)game_info->player.pos_y;
-	col = (int)game_info->player.pos_x;
-	if (ft_strlen(map_grid[row - 1]) < (size_t)col || ft_strlen(map_grid[row
-			+ 1]) < (size_t)col || is_whitespace(map_grid[row][col
-				- 1]) == OK || is_whitespace(map_grid[row][col + 1])
-					== OK
-		|| is_whitespace(map_grid[row - 1][col]) == OK
-		|| is_whitespace(map_grid[row + 1][col]) == OK)
+	r = (int)g_i->player.pos_y;
+	c = (int)g_i->player.pos_x;
+	if (ft_strlen(m_g[r - 1]) < (size_t)c || ft_strlen(m_g[r + 1]) < (size_t)c
+		|| is_space(m_g[r][c - 1]) == OK || is_space(m_g[r][c + 1]) == OK
+		|| is_space(m_g[r - 1][c]) == OK || is_space(m_g[r + 1][c]) == OK)
 		return (NOT_OK);
 	return (OK);
 }
@@ -73,8 +64,7 @@ static int	validate_player_position(t_info *game_info, char **map_grid)
 	int	col;
 
 	if (game_info->player.dir == '0')
-		return (display_error_message(game_info->mapinfo.path, INVALID_DIRECTION,
-				NOT_OK));
+		return (disp_err_msg(game_info->mapinfo.path, INV_DIRECTION, NOT_OK));
 	row = 0;
 	while (map_grid[row])
 	{
@@ -92,8 +82,7 @@ static int	validate_player_position(t_info *game_info, char **map_grid)
 		row++;
 	}
 	if (verify_position_validity(game_info, map_grid) == NOT_OK)
-		return (display_error_message(game_info->mapinfo.path, INVALID_POSITION,
-				NOT_OK));
+		return (disp_err_msg(game_info->mapinfo.path, INV_POSITION, NOT_OK));
 	return (OK);
 }
 
@@ -127,20 +116,16 @@ static int	verify_map_termination(t_mapinfo *map_info)
 int	validate_map(t_info *game_info, char **map_grid)
 {
 	if (!game_info->map)
-		return (display_error_message(game_info->mapinfo.path, MAP_NOT_FOUND,
-				NOT_OK));
+		return (disp_err_msg(game_info->mapinfo.path, MAP_NOT_FOUND, NOT_OK));
 	if (validate_map_borders(&game_info->mapinfo, map_grid) == NOT_OK)
-		return (display_error_message(game_info->mapinfo.path, INVALID_MAP_BORDERS,
-				NOT_OK));
+		return (disp_err_msg(game_info->mapinfo.path, INV_MAP_BORDERS, NOT_OK));
 	if (game_info->mapinfo.height < 3)
-		return (display_error_message(game_info->mapinfo.path,
-				INVALID_MAP_SIZE, NOT_OK));
+		return (disp_err_msg(game_info->mapinfo.path, INV_MAP_SIZE, NOT_OK));
 	if (validate_map_elements(game_info, map_grid) == NOT_OK)
 		return (NOT_OK);
 	if (validate_player_position(game_info, map_grid) == NOT_OK)
 		return (NOT_OK);
 	if (verify_map_termination(&game_info->mapinfo) == NOT_OK)
-		return (display_error_message(game_info->mapinfo.path, INVALID_MAP_ORDER,
-				NOT_OK));
+		return (disp_err_msg(game_info->mapinfo.path, INV_MAP_ORDER, NOT_OK));
 	return (OK);
 }

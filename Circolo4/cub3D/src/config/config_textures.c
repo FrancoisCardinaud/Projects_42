@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:34:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:31:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:08:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	*convert_xpm(t_info *game_info, char *file_path)
 	texture_buffer = ft_calloc(1, sizeof(*texture_buffer)
 			* game_info->texinfo.size * game_info->texinfo.size);
 	if (!texture_buffer)
-		clean_exit(game_info, display_error_message(NULL, MALLOC_ERROR, 1));
+		total_exit(game_info, disp_err_msg(NULL, MALLOC_ERROR, 1));
 	height = 0;
 	while (height < game_info->texinfo.size)
 	{
@@ -47,7 +47,7 @@ void	initialize_textures(t_info *game_info)
 {
 	game_info->textures = ft_calloc(5, sizeof(*game_info->textures));
 	if (!game_info->textures)
-		clean_exit(game_info, display_error_message(NULL, MALLOC_ERROR, 1));
+		total_exit(game_info, disp_err_msg(NULL, MALLOC_ERROR, 1));
 	game_info->textures[NO] = convert_xpm(game_info,
 			game_info->texinfo.north);
 	game_info->textures[SO] = convert_xpm(game_info,
@@ -59,7 +59,7 @@ void	initialize_textures(t_info *game_info)
 }
 
 /* Initializes the texture information structure */
-void	initialize_texture_info(t_texinfo *textures)
+void	initialize_texture_info(t_texture_info *textures)
 {
 	textures->north = NULL;
 	textures->south = NULL;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_game_info.c                                       :+:      :+:    :+:   */
+/*   parse_game_info.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/14 18:07:31 by fcardina         ###   ########.fr       */
+/*   Created: 2024/07/15 22:01:53 by fcardina          #+#    #+#             */
+/*   Updated: 2024/07/15 22:08:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	count_lines_in_file(char *filepath)
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 	{
-		display_error_message(filepath, strerror(errno), errno);
+		disp_err_msg(filepath, strerror(errno), errno);
 	}
 	else
 	{
@@ -51,7 +51,7 @@ static void	populate_file_lines(int line_idx, int char_idx, int temp_idx,
 				sizeof(char));
 		if (!game_info->mapinfo.file[line_idx])
 		{
-			display_error_message(NULL, MALLOC_ERROR, 0);
+			disp_err_msg(NULL, MALLOC_ERROR, 0);
 			release_memory((void **)game_info->mapinfo.file);
 			return ;
 		}
@@ -84,14 +84,12 @@ void	read_file_data(char *filepath, t_info *game_info)
 			sizeof(char *));
 	if (!(game_info->mapinfo.file))
 	{
-		display_error_message(NULL, MALLOC_ERROR, 0);
+		disp_err_msg(NULL, MALLOC_ERROR, 0);
 		return ;
 	}
 	game_info->mapinfo.fd = open(filepath, O_RDONLY);
 	if (game_info->mapinfo.fd < 0)
-	{
-		display_error_message(filepath, strerror(errno), NOT_OK);
-	}
+		disp_err_msg(filepath, strerror(errno), NOT_OK);
 	else
 	{
 		populate_file_lines(line_idx, char_idx, temp_idx, game_info);

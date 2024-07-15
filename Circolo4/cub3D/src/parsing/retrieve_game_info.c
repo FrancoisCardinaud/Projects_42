@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   retrieve_data.c                                    :+:      :+:    :+:   */
+/*   retrieve_g_info.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 21:18:54 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:11:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Finds the length of the longest line in the map file */
-size_t	find_max_length(t_mapinfo *map_info, int line_index)
+size_t	find_max_length(t_mapinfo *map_info, int li)
 {
 	size_t	current_length;
 	size_t	max_length;
 
 	max_length = 0;
-	while (map_info->file[line_index])
+	while (map_info->file[li])
 	{
-		current_length = ft_strlen(map_info->file[line_index]);
+		current_length = ft_strlen(map_info->file[li]);
 		if (current_length > max_length)
 			max_length = current_length;
-		line_index++;
+		li++;
 	}
 	return (max_length);
 }
@@ -59,8 +59,7 @@ static char	*extract_texture_path(char *line, int index)
 }
 
 /* Assigns the directional textures from the input line */
-static int	assign_directional_textures(t_texinfo *textures, char *line,
-		int index)
+static int	assign_dir_text(t_texture_info *textures, char *line, int index)
 {
 	if (line[index + 2] && ft_isprint(line[index + 2]))
 		return (ERROR);
@@ -79,82 +78,58 @@ static int	assign_directional_textures(t_texinfo *textures, char *line,
 
 /* Processes the content of the line,
 	ignoring whitespace and extracting information */
-static int	process_line_content(t_info *game_info, char **file_lines,
-		int line_index, int char_i)
+static int	process_line_content(t_info *g_info, char **l, int li, int c)
 {
-	while (file_lines[line_index][char_i] == ' '
-		|| file_lines[line_index][char_i] == '\t'
-		|| file_lines[line_index][char_i] == '\n')
+	while (l[li][c] == ' ' || l[li][c] == '\t' || l[li][c] == '\n')
+		c++;
+	if (ft_isprint(l[li][c]) && !ft_isdigit(l[li][c]))
 	{
-		char_i++;
-	}
-	if (ft_isprint(file_lines[line_index][char_i])
-		&& !ft_isdigit(file_lines[line_index][char_i]))
-	{
-		if (file_lines[line_index][char_i + 1]
-			&& ft_isprint(file_lines[line_index][char_i + 1])
-			&& !ft_isdigit(file_lines[line_index][char_i]))
+		if (l[li][c + 1] && ft_isprint(l[li][c + 1]) && !ft_isdigit(l[li][c]))
 		{
-			if (assign_directional_textures(&game_info->texinfo,
-					file_lines[line_index], char_i) == ERROR)
-			{
-				return (display_error_message(game_info->mapinfo.path,
-						INVALID_TEXTURE, NOT_OK));
-			}
+			if (assign_dir_text(&g_info->texinfo, l[li], c) == ERROR)
+				return (disp_err_msg(g_info->mapinfo.path, INV_TEXTURE,
+						NOT_OK));
 			return (BREAK);
 		}
 		else
 		{
-			if (assign_color_textures(game_info, &game_info->texinfo,
-					file_lines[line_index], char_i) == ERROR)
-			{
+			if (assign_col_tex(g_info, &g_info->texinfo, l[li], c) == ERROR)
 				return (NOT_OK);
-			}
 			return (BREAK);
 		}
 	}
-	else if (ft_isdigit(file_lines[line_index][char_i]))
+	else if (ft_isdigit(l[li][c]))
 	{
-		if (generate_map(game_info, file_lines, line_index) == NOT_OK)
-		{
-			return (display_error_message(game_info->mapinfo.path, INVALID_MAP,
-					NOT_OK));
-		}
+		if (generate_map(g_info, l, li) == NOT_OK)
+			return (disp_err_msg(g_info->mapinfo.path, INV_MAP, NOT_OK));
 		return (OK);
 	}
 	return (CONTINUE);
 }
 
 /* Parses the data from the file lines */
-int	retrieve_file_data(t_info *game_info, char **file_lines)
+int	retrieve_file_data(t_info *g_info, char **l)
 {
-	int	line_index;
-	int	char_i;
+	int	li;
+	int	c;
 	int	process_result;
 
-	line_index = 0;
-	while (file_lines[line_index] != NULL)
+	li = 0;
+	while (l[li] != NULL)
 	{
-		char_i = 0;
-		while (file_lines[line_index][char_i] != '\0')
+		c = 0;
+		while (l[li][c] != '\0')
 		{
-			process_result = process_line_content(game_info, file_lines,
-					line_index, char_i);
+			process_result = process_line_content(g_info, l, li, c);
 			if (process_result == BREAK)
-			{
 				break ;
-			}
 			else if (process_result == NOT_OK)
-			{
 				return (NOT_OK);
-			}
 			else if (process_result == OK)
-			{
 				return (OK);
-			}
-			char_i++;
+			c++;
 		}
-		line_index++;
+		li++;
 	}
 	return (OK);
 }

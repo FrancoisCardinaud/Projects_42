@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_borders.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/14 17:32:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:51:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	validate_top_or_bottom_border(char **map_array, int row, int col)
 {
 	if (!map_array || !map_array[row] || !map_array[row][col])
 		return (NOT_OK);
-	while (map_array[row][col] == ' ' || map_array[row][col] == '\t'
-		|| map_array[row][col] == '\r' || map_array[row][col] == '\v'
-		|| map_array[row][col] == '\f')
+	while (map_array[row][col] && (map_array[row][col] == ' '
+			|| map_array[row][col] == '\t' || map_array[row][col] == '\r'
+			|| map_array[row][col] == '\v' || map_array[row][col] == '\f'))
 		col++;
 	while (map_array[row][col])
 	{

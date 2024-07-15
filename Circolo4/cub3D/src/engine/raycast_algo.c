@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycast_algo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:06:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:50:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ static void	compute_line_height(t_ray *raycast, t_info *game_info,
 	else
 		raycast->wall_dist = (raycast->sidedist_y - raycast->deltadist_y);
 	raycast->line_height = (int)(game_info->window_height / raycast->wall_dist);
-	raycast->draw_start = -raycast->line_height / 2 + game_info->window_height / 2;
+	raycast->draw_start = -raycast->line_height / 2 + game_info->window_height
+		/ 2;
 	if (raycast->draw_start < 0)
 		raycast->draw_start = 0;
 	raycast->draw_end = raycast->line_height / 2 + game_info->window_height / 2;

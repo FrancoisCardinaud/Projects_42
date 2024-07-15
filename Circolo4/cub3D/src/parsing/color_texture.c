@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 21:18:54 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:29:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	*parse_rgb_values(char *input_line)
 	rgb_array = malloc(3 * sizeof(int));
 	if (rgb_array == NULL)
 	{
-		display_error_message(NULL, MALLOC_ERROR, 0);
+		disp_err_msg(NULL, MALLOC_ERROR, 0);
 		release_memory((void **)rgb_parts);
 		return (NULL);
 	}
@@ -61,28 +61,28 @@ static int	*parse_rgb_values(char *input_line)
 }
 
 /* Assign the floor and ceiling colors from the input line */
-int	assign_color_textures(t_info *game_info, t_texinfo *texture_info,
+int	assign_col_tex(t_info *game_info, t_texture_info *tex_info,
 		char *input_line, int char_index)
 {
 	if (input_line[char_index + 1] && ft_isprint(input_line[char_index + 1]))
-		return (display_error_message(game_info->mapinfo.path, INVALID_FLOOR_CEILING,
-				ERROR));
-	if (!texture_info->ceiling && input_line[char_index] == 'C')
+		return (disp_err_msg(game_info->mapinfo.path,
+				INV_FLOOR_CEILING, ERROR));
+	if (!tex_info->ceiling && input_line[char_index] == 'C')
 	{
-		texture_info->ceiling = parse_rgb_values(input_line + char_index + 1);
-		if (!texture_info->ceiling)
-			return (display_error_message(game_info->mapinfo.path,
-					INVALID_CEILING_COLOR, ERROR));
+		tex_info->ceiling = parse_rgb_values(input_line + char_index + 1);
+		if (!tex_info->ceiling)
+			return (disp_err_msg(game_info->mapinfo.path,
+					INV_CEILING_COLOR, ERROR));
 	}
-	else if (!texture_info->floor && input_line[char_index] == 'F')
+	else if (!tex_info->floor && input_line[char_index] == 'F')
 	{
-		texture_info->floor = parse_rgb_values(input_line + char_index + 1);
-		if (!texture_info->floor)
-			return (display_error_message(game_info->mapinfo.path, INVALID_FLOOR_COLOR,
-					ERROR));
+		tex_info->floor = parse_rgb_values(input_line + char_index + 1);
+		if (!tex_info->floor)
+			return (disp_err_msg(game_info->mapinfo.path,
+					INV_FLOOR_COLOR, ERROR));
 	}
 	else
-		return (display_error_message(game_info->mapinfo.path, INVALID_FLOOR_CEILING,
-				ERROR));
+		return (disp_err_msg(game_info->mapinfo.path,
+				INV_FLOOR_CEILING, ERROR));
 	return (OK);
 }

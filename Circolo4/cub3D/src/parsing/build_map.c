@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:31:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:57:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,59 +16,54 @@
 static int	calculate_map_height(t_info *game_info, char **file_lines,
 		int start_index)
 {
-	int	i;
-	int	j;
+	int	r;
+	int	c;
 
-	i = start_index;
-	while (file_lines[i])
+	r = start_index;
+	while (file_lines[r])
 	{
-		j = 0;
-		while (file_lines[i][j])
+		c = 0;
+		while (file_lines[r][c])
 		{
-			if (file_lines[i][j] != ' ' && file_lines[i][j] != '\t'
-				&& file_lines[i][j] != '\r' && file_lines[i][j] != '\v'
-				&& file_lines[i][j] != '\f')
+			if (file_lines[r][c] != ' ' && file_lines[r][c] != '\t'
+				&& file_lines[r][c] != '\r' && file_lines[r][c] != '\v'
+				&& file_lines[r][c] != '\f')
 				break ;
-			j++;
+			c++;
 		}
-		if (file_lines[i][j] != '1')
+		if (file_lines[r][c] != '1')
 			break ;
-		i++;
+		r++;
 	}
-	game_info->mapinfo.index_end_of_map = i;
-	return (i - start_index);
+	game_info->mapinfo.index_end_of_map = r;
+	return (r - start_index);
 }
 
 /* Populates the map array with the content from the file */
-static int	populate_map_array(t_mapinfo *map_info, char **map_array,
-		int current_index)
+static int	populate_map_array(t_mapinfo *m_info, char **m_array, int index)
 {
-	int	i;
-	int	j;
+	int	r;
+	int	c;
 
-	map_info->width = find_max_length(map_info, current_index);
-	i = 0;
-	while (i < map_info->height)
+	m_info->width = find_max_length(m_info, index);
+	r = 0;
+	while (r < m_info->height)
 	{
-		j = 0;
-		map_array[i] = malloc(sizeof(char) * (map_info->width + 1));
-		if (!map_array[i])
-			return (display_error_message(NULL, MALLOC_ERROR, NOT_OK));
-		while (map_info->file[current_index][j]
-			&& map_info->file[current_index][j] != '\n')
+		c = 0;
+		m_array[r] = malloc(sizeof(char) * (m_info->width + 1));
+		if (!m_array[r])
+			return (disp_err_msg(NULL, MALLOC_ERROR, NOT_OK));
+		while (m_info->file[index][c] && m_info->file[index][c] != '\n')
 		{
-			map_array[i][j] = map_info->file[current_index][j];
-			j++;
+			m_array[r][c] = m_info->file[index][c];
+			c++;
 		}
-		while (j < map_info->width)
-		{
-			map_array[i][j] = '\0';
-			j++;
-		}
-		i++;
-		current_index++;
+		while (c < m_info->width)
+			m_array[r][c++] = '\0';
+		r++;
+		index++;
 	}
-	map_array[i] = NULL;
+	m_array[r] = NULL;
 	return (OK);
 }
 
@@ -83,7 +78,7 @@ static int	extract_map_info(t_info *game_info, char **file_lines,
 	game_info->map = (char **)malloc(sizeof(char *) * (height + 1));
 	if (!game_info->map)
 	{
-		display_error_message(NULL, MALLOC_ERROR, NOT_OK);
+		disp_err_msg(NULL, MALLOC_ERROR, NOT_OK);
 		return (NOT_OK);
 	}
 	if (populate_map_array(&game_info->mapinfo, game_info->map,
@@ -95,32 +90,28 @@ static int	extract_map_info(t_info *game_info, char **file_lines,
 /* Converts spaces into walls in the map array */
 static void	convert_spaces_to_walls(t_info *game_info)
 {
-	int	row;
-	int	col;
+	int	r;
+	int	c;
 
-	row = 0;
-	while (game_info->map[row] != NULL)
+	r = 0;
+	while (game_info->map[r] != NULL)
 	{
-		col = 0;
-		while (game_info->map[row][col] != '\0'
-			&& (game_info->map[row][col] == ' '
-				|| game_info->map[row][col] == '\t'
-				|| game_info->map[row][col] == '\r'
-				|| game_info->map[row][col] == '\v'
-				|| game_info->map[row][col] == '\f'))
+		c = 0;
+		while (game_info->map[r][c] != '\0'
+			&& (game_info->map[r][c] == ' '
+				|| game_info->map[r][c] == '\t'
+				|| game_info->map[r][c] == '\r'
+				|| game_info->map[r][c] == '\v'
+				|| game_info->map[r][c] == '\f'))
+			c++;
+		while (game_info->map[r][c] != '\0')
 		{
-			col++;
+			if (game_info->map[r][c] == ' '
+				&& c != (int)ft_strlen(game_info->map[r]) - 1)
+				game_info->map[r][c] = '1';
+			c++;
 		}
-		while (game_info->map[row][col] != '\0')
-		{
-			if (game_info->map[row][col] == ' '
-				&& col != (int)ft_strlen(game_info->map[row]) - 1)
-			{
-				game_info->map[row][col] = '1';
-			}
-			col++;
-		}
-		row++;
+		r++;
 	}
 }
 

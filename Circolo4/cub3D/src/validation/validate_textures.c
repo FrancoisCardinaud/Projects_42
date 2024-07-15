@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:29:50 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:29:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	validate_rgb_values(int *rgb_values)
 	while (i < 3)
 	{
 		if (rgb_values[i] < 0 || rgb_values[i] > 255)
-			return (display_error_with_value(rgb_values[i], INVALID_TEXTURE_RGB_VALUE,
-					NOT_OK));
+			return (display_error_with_value(rgb_values[i],
+					INV_TEXTURE_RGB_VALUE, NOT_OK));
 		i++;
 	}
 	return (OK);
@@ -44,23 +44,23 @@ static unsigned long	rgb_to_hex(int *rgb_array)
 }
 
 /* Validates the textures' existence and correctness */
-int	validate_textures(t_info *game_info, t_texinfo *texture_info)
+int	validate_textures(t_info *game_info, t_texture_info *tex_info)
 {
-	if (!texture_info->north || !texture_info->south || !texture_info->west
-		|| !texture_info->east)
-		return (display_error_message(game_info->mapinfo.path, MISSING_TEXTURE,
+	if (!tex_info->north || !tex_info->south || !tex_info->west
+		|| !tex_info->east)
+		return (disp_err_msg(game_info->mapinfo.path, MISSING_TEXTURE,
 				NOT_OK));
-	if (!texture_info->floor || !texture_info->ceiling)
-		return (display_error_message(game_info->mapinfo.path,
-				COLOR_NOT_FOUND, NOT_OK));
-	if (verify_file(texture_info->north, false) == NOT_OK
-		|| verify_file(texture_info->south, false) == NOT_OK
-		|| verify_file(texture_info->west, false) == NOT_OK
-		|| verify_file(texture_info->east, false) == NOT_OK
-		|| validate_rgb_values(texture_info->floor) == NOT_OK
-		|| validate_rgb_values(texture_info->ceiling) == NOT_OK)
+	if (!tex_info->floor || !tex_info->ceiling)
+		return (disp_err_msg(game_info->mapinfo.path, COLOR_NOT_FOUND,
+				NOT_OK));
+	if (verify_file(tex_info->north, false) == NOT_OK
+		|| verify_file(tex_info->south, false) == NOT_OK
+		|| verify_file(tex_info->west, false) == NOT_OK
+		|| verify_file(tex_info->east, false) == NOT_OK
+		|| validate_rgb_values(tex_info->floor) == NOT_OK
+		|| validate_rgb_values(tex_info->ceiling) == NOT_OK)
 		return (NOT_OK);
-	texture_info->hex_floor = rgb_to_hex(texture_info->floor);
-	texture_info->hex_ceiling = rgb_to_hex(texture_info->ceiling);
+	tex_info->hex_floor = rgb_to_hex(tex_info->floor);
+	tex_info->hex_ceiling = rgb_to_hex(tex_info->ceiling);
 	return (OK);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_resources.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:30 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:55:07 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ void	release_memory(void **memory_array)
 }
 
 /* Releases allocated memory for texture information */
-static void	release_texture_info(t_texinfo *texture_info)
+static void	release_texture_info(t_texture_info *tex_info)
 {
-	if (texture_info->north)
-		free(texture_info->north);
-	if (texture_info->south)
-		free(texture_info->south);
-	if (texture_info->west)
-		free(texture_info->west);
-	if (texture_info->east)
-		free(texture_info->east);
-	if (texture_info->floor)
-		free(texture_info->floor);
-	if (texture_info->ceiling)
-		free(texture_info->ceiling);
+	if (tex_info->north)
+		free(tex_info->north);
+	if (tex_info->south)
+		free(tex_info->south);
+	if (tex_info->west)
+		free(tex_info->west);
+	if (tex_info->east)
+		free(tex_info->east);
+	if (tex_info->floor)
+		free(tex_info->floor);
+	if (tex_info->ceiling)
+		free(tex_info->ceiling);
 }
 
 /* Releases allocated memory for the map */
@@ -63,8 +63,8 @@ int	release_resources(t_info *game_info)
 {
 	if (game_info->textures)
 		release_memory((void **)game_info->textures);
-	if (game_info->texture_pixels)
-		release_memory((void **)game_info->texture_pixels);
+	if (game_info->tex_pixels)
+		release_memory((void **)game_info->tex_pixels);
 	release_texture_info(&game_info->texinfo);
 	release_map(game_info);
 	return (NOT_OK);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:44:18 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:32:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:29:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	show_controls(void)
 static int	process_arguments(t_info *game_info, char **argv)
 {
 	if (verify_file(argv[1], true) == NOT_OK)
-		clean_exit(game_info, NOT_OK);
+		total_exit(game_info, NOT_OK);
 	read_file_data(argv[1], game_info);
 	if (retrieve_file_data(game_info, game_info->mapinfo.file) == NOT_OK)
 		return (release_resources(game_info));
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	t_info	game_info;
 
 	if (argc != 2)
-		return (display_error_message("Usage", INVALID_USAGE, 1));
+		return (disp_err_msg("Usage", INV_USAGE, 1));
 	if (setup_game(&game_info, argv) != 0)
 		return (1);
 	render_images(&game_info);

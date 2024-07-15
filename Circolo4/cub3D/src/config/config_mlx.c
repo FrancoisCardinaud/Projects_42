@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:31:55 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:08:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	initialize_image(t_info *game_info, t_img *img, int width, int height)
 	reset_image(img);
 	img->img = mlx_new_image(game_info->mlx, width, height);
 	if (img->img == NULL)
-		clean_exit(game_info, display_error_message("mlx", UNABLE_CREATE_MLX_IMAGE, 1));
+		total_exit(game_info, disp_err_msg("mlx",
+				UNABLE_CREATE_MLX_IMAGE, 1));
 	img->addr = (int *)mlx_get_data_addr(img->img, &img->pixel_bits,
 			&img->size_line, &img->endian);
 }
@@ -40,7 +41,8 @@ void	initialize_texture_image(t_info *game_info, t_img *img, char *file_path)
 	img->img = mlx_xpm_file_to_image(game_info->mlx, file_path,
 			&game_info->texinfo.size, &game_info->texinfo.size);
 	if (img->img == NULL)
-		clean_exit(game_info, display_error_message("mlx", UNABLE_CREATE_MLX_IMAGE, 1));
+		total_exit(game_info, disp_err_msg("mlx",
+				UNABLE_CREATE_MLX_IMAGE, 1));
 	img->addr = (int *)mlx_get_data_addr(img->img, &img->pixel_bits,
 			&img->size_line, &img->endian);
 }
@@ -50,9 +52,11 @@ void	initialize_graphics(t_info *game_info)
 {
 	game_info->mlx = mlx_init();
 	if (!game_info->mlx)
-		clean_exit(game_info, display_error_message("mlx", UNABLE_START_MLX, 1));
+		total_exit(game_info, disp_err_msg("mlx", UNABLE_START_MLX,
+				1));
 	game_info->win = mlx_new_window(game_info->mlx, WINDOW_W, WINDOW_H,
 			"Cub3D");
 	if (!game_info->win)
-		clean_exit(game_info, display_error_message("mlx", UNABLE_CREATE_MLX_WINDOW, 1));
+		total_exit(game_info, disp_err_msg("mlx",
+				UNABLE_CREATE_MLX_WINDOW, 1));
 }

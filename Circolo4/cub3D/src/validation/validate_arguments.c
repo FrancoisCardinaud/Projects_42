@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_arguments.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:27:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:50:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	checks that it exists and isn't a directory instead of a file.
 */
 
-int	is_whitespace(char character)
+int	is_space(char character)
 {
 	if (character != ' ' && character != '\t' && character != '\r'
 		&& character != '\n' && character != '\v' && character != '\f')
@@ -26,46 +26,40 @@ int	is_whitespace(char character)
 		return (OK);
 }
 
+/* Validates if the file path has a .cub extension */
+static bool	validate_cub_file(char *f_p)
+{
+	size_t	p_l;
+
+	p_l = ft_strlen(f_p);
+	if ((f_p[p_l - 3] != 'c' || f_p[p_l - 2] != 'u' || f_p[p_l - 1] != 'b'
+			|| f_p[p_l - 4] != '.'))
+		return (false);
+	return (true);
+}
+
 /* Checks if the file path points to a directory */
 static bool	check_is_directory(char *file_path)
 {
-	int		file_descriptor;
-	bool	result;
+	int	file_descriptor;
 
-	result = false;
-	file_descriptor = open(file_path, 00200000);
+	file_descriptor = open(file_path, O_DIRECTORY);
 	if (file_descriptor >= 0)
 	{
 		close(file_descriptor);
-		result = true;
+		return (true);
 	}
-	return (result);
-}
-
-/* Validates if the file path has a .cub extension */
-static bool	validate_cub_file(char *file_path)
-{
-	size_t	path_length;
-
-	path_length = ft_strlen(file_path);
-	if ((file_path[path_length - 3] != 'c' || file_path[path_length - 2] != 'u'
-			|| file_path[path_length - 1] != 'b' || file_path[path_length
-				- 4] != '.'))
-		return (false);
-	return (true);
+	return (false);
 }
 
 /* Validates if the file path has a .xpm extension */
 static bool	validate_xpm_file(char *file_path)
 {
-	size_t	path_length;
+	size_t	p_l;
 
-	path_length = ft_strlen(file_path);
-	if ((file_path[path_length - 3] != 'x' || file_path[path_length - 2] != 'p'
-			|| file_path[path_length - 1] != 'm' || file_path[path_length
-				- 4] != '.'))
-		return (false);
-	return (true);
+	p_l = ft_strlen(file_path);
+	return (p_l >= 4 && file_path[p_l - 4] == '.' && file_path[p_l - 3] == 'x'
+		&& file_path[p_l - 2] == 'p' && file_path[p_l - 1] == 'm');
 }
 
 /* Verifies the validity of the given file path */
@@ -74,14 +68,14 @@ int	verify_file(char *file_path, bool is_cub)
 	int	file_descriptor;
 
 	if (check_is_directory(file_path))
-		return (display_error_message(file_path, IS_NOT_FILE, NOT_OK));
+		return (disp_err_msg(file_path, IS_NOT_FILE, NOT_OK));
 	file_descriptor = open(file_path, O_RDONLY);
 	if (file_descriptor == -1)
-		return (display_error_message(file_path, strerror(errno), NOT_OK));
+		return (disp_err_msg(file_path, strerror(errno), NOT_OK));
 	close(file_descriptor);
 	if (is_cub && !validate_cub_file(file_path))
-		return (display_error_message(file_path, INVALID_CUB_FILE, NOT_OK));
+		return (disp_err_msg(file_path, INV_CUB_FILE, NOT_OK));
 	if (!is_cub && !validate_xpm_file(file_path))
-		return (display_error_message(file_path, INVALID_TEXTURE_FILE, NOT_OK));
+		return (disp_err_msg(file_path, INV_TEXTURE_FILE, NOT_OK));
 	return (OK);
 }

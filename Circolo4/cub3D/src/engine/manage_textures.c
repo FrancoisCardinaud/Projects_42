@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:31:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:08:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Initialize the texture pixel buffer */
-void initialize_texture_pixels(t_info *game_info) {
-    int i;
+void	initialize_texture_pixels(t_info *game_info)
+{
+	int	i;
 
-    if (game_info->texture_pixels != NULL) {
-        release_memory((void **)game_info->texture_pixels);
-    }
-
-    game_info->texture_pixels = ft_calloc(game_info->window_height + 1, sizeof(*game_info->texture_pixels));
-    if (game_info->texture_pixels == NULL) {
-        clean_exit(game_info, display_error_message(NULL, MALLOC_ERROR, 1));
-    }
-
-    i = 0;
-    while (i < game_info->window_height) {
-        game_info->texture_pixels[i] = ft_calloc(game_info->window_width + 1, sizeof(*game_info->texture_pixels));
-        if (game_info->texture_pixels[i] == NULL) {
-            clean_exit(game_info, display_error_message(NULL, MALLOC_ERROR, 1));
-        }
-        i++;
-    }
+	if (game_info->tex_pixels != NULL)
+	{
+		release_memory((void **)game_info->tex_pixels);
+	}
+	game_info->tex_pixels = ft_calloc(game_info->window_height + 1,
+			sizeof(*game_info->tex_pixels));
+	if (game_info->tex_pixels == NULL)
+	{
+		total_exit(game_info, disp_err_msg(NULL, MALLOC_ERROR, 1));
+	}
+	i = 0;
+	while (i < game_info->window_height)
+	{
+		game_info->tex_pixels[i] = ft_calloc(game_info->window_width + 1,
+				sizeof(*game_info->tex_pixels));
+		if (game_info->tex_pixels[i] == NULL)
+		{
+			total_exit(game_info, disp_err_msg(NULL, MALLOC_ERROR, 1));
+		}
+		i++;
+	}
 }
 
 /* Determine the texture index based on raycasting data */
@@ -55,31 +60,31 @@ static void	determine_texture_index(t_info *game_info, t_ray *raycast)
 }
 
 /* Refresh the texture pixels based on the current frame */
-void refresh_texture_pixels(t_info *game_info, t_texinfo *texture_info, t_ray *raycast, int column) {
-    int row;
-    int color;
+void	refresh_texture_pixels(t_info *game_info, t_texture_info *tex_info,
+		t_ray *raycast, int column)
+{
+	int	row;
+	int	color;
 
-    determine_texture_index(game_info, raycast);
-
-    texture_info->x = (int)(raycast->wall_x * (double)texture_info->size);
-    if ((raycast->side == 0 && raycast->dir_x < 0) || (raycast->side == 1 && raycast->dir_y > 0)) {
-        texture_info->x = texture_info->size - texture_info->x - 1;
-    }
-
-    texture_info->step = 1.0 * texture_info->size / raycast->line_height;
-    texture_info->pos = (raycast->draw_start - game_info->window_height / 2 + raycast->line_height / 2) * texture_info->step;
-
-    row = raycast->draw_start;
-    while (row < raycast->draw_end) {
-        texture_info->y = (int)texture_info->pos & (texture_info->size - 1);
-        texture_info->pos += texture_info->step;
-        color = game_info->textures[texture_info->index][texture_info->size * texture_info->y + texture_info->x];
-        if (texture_info->index == NO || texture_info->index == EA) {
-            color = (color >> 1) & 8355711;
-        }
-        if (color > 0) {
-            game_info->texture_pixels[row][column] = color;
-        }
-        row++;
-    }
+	determine_texture_index(game_info, raycast);
+	tex_info->x = (int)(raycast->wall_x * (double)tex_info->size);
+	if ((raycast->side == 0 && raycast->dir_x < 0) || (raycast->side == 1
+			&& raycast->dir_y > 0))
+		tex_info->x = tex_info->size - tex_info->x - 1;
+	tex_info->step = 1.0 * tex_info->size / raycast->line_height;
+	tex_info->pos = (raycast->draw_start - game_info->window_height / 2
+			+ raycast->line_height / 2) * tex_info->step;
+	row = raycast->draw_start;
+	while (row < raycast->draw_end)
+	{
+		tex_info->y = (int)tex_info->pos & (tex_info->size - 1);
+		tex_info->pos += tex_info->step;
+		color = game_info->textures[tex_info->index][tex_info->size
+			* tex_info->y + tex_info->x];
+		if (tex_info->index == NO || tex_info->index == EA)
+			color = (color >> 1) & 8355711;
+		if (color > 0)
+			game_info->tex_pixels[row][column] = color;
+		row++;
+	}
 }

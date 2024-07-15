@@ -26,12 +26,12 @@ SRC		= 	system/main.c \
 			config/config_mlx.c \
 			config/config_textures.c \
 			config/config_direction.c \
-			engine/raycasting.c \
-			engine/render.c \
+			engine/raycast_algo.c \
+			engine/engine.c \
 			engine/manage_textures.c \
-			engine/render_utils.c \
-			parsing/parse_data.c \
-			parsing/retrieve_data.c \
+			engine/engine_utils.c \
+			parsing/parse_game_info.c \
+			parsing/retrieve_game_info.c \
 			parsing/build_map.c \
 			parsing/color_texture.c \
 			validation/validate_arguments.c \
