@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:31:05 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     }
     catch (std::exception& e) {
         cerr << e.what() << '\n';
-        return EXIT_FAILURE;
+        return EXIT_FAIL;
     }
 
     pmm.sortVec(argc, argv);

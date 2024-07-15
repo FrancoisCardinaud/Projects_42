@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   proceed.c                                          :+:      :+:    :+:   */
+/*   proceed 2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:19:34 by fcardina          #+#    #+#             */
-/*   Updated: 2023/06/07 17:04:09 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	eat(t_philosopher *philo)
 {
-	t_data	*data;
+	t_info	*data;
 
 	data = philo->data;
 	pthread_mutex_lock(&(data->forks[philo->left_fork_nbr]));
@@ -35,7 +35,7 @@ void	*p_thread(void *void_philosopher)
 {
 	int				i;
 	t_philosopher	*philo;
-	t_data			*data;
+	t_info			*data;
 
 	i = 0;
 	philo = (t_philosopher *)void_philosopher;
@@ -55,7 +55,7 @@ void	*p_thread(void *void_philosopher)
 	return (NULL);
 }
 
-void	quit_proceed(t_data *data, t_philosopher *philos)
+void	quit_proceed(t_info *data, t_philosopher *philos)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ void	quit_proceed(t_data *data, t_philosopher *philos)
 	pthread_mutex_destroy(&(data->writing));
 }
 
-void	death_checker(t_data *r, t_philosopher *p)
+void	death_checker(t_info *r, t_philosopher *p)
 {
 	int	i;
 
@@ -97,7 +97,7 @@ void	death_checker(t_data *r, t_philosopher *p)
 	}
 }
 
-int	proceed(t_data *data)
+int	proceed(t_info *data)
 {
 	int				i;
 	t_philosopher	*phi;

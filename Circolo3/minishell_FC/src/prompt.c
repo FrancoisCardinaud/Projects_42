@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:46:24 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/27 15:51:56 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern int	g_stat;
 
-static char	*retrieve_home_dir(t_prompt prompt_data)
+static char	*retrieve_home_dir(t_prompt prompt_info)
 {
 	char	*temporary;
 	char	*current_dir;
@@ -23,7 +23,7 @@ static char	*retrieve_home_dir(t_prompt prompt_data)
 	current_dir = getcwd(NULL, 0);
 	if (!current_dir)
 		current_dir = ft_strdup("∅ ");
-	home_directory = shell_retrieve_env("HOME", prompt_data.envp, 4);
+	home_directory = shell_retrieve_env("HOME", prompt_info.envp, 4);
 	if (home_directory && home_directory[0] && ft_strnstr(current_dir,
 			home_directory, ft_strlen(current_dir)))
 	{
@@ -50,13 +50,13 @@ const char	*determine_color(char first_char)
 	return (colors[first_char % 5]);
 }
 
-static char	*retrieve_username(t_prompt prompt_data)
+static char	*retrieve_username(t_prompt prompt_info)
 {
 	char		*username;
 	char		*temporary;
 	const char	*color_code;
 
-	username = shell_retrieve_env("USER", prompt_data.envp, 4);
+	username = shell_retrieve_env("USER", prompt_info.envp, 4);
 	if (!username)
 		username = ft_strdup("guest");
 	if (!ft_strncmp(username, "root", 4))
@@ -68,16 +68,16 @@ static char	*retrieve_username(t_prompt prompt_data)
 	return (temporary);
 }
 
-char	*shell_getprompt(t_prompt prompt_data)
+char	*shell_getprompt(t_prompt prompt_info)
 {
 	char	*temporary;
 	char	*temporary2;
 	char	*auxiliary;
 
-	temporary = retrieve_username(prompt_data);
+	temporary = retrieve_username(prompt_info);
 	temporary2 = ft_strjoin(temporary, "@minishell");
 	free(temporary);
-	auxiliary = retrieve_home_dir(prompt_data);
+	auxiliary = retrieve_home_dir(prompt_info);
 	temporary = ft_strjoin(temporary2, auxiliary);
 	free(auxiliary);
 	free(temporary2);

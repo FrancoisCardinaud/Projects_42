@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:47:47 by fcardina          #+#    #+#             */
-/*   Updated: 2023/06/07 17:07:04 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	initialize_mutex(t_data *data)
+int	initialize_mutex(t_info *data)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	initialize_mutex(t_data *data)
 	return (0);
 }
 
-int	initialize_philosophers(t_data *data)
+int	initialize_philosophers(t_info *data)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	initialize_philosophers(t_data *data)
 	return (0);
 }
 
-int	initialize(t_data *data, char **argv)
+int	initialize(t_info *data, char **argv)
 {
 	data->philo_nbr = ft_atoi(argv[1]);
 	data->time_death = ft_atoi(argv[2]);

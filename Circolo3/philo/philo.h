@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:57:54 by fcardina          #+#    #+#             */
-/*   Updated: 2023/06/07 17:04:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ typedef struct s_data
 	pthread_mutex_t	forks[250];
 	pthread_mutex_t	writing;
 	t_philosopher	philosophers[250];
-}					t_data;
+}					t_info;
 
 int					ft_atoi(const char *str);
 long long			get_time(void);
-int					initialize(t_data *data, char **argv);
-int					proceed(t_data *data);
-void				print_action(t_data *data, int nbr, char *string);
-void				quit_proceed(t_data *data, t_philosopher *philos);
-void				smart_sleep(long long time, t_data *data);
+int					initialize(t_info *data, char **argv);
+int					proceed(t_info *data);
+void				print_action(t_info *data, int nbr, char *string);
+void				quit_proceed(t_info *data, t_philosopher *philos);
+void				smart_sleep(long long time, t_info *data);
 long long			time_delta(long long past, long long pres);
 
 #endif

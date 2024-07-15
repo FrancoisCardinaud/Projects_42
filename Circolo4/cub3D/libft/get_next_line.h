@@ -14,7 +14,7 @@
 */
 # define READL_OK		1
 # define EOF_RCHD		0
-# define ERR_HPND		-1
+# define HPND		-1
 
 # define NO_ENDLINE		0
 # define FOUND_ENDLINE	1

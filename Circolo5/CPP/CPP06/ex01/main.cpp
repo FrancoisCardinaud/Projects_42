@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:43 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:26:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
     if (argc > 1 && argv)
     {
         cerr << "serializer: error: command-line arguments aren't supported" << '\n';
-        return EXIT_FAILURE;
+        return EXIT_FAIL;
     }
 
     data_t foo;

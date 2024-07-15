@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:12 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:29:13 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main(int, char**)
         if (mirror[i] != numbers[i])
         {
             cerr << "didn't save the same value!!" << endl;
-            return EXIT_FAILURE;
+            return EXIT_FAIL;
         }
     }
     try {

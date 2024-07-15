@@ -1,14 +1,11 @@
-.PHONY: all re clean fclean bonus
+.PHONY: all re clean fclean
 
 # Program file name
 NAME	= cub3D
 
-# Mode
-BONUS = 0
-
 # Compiler and compilation flags
 CC		= gcc
-CFLAGS	= -Werror -Wextra -Wall -g3 #-fsanitize=address
+CFLAGS	= -Werror -Wextra -Wall -g3
 
 # Minilibx
 MLX_PATH	= minilibx-linux/
@@ -21,44 +18,39 @@ LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Sources
-SRC_PATH = ./sources/
-SRC		= 	main.c \
-			error.c \
-			init/init_info.c \
-			init/init_mlx.c \
-			init/init_textures.c \
-			parsing/check_args.c \
+SRC_PATH = ./src/
+SRC		= 	system/main.c \
+			system/free_resources.c \
+			system/system_functions.c \
+			config/config_game_info.c \
+			config/config_mlx.c \
+			config/config_textures.c \
+			config/config_direction.c \
+			engine/raycasting.c \
+			engine/render.c \
+			engine/manage_textures.c \
+			engine/render_utils.c \
 			parsing/parse_data.c \
-			parsing/get_file_data.c \
-			parsing/create_game_map.c \
-			parsing/check_textures.c \
-			parsing/check_map.c \
-			parsing/check_map_borders.c \
-			parsing/fill_color_textures.c \
-			parsing/parsing_utils.c \
-			movement/input_handler.c \
-			movement/player_dir.c \
-			movement/player_pos.c \
-			movement/player_move.c \
-			movement/player_rotate.c \
-			render/raycasting.c \
-			render/render.c \
-			render/texture.c \
-			render/image_utils.c \
-			render/minimap_render.c \
-			render/minimap_image.c \
-			exit/exit.c \
-			exit/free_data.c \
-			debug/debug.c
+			parsing/retrieve_data.c \
+			parsing/build_map.c \
+			parsing/color_texture.c \
+			validation/validate_arguments.c \
+			validation/validate_textures.c \
+			validation/validate_map.c \
+			validation/validate_map_borders.c \
+			validation/validate_position.c \
+			player_controls/manage_inputs.c \
+			player_controls/move.c \
+			player_controls/rotate.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
-OBJ_PATH	= ./objects/
+OBJ_PATH	= ./obj/
 OBJ			= $(SRC:.c=.o)
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 
-# Includes
-INC			=	-I ./includes/\
+# inc
+INC			=	-I ./inc/\
 				-I ./libft/\
 				-I ./minilibx-linux/
 
@@ -68,20 +60,20 @@ all: $(OBJ_PATH) $(MLX) $(LIBFT) $(NAME)
 # Objects directory rule
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
-	mkdir -p $(OBJ_PATH)/init
+	mkdir -p $(OBJ_PATH)/system
+	mkdir -p $(OBJ_PATH)/config
+	mkdir -p $(OBJ_PATH)/engine
 	mkdir -p $(OBJ_PATH)/parsing
-	mkdir -p $(OBJ_PATH)/movement
-	mkdir -p $(OBJ_PATH)/render
-	mkdir -p $(OBJ_PATH)/debug
-	mkdir -p $(OBJ_PATH)/exit
+	mkdir -p $(OBJ_PATH)/validation
+	mkdir -p $(OBJ_PATH)/player_controls
 
 # Objects rule
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) -c $< -o $@ $(INC)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 # Project file rule
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX) -lXext -lX11 -lm
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIBFT) $(MLX) -lXext -lX11 -lm
 
 # Libft rule
 $(LIBFT):
@@ -90,9 +82,6 @@ $(LIBFT):
 # MLX rule
 $(MLX):
 	make -sC $(MLX_PATH)
-
-bonus:
-	make all BONUS=1
 
 # Clean up build files rule
 clean:

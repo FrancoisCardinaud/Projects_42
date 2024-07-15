@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:45 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:30:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ float ft_stof(const std::string& str);
 static int panic(std::string error_msg)
 {
 	cerr << error_msg << "\n";
-	return EXIT_FAILURE;
+	return EXIT_FAIL;
 }
 
 int main(int argc, char **argv)

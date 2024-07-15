@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:33:50 by fcardina          #+#    #+#             */
-/*   Updated: 2023/10/25 17:57:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char		*shell_retrieve_env(char *key, char **envp, int key_len);
 char		**shell_setenv(char *key, char *value, char **envp, int key_len);
 
 // Prompt
-char		*shell_getprompt(t_prompt prompt_data);
+char		*shell_getprompt(t_prompt prompt_info);
 const char	*determine_color(char first_char);
 
 // Parser

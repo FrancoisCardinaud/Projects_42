@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:59:07 by fcardina          #+#    #+#             */
-/*   Updated: 2023/06/07 17:04:10 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:09:32 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ long long	time_delta(long long past, long long pres)
 	return (pres - past);
 }
 
-void	smart_sleep(long long time, t_data *data)
+void	smart_sleep(long long time, t_info *data)
 {
 	long long	i;
 
@@ -62,7 +62,7 @@ void	smart_sleep(long long time, t_data *data)
 	}
 }
 
-void	print_action(t_data *data, int nbr, char *string)
+void	print_action(t_info *data, int nbr, char *string)
 {
 	pthread_mutex_lock(&(data->writing));
 	if (!(data->died))

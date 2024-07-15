@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:57 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:27:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
     if (argc > 1 && argv)
     {
         cerr << "realtype: error: command-line arguments aren't supported" << endl;
-        return EXIT_FAILURE;
+        return EXIT_FAIL;
     }
     Base *c;
     

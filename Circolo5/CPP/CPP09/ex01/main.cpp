@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:51 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:30:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ using std::endl;
 static int panic(const std::string& error_msg)
 {
     cerr << ERROR_MSG_PREFFIX << error_msg << '\n';
-    return EXIT_FAILURE;
+    return EXIT_FAIL;
 }
 
 int main(int argc, char **argv)
