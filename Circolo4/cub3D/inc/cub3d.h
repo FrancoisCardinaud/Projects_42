@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 22:34:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 23:05:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ int					validate_map_borders(t_mapinfo *map_info, char **map_data);
 
 /* engine/engine_utils.c */
 void				display_crosshair(t_img *frame, t_info *game_info);
-void				set_image_pixel(t_img *image, int x, int y, int color);
+void				insert_pixel(t_img *image, int x, int y, int color);
 
 /* engine/engine.c */
 int					update_frame(t_info *game_info);

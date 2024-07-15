@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils.c                                     :+:      :+:    :+:   */
+/*   engine_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:04:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 23:05:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Places a pixel at the specified coordinates in the image buffer */
-void	set_image_pixel(t_img *img, int x, int y, int color)
+void	insert_pixel(t_img *img, int coord_x, int coord_y, int pixel_color)
 {
-	int	index;
+	int	pixel_index;
 
-	index = y * (img->size_line / 4) + x;
-	img->addr[index] = color;
+	pixel_index = coord_y * (img->size_line / 4) + coord_x;
+	img->addr[pixel_index] = pixel_color;
 }
 
 /* Renders a crosshair at the center of the screen */
@@ -39,8 +39,8 @@ void	display_crosshair(t_img *frame, t_info *game_info)
 	{
 		if (offset < -4 || offset > 4 || offset == 0)
 		{
-			set_image_pixel(frame, center_x + offset, center_y, color);
-			set_image_pixel(frame, center_x, center_y + offset, color);
+			insert_pixel(frame, center_x + offset, center_y, color);
+			insert_pixel(frame, center_x, center_y + offset, color);
 		}
 		offset++;
 	}

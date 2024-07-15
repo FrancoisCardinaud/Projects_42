@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 21:50:48 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 23:05:21 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 static void	draw_pixel_in_frame(t_info *info, t_img *frame, int x, int y)
 {
 	if (info->tex_pixels[y][x] > 0)
-		set_image_pixel(frame, x, y, info->tex_pixels[y][x]);
+		insert_pixel(frame, x, y, info->tex_pixels[y][x]);
 	else if (y < info->window_height / 2)
-		set_image_pixel(frame, x, y, info->texinfo.hex_ceiling);
+		insert_pixel(frame, x, y, info->texinfo.hex_ceiling);
 	else if (y < info->window_height - 1)
-		set_image_pixel(frame, x, y, info->texinfo.hex_floor);
+		insert_pixel(frame, x, y, info->texinfo.hex_floor);
 }
 
 /* Renders the entire frame image */
