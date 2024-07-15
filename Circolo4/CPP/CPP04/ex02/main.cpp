@@ -5,74 +5,100 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:15:14 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/06 20:20:46 by fcardina         ###   ########.fr       */
+/*   Created: 2024/01/02 19:13:11 by fcardina          #+#    #+#             */
+/*   Updated: 2024/02/06 19:55:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AAnimal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
 #include <cstdlib>
 #include <iostream>
+#include "AAnimal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "Brain.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
-	//AAnimal *aanimal = new AAnimal();
+    //AAnimal *aanimal = new AAnimal();
 
-    // Create an array of Animal pointers
-    const int numAnimals = 2;
-    AAnimal *aanimals[numAnimals];
+    // Create an array of AAnimal pointers
+    const int numAAnimals = 8;
+    AAnimal *aanimals[numAAnimals];
+    int dogCount = 0;
+    int catCount = 0;
 
     // Fill the array with half Dog and half Cat objects
-    for (int i = 0; i < numAnimals; i++)
+    for (int i = 0; i < numAAnimals; i++)
     {
-        if (i < numAnimals / 2)
+        if (i < numAAnimals / 2)
             aanimals[i] = new Dog();
         else
             aanimals[i] = new Cat();
     }
 
-    // Make some deep copies of animals
-    for (int i = 0; i < numAnimals; i++)
+    for (int i = 0; i < numAAnimals; i++)
     {
         AAnimal *aanimal = aanimals[i];
         if (aanimal->getType() == "Dog")
         {
-            std::cout << std::endl;
-            Dog *dog = dynamic_cast<Dog*>(aanimal);
-
-            // Testing for deep copy
-            Dog dogCopy(*dog);  // Create a copy using the copy constructor
-            dogCopy.getBrain()->setIdea(0, "New Dog Idea");  // Modify the copy
-
-            std::cout << "Original Dog's Idea: " << dog->getBrain()->getIdea(0) << std::endl;
-            std::cout << "Copied Dog's Idea: " << dogCopy.getBrain()->getIdea(0) << std::endl;
-			dog->makeSound();    // "Woof!"
-            std::cout << std::endl;
-
+            dogCount++;
+            std::cout << "Dog n°" << dogCount << " says: ";
+            aanimals[i]->makeSound();
         }
         else if (aanimal->getType() == "Cat")
         {
-            std::cout << std::endl;
-            Cat *cat = dynamic_cast<Cat*>(aanimal);
-
-            // Testing for deep copy
-            Cat catCopy(*cat);  // Create a copy using the copy constructor
-            catCopy.getBrain()->setIdea(0, "New Cat Idea");  // Modify the copy
-            
-            std::cout << "Original Cat's Idea: " << cat->getBrain()->getIdea(0) << std::endl;
-            std::cout << "Copied Cat's Idea: " << catCopy.getBrain()->getIdea(0) << std::endl;
-			cat->makeSound();    // "Meow!"
-            std::cout << std::endl;
+            catCount++;
+            std::cout << "Cat n°" << catCount << " says: ";
+            aanimals[i]->makeSound();
         }
     }
+    std::cout << std::endl;
 
-    // Delete the original animals and their brains
-    for (int i = 0; i < numAnimals; i++)
+    // Delete the original aanimals and their brains
+    for (int i = 0; i < numAAnimals; i++)
     {
         delete aanimals[i];
     }
+    std::cout << std::endl;
+
+    // Testing for Dog deep copy
+    Dog *deepDog = new Dog();
+    std::cout << std::endl;
+
+    Dog *dogCopy = new Dog(*deepDog);  // Create a copy
+    //std::cout << "Original Dog's Idea: " << deepDog->getBrain()->getIdea(0) << std::endl;
+    dogCopy->getBrain()->setIdea(0, "New Dog Idea 0");  // Modify the copy
+    dogCopy->getBrain()->setIdea(1, "New Dog Idea 1");
+    dogCopy->getBrain()->setIdea(2, "New Dog Idea 2");
+    dogCopy->getBrain()->setIdea(3, "New Dog Idea 3");
+    dogCopy->getBrain()->setIdea(4, "New Dog Idea ...");
+
+    dogCopy->getIdea();
+    std::cout << std::endl;
+
+
+
+    // Testing for Cat deep copy
+    Cat *deepCat = new Cat();
+    std::cout << std::endl;
+
+    Cat *catCopy = new Cat(*deepCat);  // Create a copy
+    //std::cout << "Original Cat's Idea: " << deepCat->getBrain()->getIdea(0) << std::endl;
+    catCopy->getBrain()->setIdea(0, "New Cat Idea 0");  // Modify the copy
+    catCopy->getBrain()->setIdea(1, "New Cat Idea 1");
+    catCopy->getBrain()->setIdea(2, "New Cat Idea 2");
+    catCopy->getBrain()->setIdea(3, "New Cat Idea 3");
+    catCopy->getBrain()->setIdea(4, "New Cat Idea ...");
+    
+    catCopy->getIdea();
+    std::cout << std::endl;
+
+    delete deepDog;
+    delete dogCopy;
+    delete deepCat;
+    delete catCopy;
 
     return (0);
 }

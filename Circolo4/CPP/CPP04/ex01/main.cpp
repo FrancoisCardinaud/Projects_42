@@ -93,5 +93,10 @@ int main()
     catCopy->getIdea();
     std::cout << std::endl;
 
+    delete deepDog;
+    delete dogCopy;
+    delete deepCat;
+    delete catCopy;
+
     return (0);
 }

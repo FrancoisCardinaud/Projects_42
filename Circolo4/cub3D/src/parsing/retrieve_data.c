@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrieve_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:29:13 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:18:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	assign_directional_textures(t_texinfo *textures, char *line,
 		int index)
 {
 	if (line[index + 2] && ft_isprint(line[index + 2]))
-		return (ERR);
+		return (ERROR);
 	if (line[index] == 'N' && line[index + 1] == 'O' && !textures->north)
 		textures->north = extract_texture_path(line, index + 2);
 	else if (line[index] == 'S' && line[index + 1] == 'O' && !textures->south)
@@ -73,7 +73,7 @@ static int	assign_directional_textures(t_texinfo *textures, char *line,
 	else if (line[index] == 'E' && line[index + 1] == 'A' && !textures->east)
 		textures->east = extract_texture_path(line, index + 2);
 	else
-		return (ERR);
+		return (ERROR);
 	return (OK);
 }
 
@@ -96,7 +96,7 @@ static int	process_line_content(t_info *game_info, char **file_lines,
 			&& !ft_isdigit(file_lines[line_index][char_i]))
 		{
 			if (assign_directional_textures(&game_info->texinfo,
-					file_lines[line_index], char_i) == ERR)
+					file_lines[line_index], char_i) == ERROR)
 			{
 				return (display_error_message(game_info->mapinfo.path,
 						INVALID_TEXTURE, NOT_OK));
@@ -106,7 +106,7 @@ static int	process_line_content(t_info *game_info, char **file_lines,
 		else
 		{
 			if (assign_color_textures(game_info, &game_info->texinfo,
-					file_lines[line_index], char_i) == ERR)
+					file_lines[line_index], char_i) == ERROR)
 			{
 				return (NOT_OK);
 			}

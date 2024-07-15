@@ -41,16 +41,16 @@ static void	determine_texture_index(t_info *game_info, t_ray *raycast)
 	if (raycast->side == 0)
 	{
 		if (raycast->dir_x < 0)
-			game_info->texinfo.index = WEST;
+			game_info->texinfo.index = WE;
 		else
-			game_info->texinfo.index = EAST;
+			game_info->texinfo.index = EA;
 	}
 	else
 	{
 		if (raycast->dir_y > 0)
-			game_info->texinfo.index = SOUTH;
+			game_info->texinfo.index = SO;
 		else
-			game_info->texinfo.index = NORTH;
+			game_info->texinfo.index = NO;
 	}
 }
 
@@ -74,7 +74,7 @@ void refresh_texture_pixels(t_info *game_info, t_texinfo *texture_info, t_ray *r
         texture_info->y = (int)texture_info->pos & (texture_info->size - 1);
         texture_info->pos += texture_info->step;
         color = game_info->textures[texture_info->index][texture_info->size * texture_info->y + texture_info->x];
-        if (texture_info->index == NORTH || texture_info->index == EAST) {
+        if (texture_info->index == NO || texture_info->index == EA) {
             color = (color >> 1) & 8355711;
         }
         if (color > 0) {

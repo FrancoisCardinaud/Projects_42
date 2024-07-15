@@ -17,7 +17,6 @@ Dog::Dog(void) : AAnimal()
 {
 	this->setType("Dog");
 	this->brain = new Brain();
-    brain->setIdea(0, "Original Dog Idea");
 	std::cout << "DOG default constructor has been called" << std::endl;
 }
 
@@ -45,6 +44,12 @@ Dog::~Dog(void)
 void Dog::makeSound(void) const
 {
 	std::cout << "\"Arf!\"" << std::endl;
+}
+
+void	Dog::getIdea(void)const
+{
+	for (int i = 0; i < 5; i++)
+		std::cout << "\t""Dog's idea " << i << " is: \"" << this->brain->getIdea(i) << "\" at the address " << this->brain->getIdeaAddress(i) << std::endl;
 }
 
 Brain* Dog::getBrain(void) const

@@ -48,13 +48,13 @@ void	initialize_textures(t_info *game_info)
 	game_info->textures = ft_calloc(5, sizeof(*game_info->textures));
 	if (!game_info->textures)
 		clean_exit(game_info, display_error_message(NULL, MALLOC_ERROR, 1));
-	game_info->textures[NORTH] = convert_xpm(game_info,
+	game_info->textures[NO] = convert_xpm(game_info,
 			game_info->texinfo.north);
-	game_info->textures[SOUTH] = convert_xpm(game_info,
+	game_info->textures[SO] = convert_xpm(game_info,
 			game_info->texinfo.south);
-	game_info->textures[EAST] = convert_xpm(game_info,
+	game_info->textures[EA] = convert_xpm(game_info,
 			game_info->texinfo.east);
-	game_info->textures[WEST] = convert_xpm(game_info,
+	game_info->textures[WE] = convert_xpm(game_info,
 			game_info->texinfo.west);
 }
 

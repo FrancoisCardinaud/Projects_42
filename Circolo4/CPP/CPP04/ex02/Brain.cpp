@@ -56,3 +56,14 @@ void Brain::setIdea(int index, const std::string& idea) {
         ideas[index] = idea;
     }
 }
+
+const std::string *Brain::getIdeaAddress(size_t i)const
+{
+	if (i < 100)
+	{
+		const std::string &stringREF = this->ideas[i];
+		return(&stringREF);
+	}
+	else
+		return (NULL);
+}

@@ -17,7 +17,6 @@ Dog::Dog(void) : Animal()
 {
 	this->setType("Dog");
 	this->brain = new Brain();
-    //brain->setIdea(0, "\"Original Dog Idea\"");
 	std::cout << "DOG default constructor has been called" << std::endl;
 }
 

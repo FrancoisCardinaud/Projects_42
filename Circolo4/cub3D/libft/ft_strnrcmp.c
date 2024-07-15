@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnrcmp.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/15 21:11:21 by fcardina          #+#    #+#             */
+/*   Updated: 2024/07/15 21:12:05 by fcardina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int		ft_strnrcmp(const char *s1, const char *s2, size_t n)
+int	ft_strnrcmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 	size_t	j;

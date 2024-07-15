@@ -8,3 +8,4 @@ What to do:
 - make sure function names are coherent
 - check leaks
 - check norminette
+- check compilation flags

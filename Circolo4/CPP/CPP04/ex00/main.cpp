@@ -69,5 +69,5 @@ int main() {
     delete wrongAnimalTwo;
     delete wrongCat;
 
-    return 0;
+    return (0);
 }

@@ -17,7 +17,6 @@ Cat::Cat(void) : Animal()
 {
 	this->setType("Cat");
 	this->brain = new Brain();
-	//brain->setIdea(0, "Original Cat Idea");
 	std::cout << "CAT default constructor has been called" << std::endl;
 }
 

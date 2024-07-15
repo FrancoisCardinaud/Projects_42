@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 20:31:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/15 21:18:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ int	assign_color_textures(t_info *game_info, t_texinfo *texture_info,
 {
 	if (input_line[char_index + 1] && ft_isprint(input_line[char_index + 1]))
 		return (display_error_message(game_info->mapinfo.path, INVALID_FLOOR_CEILING,
-				ERR));
+				ERROR));
 	if (!texture_info->ceiling && input_line[char_index] == 'C')
 	{
 		texture_info->ceiling = parse_rgb_values(input_line + char_index + 1);
 		if (!texture_info->ceiling)
 			return (display_error_message(game_info->mapinfo.path,
-					INVALID_CEILING_COLOR, ERR));
+					INVALID_CEILING_COLOR, ERROR));
 	}
 	else if (!texture_info->floor && input_line[char_index] == 'F')
 	{
 		texture_info->floor = parse_rgb_values(input_line + char_index + 1);
 		if (!texture_info->floor)
 			return (display_error_message(game_info->mapinfo.path, INVALID_FLOOR_COLOR,
-					ERR));
+					ERROR));
 	}
 	else
 		return (display_error_message(game_info->mapinfo.path, INVALID_FLOOR_CEILING,
-				ERR));
+				ERROR));
 	return (OK);
 }
