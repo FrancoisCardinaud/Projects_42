@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation.c                                           :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:43:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ static int	apply_rotation(t_info *game_info, float rotation_speed)
 	temp_x = player_data->direction_x;
 	player_data->direction_x = player_data->direction_x * cos(rotation_speed)
 		- player_data->direction_y * sin(rotation_speed);
-	player_data->direction_y = temp_x * sin(rotation_speed) + player_data->direction_y
-		* cos(rotation_speed);
+	player_data->direction_y = temp_x * sin(rotation_speed)
+		+ player_data->direction_y * cos(rotation_speed);
 	temp_x = player_data->plane_vec_x;
-	player_data->plane_vec_x = player_data->plane_vec_x
-		* cos(rotation_speed) - player_data->plane_vec_y
-		* sin(rotation_speed);
+	player_data->plane_vec_x = player_data->plane_vec_x * cos(rotation_speed)
+		- player_data->plane_vec_y * sin(rotation_speed);
 	player_data->plane_vec_y = temp_x * sin(rotation_speed)
 		+ player_data->plane_vec_y * cos(rotation_speed);
 	return (1);

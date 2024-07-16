@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:38:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:43:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ typedef struct s_mapdata
 	int				fd;
 }					t_mapdata;
 
-
 typedef struct s_data
 {
 	void			*mlx;
@@ -227,8 +226,8 @@ size_t				find_max_length(t_mapdata *map_info, int start_index);
 int					retrieve_file_data(t_info *game_info, char **file_data);
 
 /* parsing/color_texture.c */
-int					assign_col_tex(t_info *game_info,
-						t_texture_info *tex_info, char *line, int index);
+int					assign_col_tex(t_info *game_info, t_texture_info *tex_info,
+						char *line, int index);
 
 /* parsing/build_map.c */
 int					generate_map(t_info *game_info, char **file_data,
@@ -281,8 +280,7 @@ void				release_memory(void **memory_block);
 int					release_resources(t_info *game_info);
 
 /* system/system_functions.c */
-int					disp_err_msg(char *detail, char *message,
-						int code);
+int					disp_err_msg(char *detail, char *message, int code);
 int					display_error_with_value(int detail, char *message,
 						int code);
 void				total_exit(t_info *game_info, int exit_code);

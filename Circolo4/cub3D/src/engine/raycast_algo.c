@@ -6,15 +6,14 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:38:34 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:42:27 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Initialize the setup for the rays */
-static void	setup_ray_data(int column, t_ray *raycast,
-		t_player *player_data)
+static void	setup_ray_data(int column, t_ray *raycast, t_player *player_data)
 {
 	initialize_ray(raycast);
 	raycast->pov = 2 * column / (double)WINDOW_W - 1;
@@ -40,8 +39,8 @@ static void	initialize_dda_algo(t_ray *raycast, t_player *player_data)
 	else
 	{
 		raycast->step_x = 1;
-		raycast->side_distance_x = (raycast->map_x + 1.0 - player_data->position_x)
-			* raycast->delta_distance_x;
+		raycast->side_distance_x = (raycast->map_x + 1.0
+				- player_data->position_x) * raycast->delta_distance_x;
 	}
 	if (raycast->direction_y < 0)
 	{
@@ -52,8 +51,8 @@ static void	initialize_dda_algo(t_ray *raycast, t_player *player_data)
 	else
 	{
 		raycast->step_y = 1;
-		raycast->side_distance_y = (raycast->map_y + 1.0 - player_data->position_y)
-			* raycast->delta_distance_y;
+		raycast->side_distance_y = (raycast->map_y + 1.0
+				- player_data->position_y) * raycast->delta_distance_y;
 	}
 }
 
@@ -87,12 +86,13 @@ static void	compute_line_h(t_ray *raycast, t_info *game_info,
 		t_player *player_data)
 {
 	if (raycast->side == 0)
-		raycast->wall_distance = (raycast->side_distance_x - raycast->delta_distance_x);
+		raycast->wall_distance = (raycast->side_distance_x
+				- raycast->delta_distance_x);
 	else
-		raycast->wall_distance = (raycast->side_distance_y - raycast->delta_distance_y);
+		raycast->wall_distance = (raycast->side_distance_y
+				- raycast->delta_distance_y);
 	raycast->line_h = (int)(game_info->window_height / raycast->wall_distance);
-	raycast->cast_start = -raycast->line_h / 2 + game_info->window_height
-		/ 2;
+	raycast->cast_start = -raycast->line_h / 2 + game_info->window_height / 2;
 	if (raycast->cast_start < 0)
 		raycast->cast_start = 0;
 	raycast->cast_end = raycast->line_h / 2 + game_info->window_height / 2;
