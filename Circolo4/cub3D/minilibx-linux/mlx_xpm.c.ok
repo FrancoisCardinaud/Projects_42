@@ -225,7 +225,7 @@ void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())
 	    mlx_int_xpm_set_pixel(img, data, opp, col, x);
 	  x ++;
 	}
-      data += img->line_size;
+      data += img->size_line;
     }
   if (clip_data)
     {
@@ -280,7 +280,7 @@ void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)
   fd = -1;
   if ((fd = open(file,O_RDONLY))==-1 || (size = lseek(fd,0,SEEK_END))==-1 ||
       (ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0))==
-      (void *)MAP_NOT_OKED)
+      (void *)MAP_FAILED)
     {
       if (fd>=0)
 	close(fd);

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 17:42:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:08:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 # define INV_TEXTURE "Invalid texture(s) found"
 # define INV_TEXTURE_FILE "This is not an .xpm file"
 # define INV_TEXTURE_RGB_VALUE "RGB value invalid (between 0 and 255)"
-# define INV_USAGE "Usage: ./cub3d <path/to/map.cub>"
+# define INV_USAGE "./cub3d <path/to/map.cub>"
 # define IS_NOT_FILE "The specified path is a directory"
 # define MALLOC_ERROR "Memory allocation failed"
 # define MAP_NOT_FOUND "Map data is missing"
