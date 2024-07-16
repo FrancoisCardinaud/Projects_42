@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:34:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:27 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:22:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	initialize_texture_info(t_texture_info *textures)
 	textures->east = NULL;
 	textures->floor = 0;
 	textures->ceiling = 0;
-	textures->hex_floor = 0x0;
-	textures->hex_ceiling = 0x0;
+	textures->floor_hex = 0x0;
+	textures->ceiling_hex = 0x0;
 	textures->size = 64;
 	textures->step = 0.0;
 	textures->pos = 0.0;

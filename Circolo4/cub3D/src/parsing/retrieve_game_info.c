@@ -13,7 +13,7 @@
 #include "../../inc/cub3d.h"
 
 /* Finds the length of the longest line in the map file */
-size_t	find_max_length(t_mapinfo *map_info, int li)
+size_t	find_max_length(t_mapdata *map_info, int li)
 {
 	size_t	current_length;
 	size_t	max_length;

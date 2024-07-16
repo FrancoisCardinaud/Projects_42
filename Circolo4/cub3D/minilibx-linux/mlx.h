@@ -67,7 +67,7 @@ void	*mlx_new_image(void *mlx_ptr,int width,int height);
 **  void	*mlx_new_image2(void *mlx_ptr,int width,int height);
 */
 char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel,
-			   int *size_line, int *endian);
+			   int *line_size, int *endian);
 /*
 **  endian : 0 = sever X is little endian, 1 = big endian
 **  for mlx_new_image2, 2nd arg of mlx_get_data_addr is number_of_planes

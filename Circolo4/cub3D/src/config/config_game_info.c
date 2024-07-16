@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_game_info.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 22:39:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:39:02 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,52 @@
 /* Initializes the raycasting structure */
 void	initialize_ray(t_ray *ray)
 {
-	ray->camera_x = 0;
-	ray->dir_x = 0;
-	ray->dir_y = 0;
+	ray->pov = 0;
+	ray->direction_x = 0;
+	ray->direction_y = 0;
 	ray->map_x = 0;
 	ray->map_y = 0;
 	ray->step_x = 0;
 	ray->step_y = 0;
-	ray->sidedist_x = 0;
-	ray->sidedist_y = 0;
-	ray->deltadist_x = 0;
-	ray->deltadist_y = 0;
-	ray->wall_dist = 0;
-	ray->wall_x = 0;
+	ray->side_distance_x = 0;
+	ray->side_distance_y = 0;
+	ray->delta_distance_x = 0;
+	ray->delta_distance_y = 0;
+	ray->wall_distance = 0;
+	ray->wall_hor = 0;
 	ray->side = 0;
-	ray->line_height = 0;
-	ray->draw_start = 0;
-	ray->draw_end = 0;
+	ray->line_h = 0;
+	ray->cast_start = 0;
+	ray->cast_end = 0;
 }
 
 /* Sets up the map information structure */
-static void	initialize_map_info(t_mapinfo *map_info)
+static void	initialize_map_info(t_mapdata *map_info)
 {
 	map_info->fd = 0;
-	map_info->line_count = 0;
+	map_info->line_nb = 0;
 	map_info->path = NULL;
 	map_info->file = NULL;
 	map_info->height = 0;
 	map_info->width = 0;
-	map_info->index_end_of_map = 0;
+	map_info->end_of_map_index = 0;
 }
 
 /* Initializes the player structure */
 static void	initialize_player(t_player *player_data)
 {
 	player_data->dir = '\0';
-	player_data->pos_x = 0.0;
-	player_data->pos_y = 0.0;
-	player_data->pos_z = 0.0;
-	player_data->dir_x = 0.0;
-	player_data->dir_y = 0.0;
-	player_data->plane_vector_x = 0.0;
-	player_data->plane_vector_y = 0.0;
+	player_data->position_x = 0.0;
+	player_data->position_y = 0.0;
+	player_data->position_z = 0.0;
+	player_data->direction_x = 0.0;
+	player_data->direction_y = 0.0;
+	player_data->plane_vec_x = 0.0;
+	player_data->plane_vec_y = 0.0;
 	player_data->has_moved = 0;
-	player_data->move_x = 0;
-	player_data->move_y = 0;
-	player_data->rotate = 0;
+	player_data->move_hor = 0;
+	player_data->move_ver = 0;
+	player_data->rotation = 0;
 }
 
 /* Initializes the main game data structure */

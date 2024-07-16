@@ -60,7 +60,7 @@ void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,
   im2->image = img1;
   im2->data = img1->data;
   im2->type = MLX_TYPE_XIMAGE;
-  im2->size_line = img1->bytes_per_line;
+  im2->line_size = img1->bytes_per_line;
   im2->bpp = img1->bits_per_pixel;
   return (im2);
 }

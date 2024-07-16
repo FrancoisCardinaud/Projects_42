@@ -52,7 +52,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
     }
   img->width = width;
   img->height = height;
-  img->size_line = img->image->bytes_per_line;
+  img->line_size = img->image->bytes_per_line;
   img->bpp = img->image->bits_per_pixel;
   img->format = format;
   img->shm.shmid = shmget(IPC_PRIVATE,(width+32)*height*4,IPC_CREAT|0777);
@@ -125,7 +125,7 @@ void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)
       return ((void *)0);
     }
   img->gc = 0;
-  img->size_line = img->image->bytes_per_line;
+  img->line_size = img->image->bytes_per_line;
   img->bpp = img->image->bits_per_pixel;
   img->width = width;
   img->height = height;

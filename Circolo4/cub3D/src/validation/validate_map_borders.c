@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_borders.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:26:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	validate_top_or_bottom_border(char **map_array, int row, int col)
 }
 
 /* Verifies that the map is enclosed by walls on all sides */
-int	validate_map_borders(t_mapinfo *map_info, char **map_array)
+int	validate_map_borders(t_mapdata *map_info, char **map_array)
 {
 	int	row;
 	int	col;

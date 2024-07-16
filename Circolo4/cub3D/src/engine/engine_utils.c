@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:19:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	insert_pixel(t_img *img, int coord_x, int coord_y, int pixel_color)
 {
 	int	pixel_index;
 
-	pixel_index = coord_y * (img->size_line / 4) + coord_x;
+	pixel_index = coord_y * (img->line_size / 4) + coord_x;
 	img->addr[pixel_index] = pixel_color;
 }
 

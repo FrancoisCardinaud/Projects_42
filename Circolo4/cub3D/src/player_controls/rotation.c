@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   rotation.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,17 +19,17 @@ static int	apply_rotation(t_info *game_info, float rotation_speed)
 	float		temp_x;
 
 	player_data = &game_info->player;
-	temp_x = player_data->dir_x;
-	player_data->dir_x = player_data->dir_x * cos(rotation_speed)
-		- player_data->dir_y * sin(rotation_speed);
-	player_data->dir_y = temp_x * sin(rotation_speed) + player_data->dir_y
+	temp_x = player_data->direction_x;
+	player_data->direction_x = player_data->direction_x * cos(rotation_speed)
+		- player_data->direction_y * sin(rotation_speed);
+	player_data->direction_y = temp_x * sin(rotation_speed) + player_data->direction_y
 		* cos(rotation_speed);
-	temp_x = player_data->plane_vector_x;
-	player_data->plane_vector_x = player_data->plane_vector_x
-		* cos(rotation_speed) - player_data->plane_vector_y
+	temp_x = player_data->plane_vec_x;
+	player_data->plane_vec_x = player_data->plane_vec_x
+		* cos(rotation_speed) - player_data->plane_vec_y
 		* sin(rotation_speed);
-	player_data->plane_vector_y = temp_x * sin(rotation_speed)
-		+ player_data->plane_vector_y * cos(rotation_speed);
+	player_data->plane_vec_y = temp_x * sin(rotation_speed)
+		+ player_data->plane_vec_y * cos(rotation_speed);
 	return (1);
 }
 

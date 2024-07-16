@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:22 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:37:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ static void	determine_texture_index(t_info *game_info, t_ray *raycast)
 {
 	if (raycast->side == 0)
 	{
-		if (raycast->dir_x < 0)
+		if (raycast->direction_x < 0)
 			game_info->texinfo.index = WE;
 		else
 			game_info->texinfo.index = EA;
 	}
 	else
 	{
-		if (raycast->dir_y > 0)
+		if (raycast->direction_y > 0)
 			game_info->texinfo.index = SO;
 		else
 			game_info->texinfo.index = NO;
@@ -67,15 +67,15 @@ void	refresh_texture_pixels(t_info *game_info, t_texture_info *tex_info,
 	int	color;
 
 	determine_texture_index(game_info, raycast);
-	tex_info->x = (int)(raycast->wall_x * (double)tex_info->size);
-	if ((raycast->side == 0 && raycast->dir_x < 0) || (raycast->side == 1
-			&& raycast->dir_y > 0))
+	tex_info->x = (int)(raycast->wall_hor * (double)tex_info->size);
+	if ((raycast->side == 0 && raycast->direction_x < 0) || (raycast->side == 1
+			&& raycast->direction_y > 0))
 		tex_info->x = tex_info->size - tex_info->x - 1;
-	tex_info->step = 1.0 * tex_info->size / raycast->line_height;
-	tex_info->pos = (raycast->draw_start - game_info->window_height / 2
-			+ raycast->line_height / 2) * tex_info->step;
-	row = raycast->draw_start;
-	while (row < raycast->draw_end)
+	tex_info->step = 1.0 * tex_info->size / raycast->line_h;
+	tex_info->pos = (raycast->cast_start - game_info->window_height / 2
+			+ raycast->line_h / 2) * tex_info->step;
+	row = raycast->cast_start;
+	while (row < raycast->cast_end)
 	{
 		tex_info->y = (int)tex_info->pos & (tex_info->size - 1);
 		tex_info->pos += tex_info->step;

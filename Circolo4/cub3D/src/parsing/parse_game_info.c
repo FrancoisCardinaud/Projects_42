@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_game_info.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 22:01:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:35 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:22:51 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	count_lines_in_file(char *filepath)
 {
 	int		fd;
 	char	*line;
-	int		line_count;
+	int		line_nb;
 
-	line_count = 0;
+	line_nb = 0;
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 	{
@@ -29,13 +29,13 @@ int	count_lines_in_file(char *filepath)
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
-			line_count++;
+			line_nb++;
 			free(line);
 			line = get_next_line(fd);
 		}
 		close(fd);
 	}
-	return (line_count);
+	return (line_nb);
 }
 
 /* Populates the file lines into the mapinfo structure */
@@ -78,9 +78,9 @@ void	read_file_data(char *filepath, t_info *game_info)
 	temp_idx = 0;
 	line_idx = 0;
 	char_idx = 0;
-	game_info->mapinfo.line_count = count_lines_in_file(filepath);
+	game_info->mapinfo.line_nb = count_lines_in_file(filepath);
 	game_info->mapinfo.path = filepath;
-	game_info->mapinfo.file = calloc(game_info->mapinfo.line_count + 1,
+	game_info->mapinfo.file = calloc(game_info->mapinfo.line_nb + 1,
 			sizeof(char *));
 	if (!(game_info->mapinfo.file))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:50 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:31:23 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static int	verify_position_validity(t_info *g_i, char **m_g)
 	int	r;
 	int	c;
 
-	r = (int)g_i->player.pos_y;
-	c = (int)g_i->player.pos_x;
+	r = (int)g_i->player.position_y;
+	c = (int)g_i->player.position_x;
 	if (ft_strlen(m_g[r - 1]) < (size_t)c || ft_strlen(m_g[r + 1]) < (size_t)c
 		|| is_space(m_g[r][c - 1]) == OK || is_space(m_g[r][c + 1]) == OK
 		|| is_space(m_g[r - 1][c]) == OK || is_space(m_g[r + 1][c]) == OK)
@@ -73,8 +73,8 @@ static int	validate_player_position(t_info *game_info, char **map_grid)
 		{
 			if (ft_strchr("NSEW", map_grid[row][col]))
 			{
-				game_info->player.pos_x = (double)col + 0.5;
-				game_info->player.pos_y = (double)row + 0.5;
+				game_info->player.position_x = (double)col + 0.5;
+				game_info->player.position_y = (double)row + 0.5;
 				map_grid[row][col] = '0';
 			}
 			col++;
@@ -87,12 +87,12 @@ static int	validate_player_position(t_info *game_info, char **map_grid)
 }
 
 /* Verifies that the map is at the end of the file */
-static int	verify_map_termination(t_mapinfo *map_info)
+static int	verify_map_termination(t_mapdata *map_info)
 {
 	int	row;
 	int	col;
 
-	row = map_info->index_end_of_map;
+	row = map_info->end_of_map_index;
 	while (map_info->file[row])
 	{
 		col = 0;

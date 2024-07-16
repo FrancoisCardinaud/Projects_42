@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:33:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:19:50 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	reset_image(t_img *image)
 	image->img = NULL;
 	image->addr = NULL;
 	image->pixel_bits = 0;
-	image->size_line = 0;
+	image->line_size = 0;
 	image->endian = 0;
 }
 
@@ -31,7 +31,7 @@ void	initialize_image(t_info *game_info, t_img *img, int width, int height)
 		total_exit(game_info, disp_err_msg("mlx",
 				UNABLE_CREATE_MLX_IMAGE, 1));
 	img->addr = (int *)mlx_get_data_addr(img->img, &img->pixel_bits,
-			&img->size_line, &img->endian);
+			&img->line_size, &img->endian);
 }
 
 /* Loads a texture image from a file */
@@ -44,7 +44,7 @@ void	initialize_texture_image(t_info *game_info, t_img *img, char *file_path)
 		total_exit(game_info, disp_err_msg("mlx",
 				UNABLE_CREATE_MLX_IMAGE, 1));
 	img->addr = (int *)mlx_get_data_addr(img->img, &img->pixel_bits,
-			&img->size_line, &img->endian);
+			&img->line_size, &img->endian);
 }
 
 /* Initializes the MLX graphics context and window */

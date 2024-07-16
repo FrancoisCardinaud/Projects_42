@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:17 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:38:19 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,81 +95,82 @@ enum				e_result
 	CONTINUE = 4
 };
 
+typedef struct s_player
+{
+	int				has_moved;
+	int				running;
+	char			dir;
+	double			direction_y;
+	double			plane_vec_x;
+	double			plane_vec_y;
+	double			position_x;
+	double			position_y;
+	double			position_z;
+	double			direction_x;
+	int				move_hor;
+	int				move_ver;
+	int				rotation;
+}					t_player;
+
 typedef struct s_img
 {
 	void			*img;
 	int				*addr;
 	int				pixel_bits;
-	int				size_line;
+	int				line_size;
 	int				endian;
 }					t_img;
 
 typedef struct s_texinfo
 {
-	char			*north;
-	char			*south;
-	char			*west;
-	char			*east;
+	int				size;
+	unsigned long	floor_hex;
+	unsigned long	ceiling_hex;
 	int				*floor;
 	int				*ceiling;
-	unsigned long	hex_floor;
-	unsigned long	hex_ceiling;
-	int				size;
-	int				index;
-	double			step;
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
 	double			pos;
 	int				x;
 	int				y;
+	int				index;
+	double			step;
 }					t_texture_info;
-
-typedef struct s_mapinfo
-{
-	int				fd;
-	int				line_count;
-	char			*path;
-	char			**file;
-	int				height;
-	int				width;
-	int				index_end_of_map;
-}					t_mapinfo;
 
 typedef struct s_ray
 {
-	double			camera_x;
-	double			dir_x;
-	double			dir_y;
+	double			pov;
 	int				map_x;
 	int				map_y;
 	int				step_x;
 	int				step_y;
-	double			sidedist_x;
-	double			sidedist_y;
-	double			deltadist_x;
-	double			deltadist_y;
-	double			wall_dist;
-	double			wall_x;
+	double			direction_x;
+	double			direction_y;
+	double			delta_distance_x;
+	double			delta_distance_y;
+	double			side_distance_x;
+	double			side_distance_y;
 	int				side;
-	int				line_height;
-	int				draw_start;
-	int				draw_end;
+	int				line_h;
+	int				cast_start;
+	int				cast_end;
+	double			wall_distance;
+	double			wall_hor;
 }					t_ray;
 
-typedef struct s_player
+typedef struct s_mapdata
 {
-	char			dir;
-	double			pos_x;
-	double			pos_y;
-	double			pos_z;
-	double			dir_x;
-	double			dir_y;
-	double			plane_vector_x;
-	double			plane_vector_y;
-	int				has_moved;
-	int				move_x;
-	int				move_y;
-	int				rotate;
-	int				running;
-}					t_player;
+	char			*path;
+	char			**file;
+	int				height;
+	int				width;
+	int				end_of_map_index;
+	int				line_nb;
+	int				fd;
+}					t_mapdata;
+
 
 typedef struct s_data
 {
@@ -177,7 +178,7 @@ typedef struct s_data
 	void			*win;
 	int				window_height;
 	int				window_width;
-	t_mapinfo		mapinfo;
+	t_mapdata		mapinfo;
 	char			**map;
 	t_player		player;
 	t_ray			ray;
@@ -220,7 +221,7 @@ void				read_file_data(char *path, t_info *game_info);
 bool				contains_no_digits(char *string);
 int					count_lines_in_file(char *file_path);
 int					*populate_rgb_array(char **rgb_parts, int *rgb_array);
-size_t				find_max_length(t_mapinfo *map_info, int start_index);
+size_t				find_max_length(t_mapdata *map_info, int start_index);
 
 /* parsing/parse_game_info.c */
 int					retrieve_file_data(t_info *game_info, char **file_data);
@@ -245,7 +246,7 @@ int					verify_file(char *arg, bool is_cub_file);
 int					is_space(char c);
 
 /* validation/validate_map_borders.c */
-int					validate_map_borders(t_mapinfo *map_info, char **map_data);
+int					validate_map_borders(t_mapdata *map_info, char **map_data);
 
 /* engine/engine_utils.c */
 void				display_crosshair(t_img *frame, t_info *game_info);
@@ -271,7 +272,7 @@ int					execute_player_move(t_info *game_info);
 int					validate_move(t_info *game_info, float next_x,
 						float next_y);
 
-/* player_controls/rotate.c */
+/* player_controls/rotation.c */
 int					rotate_player_direction(t_info *game_info,
 						float rotation_direction);
 

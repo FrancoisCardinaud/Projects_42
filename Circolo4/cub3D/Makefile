@@ -41,7 +41,7 @@ SRC		= 	system/main.c \
 			validation/validate_position.c \
 			player_controls/manage_inputs.c \
 			player_controls/move.c \
-			player_controls/rotate.c
+			player_controls/rotation.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:52 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 05:22:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	validate_textures(t_info *game_info, t_texture_info *tex_info)
 		|| validate_rgb_values(tex_info->floor) == NOT_OK
 		|| validate_rgb_values(tex_info->ceiling) == NOT_OK)
 		return (NOT_OK);
-	tex_info->hex_floor = rgb_to_hex(tex_info->floor);
-	tex_info->hex_ceiling = rgb_to_hex(tex_info->ceiling);
+	tex_info->floor_hex = rgb_to_hex(tex_info->floor);
+	tex_info->ceiling_hex = rgb_to_hex(tex_info->ceiling);
 	return (OK);
 }

@@ -87,7 +87,7 @@ typedef struct	s_img
 	XImage			*image;
 	Pixmap			pix;
 	GC				gc;
-	int				size_line;
+	int				line_size;
 	int				bpp;
 	int				width;
 	int				height;
