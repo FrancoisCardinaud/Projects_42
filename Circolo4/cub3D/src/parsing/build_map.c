@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:26:54 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	calculate_map_height(t_info *game_info, char **file_lines,
 			break ;
 		r++;
 	}
-	game_info->mapinfo.end_of_map_index = r;
+	game_info->mapinfo.map_end_ind = r;
 	return (r - start_index);
 }
 

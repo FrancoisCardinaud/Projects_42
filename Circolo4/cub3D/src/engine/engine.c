@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:30:04 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:22:17 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:36 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,12 @@ static void	render_frame(t_info *info)
 }
 
 /* Executes raycasting and prepares the frame for rendering */
-static void	execute_raycasting(t_info *info)
+void	execute_raycasting(t_info *info)
 {
 	initialize_texture_pixels(info);
 	initialize_ray(&info->ray);
 	perform_raycast(&info->player, info);
 	render_frame(info);
-}
-
-/* Displays images on the screen */
-void	render_images(t_info *info)
-{
-	execute_raycasting(info);
 }
 
 /* Updates the frame based on player movement */
@@ -69,6 +63,6 @@ int	update_frame(t_info *info)
 	info->player.has_moved += execute_player_move(info);
 	if (info->player.has_moved == 0)
 		return (0);
-	render_images(info);
+	execute_raycasting(info);
 	return (0);
 }

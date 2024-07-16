@@ -6,11 +6,23 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:22 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+/* Displays an error message with an integer detail and code */
+int	display_error_with_value(int error_detail, char *disp_err_msg,
+		int error_code)
+{
+	ft_putstr_fd("\e[31mcub3D: Error: \e[0m", 2);
+	ft_putnbr_fd(error_detail, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(disp_err_msg, 2);
+	ft_putstr_fd("\n", 2);
+	return (error_code);
+}
 
 /* Displays an error message with an optional detail and code */
 int	disp_err_msg(char *error_detail, char *disp_err_msg,
@@ -31,18 +43,6 @@ int	disp_err_msg(char *error_detail, char *disp_err_msg,
 	return (error_code);
 }
 
-/* Displays an error message with an integer detail and code */
-int	display_error_with_value(int error_detail, char *disp_err_msg,
-		int error_code)
-{
-	ft_putstr_fd("\e[31mcub3D: Error: \e[0m", 2);
-	ft_putnbr_fd(error_detail, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(disp_err_msg, 2);
-	ft_putstr_fd("\n", 2);
-	return (error_code);
-}
-
 /* Gracefully exits the game, freeing resources and closing the window */
 void	total_exit(t_info *game_info, int exit_code)
 {
@@ -56,7 +56,7 @@ void	total_exit(t_info *game_info, int exit_code)
 		mlx_loop_end(game_info->mlx);
 		free(game_info->mlx);
 	}
-	release_resources(game_info);
+	release_memory_resources(game_info);
 	exit(exit_code);
 }
 

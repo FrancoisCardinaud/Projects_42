@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_algo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:42:27 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:34 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 static void	setup_ray_data(int column, t_ray *raycast, t_player *player_data)
 {
 	initialize_ray(raycast);
-	raycast->pov = 2 * column / (double)WINDOW_W - 1;
+	raycast->slice = 2 * column / (double)WINDOW_W - 1;
 	raycast->direction_x = player_data->direction_x + player_data->plane_vec_x
-		* raycast->pov;
+		* raycast->slice;
 	raycast->direction_y = player_data->direction_y + player_data->plane_vec_y
-		* raycast->pov;
+		* raycast->slice;
 	raycast->map_x = (int)player_data->position_x;
 	raycast->map_y = (int)player_data->position_y;
 	raycast->delta_distance_x = fabs(1 / raycast->direction_x);

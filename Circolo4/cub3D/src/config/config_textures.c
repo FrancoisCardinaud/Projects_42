@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:34:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:22:17 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:39 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ void	initialize_textures(t_info *game_info)
 }
 
 /* Initializes the texture information structure */
-void	initialize_texture_info(t_texture_info *textures)
+void	initialize_texture_info(t_texture_info *tex)
 {
-	textures->north = NULL;
-	textures->south = NULL;
-	textures->west = NULL;
-	textures->east = NULL;
-	textures->floor = 0;
-	textures->ceiling = 0;
-	textures->floor_hex = 0x0;
-	textures->ceiling_hex = 0x0;
-	textures->size = 64;
-	textures->step = 0.0;
-	textures->pos = 0.0;
-	textures->x = 0;
-	textures->y = 0;
+	tex->x = 0;
+	tex->y = 0;
+	tex->north = NULL;
+	tex->south = NULL;
+	tex->west = NULL;
+	tex->east = NULL;
+	tex->size = 64;
+	tex->step = 0.0;
+	tex->pos = 0.0;
+	tex->floor = 0;
+	tex->ceiling = 0;
+	tex->floor_hex = 0x0;
+	tex->ceiling_hex = 0x0;
 }

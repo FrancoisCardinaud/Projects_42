@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate_position.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:43:24 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-/* Checks if the position is not colliding with a wall */
-static bool	validate_wall_collision(t_info *game_info, float position_x,
-		float position_y)
-{
-	if (game_info->map[(int)position_y][(int)position_x] == '0')
-		return (true);
-	return (false);
-}
 
 /* Checks if the position is within the bounds of the map */
 static bool	validate_map_bounds(t_info *game_info, float position_x,
@@ -30,6 +21,15 @@ static bool	validate_map_bounds(t_info *game_info, float position_x,
 	if (position_y < 0.25 || position_y >= game_info->mapinfo.height - 0.25)
 		return (false);
 	return (true);
+}
+
+/* Checks if the position is not colliding with a wall */
+static bool	validate_wall_collision(t_info *game_info, float position_x,
+		float position_y)
+{
+	if (game_info->map[(int)position_y][(int)position_x] == '0')
+		return (true);
+	return (false);
 }
 
 /* Validates the position based on map bounds and wall collision */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:21:44 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:43:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:26 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	rotate_player_direction(t_info *game_info, float rotation_direction)
 	float	rotation_speed;
 
 	rotation_occurred = 0;
-	rotation_speed = ROTSPEED * rotation_direction;
+	rotation_speed = rotation_direction * ROTSPEED;
 	rotation_occurred += apply_rotation(game_info, rotation_speed);
 	return (rotation_occurred);
 }

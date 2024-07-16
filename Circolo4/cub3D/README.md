@@ -2,6 +2,7 @@ What to do:
 
 - check leaks
 - check norminette
+- compiler cc or gcc?
 
 Raycasting Algorithm Explanation
 The raycasting algorithm implemented in this project is based on Permadi's raycasting tutorial, a well-known method for rendering a 3D perspective from a 2D grid-based map. This technique is commonly used in first-person games to create the illusion of depth and realism. Here's a detailed explanation of the raycasting algorithm:

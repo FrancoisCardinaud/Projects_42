@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/15 23:05:48 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:41:21 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	checks that it exists and isn't a directory instead of a file.
 */
 
-int	is_space(char character)
+int	check_is_space(char character)
 {
 	if (character != ' ' && character != '\t' && character != '\r'
 		&& character != '\n' && character != '\v' && character != '\f')
@@ -27,7 +27,7 @@ int	is_space(char character)
 }
 
 /* Validates if the file path has a .cub extension */
-static bool	validate_cub_file(char *f_p)
+static bool	check_cub(char *f_p)
 {
 	size_t	p_l;
 
@@ -53,7 +53,7 @@ static bool	check_is_directory(char *file_path)
 }
 
 /* Validates if the file path has a .xpm extension */
-static bool	validate_xpm_file(char *file_path)
+static bool	check_xpm(char *file_path)
 {
 	size_t	p_l;
 
@@ -63,7 +63,7 @@ static bool	validate_xpm_file(char *file_path)
 }
 
 /* Verifies the validity of the given file path */
-int	verify_file(char *file_path, bool is_cub)
+int	validate_file(char *file_path, bool is_cub)
 {
 	int	file_descriptor;
 
@@ -73,9 +73,9 @@ int	verify_file(char *file_path, bool is_cub)
 	if (file_descriptor == -1)
 		return (disp_err_msg(file_path, strerror(errno), NOT_OK));
 	close(file_descriptor);
-	if (is_cub && !validate_cub_file(file_path))
+	if (is_cub && !check_cub(file_path))
 		return (disp_err_msg(file_path, INV_CUB_FILE, NOT_OK));
-	if (!is_cub && !validate_xpm_file(file_path))
+	if (!is_cub && !check_xpm(file_path))
 		return (disp_err_msg(file_path, INV_TEXTURE_FILE, NOT_OK));
 	return (OK);
 }

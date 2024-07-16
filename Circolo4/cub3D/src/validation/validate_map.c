@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:31:23 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:43:59 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
 /* Validates the elements in the map grid */
-static int	validate_map_elements(t_info *g_i, char **map_grid)
+static int	validate_map_contents(t_info *g_i, char **map_grid)
 {
 	int	r;
 	int	c;
@@ -43,7 +43,7 @@ static int	validate_map_elements(t_info *g_i, char **map_grid)
 }
 
 /* Verifies if the player's position is valid */
-static int	verify_position_validity(t_info *g_i, char **m_g)
+static int	validate_position(t_info *g_i, char **m_g)
 {
 	int	r;
 	int	c;
@@ -51,8 +51,9 @@ static int	verify_position_validity(t_info *g_i, char **m_g)
 	r = (int)g_i->player.position_y;
 	c = (int)g_i->player.position_x;
 	if (ft_strlen(m_g[r - 1]) < (size_t)c || ft_strlen(m_g[r + 1]) < (size_t)c
-		|| is_space(m_g[r][c - 1]) == OK || is_space(m_g[r][c + 1]) == OK
-		|| is_space(m_g[r - 1][c]) == OK || is_space(m_g[r + 1][c]) == OK)
+		|| check_is_space(m_g[r][c - 1]) == OK || check_is_space(m_g[r][c
+			+ 1]) == OK || check_is_space(m_g[r - 1][c]) == OK
+		|| check_is_space(m_g[r + 1][c]) == OK)
 		return (NOT_OK);
 	return (OK);
 }
@@ -81,18 +82,18 @@ static int	validate_player_position(t_info *game_info, char **map_grid)
 		}
 		row++;
 	}
-	if (verify_position_validity(game_info, map_grid) == NOT_OK)
+	if (validate_position(game_info, map_grid) == NOT_OK)
 		return (disp_err_msg(game_info->mapinfo.path, INV_POSITION, NOT_OK));
 	return (OK);
 }
 
 /* Verifies that the map is at the end of the file */
-static int	verify_map_termination(t_mapdata *map_info)
+static int	validate_map_termination(t_mapdata *map_info)
 {
 	int	row;
 	int	col;
 
-	row = map_info->end_of_map_index;
+	row = map_info->map_end_ind;
 	while (map_info->file[row])
 	{
 		col = 0;
@@ -115,17 +116,17 @@ static int	verify_map_termination(t_mapdata *map_info)
 /* Validates the overall map validity */
 int	validate_map(t_info *game_info, char **map_grid)
 {
-	if (!game_info->map)
-		return (disp_err_msg(game_info->mapinfo.path, MAP_NOT_FOUND, NOT_OK));
-	if (validate_map_borders(&game_info->mapinfo, map_grid) == NOT_OK)
+	if (validate_vertical_borders(&game_info->mapinfo, map_grid) == NOT_OK)
 		return (disp_err_msg(game_info->mapinfo.path, INV_MAP_BORDERS, NOT_OK));
 	if (game_info->mapinfo.height < 3)
 		return (disp_err_msg(game_info->mapinfo.path, INV_MAP_SIZE, NOT_OK));
-	if (validate_map_elements(game_info, map_grid) == NOT_OK)
+	if (!game_info->map)
+		return (disp_err_msg(game_info->mapinfo.path, MAP_NOT_FOUND, NOT_OK));
+	if (validate_map_contents(game_info, map_grid) == NOT_OK)
 		return (NOT_OK);
 	if (validate_player_position(game_info, map_grid) == NOT_OK)
 		return (NOT_OK);
-	if (verify_map_termination(&game_info->mapinfo) == NOT_OK)
+	if (validate_map_termination(&game_info->mapinfo) == NOT_OK)
 		return (disp_err_msg(game_info->mapinfo.path, INV_MAP_ORDER, NOT_OK));
 	return (OK);
 }

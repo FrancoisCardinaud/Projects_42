@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 03:22:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/16 05:43:50 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:42:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ typedef struct s_img
 {
 	void			*img;
 	int				*addr;
+	int				endian;
 	int				pixel_bits;
 	int				line_size;
-	int				endian;
 }					t_img;
 
 typedef struct s_texinfo
@@ -141,7 +141,7 @@ typedef struct s_texinfo
 
 typedef struct s_ray
 {
-	double			pov;
+	double			slice;
 	int				map_x;
 	int				map_y;
 	int				step_x;
@@ -166,7 +166,7 @@ typedef struct s_mapdata
 	char			**file;
 	int				height;
 	int				width;
-	int				end_of_map_index;
+	int				map_end_ind;
 	int				line_nb;
 	int				fd;
 }					t_mapdata;
@@ -241,11 +241,12 @@ int					validate_textures(t_info *game_info,
 int					validate_map(t_info *game_info, char **map_data);
 
 /* validation/validate_arguments.c */
-int					verify_file(char *arg, bool is_cub_file);
-int					is_space(char c);
+int					validate_file(char *arg, bool is_cub_file);
+int					check_is_space(char c);
 
-/* validation/validate_map_borders.c */
-int					validate_map_borders(t_mapdata *map_info, char **map_data);
+/* validation/validate_vertical_borders.c */
+int					validate_vertical_borders(t_mapdata *map_info,
+						char **map_data);
 
 /* engine/engine_utils.c */
 void				display_crosshair(t_img *frame, t_info *game_info);
@@ -253,7 +254,7 @@ void				insert_pixel(t_img *image, int x, int y, int color);
 
 /* engine/engine.c */
 int					update_frame(t_info *game_info);
-void				render_images(t_info *game_info);
+void				execute_raycasting(t_info *info);
 
 /* engine/raycast_algo.c */
 int					perform_raycast(t_player *player, t_info *game_info);
@@ -277,7 +278,7 @@ int					rotate_player_direction(t_info *game_info,
 
 /* system/free_resources.c */
 void				release_memory(void **memory_block);
-int					release_resources(t_info *game_info);
+int					release_memory_resources(t_info *game_info);
 
 /* system/system_functions.c */
 int					disp_err_msg(char *detail, char *message, int code);
