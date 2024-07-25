@@ -6,32 +6,31 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:30:47 by fcardina          #+#    #+#              #
-#    Updated: 2024/01/02 19:30:47 by fcardina         ###   ########.fr        #
+#    Updated: 2024/07/25 18:35:03 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address #-DLOGS
 INCLUDE = -I./includes
-VPATH = srcs
 RM = rm -rf
 
 GENERAL = BitcoinExchange
 
-NAME = btc
+TARGET = btc
 SRCS = $(addsuffix .cpp, $(GENERAL))\
 	   main.cpp
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(TARGET): $(OBJ_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
 $(OBJ_DIR):
-	mkdir -p obj
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
@@ -40,17 +39,17 @@ clean:
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(TARGET)
 
 re: fclean all
 
 run: all clean
-	./$(NAME) input.txt
+	./$(TARGET) input.txt
 
 noleaks: re clean
 	echo ""
-	valgrind --leak-check=full -s ./$(NAME)
+	valgrind --leak-check=full -s ./$(TARGET)
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run noleaks
 
 #.SILENT:

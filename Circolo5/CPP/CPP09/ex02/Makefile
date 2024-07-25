@@ -6,32 +6,31 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:31:06 by fcardina          #+#    #+#              #
-#    Updated: 2024/01/02 19:31:06 by fcardina         ###   ########.fr        #
+#    Updated: 2024/07/25 18:37:18 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -O3 #-DLOGS
 INCLUDE = -I./includes
-VPATH = srcs
 RM = rm -rf
 
 GENERAL = PmergeMe
 
-NAME = PmergeMe
+TARGET = PmergeMe
 SRCS = $(addsuffix .cpp, $(GENERAL))\
 		main.cpp
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(TARGET): $(OBJ_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
 $(OBJ_DIR):
-	mkdir -p obj
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
@@ -40,25 +39,25 @@ clean:
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(TARGET)
 
 re: fclean all
 
 run: all clean
 	@echo ""
 	@echo "TEST 1"
-	./$(NAME) 3 5 9 7 4
+	./$(TARGET) 3 5 9 7 4
 	@echo ""
 #	@echo "TEST 2"
-#	./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+#	./$(TARGET) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 	@echo "TEST 4"
-	./$(NAME) -1 2
+	./$(TARGET) -1 2
 	@echo ""
 
 noleaks: re clean
 	echo ""
-	valgrind --leak-check=full -s ./$(NAME)
+	valgrind --leak-check=full -s ./$(TARGET)
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run noleaks
 
 #.SILENT:

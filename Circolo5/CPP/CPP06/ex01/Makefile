@@ -6,32 +6,28 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:26:45 by fcardina          #+#    #+#              #
-#    Updated: 2024/01/02 19:26:46 by fcardina         ###   ########.fr        #
+#    Updated: 2024/07/25 18:13:42 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address #-DLOGS
 INCLUDE = -I./includes
-VPATH = srcs
 RM = rm -rf
 
-GENERAL = Serialization
-
-NAME = serializer
-SRCS = $(addsuffix .cpp, $(GENERAL))\
-	   main.cpp
+TARGET = serializer
+SRC = Serialization.cpp main.cpp
 
 OBJ_DIR = obj
-OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
+OBJS = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(TARGET): $(OBJ_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
 $(OBJ_DIR):
-	mkdir -p obj
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
@@ -40,18 +36,18 @@ clean:
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(TARGET)
 
 re: fclean all
 
 run: all clean
 	@echo ""
-	./$(NAME)
+	./$(TARGET)
 
 noleaks: re clean
-	echo ""
-	valgrind --leak-check=full -s ./$(NAME)
+	@echo ""
+	valgrind --leak-check=full -s ./$(TARGET)
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run noleaks
 
 #.SILENT:
