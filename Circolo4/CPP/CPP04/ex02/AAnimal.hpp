@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:14:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/06 03:41:15 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class AAnimal
 		
 	public:
 		AAnimal(void);
-		AAnimal(const AAnimal &to_copy);
-		AAnimal &operator=(const AAnimal &to_copy);
+		AAnimal(const AAnimal &other);
+		AAnimal &operator=(const AAnimal &other);
 		virtual ~AAnimal(void);
 
 		std::string getType(void) const;

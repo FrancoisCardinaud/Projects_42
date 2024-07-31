@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:27:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:27:43 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 #include <cstdlib>
 #include <iostream>
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 Base *generate(void)
 {
 	srand(time(NULL));
 	char c = "ABC"[rand() % 3];
 
-	cout << "Type " << c << " created!" << endl;
+	std::cout << "Type " << c << " created!" << std::endl;
 	switch (c)
 	{
 		case 'A':
@@ -43,52 +43,52 @@ void identify(Base *p)
 	// just to shut "unused-value" compiler warning
 	bool sucessfully_casted;
 
-	cout << "Identify with Base *: ";
+	std::cout << "Identify with Base *: ";
 
 	sucessfully_casted = dynamic_cast<A *>(p);
 	if (sucessfully_casted)
 	{
-		cout << "A" << endl;
+		std::cout << "A" << std::endl;
 		return ;
 	}
 	sucessfully_casted = dynamic_cast<B *>(p);
 	if (sucessfully_casted)
 	{
-		cout << "B" << endl;
+		std::cout << "B" << std::endl;
 		return ;
 	}
 	sucessfully_casted = dynamic_cast<C *>(p);
 	if (sucessfully_casted)
 	{
-		cout << "C" << endl;
+		std::cout << "C" << std::endl;
 		return ;
 	}
 	if (!sucessfully_casted)
-		cout << "Invalid type" << endl;
+		std::cout << "Invalid type" << std::endl;
 }
 
 void identify(Base &p)
 {
-	cout << "Identify with Base &: ";
+	std::cout << "Identify with Base &: ";
 	try {
 		A &a = dynamic_cast<A &>(p);
 		(void)a;
-		cout << "A" << endl;
+		std::cout << "A" << std::endl;
 	}
 	catch (const std::exception& e) {
 		try {
 			B &b = dynamic_cast<B &>(p);
 			(void)b;
-			cout << "B" << endl;
+			std::cout << "B" << std::endl;
 		}
 		catch (const std::exception& e) {
 			try {
 				C &c = dynamic_cast<C &>(p);
 				(void)c;
-				cout << "C" << endl;
+				std::cout << "C" << std::endl;
 			}
 			catch (const std::exception& e) {
-				cout << "Invalid type" << endl;
+				std::cout << "Invalid type" << std::endl;
 			}
 		}
 	}

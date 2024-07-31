@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:10 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:31:10 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class PmergeMe {
     public:
         PmergeMe(void);
-        PmergeMe(const PmergeMe& to_copy);
-        PmergeMe &operator=(const PmergeMe& to_copy);
+        PmergeMe(const PmergeMe& other);
+        PmergeMe &operator=(const PmergeMe& other);
         ~PmergeMe(void);
 
         void sortVec(int argc, char **argv);

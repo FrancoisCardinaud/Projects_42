@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:38 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:39 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Intern {
 	public:
 		Intern(void);
-		Intern(const Intern &to_copy);
+		Intern(const Intern &other);
 		~Intern(void);
 
 		Intern& operator=(const Intern &assign);

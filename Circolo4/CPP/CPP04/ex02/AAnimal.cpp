@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:14:52 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/03 19:32:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ AAnimal::AAnimal(void) {
 	std::cout << "AANIMAL default constructor has been called" << std::endl;
 }
 
-AAnimal::AAnimal(const AAnimal &to_copy)
+AAnimal::AAnimal(const AAnimal &other)
 {
-	this->type = to_copy.type;
+	this->type = other.type;
 	std::cout << "AANIMAL copy constructor has been called" << std::endl;
 }
 
-AAnimal& AAnimal::operator=(const AAnimal &to_copy)
+AAnimal& AAnimal::operator=(const AAnimal &other)
 {
-	if (this != &to_copy)
-		this->type = to_copy.type;
+	if (this != &other)
+		this->type = other.type;
 	std::cout << "AANIMAL assignment operator has been called" << std::endl;
 	return *this;
 }

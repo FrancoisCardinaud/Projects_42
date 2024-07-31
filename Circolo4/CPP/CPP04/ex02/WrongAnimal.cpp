@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:38 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 18:43:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ WrongAnimal::WrongAnimal(void)
 	std::cout << "WRONG ANIMAL default constructor has been called" << std::endl;
 };
 
-WrongAnimal::WrongAnimal(const WrongAnimal &to_copy)
+WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
-	*this = to_copy;
+	*this = other;
 	std::cout << "WRONG ANIMAL copy constructor has been called" << std::endl;
 }
 
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal &to_copy)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &other)
 {
-	this->type = to_copy.type;
+	this->type = other.type;
 	std::cout << "WRONG ANIMAL assignment operator has been called" << std::endl;
 	return *this;
 }

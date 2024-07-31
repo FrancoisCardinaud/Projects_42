@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:58 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class ShrubberyCreationForm : public AForm {
 	public:
 		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm(const ShrubberyCreationForm& to_copy);
+		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &original);
 		~ShrubberyCreationForm(void);
 

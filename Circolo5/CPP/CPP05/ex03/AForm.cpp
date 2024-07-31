@@ -6,20 +6,20 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:25 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:26 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-using std::cout;
-using std::endl;
+
+
 
 AForm::AForm(std::string name, std::string target, int grade_to_sign, int grade_to_execute)
 : name(name), target(target), is_signed(false), grade_to_sign(grade_to_sign), grade_to_execute(grade_to_execute)
 {
 	#ifdef LOGS
-		cout << "[AForm] Parameterized constructor called" << endl;
+		std::cout << "[AForm] Parameterized constructor called" << std::endl;
 	#endif
 	if (grade_to_sign > 150 || grade_to_execute > 150)
 		throw AForm::GradeTooLowException();
@@ -29,20 +29,20 @@ AForm::AForm(std::string name, std::string target, int grade_to_sign, int grade_
 
 AForm::~AForm() {
     #ifdef LOGS
-		cout << "[AForm] Destructor called" << endl;
+		std::cout << "[AForm] Destructor called" << std::endl;
 	#endif
 }
 
-AForm::AForm(AForm& to_copy)
-: name(to_copy.getName()), target(to_copy.getTarget()), is_signed(to_copy.getSignState()), grade_to_sign(to_copy.getGradeToSign()), grade_to_execute(to_copy.getGradeToExecute()) {
+AForm::AForm(AForm& other)
+: name(other.getName()), target(other.getTarget()), is_signed(other.getSignState()), grade_to_sign(other.getGradeToSign()), grade_to_execute(other.getGradeToExecute()) {
 	#ifdef LOGS
-		cout << "[AForm] Copy Constructor called" << endl;
+		std::cout << "[AForm] Copy Constructor called" << std::endl;
 	#endif
 }
 
 AForm& AForm::operator=(AForm& original) {
 	#ifdef LOGS
-		cout << "[AForm] Copy Assignment Operator called" << endl;
+		std::cout << "[AForm] Copy Assignment Operator called" << std::endl;
 	#endif
 	this->is_signed = original.getSignState();
 	return *this;

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:41 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/06 03:14:42 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ Cat::Cat(void) : Animal() //inheritance
 	this->setType("Cat");
 }
 
-Cat::Cat(const Cat &to_copy) : Animal(to_copy)
+Cat::Cat(const Cat &other) : Animal(other)
 {
-	*this = to_copy;
+	*this = other;
 	std::cout << "CAT copy constructor has been called " << std::endl;
 }
 
-Cat& Cat::operator=(const Cat &to_copy)
+Cat& Cat::operator=(const Cat &other)
 {
-	this->type = to_copy.type;
+	this->type = other.type;
 	std::cout << "CAT assignment operator has been called " << std::endl;
 	return *this;
 }

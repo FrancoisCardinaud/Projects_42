@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:29:51 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 #include <iostream>
 #include "Span.hpp"
 
-using std::cout;
-using std::endl;
+
+
 
 Span::Span(uint32_t N) : max_size(N), storage(0) {};
 
-Span::Span(const Span &to_copy) {
-	*this = to_copy;
+Span::Span(const Span &other) {
+	*this = other;
 }
 
-Span &Span::operator=(const Span &to_copy)
+Span &Span::operator=(const Span &other)
 {
-	this->max_size = to_copy.max_size;
-	this->storage = to_copy.storage;
+	this->max_size = other.max_size;
+	this->storage = other.storage;
 	return *this;
 }
 
@@ -49,7 +49,7 @@ void Span::addRandomNumbers(uint32_t quantity)
 			this->addNumber(rand());
 	}
 	catch (std::exception& e) {
-		cout << e.what() << endl;
+		std::cout << e.what() << std::endl;
 	}
 }
 
@@ -91,10 +91,10 @@ void Span::printStorage(void)
 	std::vector<int> v = this->storage;
 	std::vector<int>::iterator i;
 
-	cout << "storage = ";
+	std::cout << "storage = ";
 	for (i = v.begin(); i != v.end(); i += 1)
-		cout << *i << " ";
-	cout << endl;
+		std::cout << *i << " ";
+	std::cout << std::endl;
 }
 
 char const* Span::BeyondMaxSize::what(void) const throw() {

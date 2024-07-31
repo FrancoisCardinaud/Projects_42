@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:19 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:26:20 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include <sstream>
 #include "ScalarConverter.hpp"
 
-using std::cout;
-using std::endl;
+
+
 
 /* UTILS */
 
@@ -143,58 +143,58 @@ static literal_type getType(const std::string& literal)
 
 static void literalChar(char ch)
 {
-    cout << "char: '" << ch << "'" << endl;
-    cout << "int: " << static_cast<int>(ch) << endl;
-    cout << "float: " << static_cast<float>(ch) << ".0f" << endl;
-    cout << "double: " << static_cast<double>(ch) << ".0" << endl;
+    cout << "char: '" << ch << "'" << std::endl;
+    cout << "int: " << static_cast<int>(ch) << std::endl;
+    cout << "float: " << static_cast<float>(ch) << ".0f" << std::endl;
+    cout << "double: " << static_cast<double>(ch) << ".0" << std::endl;
 }
 
 static void literalInt(int nbr)
 {
     if (isprint(nbr))
-        cout << "char: '" << static_cast<char>(nbr)  << "'" << endl; 
+        cout << "char: '" << static_cast<char>(nbr)  << "'" << std::endl; 
     else
-        cout << "char: Non displayable" << endl; 
-    cout << "int: " << nbr << endl;
-    cout << "float: " << static_cast<float>(nbr) << ".0f" << endl;
-    cout << "double: " << static_cast<double>(nbr) << ".0" << endl;
+        cout << "char: Non displayable" << std::endl; 
+    cout << "int: " << nbr << std::endl;
+    cout << "float: " << static_cast<float>(nbr) << ".0f" << std::endl;
+    cout << "double: " << static_cast<double>(nbr) << ".0" << std::endl;
 }
 
 static void literalFloat(float nbr)
 {
     if (isprint(nbr))
-        cout << "char: '" << static_cast<char>(nbr) << "'" << endl;
+        cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
     else
-        cout << "char: Non displayable" << endl;
-    cout << "int: " << static_cast<int>(nbr) << endl;
-    cout << "float: " << nbr << ".0f" << endl;
-    cout << "double: " << static_cast<double>(nbr) << ".0" << endl;
+        cout << "char: Non displayable" << std::endl;
+    cout << "int: " << static_cast<int>(nbr) << std::endl;
+    cout << "float: " << nbr << ".0f" << std::endl;
+    cout << "double: " << static_cast<double>(nbr) << ".0" << std::endl;
 }
 
 static void literalDouble(double nbr)
 {
     if (isprint(nbr))
-        cout << "char: '" << static_cast<char>(nbr)  << "'" << endl;
+        cout << "char: '" << static_cast<char>(nbr)  << "'" << std::endl;
     else
-        cout << "char: Non displayable" << endl;
-    cout << "int: " << static_cast<int>(nbr) << endl;
-    cout << "float: " << static_cast<float>(nbr) << ".0f" << endl;
-    cout << "double: " << nbr << ".0" << endl;
+        cout << "char: Non displayable" << std::endl;
+    cout << "int: " << static_cast<int>(nbr) << std::endl;
+    cout << "float: " << static_cast<float>(nbr) << ".0f" << std::endl;
+    cout << "double: " << nbr << ".0" << std::endl;
 }
 
 static void pseudoLiteral(literal_type dest_type, const std::string& pseudo_literal)
 {
-    cout << "char: impossible" << endl;
-    cout << "int: impossible" << endl; 
+    cout << "char: impossible" << std::endl;
+    cout << "int: impossible" << std::endl; 
     if (dest_type == _float)
     {
-        cout << "float: " << pseudo_literal << endl;
-        cout << "double: " << pseudo_literal.substr(0, pseudo_literal.length() - 1) << endl;
+        cout << "float: " << pseudo_literal << std::endl;
+        cout << "double: " << pseudo_literal.substr(0, pseudo_literal.length() - 1) << std::endl;
     }
     else if (dest_type == _double)
     {
-        cout << "float: " << pseudo_literal + "f" << endl;
-        cout << "double: " << pseudo_literal << endl;
+        cout << "float: " << pseudo_literal + "f" << std::endl;
+        cout << "double: " << pseudo_literal << std::endl;
     }
 }
 
@@ -225,7 +225,7 @@ void ScalarConverter::convert(const std::string& literal)
             break;
 
         default:
-            cout << "WhAt TyPe iS tHaT!? 🤨" << endl;
+            cout << "WhAt TyPe iS tHaT!? 🤨" << std::endl;
             break;
     }
 }

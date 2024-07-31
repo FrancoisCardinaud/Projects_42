@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:55 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:56 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 #include <fstream>
 #include "ShrubberyCreationForm.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 : AForm("ShrubberyCreationForm", target, 145, 137) {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] Parameterized constructor called"<< endl;
+		std::cout << "[ShrubberyCreationForm] Parameterized constructor called"<< std::endl;
 	#endif 
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& to_copy)
-: AForm(to_copy.getName(), to_copy.getTarget(), to_copy.getGradeToSign(), to_copy.getGradeToExecute()) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
+: AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute()) {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] copy constructor called" << endl;
+		std::cout << "[ShrubberyCreationForm] copy constructor called" << std::endl;
 	#endif
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] destructor called"<< endl;
+		std::cout << "[ShrubberyCreationForm] destructor called"<< std::endl;
 	#endif
 };
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &assign)
 {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] copy assignment operator called"<< endl;
+		std::cout << "[ShrubberyCreationForm] copy assignment operator called"<< std::endl;
 	#endif
 	if (this == &assign)
 		return *this;
@@ -53,10 +53,10 @@ void ShrubberyCreationForm::executeSuperClassForm(Bureaucrat const& executor) co
 	if (executor.getGrade() > this->getGradeToExecute())
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->getSignState() == false)
-		cerr << "ShrubberyCreationForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << endl;
+		cerr << "ShrubberyCreationForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << std::endl;
 	else
 	{
-		cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << endl;
+		std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 		std::ofstream out;
 
 		out.open((this->getTarget() + "_shrubbery").c_str(), std::ofstream::in | std::ofstream::trunc);
@@ -89,6 +89,6 @@ void ShrubberyCreationForm::executeSuperClassForm(Bureaucrat const& executor) co
 			<< "                     .%@@@@%::;         " << "\n"
 			<< "                     ;%@@@@%::;.          " << "\n"
 			<< "                    ;%@@@@%%:;;;. " << "\n"
-			<< "                ...;%@@@@@%%:;;;;,..   " << endl;
+			<< "                ...;%@@@@@%%:;;;;,..   " << std::endl;
 		}
 }

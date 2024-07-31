@@ -6,20 +6,20 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:40 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:24:41 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Form.hpp"
 
-using std::cout;
-using std::endl;
 
-Form::Form(const Form& to_copy)
-: name(to_copy.name), is_signed(to_copy.is_signed),
-grade_to_sign(to_copy.grade_to_sign), grade_to_execute(to_copy.grade_to_execute) {
-	cout << "[Form] <" << this->getName() << "> copy constructor called" << endl;
+
+
+Form::Form(const Form& other)
+: name(other.name), is_signed(other.is_signed),
+grade_to_sign(other.grade_to_sign), grade_to_execute(other.grade_to_execute) {
+	std::cout << "[Form] <" << this->getName() << "> copy constructor called" << std::endl;
 }
 
 Form::Form(std::string name, int grade_to_sign, int grade_to_execute) 
@@ -32,11 +32,11 @@ Form::Form(std::string name, int grade_to_sign, int grade_to_execute)
 	|| grade_to_execute < HIGHEST_GRADE)
 		throw (Form::GradeTooHighException());
 	this->is_signed = false;
-	cout << "[Form] <" << this->getName() << "> constructor has been called" << endl;
+	std::cout << "[Form] <" << this->getName() << "> constructor has been called" << std::endl;
 }
 
 Form::~Form(void) {
-	cout << "[Form] <" << this->getName() << "> default destructor has been called" << endl;
+	std::cout << "[Form] <" << this->getName() << "> default destructor has been called" << std::endl;
 }
 
 const std::string& Form::getName(void) const {
@@ -84,6 +84,6 @@ std::ostream &operator<<(std::ostream &stream, Form &form)
 		   << "Signed: " << (form.getSignState() == true ? "yes" : "no") << "\n"
 		   << "Grade to sign: " << form.getGradeToSign() << "\n"
 		   << "Grade to execute: " << form.getGradeToExecute() << "\n" 
-		   << endl;
+		   << std::endl;
 	return stream;
 }

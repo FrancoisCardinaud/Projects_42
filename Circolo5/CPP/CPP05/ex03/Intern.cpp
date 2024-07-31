@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:35 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 Intern::Intern(void) {
     #ifdef LOGS
-    	cout << "[Intern] Default Constructor called" << endl;
+    	std::cout << "[Intern] Default Constructor called" << std::endl;
     #endif
 }
 
@@ -30,20 +30,20 @@ Intern::Intern(const Intern &copy)
 {
 	*this = copy;
     #ifdef LOGS
-	    cout << "[Intern] Copy Constructor called" << endl;
+	    cout << "[Intern] Copy Constructor called" << std::endl;
     #endif
 }
 
 Intern::~Intern() {
     #ifdef LOGS
-    	cout << "[Intern] Destructor called" << endl;
+    	std::cout << "[Intern] Destructor called" << std::endl;
     #endif
 }
 
 Intern& Intern::operator=(const Intern &assign)
 {
     #ifdef LOGS
-	    cout << "[Intern] Copy Assignment Operator called" << endl;
+	    cout << "[Intern] Copy Assignment Operator called" << std::endl;
     #endif
 	if (this == &assign)
         return *this;
@@ -80,12 +80,12 @@ AForm *Intern::makeForm(std::string name, std::string target)
     {
         if (name == formnames[i])
         {
-            cout << "Intern creates " << name << endl;
+            cout << "Intern creates " << name << std::endl;
             choosen_form = form_constructors[i](target);;
             break ;
         }
     }
     if (!choosen_form)
-        cerr << "Intern couldn't create " << name << " form" << endl;
+        cerr << "Intern couldn't create " << name << " form" << std::endl;
     return choosen_form;
 }

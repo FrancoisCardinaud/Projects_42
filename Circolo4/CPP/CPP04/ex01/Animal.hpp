@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:39 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/06 03:30:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class Animal  //Base class
 		
 	public:
 		Animal(void);
-		Animal(const Animal &to_copy);
-		Animal &operator=(const Animal &to_copy);
+		Animal(const Animal &other);
+		Animal &operator=(const Animal &other);
 		virtual ~Animal(void); 
 
 		virtual std::string getType(void) const;

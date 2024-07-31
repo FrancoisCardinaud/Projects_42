@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:08 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:31:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <list>
 #include "PmergeMe.hpp"
 
-using std::cout;
-using std::endl;
+
+
 
 # define MICROSECOND 100000
 
@@ -26,12 +26,12 @@ unsigned int ft_stou(const std::string& str);
 
 PmergeMe::PmergeMe(void) {};
 
-PmergeMe::PmergeMe(const PmergeMe& to_copy) {
-    *this = to_copy;
+PmergeMe::PmergeMe(const PmergeMe& other) {
+    *this = other;
 }
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& to_copy) {
-	(void)to_copy;
+PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
+	(void)other;
 	return *this;
 }
 
@@ -41,8 +41,8 @@ static void printVec(std::vector<unsigned int>& vec)
 {
 	std::vector<unsigned int>::const_iterator itr;
 	for (itr = vec.begin(); itr != vec.end(); itr++)
-		cout << *itr << " ";
-	cout << endl;
+		std::cout << *itr << " ";
+	std::cout << std::endl;
 }
 
 static std::vector<unsigned int> mergeVecs(std::vector<unsigned int>& left, std::vector<unsigned int>& right)
@@ -107,7 +107,7 @@ void PmergeMe::sortVec(int argc, char **argv)
 		storage.push_back(ft_stou(argv[i]));
 	}
 
-	cout << "<vec>Before: ";
+	std::cout << "<vec>Before: ";
 	printVec(storage);
 
 	std::clock_t start = std::clock();
@@ -116,20 +116,20 @@ void PmergeMe::sortVec(int argc, char **argv)
 
 	double time_taken = static_cast<double>(std::clock() - start) / static_cast<double>(CLOCKS_PER_SEC) * MICROSECOND;
 
-	cout << "<vec>After: ";
+	std::cout << "<vec>After: ";
 	printVec(storage);
 
-	cout << "Time to process a range of " << argc - 1
+	std::cout << "Time to process a range of " << argc - 1
 		 << " elements " << "with std::vector<unsigned int> : " 
-		 << time_taken << " µs" << endl;
+		 << time_taken << " µs" << std::endl;
 }
 
 static void printList(std::list<unsigned int>& lst)
 {
 	std::list<unsigned int>::const_iterator itr;
 	for (itr = lst.begin(); itr != lst.end(); itr++)
-		cout << *itr << " ";
-	cout << endl;
+		std::cout << *itr << " ";
+	std::cout << std::endl;
 }
 
 static std::list<unsigned int> mergeLists(std::list<unsigned int>& left, std::list<unsigned int>& right)
@@ -211,9 +211,9 @@ void PmergeMe::sortList(int argc, char **argv)
     cout << "<list>After: ";
 	printList(storage);
 
-	cout << "Time to process a range of " << argc - 1
+	std::cout << "Time to process a range of " << argc - 1
 		 << " elements " << "with std::list<unsigned int> : " 
-		 << time_taken << " µs" << endl;
+		 << time_taken << " µs" << std::endl;
 }
 
 const char*	PmergeMe::InvalidElementException::what() const throw() {

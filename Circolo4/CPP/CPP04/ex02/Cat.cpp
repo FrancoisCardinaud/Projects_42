@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:41 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/03 19:35:45 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ Cat::Cat(void) : AAnimal()
 	std::cout << "CAT default constructor has been called" << std::endl;
 }
 
-Cat::Cat(const Cat &to_copy) : AAnimal(to_copy)
+Cat::Cat(const Cat &other) : AAnimal(other)
 {
     this->brain = new Brain();
-	*this = to_copy;
+	*this = other;
     std::cout << "CAT copy constructor has been called " << std::endl;
 }
 
-Cat& Cat::operator=(const Cat &to_copy)
+Cat& Cat::operator=(const Cat &other)
 {
-	this->type = to_copy.type;
-	*(this->brain) = *(to_copy.brain);
+	this->type = other.type;
+	*(this->brain) = *(other.brain);
     std::cout << "CAT assignment operator has been called " << std::endl;
     return *this;
 }

@@ -6,39 +6,39 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:55:49 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/25 00:27:00 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "ScavTrap.hpp"
 
-using std::cout;
-using std::endl;
+
+
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->_hit_points = 100;
 	this->_energy_points = 50;
 	this->_attack_damage = 20;
-	cout << "Default ScavTrap constructor "<< name <<" was called!" << endl;
+	std::cout << "Default ScavTrap constructor "<< name <<" was called!" << std::endl;
 }
 
 ScavTrap::~ScavTrap(void) 
 {
-	cout << "ScavTrap destructor was called for " << name << endl;
+	std::cout << "ScavTrap destructor was called for " << name << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target, const int points)
 {
 	if (this->_energy_points == 0)
 	{
-		cout << "ScavTrap "<< name <<" cannot attack because he has no more energy points!" << endl;
+		std::cout << "ScavTrap "<< name <<" cannot attack because he has no more energy points!" << std::endl;
 		return;
 	}
 	else if (this->_hit_points == 0)
 	{
-		cout << "ScavTrap "<< name <<" cannot attack because he has no more hit points!" << endl;
+		std::cout << "ScavTrap "<< name <<" cannot attack because he has no more hit points!" << std::endl;
 		return;
 	}
 	std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << points << " points of damage!" << std::endl;
@@ -47,5 +47,5 @@ void ScavTrap::attack(const std::string& target, const int points)
 
 void ScavTrap::guardGate(void) 
 {
-	cout << "ScarvTrap " << this->name << " is now in Gate keeper mode" << endl;
+	std::cout << "ScarvTrap " << this->name << " is now in Gate keeper mode" << std::endl;
 }

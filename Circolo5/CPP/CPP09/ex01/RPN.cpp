@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:55 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:30:55 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <stack>
 #include "RPN.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 static int ft_stoi(const std::string& str)
 {
@@ -31,12 +31,12 @@ static int ft_stoi(const std::string& str)
 
 RPN::RPN(void) {};
 
-RPN::RPN(const RPN &to_copy) {
-    *this = to_copy;
+RPN::RPN(const RPN &other) {
+    *this = other;
 }
 
-RPN& RPN::operator=(const RPN &to_copy) {
-	(void)to_copy;
+RPN& RPN::operator=(const RPN &other) {
+	(void)other;
     return *this;
 }
 

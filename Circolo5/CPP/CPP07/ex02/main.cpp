@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:12 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <string>
 #include "Array.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 /* #define MAX_VAL 750
 int main(int, char**)
@@ -41,7 +41,7 @@ int main(int, char**)
     {
         if (mirror[i] != numbers[i])
         {
-            cerr << "didn't save the same value!!" << endl;
+            cerr << "didn't save the same value!!" << std::endl;
             return EXIT_FAIL;
         }
     }
@@ -72,33 +72,33 @@ int main(int argc, char **argv)
 	Array<int>	b(3);
 
 	for (size_t i = 0; i < a.size(); i += 1) {
-		cout << "a[" << i << "] = " << a[i] << "\n";
+		std::cout << "a[" << i << "] = " << a[i] << "\n";
 	}
-	cout << endl;
+	std::cout << std::endl;
 	for (size_t i = 0; i < b.size(); i += 1) {
-		cout << "b[" << i << "] = " << b[i] << "\n";
+		std::cout << "b[" << i << "] = " << b[i] << "\n";
 	}
 	a[0] = 1;
 	a[1] = 1;
 	a[2] = 1;
-	cout << endl;
-	cout << "AFTER FILLING A WITH 1's" << endl;
+	std::cout << std::endl;
+	std::cout << "AFTER FILLING A WITH 1's" << std::endl;
 	for (size_t i = 0; i < a.size(); i += 1) {
-		cout << "a[" << i << "] = " << a[i] << "\n";
+		std::cout << "a[" << i << "] = " << a[i] << "\n";
 	}
-	cout << endl;
+	std::cout << std::endl;
 	for (size_t i = 0; i < b.size(); i += 1) {
-		cout << "b[" << i << "] = " << b[i] << "\n";
+		std::cout << "b[" << i << "] = " << b[i] << "\n";
 	}
 	b = a;
 
-	cout << "AFTER B = A" << endl;
+	std::cout << "AFTER B = A" << std::endl;
 	for (size_t i = 0; i < a.size(); i += 1) {
-		cout << "a[" << i << "] = " << a[i] << "\n";
+		std::cout << "a[" << i << "] = " << a[i] << "\n";
 	}
-	cout << endl;
+	std::cout << std::endl;
 	for (size_t i = 0; i < b.size(); i += 1) {
-		cout << "b[" << i << "] = " << b[i] << "\n";
+		std::cout << "b[" << i << "] = " << b[i] << "\n";
 	}
 
 
@@ -107,10 +107,10 @@ int main(int argc, char **argv)
 
 	// OUT OF BOUNDS EXCEPTION
     try {
-        cout << a[a.size() + 1] << endl;
+        cout << a[a.size() + 1] << std::endl;
     }
     catch (std::exception& e) {
-        cerr << e.what() << endl;
+        cerr << e.what() << std::endl;
     }
 
 	return EXIT_SUCCESS;

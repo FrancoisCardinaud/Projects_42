@@ -6,107 +6,112 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:28 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:24:29 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:16:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
 #include "Bureaucrat.hpp"
+#include <cstdlib>
 
-using std::cout;
 using std::cerr;
-using std::endl;
 
-int main(void)
+
+
+int	main(void)
 {
-	cout << "GENERAL" << endl;
+	std::cout << "GENERAL" << std::endl;
 	{
 		// Constructor
-		Bureaucrat	a("Ana", 87);
+		Bureaucrat a("Ana", 87);
 		// Copy Constructor
-		Bureaucrat	b(a);
+		Bureaucrat b(a);
 		// Copy assignment
-		Bureaucrat	c = b;
+		Bureaucrat c = b;
 
 		// ostream overload
-		cout << "a: " << a << endl;
-		cout << "b: " << b << endl;
-		cout << "c: " << c << endl;
+		std::cout << "a: " << a << std::endl;
+		std::cout << "b: " << b << std::endl;
+		std::cout << "c: " << c << std::endl;
 	}
 
-	cout << endl;
+	std::cout << std::endl;
 
 	{
-		cout << "TEST 1" << endl;
+		std::cout << "TEST 1" << std::endl;
 		try
 		{
 			// grade too low
-			Bureaucrat	a("A", LOWEST_GRADE + 1);
-			cout << a << endl;
+			Bureaucrat a("A", LOWEST_GRADE + 1);
+			std::cout << a << std::endl;
 		}
-		catch (std::exception& e) {
-			cerr << e.what() << endl;
+		catch (std::exception &e)
+		{
+			cerr << e.what() << std::endl;
 		}
 
-		cout << endl;
+		std::cout << std::endl;
 
-		cout << "TEST 2" << endl;
+		std::cout << "TEST 2" << std::endl;
 		try
 		{
 			// grade too high
-			Bureaucrat	b("B", HIGHEST_GRADE - 1);
-			cout << b << endl;
+			Bureaucrat b("B", HIGHEST_GRADE - 1);
+			std::cout << b << std::endl;
 		}
-		catch (std::exception& e) {
-			cerr << e.what() << endl;
+		catch (std::exception &e)
+		{
+			cerr << e.what() << std::endl;
 		}
 
-		cout << endl;
+		std::cout << std::endl;
 
-		cout << "TEST 3" << endl;
+		std::cout << "TEST 3" << std::endl;
 		try
 		{
 			// Increment to a grade higher than HIGHEST_GRADE
-			Bureaucrat	c("C", HIGHEST_GRADE);
+			Bureaucrat c("C", HIGHEST_GRADE);
 
 			c.incrementGrade();
-			cout << c << endl;
+			std::cout << c << std::endl;
 		}
-		catch (std::exception& e) {
-			cerr << e.what() << endl;
+		catch (std::exception &e)
+		{
+			cerr << e.what() << std::endl;
 		}
 
-		cout << endl;
+		std::cout << std::endl;
 
-		cout << "TEST 4" << endl;
+		std::cout << "TEST 4" << std::endl;
 		try
 		{
 			// Decrement to a grade lower than LOWEST_GRADE
-			Bureaucrat	d("D", LOWEST_GRADE);
+			Bureaucrat d("D", LOWEST_GRADE);
 
 			d.decrementGrade();
-			cout << d << endl;
+			std::cout << d << std::endl;
 		}
-		catch (std::exception& e) {
-			cerr << e.what() << endl;
+		catch (std::exception &e)
+		{
+			cerr << e.what() << std::endl;
 		}
 
-		cout << endl;
+		std::cout << std::endl;
 
-		cout << "TEST 5" << endl;
-		try 
+		std::cout << "TEST 5" << std::endl;
+		try
 		{
 			// Acceptable grade changes
-			Bureaucrat	ebil("EBIL", 10);
+			Bureaucrat ebil("EBIL", 10);
 
 			ebil.decrementGrade();
-			cout << ebil << endl;
+			std::cout << ebil << std::endl;
 			ebil.incrementGrade();
-			cout << ebil << endl;
+			std::cout << ebil << std::endl;
 		}
-		catch (std::exception& e) {
-			cerr << e.what() << endl;
+		catch (std::exception &e)
+		{
+			cerr << e.what() << std::endl;
 		}
 	}
-	return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }

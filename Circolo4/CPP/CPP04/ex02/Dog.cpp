@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/06 20:06:40 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ Dog::Dog(void) : AAnimal()
 	std::cout << "DOG default constructor has been called" << std::endl;
 }
 
-Dog::Dog(const Dog &to_copy) : AAnimal(to_copy)
+Dog::Dog(const Dog &other) : AAnimal(other)
 {
     this->brain = new Brain();
-	*this = to_copy;
+	*this = other;
     std::cout << "DOG copy constructor has been called " << std::endl;
 }
 
-Dog& Dog::operator=(const Dog &to_copy)
+Dog& Dog::operator=(const Dog &other)
 {
-	this->type = to_copy.type;
-	*(this->brain) = *(to_copy.brain);
+	this->type = other.type;
+	*(this->brain) = *(other.brain);
     std::cout << "DOG assignment operator has been called " << std::endl;
     return *this;
 }

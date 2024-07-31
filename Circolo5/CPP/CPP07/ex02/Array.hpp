@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:10 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:29:10 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # include <iostream>
 # include <exception>
 
-using std::cout;
-using std::endl;
+
+
 
 template<typename T>
 class Array {
 	public:
 		Array(void);
 		Array(uint32_t n);
-		Array(Array& to_copy);
-		Array& operator=(Array const& to_copy);
+		Array(Array& other);
+		Array& operator=(Array const& other);
 		T&	operator[](uint32_t n) throw(std::exception);
 		~Array(void);
 
@@ -44,37 +44,37 @@ class Array {
 template<typename T>
 Array<T>::Array(void) : storage(new T[0]()), storage_size(0) {
 	#ifdef LOGS
-		cout << "[Array] Default Constructor has been called" << endl;
+		std::cout << "[Array] Default Constructor has been called" << std::endl;
 	#endif
 }
 
 template<typename T>
 Array<T>::Array(uint32_t n) : storage(new T[n]()), storage_size(n) {
 	#ifdef LOGS
-		cout << "[Array] Parametrized Constructor has been called" << endl;
+		std::cout << "[Array] Parametrized Constructor has been called" << std::endl;
 	#endif
 }
 
 template<typename T>
-Array<T>::Array(Array& to_copy)
-: storage(new T[to_copy.size()]), storage_size(to_copy.size())
+Array<T>::Array(Array& other)
+: storage(new T[other.size()]), storage_size(other.size())
 {
-	*this = to_copy;
+	*this = other;
 	#ifdef LOGS
-		cout << "[Array] Copy Constructor has been called" << endl;
+		std::cout << "[Array] Copy Constructor has been called" << std::endl;
 	#endif
 }
 
 template<typename T>
-Array<T>& Array<T>::operator=(Array const& to_copy)
+Array<T>& Array<T>::operator=(Array const& other)
 {
 	delete[] this->storage;
-	this->storage = new T[to_copy.storage_size];
-	this->storage_size = to_copy.storage_size;
-	for (uint32_t i = 0; i < to_copy.storage_size; i += 1)
-		this->storage[i] = to_copy.storage[i];
+	this->storage = new T[other.storage_size];
+	this->storage_size = other.storage_size;
+	for (uint32_t i = 0; i < other.storage_size; i += 1)
+		this->storage[i] = other.storage[i];
 	#ifdef LOGS
-		cout << "[Array] Copy Assignment Operator has been called" << endl;
+		std::cout << "[Array] Copy Assignment Operator has been called" << std::endl;
 	#endif
 	return *this;
 }
@@ -91,7 +91,7 @@ template <typename T>
 Array<T>::~Array(void) {
 	delete[] this->storage;
 	#ifdef LOGS
-		cout << "[Array] Default Destructor has been called" << endl;
+		std::cout << "[Array] Default Destructor has been called" << std::endl;
 	#endif
 }
 

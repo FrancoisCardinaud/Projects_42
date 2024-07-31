@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:01 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 int main (int argc, char **argv)
 {
@@ -31,39 +31,39 @@ int main (int argc, char **argv)
 	Bureaucrat hermano("Hermano", LOWEST_GRADE);
 
 	Bureaucrat ebil("Ebil", HIGHEST_GRADE);
-	cout << endl;
+	std::cout << std::endl;
 
-	cout << endl;
+	std::cout << std::endl;
 	ShrubberyCreationForm scf("Ebil");
 	PresidentialPardonForm ppf("Ebil");
 	RobotomyRequestForm rrf("Ebil");
-	cout << endl;
+	std::cout << std::endl;
 
 	ebil.executeForm(scf);
 	scf.beSigned(ebil);
 	ebil.executeForm(scf);
 
-	cout << endl;
+	std::cout << std::endl;
 
 	ebil.executeForm(ppf);
 	ppf.beSigned(ebil);
 	ebil.executeForm(ppf);
 
-	cout << endl;
+	std::cout << std::endl;
 
 	ebil.executeForm(rrf);
 	rrf.beSigned(ebil);
 	ebil.executeForm(rrf);
 
-	cout << endl;
+	std::cout << std::endl;
 
 	try {
 		hermano.executeForm(scf);
 	}
 	catch (std::exception& e) {
-		cerr << e.what() << endl;
+		cerr << e.what() << std::endl;
 	}
 
-	cout << endl;
+	std::cout << std::endl;
 	return EXIT_SUCCESS;
 }

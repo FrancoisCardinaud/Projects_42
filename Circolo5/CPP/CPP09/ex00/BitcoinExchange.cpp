@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:38 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:30:38 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ float ft_stof(const std::string& str)
 
 BitcoinExchange::BitcoinExchange(void) {};
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& to_copy) {
-    *this = to_copy;
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
+    *this = other;
 }
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& to_copy) {
-    this->dataBase = to_copy.dataBase;
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
+    this->dataBase = other.dataBase;
     return *this;
 }
 

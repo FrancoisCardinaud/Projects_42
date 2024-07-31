@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:45 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #include <map>
 #include "BitcoinExchange.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 #define BAD_INPUT_ERR "Error: bad input => "
 #define FILE_OPEN_ERR "Error: could not open file"
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 			continue;
 		float rate = ft_stof(rate_as_str);
 
-		cout << date << " => " << rate << " = " << std::setprecision(2) << rate * btc.getRateFromDataBase(date) << endl;
+		std::cout << date << " => " << rate << " = " << std::setprecision(2) << rate * btc.getRateFromDataBase(date) << std::endl;
     }
     input_db.close();
     internal_db.close();

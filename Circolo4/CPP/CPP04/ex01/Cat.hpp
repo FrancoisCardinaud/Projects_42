@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:46 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 20:16:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Cat : public Animal //Derived class
 	public:
 		Cat(void);
 		Cat(const Cat &original);
-		Cat &operator=(const Cat &to_copy);
+		Cat &operator=(const Cat &other);
 		~Cat(void);
 
 		void makeSound(void) const; //Polymorphic behavior

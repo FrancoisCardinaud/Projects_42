@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:54 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:24:55 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Bureaucrat;
 class AForm {
 	public:
 		AForm(std::string name, std::string target, int grade_to_sign, int grade_to_execute);
-		AForm(AForm& to_copy);
+		AForm(AForm& other);
 		AForm &operator=(AForm& original);
 		virtual ~AForm(void);
 

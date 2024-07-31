@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:51 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/14 17:26:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <iostream>
 #include "RPN.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 # define ERROR_MSG_PREFFIX "RPN: error: "
 # define ARGC_ERR "invalid number of arguments"
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
         return panic(INVALID_EXPR_ERR);
 
     try {
-        cout << RPN::calculate(argv[1]) << endl;
+        cout << RPN::calculate(argv[1]) << std::endl;
     }
     catch (std::exception& e) {
         cerr << e.what() << "\n";

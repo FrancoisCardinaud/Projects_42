@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:53:25 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/24 22:30:43 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class ClapTrap
 
 	public:
 		ClapTrap(std::string name); //Default constructor
-		ClapTrap(const ClapTrap &to_copy); //Copy constructor
+		ClapTrap(const ClapTrap &other); //Copy constructor
 		ClapTrap& operator=(const ClapTrap &original); //Copy assignment operator
 		~ClapTrap(void); //Destructor
 

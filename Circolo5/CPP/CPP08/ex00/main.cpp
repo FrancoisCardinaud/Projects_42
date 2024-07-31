@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:41 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:29:42 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <vector>
 #include "easyfind.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 int main(void)
 {
@@ -26,11 +26,11 @@ int main(void)
 		v1.push_back(i);
 	}
 
-	cout << "v1 = ";
+	std::cout << "v1 = ";
 	for (std::vector<int>::iterator i = v1.begin(), e = v1.end(); i != e; i += 1) {
-		cout << *i << " ";
+		std::cout << *i << " ";
 	}
-	cout << endl;
+	std::cout << std::endl;
 
 	// will find
 	try {

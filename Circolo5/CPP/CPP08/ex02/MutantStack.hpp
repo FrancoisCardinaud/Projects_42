@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:01 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:30:01 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ class MutantStack : public std::stack<T> {
 	public:
 		typedef typename std::stack<T>::container_type::iterator iterator;
 		MutantStack(void);
-		MutantStack(const MutantStack &to_copy);
-		MutantStack &operator=(const MutantStack& to_copy);
+		MutantStack(const MutantStack &other);
+		MutantStack &operator=(const MutantStack& other);
 		~MutantStack(void);
 
 		iterator begin(void);
@@ -31,29 +31,29 @@ class MutantStack : public std::stack<T> {
 template<typename T>
 MutantStack<T>::MutantStack(void) {
 	#ifdef DEBUG
-		cout << "[MutantStack] default constructor called" << endl;
+		std::cout << "[MutantStack] default constructor called" << std::endl;
 	#endif
 };
 
 template<typename T>
-MutantStack<T>::MutantStack(MutantStack const& to_copy) {
-	*this = to_copy;
+MutantStack<T>::MutantStack(MutantStack const& other) {
+	*this = other;
 	#ifdef DEBUG
-		cout << "[MutantStack] copy constructor called" << endl;
+		std::cout << "[MutantStack] copy constructor called" << std::endl;
 	#endif
 }
 
 template<typename T>
-MutantStack<T>& MutantStack<T>::operator=(MutantStack const& to_copy)
+MutantStack<T>& MutantStack<T>::operator=(MutantStack const& other)
 {
-	std::stack<int>::operator=(to_copy);
+	std::stack<int>::operator=(other);
 	return *this;
 }
 
 template<typename T>
 MutantStack<T>::~MutantStack(void) {
 	#ifdef DEBUG
-		cout << "[MutantStack] default destructor called" << endl;
+		std::cout << "[MutantStack] default destructor called" << std::endl;
 	#endif
 };
 

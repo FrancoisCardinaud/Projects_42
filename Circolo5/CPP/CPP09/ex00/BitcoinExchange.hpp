@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:40 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:30:41 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class BitcoinExchange {
     public:
         BitcoinExchange(void);
-        BitcoinExchange(const BitcoinExchange& to_copy);
-        BitcoinExchange& operator=(const BitcoinExchange& to_copy);
+        BitcoinExchange(const BitcoinExchange& other);
+        BitcoinExchange& operator=(const BitcoinExchange& other);
         ~BitcoinExchange(void);
 
         void readInternalDataBase(std::ifstream& internal_db);

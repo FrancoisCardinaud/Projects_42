@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:12:53 by fcardina          #+#    #+#             */
-/*   Updated: 2024/02/02 19:54:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ Brain::Brain(void) {
 	std::cout << "BRAIN default constructor has been called" << std::endl;
 };
 
-Brain::Brain(const Brain &to_copy)
+Brain::Brain(const Brain &other)
 {
     for (size_t i = 0; i < 100; i++)
     {
-        this->ideas[i] = to_copy.ideas[i];
+        this->ideas[i] = other.ideas[i];
     }
     std::cout << "BRAIN copy constructor has been called" << std::endl;
 }
 
-Brain& Brain::operator=(const Brain &to_copy)
+Brain& Brain::operator=(const Brain &other)
 {
-    if (this != &to_copy)
+    if (this != &other)
     {
         for (size_t i = 0; i < 100; i++)
         {
-            this->ideas[i] = to_copy.ideas[i];
+            this->ideas[i] = other.ideas[i];
         }
         std::cout << "BRAIN assignment operator has been called" << std::endl;
     }

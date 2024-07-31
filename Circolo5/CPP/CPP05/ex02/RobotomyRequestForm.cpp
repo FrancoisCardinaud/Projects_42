@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:14 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:15 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,33 @@
 #include <iostream>
 #include "RobotomyRequestForm.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) 
 : AForm("RobotomyRequestForm", target, 72, 45) {
 	#ifdef LOGS
-		cout << "[RobotomyRequestForm] Parameterized Constructor" << endl;
+		std::cout << "[RobotomyRequestForm] Parameterized Constructor" << std::endl;
 	#endif
 };
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &to_copy)
-: AForm(to_copy.getName(), to_copy.getTarget(), to_copy.getGradeToSign(), to_copy.getGradeToExecute()) {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
+: AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute()) {
 	#ifdef LOGS
-		cout << "[RobotomyRequestForm] Copy Constructor" << endl;
+		std::cout << "[RobotomyRequestForm] Copy Constructor" << std::endl;
 	#endif
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
 	#ifdef LOGS
-		cout << "[RobotomyRequestForm] Destructor called" << endl;
+		std::cout << "[RobotomyRequestForm] Destructor called" << std::endl;
 	#endif
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &assign) {
 	#ifdef LOGS
-		cout << "[RobotomyRequestForm] copy assignment operator called"<< endl;
+		std::cout << "[RobotomyRequestForm] copy assignment operator called"<< std::endl;
 	#endif
 	if (this == &assign)
 		return *this;
@@ -53,16 +53,16 @@ void RobotomyRequestForm::executeSuperClassForm(Bureaucrat const& executor) cons
 	if (executor.getGrade() > this->getGradeToExecute())
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->getSignState() == false)
-		cerr << "RobotomyRequestForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << endl;
+		cerr << "RobotomyRequestForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << std::endl;
 	else
 	{
 		std::srand(std::time(NULL));
 
-		cout << "(Loud drill noises) " << endl;
+		std::cout << "(Loud drill noises) " << std::endl;
 
 		if (random() % 2 == 0)
-			cout << this->getTarget() << " successfully robotomized." << endl;
+			std::cout << this->getTarget() << " successfully robotomized." << std::endl;
 		else
-			cout << this->getTarget() << " failed when trying to robotimize." << endl;
+			std::cout << this->getTarget() << " failed when trying to robotimize." << std::endl;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:52 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:29:53 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 class Span {
 	public:
 		Span(uint32_t N);
-		Span(const Span &to_copy);
-		Span &operator=(const Span& to_copy);
+		Span(const Span &other);
+		Span &operator=(const Span& other);
 		~Span(void);
 
 		void addNumber(int nbr);

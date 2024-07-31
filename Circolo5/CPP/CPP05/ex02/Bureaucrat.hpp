@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:59 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class AForm;
 class Bureaucrat {
     public:
         Bureaucrat(void);
-        Bureaucrat(const Bureaucrat& to_copy);
+        Bureaucrat(const Bureaucrat& other);
         Bureaucrat(std::string name, int grade);
         Bureaucrat &operator=(const Bureaucrat &original);
         ~Bureaucrat(void);

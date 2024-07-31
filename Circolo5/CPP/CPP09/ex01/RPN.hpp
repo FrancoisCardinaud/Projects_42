@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:00 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:31:01 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 class RPN {
     public:
         RPN(void);
-        RPN(const RPN &to_copy);
-        RPN &operator=(const RPN &to_copy);
+        RPN(const RPN &other);
+        RPN &operator=(const RPN &other);
         ~RPN(void);
 
         static bool valid_expression(const std::string& expr);

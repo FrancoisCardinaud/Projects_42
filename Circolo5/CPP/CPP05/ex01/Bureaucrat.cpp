@@ -6,25 +6,25 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:35 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/24 22:38:49 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-using std::cout;
+
 using std::cerr;
-using std::endl;
+
 
 Bureaucrat::Bureaucrat(void) {
-	cout << "[Bureaucrat] default constructor has been called" << endl;
+	std::cout << "[Bureaucrat] default constructor has been called" << std::endl;
 };
 
-Bureaucrat::Bureaucrat(const Bureaucrat& to_copy)
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
 {
-	if (this != &to_copy)
-		*this = to_copy;
-	cout << "[Bureaucrat] <" << this->getName() << "> copy constructor called" << endl;
+	if (this != &other)
+		*this = other;
+	std::cout << "[Bureaucrat] <" << this->getName() << "> copy constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
@@ -35,19 +35,19 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 		throw(Bureaucrat::GradeTooLowException());
 	else
 		this->grade = grade;
-	cout << "[Bureaucrat] <" << this->getName() << "> constructor called" << endl;
+	std::cout << "[Bureaucrat] <" << this->getName() << "> constructor called" << std::endl;
 };
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &original)
 {
 	const_cast<std::string&>(this->name) = original.name;
 	this->grade = original.grade;
-	cout << "[Bureaucrat] <" << this->getName() << "> copy assignment operator called" << endl;
+	std::cout << "[Bureaucrat] <" << this->getName() << "> copy assignment operator called" << std::endl;
 	return *this;
 }
 
 Bureaucrat::~Bureaucrat(void) {
-	cout << "[Bureaucrat] <" << this->getName() << "> default destructor has been called" << endl;
+	std::cout << "[Bureaucrat] <" << this->getName() << "> default destructor has been called" << std::endl;
 };
 
 const std::string& Bureaucrat::getName(void) const {
@@ -86,10 +86,10 @@ void Bureaucrat::decrementGrade(void)
 void Bureaucrat::signForm(std::string formname, bool is_signed)
 {
 	if (is_signed)
-		cout << this->getName() << " signed " << formname << endl;
+		std::cout << this->getName() << " signed " << formname << std::endl;
 	else
-		cout << this->getName() << " couldn't sign " << formname
-			 << " because the grade was too low and was nervoxhinhu 🥺" << endl;
+		std::cout << this->getName() << " couldn't sign " << formname
+			 << " because the grade was too low and was nervoxhinhu 🥺" << std::endl;
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw() {

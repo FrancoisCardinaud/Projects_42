@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:01 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:29:02 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <stdint.h>
 # include <iostream>
 
-using std::cout;
-using std::endl;
+
+
 
 template <typename T>
 void print_element(T &array_element) {
-	cout << array_element << endl;
+	std::cout << array_element << std::endl;
 }
 
 template <typename T>

@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:43 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:24:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 class Form {
 	public:
-		Form(const Form& to_copy);
+		Form(const Form& other);
 		Form(std::string name, int grade_to_sign, int grade_to_execute);
 		Form &operator=(const Form &original);
 		~Form(void);

@@ -6,35 +6,35 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 18:58:45 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/25 00:27:05 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "FragTrap.hpp"
 
-using std::cout;
-using std::endl;
+
+
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	this->_hit_points = 100;
 	this->_energy_points = 100;
 	this->_attack_damage = 30;
-	cout << "Default FragTrap constructor "<< name <<" was called!" << endl;
+	std::cout << "Default FragTrap constructor "<< name <<" was called!" << std::endl;
 }
 
 FragTrap::~FragTrap(void)
 {
-	cout << "FragTrap destructor "<< name <<" has been called" << endl;
+	std::cout << "FragTrap destructor "<< name <<" has been called" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)
 {
 	if (this->_energy_points == 0) {
-        cout << "FragTrap "<< this->name << " has no more energy points!" << endl;
+        cout << "FragTrap "<< this->name << " has no more energy points!" << std::endl;
         return;
     }
-	cout << "FragTrap " << this->name << " says \"High Five!\"" << endl;
+	std::cout << "FragTrap " << this->name << " says \"High Five!\"" << std::endl;
     this->_energy_points -= 1;
 }
