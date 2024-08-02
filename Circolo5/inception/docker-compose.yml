@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: ./srcs/requirements/nginx
+    ports:
+      - "80:80"   # Port 80 for HTTP (optional for redirection)
+      - "443:443" # Port 443 for HTTPS
+    volumes:
+      - ./srcs/requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./srcs/requirements/nginx/ssl:/etc/nginx/ssl  # SSL certificates
+    networks:
+      - my-network
+
+  wordpress:
+    build:
+      context: ./srcs/requirements/wordpress
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpresspass
+      WORDPRESS_DB_NAME: wordpress
+    networks:
+      - my-network
+
+  mariadb:
+    build:
+      context: ./srcs/requirements/mariadb
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpressuser
+      MYSQL_PASSWORD: wordpresspass
+    networks:
+      - my-network
+
+networks:
+  my-network:
+

@@ -1,15 +1,20 @@
-# Dockerfile for NGINX with TLS
-
-FROM alpine:latest
+FROM alpine:3.18
 
 # Install NGINX and OpenSSL
-RUN apk update && apk add nginx openssl
+RUN apk update && apk add --no-cache nginx openssl
 
-# Copy NGINX configuration
-COPY ./conf /etc/nginx
+# Remove default configuration to avoid conflicts
+RUN rm -rf /etc/nginx/conf.d/*
 
-# Expose port 443
-EXPOSE 443
+# Copy your custom NGINX configuration
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+
+# Create the SSL directory and copy the SSL certificates
+COPY ./conf/ssl /etc/nginx/ssl
+
+# Expose ports for HTTP and HTTPS traffic
+EXPOSE 80 443
 
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
+
