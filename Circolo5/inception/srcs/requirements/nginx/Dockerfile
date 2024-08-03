@@ -7,10 +7,10 @@ RUN apk update && apk add --no-cache nginx openssl
 RUN rm -rf /etc/nginx/conf.d/*
 
 # Copy your custom NGINX configuration
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /root/etc/nginx/nginx.conf
 
 # Create the SSL directory and copy the SSL certificates
-COPY ./conf/ssl /etc/nginx/ssl
+COPY ./conf/ssl /root/etc/nginx/ssl
 
 # Expose ports for HTTP and HTTPS traffic
 EXPOSE 80 443
