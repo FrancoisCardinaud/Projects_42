@@ -1,48 +1,46 @@
-# Makefile for managing the Docker Compose project
+# Makefile for Docker operations
 
-# Variables
-COMPOSE_FILE = docker-compose.yml
+# Define the path to the docker-compose file
+DOCKER_COMPOSE = docker-compose -f srcs/docker-compose.yml --env-file srcs/.env
 
-# Default target
-.PHONY: all
-all: up
+# Default target: Build and start the containers
+up: build
+	@$(DOCKER_COMPOSE) up -d
 
 # Build the Docker images
-.PHONY: build
 build:
-	docker-compose -f $(COMPOSE_FILE) build
+	@$(DOCKER_COMPOSE) build
 
-# Bring up the services
-.PHONY: up
-up:
-	docker-compose -f $(COMPOSE_FILE) up -d
+# Stop the containers
+stop:
+	@$(DOCKER_COMPOSE) stop
 
-# Stop the services
-.PHONY: down
+# Remove the containers and network
 down:
-	docker-compose -f $(COMPOSE_FILE) down
+	@$(DOCKER_COMPOSE) down
 
-# Stop and remove containers, networks, images, and volumes
-.PHONY: clean
+# Remove the containers, network, and volumes
 clean:
-	docker-compose -f $(COMPOSE_FILE) down -v
+	@$(DOCKER_COMPOSE) down -v
 
-# Rebuild and start fresh
-.PHONY: rebuild
-rebuild: clean build up
-
-# View logs
-.PHONY: logs
+# View the logs of all services
 logs:
-	docker-compose -f $(COMPOSE_FILE) logs -f
+	@$(DOCKER_COMPOSE) logs -f
 
-# Restart services
-.PHONY: restart
-restart:
-	docker-compose -f $(COMPOSE_FILE) restart
+# Execute a shell in the nginx container
+shell-nginx:
+	@$(DOCKER_COMPOSE) exec nginx sh
 
-# Execute a shell in the WordPress container
-.PHONY: shell
-shell:
-	docker-compose -f $(COMPOSE_FILE) exec wordpress /bin/sh
+# Execute a shell in the wordpress container
+shell-wordpress:
+	@$(DOCKER_COMPOSE) exec wordpress sh
+
+# Execute a shell in the mariadb container
+shell-mariadb:
+	@$(DOCKER_COMPOSE) exec mariadb sh
+
+# Restart the services
+restart: stop up
+
+.PHONY: up build stop down clean logs shell-nginx shell-wordpress shell-mariadb restart
 
