@@ -1,5 +1,6 @@
 # Makefile for Docker operations
 
+
 # Define the path to the docker-compose file
 DOCKER_COMPOSE = docker-compose -f srcs/docker-compose.yml --env-file srcs/.env
 
