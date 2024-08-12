@@ -1,8 +1,8 @@
-version: '3.8'
+version: '3.7'
 
 services:
   mariadb:
-    image: mariadb:latest
+    image: mariadb:10.5
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wordpress
@@ -16,6 +16,7 @@ services:
   wordpress:
     build:
       context: ./requirements/wordpress
+    image: wordpress:php8.2-fpm
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: wordpressuser
@@ -29,11 +30,12 @@ services:
       - mariadb
 
   nginx:
+    image: nginx:alpine
     build:
       context: ./requirements/nginx
     ports:
       - "80:80"
-      - "433:433"
+      - "443:443"
     volumes:
       - ./requirements/nginx/conf:/etc/nginx
     networks:
