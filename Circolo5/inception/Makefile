@@ -1,28 +1,57 @@
 # Makefile for Docker operations
 
+# Define variables from the .env file
+include srcs/.env
 
 # Define the path to the docker-compose file
 DOCKER_COMPOSE = docker-compose -f srcs/docker-compose.yml --env-file srcs/.env
 
+# Help target to display usage information
+help:
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "Targets:"
+	@echo "  setup    - Prepare directories and permissions for data storage"
+	@echo "  up       - Build and start Docker containers"
+	@echo "  down     - Stop Docker containers"
+	@echo "  clean    - Stop containers and remove all data"
+	@echo "  restart  - Restart Docker containers"
+	@echo ""
+	@echo "Example usage:"
+	@echo "  make USER_LOGIN=$$ (whoami) up       - Builds and starts the containers"
+	@echo "  make clean    - Cleans up the environment"
+
+# Setup target to create necessary directories and set permissions
+setup:
+	@echo "Setting up directories..."
+	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
+	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
+	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data
+	@sudo chmod -R 755 /home/$(USER_LOGIN)/data
+	@echo "Setup complete."
+
 # Default target: Build and start the containers
-up: build
-	@$(DOCKER_COMPOSE) up -d
-
-# Build the Docker images
-build:
-	@$(DOCKER_COMPOSE) build
-
-# Stop the containers
-stop:
-	@$(DOCKER_COMPOSE) stop
+up: setup
+	@echo "Starting Docker containers..."
+	@$(DOCKER_COMPOSE) up -d --build
+	@echo "Containers are up and running."
 
 # Remove the containers and network
 down:
+	@echo "Stopping Docker containers..."
 	@$(DOCKER_COMPOSE) down
+	@echo "Containers stopped."
 
 # Remove the containers, network, and volumes
-clean:
-	@$(DOCKER_COMPOSE) down -v
+clean: down
+	@echo "Cleaning up volumes..."
+	@docker volume rm inception_mariadb_data inception_wordpress_data || true
+	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress/*
+	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb/*
+	@echo "Cleanup complete."
+
+# Restart containers
+restart: down up
 
 # View the logs of all services
 logs:
@@ -40,8 +69,5 @@ shell-wordpress:
 shell-mariadb:
 	@$(DOCKER_COMPOSE) exec mariadb sh
 
-# Restart the services
-restart: stop up
-
-.PHONY: up build stop down clean logs shell-nginx shell-wordpress shell-mariadb restart
+.PHONY: help up down clean logs shell-nginx shell-wordpress shell-mariadb restart
 

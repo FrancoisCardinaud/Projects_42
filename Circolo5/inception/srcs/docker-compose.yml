@@ -4,12 +4,12 @@ services:
   mariadb:
     image: mariadb:10.5
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpressuser
-      MYSQL_PASSWORD: wordpresspass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ../data/mariadb:/var/lib/mysql
+      - /home/${USER_LOGIN}/data/mariadb:/var/lib/mysql
     networks:
       - my-network
 
@@ -19,11 +19,11 @@ services:
     image: wordpress:php8.2-fpm
     environment:
       WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: wordpressuser
-      WORDPRESS_DB_PASSWORD: wordpresspass
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     volumes:
-      - ../data/wordpress:/var/www/html
+      - /home/${USER_LOGIN}/data/wordpress:/var/www/html
     networks:
       - my-network
     depends_on:
@@ -38,6 +38,7 @@ services:
       - "443:443"
     volumes:
       - ./requirements/nginx/conf:/etc/nginx
+      - /home/${USER_LOGIN}/data/wordpress:/var/www/html:ro
     networks:
       - my-network
     depends_on:
