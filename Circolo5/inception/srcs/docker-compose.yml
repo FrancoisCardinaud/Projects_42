@@ -2,7 +2,9 @@ version: '3.7'
 
 services:
   mariadb:
-    image: mariadb:10.5
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -12,27 +14,31 @@ services:
       - /home/${USER_LOGIN}/data/mariadb:/var/lib/mysql
     networks:
       - my-network
+#    restart: always
+    command: sh -c "chown -R mysql:mysql /var/lib/mysql && mysqld --user=mysql --console"
 
   wordpress:
     build:
       context: ./requirements/wordpress
-    image: wordpress:php8.2-fpm
+      dockerfile: Dockerfile
     environment:
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: ${MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     volumes:
+      - ./requirements/wordpress/conf:/etc/wordpress
       - /home/${USER_LOGIN}/data/wordpress:/var/www/html
     networks:
       - my-network
     depends_on:
       - mariadb
+    restart: always
 
   nginx:
-    image: nginx:alpine
     build:
       context: ./requirements/nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -43,6 +49,7 @@ services:
       - my-network
     depends_on:
       - wordpress
+    restart: always
 
 networks:
   my-network:

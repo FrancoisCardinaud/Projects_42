@@ -17,21 +17,22 @@ help:
 	@echo "  clean    - Stop containers and remove all data"
 	@echo "  restart  - Restart Docker containers"
 	@echo ""
-	@echo "Example usage:"
-	@echo "  make USER_LOGIN=$$ (whoami) up       - Builds and starts the containers"
-	@echo "  make clean    - Cleans up the environment"
+	@echo "Before launching, change the value of USER_LOGIN in srcs/.env"
+	@echo ""
 
 # Setup target to create necessary directories and set permissions
-setup:
+#setup:
 	@echo "Setting up directories..."
-	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
-	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
-	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data
-	@sudo chmod -R 755 /home/$(USER_LOGIN)/data
+#	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
+#	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
+	@chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/mariadb
+	@chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/wordpress
+	@chmod -R 755 /home/$(USER_LOGIN)/data/mariadb
+	@chmod -R 755 /home/$(USER_LOGIN)/data/wordpress
 	@echo "Setup complete."
 
 # Default target: Build and start the containers
-up: setup
+up:
 	@echo "Starting Docker containers..."
 	@$(DOCKER_COMPOSE) up -d --build
 	@echo "Containers are up and running."
