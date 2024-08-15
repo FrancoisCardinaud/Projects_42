@@ -39,14 +39,13 @@ up:
 
 # Remove the containers and network
 down:
-	@echo "Stopping Docker containers..."
-	@$(DOCKER_COMPOSE) down
+	@echo "Stopping Docker containers, removing volumes..."
+	@$(DOCKER_COMPOSE) down -v
 	@echo "Containers stopped."
 
 # Remove the containers, network, and volumes
 clean: down
-	@echo "Cleaning up volumes..."
-	@docker volume rm inception_mariadb_data inception_wordpress_data || true
+	@echo "Cleaning up data..."
 	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress/*
 	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb/*
 	@echo "Cleanup complete."
