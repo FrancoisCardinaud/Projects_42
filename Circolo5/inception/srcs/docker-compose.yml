@@ -14,7 +14,7 @@ services:
       - /home/${USER_LOGIN}/data/mariadb:/var/lib/mysql
     networks:
       - my-network
-#    restart: always
+    restart: always
     command: sh -c "chown -R mysql:mysql /var/lib/mysql && mysqld --user=mysql --console"
 
   wordpress:
@@ -53,4 +53,3 @@ services:
 
 networks:
   my-network:
-    driver: bridge

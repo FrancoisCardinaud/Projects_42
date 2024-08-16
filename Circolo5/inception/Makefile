@@ -21,7 +21,7 @@ help:
 	@echo ""
 
 # Setup target to create necessary directories and set permissions
-#setup:
+setup:
 	@echo "Setting up directories..."
 #	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
 #	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
@@ -32,7 +32,7 @@ help:
 	@echo "Setup complete."
 
 # Default target: Build and start the containers
-up:
+up: setup
 	@echo "Starting Docker containers..."
 	@$(DOCKER_COMPOSE) up -d --build
 	@echo "Containers are up and running."

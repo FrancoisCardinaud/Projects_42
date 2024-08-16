@@ -17,7 +17,8 @@ RUN mkdir -p /var/www/html && \
     touch /var/log/php82/error.log && \
     touch /var/log/php82/access.log && \
     mkdir -p /run/php-fpm && \
-    chown -R www-data:www-data /var/www/html /var/log/php82 /run/php-fpm
+    chown -R www-data:www-data /var/www/html /var/log/php82 /run/php-fpm && \
+    chmod -R 755 /var/www/html
 
 # Copy PHP-FPM configuration files
 COPY ./conf/php-fpm.conf /etc/php82/php-fpm.conf
