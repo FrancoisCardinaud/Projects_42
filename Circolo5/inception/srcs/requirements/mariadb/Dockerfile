@@ -9,6 +9,9 @@ RUN apk update && apk add mariadb mariadb-client
 RUN mkdir -p /run/mysqld /var/log/mysql /var/lib/mysql && \
     chown -R mysql:mysql /run/mysqld /var/log/mysql /var/lib/mysql
 
+# Initialize the MariaDB data directory
+RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
+
 # Copy custom configuration
 COPY ./conf/my.cnf /etc/my.cnf
 

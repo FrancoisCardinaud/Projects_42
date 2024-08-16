@@ -1,0 +1,2 @@
+- Install docker and dockerfile on VM
+- Add IP address of VM to /etc/hosts on hot machine

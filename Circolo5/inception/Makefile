@@ -23,12 +23,12 @@ help:
 # Setup target to create necessary directories and set permissions
 setup:
 	@echo "Setting up directories..."
-#	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
-#	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
-	@chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/mariadb
-	@chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/wordpress
-	@chmod -R 755 /home/$(USER_LOGIN)/data/mariadb
-	@chmod -R 755 /home/$(USER_LOGIN)/data/wordpress
+	@sudo mkdir -p /home/$(USER_LOGIN)/data/wordpress || true
+	@sudo mkdir -p /home/$(USER_LOGIN)/data/mariadb || true
+	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/mariadb || true
+	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/wordpress || true
+	@sudo chmod -R 755 /home/$(USER_LOGIN)/data/mariadb || true
+	@sudo chmod -R 755 /home/$(USER_LOGIN)/data/wordpress || true
 	@echo "Setup complete."
 
 # Default target: Build and start the containers
@@ -46,12 +46,12 @@ down:
 # Remove the containers, network, and volumes
 clean: down
 	@echo "Cleaning up data..."
-	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress/*
-	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb/*
+	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress
+	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb
 	@echo "Cleanup complete."
 
 # Restart containers
-restart: down up
+restart: clean up
 
 # View the logs of all services
 logs:
