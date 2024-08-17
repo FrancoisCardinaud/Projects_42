@@ -1,7 +1,7 @@
-FROM alpine:3.18
+FROM debian:buster
 
 # Install NGINX and OpenSSL
-RUN apk update && apk add --no-cache nginx openssl && apk add curl
+RUN apt-get update && apt-get install --no-cache nginx openssl && ap-get install curl
 
 # Remove default configuration to avoid conflicts
 RUN rm -rf /etc/nginx/conf.d/*

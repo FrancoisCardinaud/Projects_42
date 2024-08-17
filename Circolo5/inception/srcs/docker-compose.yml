@@ -1,7 +1,26 @@
-#version: '3.7'
+version: '3.8'
+
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER_LOGIN}/data/mariadb
+
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER_LOGIN}/data/wordpress
+
 
 services:
   mariadb:
+    container_name: mariadb
+    image: mariadb
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
@@ -11,12 +30,14 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - /home/${USER_LOGIN}/data/mariadb:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
     networks:
       - my-network
-#    restart: unless-stopped
+    restart: unless-stopped
 
   wordpress:
+    container_name: wordpress
+    image: wordpress
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
@@ -26,8 +47,9 @@ services:
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     volumes:
-      - ./requirements/wordpress/conf:/etc/wordpress
-      - /home/${USER_LOGIN}/data/wordpress:/var/www/html
+#      - ./requirements/wordpress/conf:/etc/wordpress
+      - wordpress_data:/var/www/html
+    env_file: .env
     networks:
       - my-network
     depends_on:
@@ -35,19 +57,22 @@ services:
     restart: unless-stopped
 
   nginx:
+    container_name: nginx
+    image: nginx
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+#      - "80:80"
       - "443:443"
     volumes:
-      - ./requirements/nginx/conf:/etc/nginx
+#      - ./requirements/nginx/conf:/etc/nginx
       - /home/${USER_LOGIN}/data/wordpress:/var/www/html:ro
     networks:
       - my-network
     depends_on:
       - wordpress
+      - mariadb
     restart: unless-stopped
 
 networks:
