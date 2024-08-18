@@ -22,19 +22,19 @@ help:
 	@echo ""
 
 # Setup target to create necessary directories and set permissions
-#setup:
+setup:
 #	@sudo hostsed add 127.0.0.1 fcardina.42.fr && echo "fcardina.42.fr added to /etc/hosts"
-#	@echo "Setting up directories..."
-#	@sudo mkdir -p /home/$(USER_LOGIN)/data/wordpress || true
-#	@sudo mkdir -p /home/$(USER_LOGIN)/data/mariadb || true
-#	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/mariadb || true
-#	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/wordpress || true
-#	@sudo chmod -R 755 /home/$(USER_LOGIN)/data/mariadb || true
-#	@sudo chmod -R 755 /home/$(USER_LOGIN)/data/wordpress || true
-#	@echo "Setup complete."
+	@echo "Setting up directories..."
+	@sudo mkdir -p /home/$(USER_LOGIN)/data/wordpress || true
+	@sudo mkdir -p /home/$(USER_LOGIN)/data/mariadb || true
+	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/mariadb || true
+	@sudo chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/wordpress || true
+	@sudo chmod -R 755 /home/$(USER_LOGIN)/data/mariadb || true
+	@sudo chmod -R 755 /home/$(USER_LOGIN)/data/wordpress || true
+	@echo "Setup complete."
 
 # Default target: Build and start the containers
-up: #setup
+up: setup
 	@echo "Starting Docker containers..."
 	@$(DOCKER_COMPOSE) up -d --build
 	@echo "Containers are up and running."

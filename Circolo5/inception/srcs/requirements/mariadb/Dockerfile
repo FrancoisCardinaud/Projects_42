@@ -1,29 +1,31 @@
 # Dockerfile for MariaDB
 
-FROM debian:buster
+FROM alpine:3.18
 
 # Environment variables for database configuration
-ARG DB_NAME=${DB_NAME}
-ARG DB_USER=${DB_USER}
-ARG DB_PASSWORD=${DB_PASSWORD}
-ARG DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+ARG DB_NAME=${MYSQL_DATABASE}
+ARG DB_USER=${MYSQL_USER}
+ARG DB_PASSWORD=${MYSQL_PASSWORD}
+ARG DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 # Install MariaDB and bash
-RUN apt-get update && apt-get install mariadb-server -y && apt-get install bash
+RUN apk update && apk add mariadb mariadb-client nano bash
 #    apk add mariadb mariadb-client
 
 # Create necessary directories and set permissions
-RUN mkdir -p /run/mysqld /var/log/mysql /var/lib/mysql && \
-    chown -R mysql:mysql /run/mysqld /var/log/mysql /var/lib/mysql
+RUN mkdir -p /run/mysqld /var/log/mysql /var/lib/mysql /etc/mysql && \
+    chown -R mysql:mysql /run/mysqld /var/log/mysql /var/lib/mysql /etc/mysql
 
 # Remove the default configuration file and copy custom configuration
-COPY conf/my.cnf /etc/mysql/my.cnf
+COPY ./conf/my.cnf /my.cnf.tmpl
+RUN chmod 744 /my.cnf.tmpl
+RUN mv /my.cnf.tmpl /etc/mysql/my.cnf
+COPY ./conf/tmpl.sql /tmpl.sql
+COPY ./tools/start.sh /start.sh
 
 # Copy custom script for user creation and database setup
-COPY tools/user_creation.sh /usr/local/bin/user_creation.sh
-
-# Make sure the script is executable
-RUN chmod +x /usr/local/bin/user_creation.sh
+#COPY tools/user_creation.sh /etc/mysql/user_creation.sh
+RUN chmod +x /start.sh
 
 # Initialize the MariaDB data directory
 #RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
@@ -33,13 +35,16 @@ RUN chmod +x /usr/local/bin/user_creation.sh
 
 #RUN rm -rf user_creation.sh
 # Run the script to initialize the database and create users
-RUN /usr/local/bin/user_creation.sh
+#RUN /etc/mysql/user_creation.sh
 
-RUN rm -rf /usr/local/bin/user_creation.sh
+#RUN rm -rf /etc/mysql/user_creation.sh
+
+VOLUME [ "/sys/fs/cgroup" ]
 
 # Expose port 3306
 EXPOSE 3306
 
+ENTRYPOINT [ "bash", "/start.sh" ]
 # Start MariaDB
-CMD ["mysqld_safe", "--user=mysql", "--console"]
+#CMD ["mysqld_safe", "--user=mysql", "--console"]
 
