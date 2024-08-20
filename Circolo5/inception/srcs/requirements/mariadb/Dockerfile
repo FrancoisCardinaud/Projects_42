@@ -3,13 +3,13 @@
 FROM alpine:3.18
 
 # Environment variables for database configuration
-ARG DB_NAME=${MYSQL_DATABASE}
-ARG DB_USER=${MYSQL_USER}
-ARG DB_PASSWORD=${MYSQL_PASSWORD}
-ARG DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+#ARG DB_NAME=${MYSQL_DATABASE}
+#ARG DB_USER=${MYSQL_USER}
+#ARG DB_PASSWORD=${MYSQL_PASSWORD}
+#ARG DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 # Install MariaDB and bash
-RUN apk update && apk add mariadb mariadb-client nano bash
+RUN apk update && apk add mariadb mariadb-client nano bash gettext
 #    apk add mariadb mariadb-client
 
 # Create necessary directories and set permissions

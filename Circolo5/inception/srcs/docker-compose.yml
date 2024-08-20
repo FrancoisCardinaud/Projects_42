@@ -49,6 +49,7 @@ services:
     volumes:
 #      - ./requirements/wordpress/conf:/etc/wordpress
       - wordpress_data:/var/www/html
+      - ../data/wordpress/wp-config.php:/var/www/html/wordpress/wp-config.php
     env_file: .env
     networks:
       - my-network

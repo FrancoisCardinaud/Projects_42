@@ -1,6 +1,6 @@
 mkdir -p /usr/share/nginx/logs
 
-CONFIG='/etc/nginx/conf.d/nginx.conf'
+CONFIG='/etc/nginx/nginx.conf'
 
 if [ -e $CONFIG ]; then
 	  echo "Nginx config already created"

@@ -4,13 +4,16 @@ FROM alpine:3.18
 RUN apk add nginx openssl nano curl bash
 
 # Remove default configuration to avoid conflicts
-RUN rm -rf /etc/nginx/conf.d/*
+RUN rm -rf /etc/nginx/*
 
 # Copy your custom NGINX configuration
 COPY /tools/ /tmp/
-COPY ./conf/nginx.conf /nginx.conf
-#COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-COPY ./conf/fastcgi_params /fastcgi_params
+RUN mkdir -p /etc/nginx
+RUN chmod -R 755 /etc/nginx
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+RUN chmod 644 /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/fastcgi_params /etc/nginx/fastcgi_params
 
 # Create the SSL directory and copy the SSL certificates
 RUN mkdir -p /etc/nginx/ssl

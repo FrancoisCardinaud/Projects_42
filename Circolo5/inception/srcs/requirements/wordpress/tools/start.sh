@@ -1,50 +1,58 @@
-# IF wordpress DB is not created, then create it ...
-## WAIT FOR MARIADB TO BE READY
-## CREATE THE USERS FOR THE DATABASE
-## CREATE THE ADMIN USER FOR THE DATABASE
+#!/bin/sh
 
 set -x
 
-#ADMIN_USER=pancho
-#ADMIN_PASSWORD=villa
-#ADMIN_EMAIL=pvilla@gmail.com
-#WP_TITLE=pulga_site
-#WP_URL=https://$DOMAIN_NAME
-#WP_USER_LOGIN=arosado-
-#WP_USER_EMAIL=arosado@student.pt
-#WP_USER_PASS=pass123
-
-while [ ! -e /var/www/html/wordpress/ ]
+# Wait for MariaDB to be ready before proceeding
+until mysql -h mariadb -u${WORDPRESS_DB_USER} -p${WORDPRESS_DB_PASSWORD} -e "SELECT 1" &> /dev/null
 do
-	sleep 1;
+  echo "Waiting for MariaDB to be ready..."
+  sleep 2
+done
+
+# Check if the WordPress database exists, if not create it
+if ! mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} -e "USE ${WORDPRESS_DB_NAME};" 2>/dev/null; then
+  echo "Creating WordPress database and user..."
+  mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} <<EOF
+CREATE DATABASE IF NOT EXISTS ${WORDPRESS_DB_NAME};
+CREATE USER IF NOT EXISTS '${WORDPRESS_DB_USER}'@'%' IDENTIFIED BY '${WORDPRESS_DB_PASSWORD}';
+GRANT ALL PRIVILEGES ON ${WORDPRESS_DB_NAME}.* TO '${WORDPRESS_DB_USER}'@'%';
+FLUSH PRIVILEGES;
+EOF
+fi
+
+# Wait until WordPress files are ready
+while [ ! -e /var/www/html/wordpress/ ]; do
+  sleep 1;
 done
 
 sleep 5;
 
 cd /var/www/html/wordpress
 
+# Check if WordPress is already installed, if not, install it
 if ! wp core is-installed --allow-root; then
-	# create admin
-	wp core install --allow-root \
-	--url=https://${WP_URL} \
-	--title=${WP_TITLE} \
-	--admin_user=${WP_ADMIN_USER} \
-	--admin_password=${WP_ADMIN_PASSWORD} \
-	--admin_email=${WP_ADMIN_EMAIL} \
-	#create user
-	wp user create --allow-root \
-		${WP_USER} \
-		${WP_USER_EMAIL} \
-		--role=author \
-		--user_pass=${WP_USER_PASSWORD}
+  echo "Installing WordPress..."
+  wp core install --allow-root \
+    --url=${WP_URL} \
+    --title=${WP_TITLE} \
+    --admin_user=${WP_ADMIN_USER} \
+    --admin_password=${WP_ADMIN_PASSWORD} \
+    --admin_email=${WP_ADMIN_EMAIL}
+  
+  echo "Creating additional WordPress user..."
+  wp user create --allow-root \
+    ${WP_USER} \
+    ${WP_USER_EMAIL} \
+    --role=author \
+    --user_pass=${WP_USER_PASSWORD}
 fi
 
-# Config php.ini
-sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php/8.2/fpm/php.ini
-sed -i "s/upload_max_filesize = .*/upload_max_filesize = 128M/" /etc/php/8.2/fpm/php.ini
-sed -i "s/zlib.output_compression = .*/zlib.output_compression = on/" /etc/php/8.2/fpm/php.ini
-sed -i "s/max_execution_time = .*/max_execution_time = 18000/" /etc/php/8.2/fpm/php.ini
+# Configure PHP settings
+sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php82/fpm/php.ini
+sed -i "s/upload_max_filesize = .*/upload_max_filesize = 128M/" /etc/php82/fpm/php.ini
+sed -i "s/zlib.output_compression = .*/zlib.output_compression = on/" /etc/php82/fpm/php.ini
+sed -i "s/max_execution_time = .*/max_execution_time = 18000/" /etc/php82/fpm/php.ini
 
-#service php8.2-fpm start
-#service php8.2-fpm stop
-php-fpm8.2 -F -R
+# Start PHP-FPM
+php-fpm82 -F -R
+

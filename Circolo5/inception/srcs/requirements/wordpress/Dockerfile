@@ -18,22 +18,24 @@ RUN if ! getent group www-data >/dev/null; then addgroup -g 82 www-data; fi && \
     if ! getent passwd www-data >/dev/null; then adduser -D -u 82 -G www-data -h /var/www -s /sbin/nologin www-data; fi
 
 COPY /tools/ /tmp/
+#COPY ../../../data/wordpress/wp-config.php /var/www/html/wordpress/wp-config.php
+#COPY ../../../../data/wordpress/wp-config.php /var/www/html/wordpress/wp-config.php
 
 # Create necessary directories and set permissions for logg>
-RUN mkdir -p /var/www
+#RUN mkdir -p /var/www
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
-RUN mkdir -p /var/log/php82 && \ 
-    touch /var/log/php82/error.log && \
-    touch /var/log/php82/access.log && \
-    mkdir -p /run/php-fpm && \
-    chown -R www-data:www-data /var/www/html /var/log/php82 && \
-    chmod -R 755 /var/www/html /var/log/php82 /run/php-fpm
+#RUN mkdir -p /var/log/php82 && \ 
+#    touch /var/log/php82/error.log && \
+#    touch /var/log/php82/access.log && \
+#    mkdir -p /run/php-fpm && \
+#    chown -R www-data:www-data /var/www/html /var/log/php82 && \
+#    chmod -R 755 /var/www/html /var/log/php82 /run/php-fpm
 
 # Copy PHP-FPM configuration files
-#COPY ./conf/php-fpm.conf /etc/php82/php-fpm.conf
-#COPY ./conf/www.conf /etc/php82/php-fpm.d/www.conf
-#COPY ./conf/php.ini /etc/php82/php.ini
+COPY ./conf/php-fpm.conf /etc/php82/fpm/php-fpm.conf
+COPY ./conf/www.conf /etc/php82/fpm/www.conf
+COPY ./conf/php.ini /etc/php82/fpm/php.ini
 
 # Expose port 9000 for PHP-FPM
 EXPOSE 9000
@@ -48,7 +50,11 @@ COPY /conf/ .
 
 RUN chown -R www-data:www-data /var/www/html/wordpress
 
-COPY ./conf/www.conf /etc/php82/php-fpm.d/www.conf
+#COPY /conf/www.conf /etc/php82/fpm/www.conf
+# Copy PHP-FPM configuration files
+COPY ./conf/php-fpm.conf /etc/php82/fpm/php-fpm.conf
+COPY ./conf/www.conf /etc/php82/fpm/www.conf
+COPY ./conf/php.ini /etc/php82/fpm/php.ini
 
 # Wordpress Instalation
 WORKDIR /tmp/

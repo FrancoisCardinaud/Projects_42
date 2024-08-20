@@ -18,4 +18,4 @@ wp user create $WP_USER $WP_USER_MAIL --role=author --user_pass=$WP_USER_PASSWOR
 cd -
 
 # run php-fpm8.2 listening for CGI request
-php-fpm8.2 -F
+php-fpm82 -F
