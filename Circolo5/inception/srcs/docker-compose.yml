@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 
 volumes:
@@ -29,6 +29,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      WP_DATABASE: ${WP_DATABASE}
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -38,14 +39,16 @@ services:
   wordpress:
     container_name: wordpress
     image: wordpress
+    ports:
+      - "9000:9000"
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: ${MYSQL_USER}
-      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
-      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WP_HOST: ${WP_HOST}
+      WP_USER: ${WP_USER}
+      WP_USER_PASSWORD: ${WP_USER_PASSWORD}
+      WP_DATABASE: ${WP_DATABASE}
     volumes:
 #      - ./requirements/wordpress/conf:/etc/wordpress
       - wordpress_data:/var/www/html
@@ -78,3 +81,4 @@ services:
 
 networks:
   my-network:
+#    driver: bridge

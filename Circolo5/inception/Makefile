@@ -48,8 +48,8 @@ down:
 # Remove the containers, network, and volumes
 clean: down
 	@echo "Cleaning up data..."
-	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress
-	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb
+	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress/*
+	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb/*
 	@echo "Cleanup complete."
 
 # More thorough cleanup 

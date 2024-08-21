@@ -3,19 +3,19 @@
 set -x
 
 # Wait for MariaDB to be ready before proceeding
-until mysql -h mariadb -u${WORDPRESS_DB_USER} -p${WORDPRESS_DB_PASSWORD} -e "SELECT 1" &> /dev/null
+while ! mysql -h"$WP_HOST" -u"$WP_USER" -p"$WP_USER_PASSWORD" -e "SELECT 1" > /dev/null 2>&1;
 do
   echo "Waiting for MariaDB to be ready..."
   sleep 2
 done
 
 # Check if the WordPress database exists, if not create it
-if ! mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} -e "USE ${WORDPRESS_DB_NAME};" 2>/dev/null; then
+if ! mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} -e "USE ${WP_DATABASE};" 2>/dev/null; then
   echo "Creating WordPress database and user..."
   mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} <<EOF
-CREATE DATABASE IF NOT EXISTS ${WORDPRESS_DB_NAME};
-CREATE USER IF NOT EXISTS '${WORDPRESS_DB_USER}'@'%' IDENTIFIED BY '${WORDPRESS_DB_PASSWORD}';
-GRANT ALL PRIVILEGES ON ${WORDPRESS_DB_NAME}.* TO '${WORDPRESS_DB_USER}'@'%';
+CREATE DATABASE IF NOT EXISTS ${WP_DATABASE};
+CREATE USER IF NOT EXISTS '${WP_USER}'@'%' IDENTIFIED BY '${WP_USER_PASSWORD}';
+GRANT ALL PRIVILEGES ON ${WP_DATABASE}.* TO '${WP_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 fi
@@ -52,6 +52,11 @@ sed -i "s/memory_limit = .*/memory_limit = 256M/" /etc/php82/fpm/php.ini
 sed -i "s/upload_max_filesize = .*/upload_max_filesize = 128M/" /etc/php82/fpm/php.ini
 sed -i "s/zlib.output_compression = .*/zlib.output_compression = on/" /etc/php82/fpm/php.ini
 sed -i "s/max_execution_time = .*/max_execution_time = 18000/" /etc/php82/fpm/php.ini
+
+if pgrep php-fpm82 > /dev/null; then
+    echo "PHP-FPM is already running."
+    exit 0
+fi
 
 # Start PHP-FPM
 php-fpm82 -F -R

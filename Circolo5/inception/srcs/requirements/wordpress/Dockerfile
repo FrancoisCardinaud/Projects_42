@@ -7,7 +7,7 @@ FROM alpine:3.18
 #ARG DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 # Install PHP and necessary extensions
-RUN apk add --no-cache php82 php82-fpm php82-mysqli php82-opcache php82-gd \
+RUN apk add --no-cache php82 php82-fpm php82-mysqli php82-opcache php82-gd mysql-client \
     php82-zlib php82-curl php82-mbstring php82-json php82-session php82-phar wget curl bash
  
 # Create symlinks for PHP CLI
@@ -18,11 +18,8 @@ RUN if ! getent group www-data >/dev/null; then addgroup -g 82 www-data; fi && \
     if ! getent passwd www-data >/dev/null; then adduser -D -u 82 -G www-data -h /var/www -s /sbin/nologin www-data; fi
 
 COPY /tools/ /tmp/
-#COPY ../../../data/wordpress/wp-config.php /var/www/html/wordpress/wp-config.php
-#COPY ../../../../data/wordpress/wp-config.php /var/www/html/wordpress/wp-config.php
 
-# Create necessary directories and set permissions for logg>
-#RUN mkdir -p /var/www
+# Create necessary directories and set permissions for log
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 #RUN mkdir -p /var/log/php82 && \ 
@@ -46,15 +43,11 @@ RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
 
 WORKDIR /var/www/html/wordpress
 
-COPY /conf/ .
+# RUN usermod -a -G www-data nginx
 
-RUN chown -R www-data:www-data /var/www/html/wordpress
+#COPY /conf/ .
 
-#COPY /conf/www.conf /etc/php82/fpm/www.conf
-# Copy PHP-FPM configuration files
-COPY ./conf/php-fpm.conf /etc/php82/fpm/php-fpm.conf
-COPY ./conf/www.conf /etc/php82/fpm/www.conf
-COPY ./conf/php.ini /etc/php82/fpm/php.ini
+RUN chown -R www-data:www-data /var/www/html/wordpress && chmod -R 775 /var/www/html
 
 # Wordpress Instalation
 WORKDIR /tmp/

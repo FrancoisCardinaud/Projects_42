@@ -11,9 +11,8 @@ COPY /tools/ /tmp/
 RUN mkdir -p /etc/nginx
 RUN chmod -R 755 /etc/nginx
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
-RUN chmod 644 /etc/nginx/nginx.conf
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./conf/fastcgi_params /etc/nginx/fastcgi_params
+RUN chmod 644 /etc/nginx/nginx.conf
 
 # Create the SSL directory and copy the SSL certificates
 RUN mkdir -p /etc/nginx/ssl
