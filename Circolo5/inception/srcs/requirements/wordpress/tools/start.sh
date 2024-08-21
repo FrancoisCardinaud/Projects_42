@@ -6,7 +6,7 @@ set -x
 while ! mysql -h"$WP_HOST" -u"$WP_USER" -p"$WP_USER_PASSWORD" -e "SELECT 1" > /dev/null 2>&1;
 do
   echo "Waiting for MariaDB to be ready..."
-  sleep 2
+  sleep 7
 done
 
 # Check if the WordPress database exists, if not create it
@@ -59,5 +59,5 @@ if pgrep php-fpm82 > /dev/null; then
 fi
 
 # Start PHP-FPM
-php-fpm82 -F -R
+php-fpm82 --fpm-config /etc/php82/fpm/php-fpm.conf -F -R
 

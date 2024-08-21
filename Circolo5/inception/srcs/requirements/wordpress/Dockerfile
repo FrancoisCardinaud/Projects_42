@@ -1,17 +1,12 @@
-FROM alpine:3.18
-
-
-#ARG DB_NAME=${MYSQL_DATABASE}
-#ARG DB_USER=${MYSQL_USER}
-#ARG DB_PASSWORD=${MYSQL_PASSWORD}
-#ARG DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+FROM alpine:3.19
 
 # Install PHP and necessary extensions
 RUN apk add --no-cache php82 php82-fpm php82-mysqli php82-opcache php82-gd mysql-client \
     php82-zlib php82-curl php82-mbstring php82-json php82-session php82-phar wget curl bash
  
 # Create symlinks for PHP CLI
-RUN ln -s /usr/bin/php82 /usr/bin/php && ln -s /usr/sbin/php-fpm82 /usr/sbin/php-fpm
+RUN [ ! -e /usr/bin/php ] || rm /usr/bin/php && ln -s /usr/bin/php82 /usr/bin/php && \
+    [ ! -e /usr/sbin/php-fpm ] || rm /usr/sbin/php-fpm && ln -s /usr/sbin/php-fpm82 /usr/sbin/php-fpm
 
 # Ensure www-data user and group exist
 RUN if ! getent group www-data >/dev/null; then addgroup -g 82 www-data; fi && \
@@ -20,14 +15,17 @@ RUN if ! getent group www-data >/dev/null; then addgroup -g 82 www-data; fi && \
 COPY /tools/ /tmp/
 
 # Create necessary directories and set permissions for log
+RUN rm /etc/php82/php-fpm.conf
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
-#RUN mkdir -p /var/log/php82 && \ 
-#    touch /var/log/php82/error.log && \
-#    touch /var/log/php82/access.log && \
-#    mkdir -p /run/php-fpm && \
-#    chown -R www-data:www-data /var/www/html /var/log/php82 && \
-#    chmod -R 755 /var/www/html /var/log/php82 /run/php-fpm
+RUN mkdir -p /var/log/php82 && \ 
+    touch /var/log/php82/php_errors.log && \
+    touch /var/log/php82/access.log && \
+    mkdir -p /run/php-fpm && \
+    chown -R www-data:www-data /var/www/html /var/log/php82 && \
+    chmod -R 755 /var/www/html /var/log/php82 /run/php-fpm && \
+    chown www-data:www-data /var/log/php82/php_errors.log && \
+    chmod 644 /var/log/php82/php_errors.log
 
 # Copy PHP-FPM configuration files
 COPY ./conf/php-fpm.conf /etc/php82/fpm/php-fpm.conf
@@ -43,10 +41,6 @@ RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
 
 WORKDIR /var/www/html/wordpress
 
-# RUN usermod -a -G www-data nginx
-
-#COPY /conf/ .
-
 RUN chown -R www-data:www-data /var/www/html/wordpress && chmod -R 775 /var/www/html
 
 # Wordpress Instalation
@@ -55,17 +49,4 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-
-#RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar --output /usr/bin/wp --silent
-
-#RUN chmod +x ./usr/bin/wp
-
-#RUN mkdir /run/php
-
-#COPY ./conf/config.sh /var/www/html/config.sh
-
-#RUN chmod +x /var/www/html/config.sh
-
-# Start PHP-FPM
-#CMD ["bash", "/var/www/html/config.sh"]
 ENTRYPOINT ["bash", "/tmp/start.sh"]
