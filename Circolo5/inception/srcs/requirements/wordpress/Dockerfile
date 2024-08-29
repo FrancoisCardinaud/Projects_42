@@ -15,7 +15,8 @@ RUN if ! getent group www-data >/dev/null; then addgroup -g 82 www-data; fi && \
 COPY /tools/ /tmp/
 
 # Create necessary directories and set permissions for log
-RUN rm /etc/php82/php-fpm.conf
+RUN [ -f /etc/php82/fpm/php-fpm.conf ] && rm /etc/php82/fpm/php-fpm.conf || echo "File not found, skipping."
+#RUN rm /etc/php82/fpm/php-fpm.conf
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 RUN mkdir -p /var/log/php82 && \ 
