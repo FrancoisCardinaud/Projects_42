@@ -1,3 +1,4 @@
+# Dockerfile for Wordpress
 FROM alpine:3.19
 
 # Install PHP and necessary extensions

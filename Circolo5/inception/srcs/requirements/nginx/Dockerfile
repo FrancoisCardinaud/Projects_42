@@ -1,3 +1,4 @@
+# Dockerfile for Nginx
 FROM alpine:3.19
 
 # Install NGINX and OpenSSL
@@ -21,7 +22,7 @@ COPY ./conf/ssl/certificate.crt /etc/nginx/ssl/certificate.crt
 COPY ./conf/ssl/private.key /etc/nginx/ssl/private.key
 
 # Expose ports for HTTP and HTTPS traffic
-EXPOSE 80 443
+EXPOSE 443
 
 # Start NGINX
 ENTRYPOINT ["bash","/tmp/start.sh"]

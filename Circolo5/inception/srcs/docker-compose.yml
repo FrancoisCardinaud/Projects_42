@@ -63,7 +63,6 @@ services:
       context: ./requirements/nginx
       dockerfile: Dockerfile
     ports:
-      - "80:80"
       - "443:443"
     volumes:
       - /home/${USER_LOGIN}/data/wordpress:/var/www/html:ro
