@@ -5,10 +5,19 @@ SETUP='/init.sql'
 # Check if database `mysql` has already been created
 if [ ! -d "/var/lib/mysql/mysql" ]; then
 
-    # Initialize the MySQL database tables and create the necessary files in the
-    # specified data directory with the specified MySQL user and based directory.
-    echo "Install mariadb for the first time"
+    # Initialize the MySQL database tables
+    echo "Installing MariaDB for the first time"
     mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
+    # Set the root password during the first-time setup
+    echo "Setting root password"
+    mysqld --skip-networking --user=mysql --datadir="/var/lib/mysql" &
+    sleep 5
+    mysql -u root <<-EOF
+    ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+    FLUSH PRIVILEGES;
+EOF
+    killall mysqld
 fi
 
 # Hydrate configuration template with environment variables
