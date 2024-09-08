@@ -16,7 +16,6 @@ COPY /tools/ /tmp/
 
 # Create necessary directories and set permissions for log
 RUN [ -f /etc/php82/fpm/php-fpm.conf ] && rm /etc/php82/fpm/php-fpm.conf || echo "File not found, skipping."
-#RUN rm /etc/php82/fpm/php-fpm.conf
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 RUN mkdir -p /var/log/php82 && \ 
@@ -37,11 +36,8 @@ COPY ./conf/php.ini /etc/php82/fpm/php.ini
 EXPOSE 9000
 
 RUN wget https://wordpress.org/latest.tar.gz
-
 RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz
-
 WORKDIR /var/www/html/wordpress
-
 RUN chown -R www-data:www-data /var/www/html/wordpress && chmod -R 775 /var/www/html
 
 # Wordpress Instalation

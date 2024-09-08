@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
 # Install NGINX and OpenSSL
 RUN apk add nginx openssl nano curl bash
@@ -24,5 +24,4 @@ COPY ./conf/ssl/private.key /etc/nginx/ssl/private.key
 EXPOSE 80 443
 
 # Start NGINX
-#CMD ["nginx", "-g", "daemon off;"]
 ENTRYPOINT ["bash","/tmp/start.sh"]

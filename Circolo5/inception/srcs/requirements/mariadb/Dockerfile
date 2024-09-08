@@ -1,5 +1,5 @@
 # Dockerfile for MariaDB
-FROM alpine:3.18
+FROM alpine:3.19
 
 # Install MariaDB and bash
 RUN apk update && apk add mariadb mariadb-client nano bash gettext

@@ -16,8 +16,8 @@ echo "Setup initial file with env variables"
 cat tmpl.sql | envsubst > ${SETUP}
 
 # Debugging: Output the generated SQL script
-echo "Generated SQL script:"
-cat ${SETUP}
+#echo "Generated SQL script:"
+#cat ${SETUP}
 
 # Start the MySQL daemon with the initialization SQL file
 echo "Start mysql daemon to receive arguments"
