@@ -12,17 +12,20 @@ done
 # Check if the WordPress database exists, if not create it
 if ! mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} -e "USE ${WP_DATABASE};" 2>/dev/null; then
   echo "Creating WordPress database and user..."
-
-  # Create the WordPress database and admin user
   mysql -h mariadb -u root -p${MYSQL_ROOT_PASSWORD} <<EOF
 CREATE DATABASE IF NOT EXISTS ${WP_DATABASE};
-CREATE USER IF NOT EXISTS '${WP_ADMIN_USER}'@'%' IDENTIFIED BY '${WP_ADMIN_PASSWORD}';
-GRANT ALL PRIVILEGES ON ${WP_DATABASE}.* TO '${WP_ADMIN_USER}'@'%';
 
-# Optional: Create a restricted user for non-admin access
-CREATE USER IF NOT EXISTS '${WP_USER}'@'%' IDENTIFIED BY '${WP_USER_PASSWORD}';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ${WP_DATABASE}.* TO '${WP_USER}'@'%';
+-- Create the 'fcardina' user (admin for WordPress)
+CREATE USER IF NOT EXISTS 'fcardina'@'%' IDENTIFIED BY '${FCARDINA_PASSWORD}';
+GRANT ALL PRIVILEGES ON ${WP_DATABASE}.* TO 'fcardina'@'%';
 
+-- Create the 'user' (regular WordPress user)
+CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY '${WP_USER_PASSWORD}';
+REVOKE ALL PRIVILEGES ON ${WP_DATABASE}.* FROM 'user'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON ${WP_DATABASE}.* TO 'user'@'%';
+
+-- Configure 'root' user
+GRANT ALL PRIVILEGES ON ${WP_DATABASE}.* TO 'root'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EOF
 fi
