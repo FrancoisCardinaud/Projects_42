@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:28 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 18:16:33 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/16 20:32:56 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include <cstdlib>
-
-using std::cerr;
-
-
+#include <iostream>
 
 int	main(void)
 {
@@ -46,7 +43,7 @@ int	main(void)
 		}
 		catch (std::exception &e)
 		{
-			cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 
 		std::cout << std::endl;
@@ -60,7 +57,7 @@ int	main(void)
 		}
 		catch (std::exception &e)
 		{
-			cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 
 		std::cout << std::endl;
@@ -76,7 +73,7 @@ int	main(void)
 		}
 		catch (std::exception &e)
 		{
-			cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 
 		std::cout << std::endl;
@@ -92,7 +89,7 @@ int	main(void)
 		}
 		catch (std::exception &e)
 		{
-			cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 
 		std::cout << std::endl;
@@ -110,7 +107,7 @@ int	main(void)
 		}
 		catch (std::exception &e)
 		{
-			cerr << e.what() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
 	}
 	return (EXIT_SUCCESS);

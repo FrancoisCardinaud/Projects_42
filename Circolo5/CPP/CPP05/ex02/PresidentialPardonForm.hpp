@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:25:11 by fcardina          #+#    #+#             */
-/*   Updated: 2024/01/02 19:25:12 by fcardina         ###   ########.fr       */
+/*   Created: 2024/09/16 20:47:41 by fcardina          #+#    #+#             */
+/*   Updated: 2024/09/16 20:47:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

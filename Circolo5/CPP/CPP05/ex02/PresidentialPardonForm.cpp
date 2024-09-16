@@ -3,56 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:25:09 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
+/*   Created: 2024/09/16 20:47:38 by fcardina          #+#    #+#             */
+/*   Updated: 2024/09/16 20:56:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "PresidentialPardonForm.hpp"
 
-
-using std::cerr;
-
-
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-: AForm("PresidentialPardonForm", target, 25, 5) {
-	#ifdef LOGS
-		std::cout << "[PresidentialPardonForm] Parameterized Constructor called" << std::endl;
-	#endif
-};
+    : AForm("PresidentialPardonForm", target, 25, 5) 
+{
+    #ifdef LOGS
+        std::cout << "[PresidentialPardonForm] Parameterized Constructor called" << std::endl;
+    #endif
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy)
-: AForm(copy.getName(), copy.getTarget(), copy.getGradeToSign(), copy.getGradeToExecute()) {
-	#ifdef LOGS
-		std::cout << "[PresidentialPardonForm] Copy Constructor called" << std::endl;
-	#endif
-	*this = copy;
+    : AForm(copy) 
+{
+    #ifdef LOGS
+        std::cout << "[PresidentialPardonForm] Copy Constructor called" << std::endl;
+    #endif
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {
-	#ifdef LOGS
-		std::cout << "[PresidentialPardonForm] Destructor called" << std::endl;
-	#endif
+    #ifdef LOGS
+        std::cout << "[PresidentialPardonForm] Destructor called" << std::endl;
+    #endif
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &assign) {
-	#ifdef LOGS
-		std::cout << "[PresidentialPardonForm] Copy Assignment Operator called" << std::endl;
-	#endif
-	if (this == &assign)
-		return *this;
-	return *this;
+    if (this != &assign) {
+        AForm::operator=(assign);  // Delegate to base class assignment operator
+    }
+    #ifdef LOGS
+        std::cout << "[PresidentialPardonForm] Copy Assignment Operator called" << std::endl;
+    #endif
+    return *this;
 }
 
 void PresidentialPardonForm::executeSuperClassForm(Bureaucrat const& executor) const
 {
-	if (executor.getGrade() > this->getGradeToExecute())
-		throw Bureaucrat::GradeTooLowException();
-	else if (this->getSignState() == false)
-		cerr << "PresidentialPardonForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << std::endl;
-	else
-		std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+    if (executor.getGrade() > this->getGradeToExecute()) {
+        throw Bureaucrat::GradeTooLowException();
+    }
+    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

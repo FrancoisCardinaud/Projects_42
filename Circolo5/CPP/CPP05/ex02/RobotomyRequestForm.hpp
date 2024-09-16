@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:25:16 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
+/*   Created: 2024/09/16 20:47:45 by fcardina          #+#    #+#             */
+/*   Updated: 2024/09/16 20:55:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class RobotomyRequestForm : public AForm {
 	public:
 		RobotomyRequestForm(std::string target);
-		RobotomyRequestForm(const RobotomyRequestForm &other);
+		RobotomyRequestForm(const RobotomyRequestForm &to_copy);
 		~RobotomyRequestForm(void);
 
 		RobotomyRequestForm& operator=(const RobotomyRequestForm &assign);

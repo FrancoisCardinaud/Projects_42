@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:25:21 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
+/*   Created: 2024/09/16 20:47:49 by fcardina          #+#    #+#             */
+/*   Updated: 2024/09/16 20:55:55 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class ShrubberyCreationForm : public AForm {
 	public:
 		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm(const ShrubberyCreationForm& other);
+		ShrubberyCreationForm(const ShrubberyCreationForm& to_copy);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &original);
 		~ShrubberyCreationForm(void);
 

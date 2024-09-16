@@ -3,108 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:46 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:03:25 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include <cstdlib>
+#include "Bureaucrat.hpp"
 #include "Form.hpp"
-
-
-using std::cerr;
-
 
 int main(void)
 {
-	std::cout << "GENERAL" << std::endl;
-	{
-		// Constructor
-		Form	a("Contract", 42, 42);
-		// Copy Constructor
-		Form	b(a);
-		// Copy assignment
-		Form	c = b;
+    std::cout << "FORM CREATION TESTS" << std::endl;
+    {
+        Form contract("Contract", 42, 42);
+        Form copy_of_contract(contract); // Copy Constructor
+        Form another_form = copy_of_contract; // Copy Assignment
 
-		// ostream overload
-		std::cout << "a:\n" << a << std::endl;
-		std::cout << "b:\n" << b << std::endl;
-		std::cout << "c:\n" << c << std::endl;
-	}
+        // Testing output
+        std::cout << "Form contract:\n" << contract << std::endl;
+        std::cout << "Form copy_of_contract:\n" << copy_of_contract << std::endl;
+        std::cout << "Form another_form:\n" << another_form << std::endl;
+    }
 
-	std::cout << std::endl;
+    std::cout << std::endl;
 
-	{
-		std::cout << "TEST 1" << std::endl;
-		try
-		{
-			// Grade too low
-			Form	a("A", LOWEST_GRADE + 1, LOWEST_GRADE - 1);
-			std::cout << a << std::endl;
-		}
-		catch (std::exception& e) {
-			cerr << e.what() << std::endl;
-		}
+    {
+        std::cout << "TEST CASE: LOW GRADE FOR SIGNING" << std::endl;
+        try
+        {
+            Form low_grade_form("LowGradeForm", LOWEST_GRADE + 1, LOWEST_GRADE - 1);
+            std::cout << low_grade_form << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
 
-		std::cout << std::endl;
+        std::cout << std::endl;
 
-		std::cout << "TEST 2" << std::endl;
-		try
-		{
-			// Grade too high
-			Form	b("B", HIGHEST_GRADE - 1, 42);
-			std::cout << b << std::endl;
-		}
-		catch (std::exception& e) {
-			cerr << e.what() << std::endl;
-		}
+        std::cout << "TEST CASE: HIGH GRADE FOR SIGNING" << std::endl;
+        try
+        {
+            Form high_grade_form("HighGradeForm", HIGHEST_GRADE - 1, 42);
+            std::cout << high_grade_form << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
 
-		std::cout << std::endl;
+        std::cout << std::endl;
 
-		std::cout << "TEST 3" << std::endl;
-		try
-		{
-			// Able to sign all forms
-			Bureaucrat	s1("Student1", HIGHEST_GRADE);
-			std::cout << s1 << std::endl;
+        std::cout << "TEST CASE: BUREAUCRAT CAN SIGN FORMS" << std::endl;
+        try
+        {
+            Bureaucrat top_bureaucrat("Top Bureaucrat", HIGHEST_GRADE);
+            std::cout << top_bureaucrat << std::endl;
 
-			Form	c1("C1", HIGHEST_GRADE, 2);
-			Form	c2("C2", 90, LOWEST_GRADE);
-			std::cout << c1 << std::endl;
-			std::cout << c2 << std::endl;
+            Form top_form1("TopForm1", HIGHEST_GRADE, 2);
+            Form top_form2("TopForm2", 90, LOWEST_GRADE);
+            std::cout << top_form1 << std::endl;
+            std::cout << top_form2 << std::endl;
 
-			c1.beSigned(s1);
-			c2.beSigned(s1);
-			c1.beSigned(s1);
+            top_bureaucrat.signForm(top_form1);
+            top_bureaucrat.signForm(top_form2);
+            top_bureaucrat.signForm(top_form1);  // Form already signed
 
-			std::cout << c1 << std::endl;
-			std::cout << c2 << std::endl;
-		}
-		catch (std::exception& e) {
-			cerr << e.what() << std::endl;
-		}
+            std::cout << top_form1 << std::endl;
+            std::cout << top_form2 << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
 
-		std::cout << std::endl;
+        std::cout << std::endl;
 
-		std::cout << "TEST 4" << std::endl;
-		try
-		{
-			// Unable to sign any form
-			Bureaucrat	s2("Student2", LOWEST_GRADE);
-			std::cout << s2 << std::endl;
+        std::cout << "TEST CASE: BUREAUCRAT CANNOT SIGN FORMS" << std::endl;
+        try
+        {
+            Bureaucrat low_bureaucrat("Low Bureaucrat", LOWEST_GRADE);
+            std::cout << low_bureaucrat << std::endl;
 
-			Form	c3("C3", HIGHEST_GRADE, 2);
-			std::cout << c3 << std::endl;
+            Form challenging_form("ChallengingForm", HIGHEST_GRADE, 2);
+            std::cout << challenging_form << std::endl;
 
-			// Exception will be thrown
-			c3.beSigned(s2);
-			std::cout << c3 << std::endl;
-		}
-		catch (std::exception& e) {
-			cerr << e.what() << std::endl;
-		}
-	}
-	return EXIT_SUCCESS;
+            // Attempt to sign - exception will be thrown
+            low_bureaucrat.signForm(challenging_form);
+            std::cout << challenging_form << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
+    }
+
+    return EXIT_SUCCESS;
 }

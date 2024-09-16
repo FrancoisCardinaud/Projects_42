@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:25 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 18:16:36 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:01:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ class Bureaucrat
 	void incrementGrade(void);
 	void decrementGrade(void);
 
-	void setGrade(int grade);
-
 	class GradeTooHighException : public std::exception
 	{
 		public:
@@ -52,9 +50,9 @@ class Bureaucrat
 	const std::string _name;
 	int _grade;
 
-	void validateGrade(int grade);
+	void validateGrade(int grade) const;
 };
 
-std::ostream &operator<<(std::ostream &stream, Bureaucrat &Bureaucrat);
+std::ostream &operator<<(std::ostream &stream, const Bureaucrat &bureaucrat);
 
 #endif // BUREAUCRAT_HPP
