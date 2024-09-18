@@ -6,86 +6,86 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:35 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:35:11 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
-#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include <iostream>
 
-
-using std::cerr;
-
-
+// Constructor
 Intern::Intern(void) {
     #ifdef LOGS
-    	std::cout << "[Intern] Default Constructor called" << std::endl;
+        std::cout << "[Intern] Default Constructor called" << std::endl;
     #endif
 }
 
-Intern::Intern(const Intern &copy)
-{
-	*this = copy;
+// Copy Constructor
+Intern::Intern(const Intern &copy) {
+    *this = copy;
     #ifdef LOGS
-	    cout << "[Intern] Copy Constructor called" << std::endl;
+        std::cout << "[Intern] Copy Constructor called" << std::endl;
     #endif
 }
 
+// Destructor
 Intern::~Intern() {
     #ifdef LOGS
-    	std::cout << "[Intern] Destructor called" << std::endl;
+        std::cout << "[Intern] Destructor called" << std::endl;
     #endif
 }
 
-Intern& Intern::operator=(const Intern &assign)
-{
+// Copy Assignment Operator
+Intern& Intern::operator=(const Intern &assign) {
     #ifdef LOGS
-	    cout << "[Intern] Copy Assignment Operator called" << std::endl;
+        std::cout << "[Intern] Copy Assignment Operator called" << std::endl;
     #endif
-	if (this == &assign)
-        return *this;
-	return *this;
+    (void)assign; // No member variables to assign, so just returning *this
+    return *this;
 }
 
-static AForm *newShrubbery(const std::string target) {
-	return new ShrubberyCreationForm(target);
+// Helper Functions for Creating Specific Forms
+static AForm *createShrubberyForm(const std::string &target) {
+    return new ShrubberyCreationForm(target);
 }
 
-static AForm *newRobotomy(const std::string target) {
-	return new RobotomyRequestForm(target);
+static AForm *createRobotomyForm(const std::string &target) {
+    return new RobotomyRequestForm(target);
 }
 
-static AForm *newPresidential(const std::string target) {
-	return new PresidentialPardonForm(target);
+static AForm *createPresidentialPardonForm(const std::string &target) {
+    return new PresidentialPardonForm(target);
 }
 
-typedef AForm *(*FormConstructorPtr)(const std::string);
-
-AForm *Intern::makeForm(std::string name, std::string target)
-{
-    AForm *choosen_form = NULL;
-
-    const std::string formnames[] = {
+// Make Form Function
+AForm *Intern::makeForm(const std::string &name, const std::string &target) {
+    // Array of known form names
+    const std::string formNames[] = {
+        "shrubbery creation",
         "robotomy request",
-        "presidential pardon",
-        "shrubbery creation"
+        "presidential pardon"
     };
 
-    FormConstructorPtr form_constructors[3] = {&newShrubbery, &newRobotomy, &newPresidential};
+    // Array of function pointers to form creation functions
+    typedef AForm *(*FormConstructorPtr)(const std::string &);
+    FormConstructorPtr formConstructors[] = {
+        createShrubberyForm,
+        createRobotomyForm,
+        createPresidentialPardonForm
+    };
 
-    for (size_t i = 0; i < 3; i += 1)
-    {
-        if (name == formnames[i])
-        {
-            cout << "Intern creates " << name << std::endl;
-            choosen_form = form_constructors[i](target);;
-            break ;
+    // Loop through formNames to find a match and create the corresponding form
+    for (size_t i = 0; i < 3; ++i) {
+        if (name == formNames[i]) {
+            std::cout << "Intern creates " << formNames[i] << std::endl;
+            return formConstructors[i](target); // Return the newly created form
         }
     }
-    if (!choosen_form)
-        cerr << "Intern couldn't create " << name << " form" << std::endl;
-    return choosen_form;
+
+    // If no matching form name was found
+    std::cerr << "Intern couldn't create the form: " << name << std::endl;
+    return nullptr;
 }

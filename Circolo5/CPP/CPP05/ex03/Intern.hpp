@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:38 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:35:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 # include "AForm.hpp"
 
 class Intern {
-	public:
-		Intern(void);
-		Intern(const Intern &other);
-		~Intern(void);
+    public:
+        // Constructors and Destructor
+        Intern(void);
+        Intern(const Intern &other);
+        ~Intern(void);
 
-		Intern& operator=(const Intern &assign);
+        // Operator Overload
+        Intern& operator=(const Intern &assign);
 
-		AForm *makeForm(std::string name, std::string target);		
+        // Member Function to Create Forms
+        AForm *makeForm(const std::string &name, const std::string &target);
 };
 
 #endif // INTERN_HPP
