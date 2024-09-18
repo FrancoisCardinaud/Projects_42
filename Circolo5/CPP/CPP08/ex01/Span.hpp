@@ -6,34 +6,33 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:52 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:26:16 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-# include <stdint.h>
-# include <exception>
 # include <vector>
+# include <exception>
+# include <algorithm>
 
 class Span {
 	public:
-		Span(uint32_t N);
+		Span(unsigned int N);
 		Span(const Span &other);
 		Span &operator=(const Span& other);
 		~Span(void);
 
 		void addNumber(int nbr);
-		void addRandomNumbers(uint32_t quantity);
-		int shortestSpan(void);
-		int longestSpan(void);
-
-		void printStorage(void);
+		void addRandomNumbers(unsigned int quantity);
+		int shortestSpan(void) const;
+		int longestSpan(void) const;
+		void printStorage(void) const;
 
 		class NotEnoughElementsException : public std::exception {
 			public:
-				char const* what() const throw();
+				virtual const char* what() const throw();
 		};
 		
 		class BeyondMaxSize : public std::exception {
@@ -42,9 +41,9 @@ class Span {
 		};
 
 	private:
-		uint32_t max_size;
+		unsigned int max_size;
 		std::vector<int> storage;
-		Span();
+		Span(); // Private default constructor to prevent instantiation without size
 };
 
 #endif // SPAN_HPP
