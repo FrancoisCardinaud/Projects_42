@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:00 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 17:57:58 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:08:12 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class RPN {
         static bool valid_expression(const std::string& expr);
         static long long calculate(const std::string& expr);
 
+        // Exception classes
         class NoResultException : public std::exception {
             public:
                 virtual const char* what() const throw();  
