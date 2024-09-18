@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:43 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:25:24 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,26 @@
 #include <cstdlib>
 #include "Serialization.hpp"
 
-
-using std::cerr;
-
-
-int	main(int argc, char **argv)
-{
-    if (argc > 1 && argv)
-    {
-        cerr << "serializer: error: command-line arguments aren't supported" << '\n';
-        return EXIT_FAIL;
-    }
-
-    data_t foo;
+int main() {
+    Data foo;
     uintptr_t reinterpreted;
 
-    foo.dummy_str = std::string("test");
+    foo.dummy_str = "test";
     reinterpreted = Serialization::serialize(&foo);
 
-    cout << "OG foo (Data) Address = " << &foo << std::endl
-         << "dummy_str value = " << foo.dummy_str << std::endl;
+    std::cout << "Original foo (Data) Address = " << &foo << std::endl;
+    std::cout << "dummy_str value = " << foo.dummy_str << std::endl;
 
-    cout << std::endl;
+    std::cout << std::endl;
 
-    cout << "Reinterpreted foo value = " << reinterpreted << std::endl;
+    std::cout << "Serialized foo value = " << reinterpreted << std::endl;
 
-    cout << std::endl;
+    std::cout << std::endl;
 
-    data_t *deserialized;
+    Data *deserialized = Serialization::deserialize(reinterpreted);
 
-    deserialized = Serialization::deserialize(reinterpreted);
-
-    cout << "Deserialized Address = " << deserialized << std::endl
-         << "dummy_str value = " << deserialized->dummy_str << std::endl;
+    std::cout << "Deserialized Address = " << deserialized << std::endl;
+    std::cout << "dummy_str value = " << deserialized->dummy_str << std::endl;
 
     return EXIT_SUCCESS;
 }

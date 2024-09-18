@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/18 16:09:27 by fcardina          #+#    #+#             */
+/*   Updated: 2024/09/18 16:12:45 by fcardina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ScalarConverter.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "ScalarConverter.hpp"
 
 using std::cerr;
 

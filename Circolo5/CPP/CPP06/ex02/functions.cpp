@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:27:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:30:59 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,80 +16,55 @@
 #include <cstdlib>
 #include <iostream>
 
+Base *generate(void) {
+    srand(time(NULL));
+    char c = "ABC"[rand() % 3];
 
-using std::cerr;
+    std::cout << "Type " << c << " created!" << std::endl;
 
+    switch (c) {
+        case 'A':
+            return new A;
+        case 'B':
+            return new B;
+        case 'C':
+            return new C;
+    }
 
-Base *generate(void)
-{
-	srand(time(NULL));
-	char c = "ABC"[rand() % 3];
-
-	std::cout << "Type " << c << " created!" << std::endl;
-	switch (c)
-	{
-		case 'A':
-			return new A;
-		case 'B':
-			return new B;
-		case 'C':
-			return new C;
-	}
-	return NULL;
+    return nullptr;  // If none matched, though unreachable due to the rand constraint
 }
 
-void identify(Base *p)
-{
-	// just to shut "unused-value" compiler warning
-	bool sucessfully_casted;
+void identify(Base *p) {
+    std::cout << "Identify with Base *: ";
 
-	std::cout << "Identify with Base *: ";
-
-	sucessfully_casted = dynamic_cast<A *>(p);
-	if (sucessfully_casted)
-	{
-		std::cout << "A" << std::endl;
-		return ;
-	}
-	sucessfully_casted = dynamic_cast<B *>(p);
-	if (sucessfully_casted)
-	{
-		std::cout << "B" << std::endl;
-		return ;
-	}
-	sucessfully_casted = dynamic_cast<C *>(p);
-	if (sucessfully_casted)
-	{
-		std::cout << "C" << std::endl;
-		return ;
-	}
-	if (!sucessfully_casted)
-		std::cout << "Invalid type" << std::endl;
+    if (dynamic_cast<A *>(p)) {
+        std::cout << "A" << std::endl;
+    } else if (dynamic_cast<B *>(p)) {
+        std::cout << "B" << std::endl;
+    } else if (dynamic_cast<C *>(p)) {
+        std::cout << "C" << std::endl;
+    } else {
+        std::cout << "Invalid type" << std::endl;
+    }
 }
 
-void identify(Base &p)
-{
-	std::cout << "Identify with Base &: ";
-	try {
-		A &a = dynamic_cast<A &>(p);
-		(void)a;
-		std::cout << "A" << std::endl;
-	}
-	catch (const std::exception& e) {
-		try {
-			B &b = dynamic_cast<B &>(p);
-			(void)b;
-			std::cout << "B" << std::endl;
-		}
-		catch (const std::exception& e) {
-			try {
-				C &c = dynamic_cast<C &>(p);
-				(void)c;
-				std::cout << "C" << std::endl;
-			}
-			catch (const std::exception& e) {
-				std::cout << "Invalid type" << std::endl;
-			}
-		}
-	}
+void identify(Base &p) {
+    std::cout << "Identify with Base &: ";
+
+    try {
+        (void)dynamic_cast<A &>(p);
+        std::cout << "A" << std::endl;
+    } catch (const std::exception&) {
+        try {
+            (void)dynamic_cast<B &>(p);
+            std::cout << "B" << std::endl;
+        } catch (const std::exception&) {
+            try {
+                (void)dynamic_cast<C &>(p);
+                std::cout << "C" << std::endl;
+            } catch (const std::exception&) {
+                std::cout << "Invalid type" << std::endl;
+            }
+        }
+    }
 }
