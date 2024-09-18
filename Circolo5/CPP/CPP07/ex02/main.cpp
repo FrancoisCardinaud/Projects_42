@@ -6,112 +6,54 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:12 by fcardina          #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:46 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:08:41 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdlib>
 #include <iostream>
-#include <string>
 #include "Array.hpp"
 
-
-using std::cerr;
-
-
-/* #define MAX_VAL 750
-int main(int, char**)
-{
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i += 1)
-    {
-        const int value = rand();
-        numbers[i] = value;
-        mirror[i] = value;
+void displayArray(const Array<int>& array, const std::string& name) {
+    for (uint32_t i = 0; i < array.size(); i++) {
+        std::cout << name << "[" << i << "] = " << array[i] << std::endl;
     }
-    //SCOPE
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
+    std::cout << std::endl;
+}
+
+int main() {
+    Array<int> a(3);
+    Array<int> b(3);
+
+    std::cout << "Initial values of array A and B:" << std::endl;
+    displayArray(a, "a");
+    displayArray(b, "b");
+
+    // Fill array a with 1's
+    for (uint32_t i = 0; i < a.size(); i++) {
+        a[i] = 1;
     }
 
-    for (int i = 0; i < MAX_VAL; i += 1)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            cerr << "didn't save the same value!!" << std::endl;
-            return EXIT_FAIL;
-        }
-    }
+    std::cout << "After filling array A with 1's:" << std::endl;
+    displayArray(a, "a");
+
+    // Assign array a to array b
+    b = a;
+
+    std::cout << "After assigning array A to B:" << std::endl;
+    displayArray(a, "a");
+    displayArray(b, "b");
+
+    // Test out-of-bounds access
     try {
-        numbers[-2] = 0;
+        std::cout << "Accessing out-of-bounds element in array A:" << std::endl;
+        std::cout << a[a.size()] << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
     }
-    catch(const std::exception& e) {
-        cerr << e.what() << '\n';
-    }
-    try {
-        numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e) {
-        cerr << e.what() << '\n';
-    }   
-    for (int i = 0; i < MAX_VAL; i++) {
-        numbers[i] = rand();
-    }
-    delete[] mirror;//
-    return EXIT_SUCCESS;
-} */
 
-int main(int argc, char **argv)
-{
-	(void)argc;
-	(void)argv;
-	Array<int>	a(3);
-	Array<int>	b(3);
-
-	for (size_t i = 0; i < a.size(); i += 1) {
-		std::cout << "a[" << i << "] = " << a[i] << "\n";
-	}
-	std::cout << std::endl;
-	for (size_t i = 0; i < b.size(); i += 1) {
-		std::cout << "b[" << i << "] = " << b[i] << "\n";
-	}
-	a[0] = 1;
-	a[1] = 1;
-	a[2] = 1;
-	std::cout << std::endl;
-	std::cout << "AFTER FILLING A WITH 1's" << std::endl;
-	for (size_t i = 0; i < a.size(); i += 1) {
-		std::cout << "a[" << i << "] = " << a[i] << "\n";
-	}
-	std::cout << std::endl;
-	for (size_t i = 0; i < b.size(); i += 1) {
-		std::cout << "b[" << i << "] = " << b[i] << "\n";
-	}
-	b = a;
-
-	std::cout << "AFTER B = A" << std::endl;
-	for (size_t i = 0; i < a.size(); i += 1) {
-		std::cout << "a[" << i << "] = " << a[i] << "\n";
-	}
-	std::cout << std::endl;
-	for (size_t i = 0; i < b.size(); i += 1) {
-		std::cout << "b[" << i << "] = " << b[i] << "\n";
-	}
-
-
-    // Empty Array
+    // Test empty array
     Array<int> empty;
+    std::cout << "Empty array size: " << empty.size() << std::endl;
 
-	// OUT OF BOUNDS EXCEPTION
-    try {
-        cout << a[a.size() + 1] << std::endl;
-    }
-    catch (std::exception& e) {
-        cerr << e.what() << std::endl;
-    }
-
-	return EXIT_SUCCESS;
+    return 0;
 }
