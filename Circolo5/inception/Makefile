@@ -43,20 +43,22 @@ up: setup
 
 # Remove the containers and network
 down:
-	@echo "Stopping Docker containers, removing volumes..."
-	@$(DOCKER_COMPOSE) down -v
+	@echo "Stopping Docker containers..."
+	@$(DOCKER_COMPOSE) down
 	@echo "Containers stopped."
 
+# Restart containers
+restart: down up
+
 # Remove the containers, network, and volumes
-clean: down
+clean:
+	@echo "Stopping and removing containers, networks, and volumes..."
+	@$(DOCKER_COMPOSE) down -v
 	@echo "Cleaning up data..."
 	@docker system prune -a --volumes -f
 	@sudo rm -rf /home/$(USER_LOGIN)/data/wordpress/*
 	@sudo rm -rf /home/$(USER_LOGIN)/data/mariadb/*
 	@echo "Cleanup complete."
-
-# Restart containers
-restart: clean up
 
 # View the logs of all services
 logs:
