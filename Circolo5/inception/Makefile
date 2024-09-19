@@ -27,8 +27,8 @@ help:
 # Setup target to create necessary directories and set permissions
 setup:
 	@echo "Setting up directories..."
-#	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
-#	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
+	@mkdir -p /home/$(USER_LOGIN)/data/wordpress
+	@mkdir -p /home/$(USER_LOGIN)/data/mariadb
 	@chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/mariadb
 	@chown -R $(USER_LOGIN):$(USER_LOGIN) /home/$(USER_LOGIN)/data/wordpress
 	@chmod -R 755 /home/$(USER_LOGIN)/data/mariadb
