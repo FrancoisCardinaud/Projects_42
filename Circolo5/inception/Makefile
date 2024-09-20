@@ -11,7 +11,7 @@ help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  setup           - Prepare directories and permissions for data storage"
+	@echo "  start           - Create directories, start containers"
 	@echo "  up              - Build and start Docker containers"
 	@echo "  down            - Stop Docker containers"
 	@echo "  clean           - Stop containers and remove all data"
@@ -36,7 +36,7 @@ setup:
 	@echo "Setup complete."
 
 # Default target: Build and start the containers
-up: setup
+up:
 	@echo "Starting Docker containers..."
 	@$(DOCKER_COMPOSE) up -d --build
 	@echo "Containers are up and running."
@@ -46,6 +46,9 @@ down:
 	@echo "Stopping Docker containers..."
 	@$(DOCKER_COMPOSE) down
 	@echo "Containers stopped."
+
+start: setup up
+	@echo "Setting up and starting Docker containers, volumes, and directories..."
 
 # Restart containers
 restart: down up
