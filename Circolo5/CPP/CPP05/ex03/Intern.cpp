@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:25:35 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 15:35:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:15:48 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target) {
 
     // If no matching form name was found
     std::cerr << "Intern couldn't create the form: " << name << std::endl;
-    return nullptr;
+    return NULL;
 }

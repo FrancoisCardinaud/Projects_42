@@ -2,9 +2,8 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+/*                                                    +:+ +:+         +:+      */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:28 by fcardina          #+#    #+#             */
 /*   Updated: 2024/09/16 20:32:56 by fcardina         ###   ########.fr       */
 /*                                                                            */
@@ -104,6 +103,27 @@ int	main(void)
 			std::cout << ebil << std::endl;
 			ebil.incrementGrade();
 			std::cout << ebil << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+		
+		std::cout << std::endl;
+		
+		// Additional edge case: Consecutive increments and decrements from mid-range grade
+		std::cout << "TEST 6 - Consecutive changes" << std::endl;
+		try
+		{
+			Bureaucrat mid("Mid-Grade", 75);
+			for (int i = 0; i < 5; i++) {
+				mid.incrementGrade();
+				std::cout << mid << std::endl;
+			}
+			for (int i = 0; i < 5; i++) {
+				mid.decrementGrade();
+				std::cout << mid << std::endl;
+			 }
 		}
 		catch (std::exception &e)
 		{

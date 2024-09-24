@@ -1,24 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:24:43 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/16 21:03:24 by fcardina         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FORM_HPP
 # define FORM_HPP
 
 # include <exception>
 # include <string>
-# include "Bureaucrat.hpp"
+# include <iostream>
 
 # define HIGHEST_GRADE 1
 # define LOWEST_GRADE 150
+
+class Bureaucrat;
 
 class Form {
     public:
@@ -53,6 +43,6 @@ class Form {
         const int grade_to_execute;
 };
 
-std::ostream &operator<<(std::ostream &stream, Form &form);
+std::ostream &operator<<(std::ostream &stream, const Form &form);
 
 #endif // FORM_HPP

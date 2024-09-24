@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/16 19:01:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:07:31 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(oth
     std::cout << "Bureaucrat copy constructor called for " << _name << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
     validateGrade(grade);
+    _grade = grade;
     std::cout << "Bureaucrat " << _name << " created with grade " << _grade << std::endl;
 }
 
@@ -32,9 +33,10 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
+        // _name is constant, so no reassignment
         this->_grade = other._grade;
+        std::cout << "Copy assignment operator called for Bureaucrat " << other._name << std::endl;
     }
-    std::cout << "Copy assignment operator called for Bureaucrat " << _name << std::endl;
     return *this;
 }
 

@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 19:24:40 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/16 21:03:23 by fcardina         ###   ########.fr       */
+/*   Created: 2024/09/24 19:11:45 by fcardina          #+#    #+#             */
+/*   Updated: 2024/09/24 19:12:17 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(void) : name("Default"), is_signed(false), grade_to_sign(LOWEST_GRADE), grade_to_execute(LOWEST_GRADE) {
     std::cout << "[Form] default constructor called" << std::endl;
@@ -29,8 +30,8 @@ Form::Form(std::string name, int grade_to_sign, int grade_to_execute) : name(nam
 }
 
 Form &Form::operator=(const Form &other) {
-    if (this != &other) {
-        const_cast<std::string&>(this->name) = other.name;
+    if (this != &other)
+    {
         this->is_signed = other.is_signed;
     }
     std::cout << "[Form] copy assignment operator called" << std::endl;
@@ -71,7 +72,7 @@ const char* Form::GradeTooLowException::what() const throw() {
     return "Form exception: grade too low!";
 }
 
-std::ostream &operator<<(std::ostream &stream, Form &form) {
+std::ostream &operator<<(std::ostream &stream, const Form &form) {
     stream << "Form " << form.getName() << ", signed: " << (form.getSignState() ? "yes" : "no") << ", grade required to sign: " << form.getGradeToSign() << ", grade required to execute: " << form.getGradeToExecute();
     return stream;
 }
