@@ -6,11 +6,12 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/24 19:07:31 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:31:44 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include <iostream>
 
 Bureaucrat::Bureaucrat(void) : _name("Default"), _grade(150)
 {
