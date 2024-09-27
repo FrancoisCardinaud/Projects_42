@@ -15,7 +15,10 @@
 
 int	main(void)
 {
-	std::cout << "GENERAL" << std::endl;
+	//shows how a Bureaucrat object is created, copied, and printed. 
+	//At the end of the block, the destructors for those objects are 
+	//automatically called.
+	std::cout << "GENERAL TEST" << std::endl;
 	{
 		// Constructor
 		Bureaucrat a("Ana", 87);
@@ -33,6 +36,10 @@ int	main(void)
 	std::cout << std::endl;
 
 	{
+		/*Various scenarios where the Bureaucrat class is tested 
+		with invalid grades (too high or too low). The exceptions 
+		are caught, and error messages are printed, demonstrating 
+		how exception handling works.*/
 		std::cout << "TEST 1" << std::endl;
 		try
 		{
@@ -97,12 +104,12 @@ int	main(void)
 		try
 		{
 			// Acceptable grade changes
-			Bureaucrat ebil("EBIL", 10);
+			Bureaucrat jack("EBIL", 10);
 
-			ebil.decrementGrade();
-			std::cout << ebil << std::endl;
-			ebil.incrementGrade();
-			std::cout << ebil << std::endl;
+			jack.decrementGrade();
+			std::cout << jack << std::endl;
+			jack.incrementGrade();
+			std::cout << jack << std::endl;
 		}
 		catch (std::exception &e)
 		{
