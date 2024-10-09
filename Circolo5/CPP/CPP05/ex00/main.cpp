@@ -2,10 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+      */
+/*                                                    +:+ +:+         +:+     */
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
-/*   Created: 2024/01/02 19:24:28 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/16 20:32:56 by fcardina         ###   ########.fr       */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 15:26:32 by fcardina          #+#    #+#             */
+/*   Updated: 2024/10/09 15:26:40 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +22,7 @@ int	main(void)
 	std::cout << "GENERAL TEST" << std::endl;
 	{
 		// Constructor
-		Bureaucrat a("Ana", 87);
+		Bureaucrat a("Jack", 87);
 		// Copy Constructor
 		Bureaucrat b(a);
 		// Copy assignment
@@ -104,7 +105,7 @@ int	main(void)
 		try
 		{
 			// Acceptable grade changes
-			Bureaucrat jack("EBIL", 10);
+			Bureaucrat jack("Jack", 10);
 
 			jack.decrementGrade();
 			std::cout << jack << std::endl;

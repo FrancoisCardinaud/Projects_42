@@ -6,12 +6,12 @@
 #    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:24:31 by fcardina          #+#    #+#              #
-#    Updated: 2024/09/24 18:59:35 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/09 15:26:45 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -O0 -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -O0 -g
 INCLUDE = -I./includes
 RM = rm -rf
 

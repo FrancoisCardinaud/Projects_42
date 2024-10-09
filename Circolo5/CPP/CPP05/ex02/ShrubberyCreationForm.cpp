@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:47:47 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 15:43:37 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:30:05 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,30 @@
 #include <fstream>
 #include "ShrubberyCreationForm.hpp"
 
-using std::cout;
-using std::cerr;
-using std::endl;
-
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 : AForm("ShrubberyCreationForm", target, 145, 137) {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] Parameterized constructor called" << endl;
+		std::cout << "[ShrubberyCreationForm] Parameterized constructor called" << std::endl;
 	#endif 
 };
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& to_copy)
 : AForm(to_copy.getName(), to_copy.getTarget(), to_copy.getGradeToSign(), to_copy.getGradeToExecute()) {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] copy constructor called" << endl;
+		std::cout << "[ShrubberyCreationForm] copy constructor called" << std::endl;
 	#endif
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] destructor called"<< endl;
+		std::cout << "[ShrubberyCreationForm] destructor called"<< std::endl;
 	#endif
 };
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &assign)
 {
 	#ifdef LOGS
-		cout << "[ShrubberyCreationForm] copy assignment operator called"<< endl;
+		std::cout << "[ShrubberyCreationForm] copy assignment operator called"<< std::endl;
 	#endif
 	if (this == &assign)
 		return *this;
@@ -53,7 +49,7 @@ void ShrubberyCreationForm::executeSuperClassForm(Bureaucrat const& executor) co
 	if (executor.getGrade() > this->getGradeToExecute())
 		throw Bureaucrat::GradeTooLowException();
 	else if (!this->getSignState())
-		cerr << "ShrubberyCreationForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << endl;
+		std::cerr << "ShrubberyCreationForm couldn't be executed by " << executor.getName() << " because it wasn't signed!" << std::endl;
 	else
 	{
 		// Create the shrubbery file with ASCII trees
@@ -71,11 +67,11 @@ void ShrubberyCreationForm::executeSuperClassForm(Bureaucrat const& executor) co
 				 << "       }|{\n"
 				 << std::endl;
 			file.close();
-			cout << "Shrubbery created." << endl;
+			std::cout << "Shrubbery created." << std::endl;
 		}
 		else
 		{
-			cerr << "Could not create shrubbery file." << endl;
+			std::cerr << "Could not create shrubbery file." << std::endl;
 		}
 	}
 }

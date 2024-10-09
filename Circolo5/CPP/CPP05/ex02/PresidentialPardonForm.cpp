@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 20:47:38 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/27 16:21:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:32:14 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void PresidentialPardonForm::executeSuperClassForm(Bureaucrat const& executor) c
     if (executor.getGrade() > this->getGradeToExecute()) {
         throw Bureaucrat::GradeTooLowException();
     }
-    std::cout << this->getTarget() << " has been pardoned by the president" << std::endl;
+    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

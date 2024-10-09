@@ -6,12 +6,12 @@
 #    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:25:42 by fcardina          #+#    #+#              #
-#    Updated: 2024/09/24 19:15:22 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/09 15:39:06 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -O0 -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -O0 -g
 INCLUDE = -I./includes
 RM = rm -rf
 
@@ -37,6 +37,7 @@ clean:
 
 fclean: clean
 	$(RM) $(TARGET)
+	$(RM) *_shrubbery
 
 re: fclean all
 

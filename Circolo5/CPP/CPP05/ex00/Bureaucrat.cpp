@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:24:22 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/25 17:31:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:28:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(oth
     std::cout << "Bureaucrat copy constructor called for " << _name << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
-    validateGrade(grade);
-    _grade = grade;
+    validateGrade(_grade);
     std::cout << "Bureaucrat " << _name << " created with grade " << _grade << std::endl;
 }
 
