@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:26:17 by fcardina          #+#    #+#              #
-#    Updated: 2024/07/25 18:11:49 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/10 16:46:14 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address #-DLOGS
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDE = -I./includes
 RM = rm -rf
 
@@ -51,7 +51,7 @@ run: all clean
 	@echo "TEST 3"
 	./$(TARGET) 42.0f
 
-noleaks: re clean
+leaks: re clean
 	@echo ""
 	valgrind --leak-check=full -s ./$(TARGET)
 

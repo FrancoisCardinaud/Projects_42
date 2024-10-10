@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:19 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 16:12:08 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:45:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static bool isInt(const std::string& literal)
 {
     size_t i = (literal[0] == '-') ? 1 : 0;
     for (; i < literal.length(); i++) {
-        if (!isdigit(literal[i])) return false;
+        if (!isdigit(static_cast<unsigned char>(literal[i])))
+            return false;
     }
     return true;
 }
@@ -71,14 +72,16 @@ static bool isInt(const std::string& literal)
 static bool isFloat(const std::string& literal)
 {
     if (literal == "-inff" || literal == "+inff" || literal == "nanf") return true;
-    if (literal.back() != 'f') return false;
+    if (literal.empty() || literal.size() < 2 || literal[literal.size() - 1] != 'f') 
+        return false;
 
     bool foundPoint = false;
     for (size_t i = 0; i < literal.length() - 1; i++) {
         if (literal[i] == '.') {
-            if (foundPoint) return false;
+            if (foundPoint) 
+                return false;
             foundPoint = true;
-        } else if (!isdigit(literal[i])) {
+        } else if (!isdigit(static_cast<unsigned char>(literal[i]))) {
             return false;
         }
     }
@@ -95,7 +98,7 @@ static bool isDouble(const std::string& literal)
         if (literal[i] == '.') {
             if (foundPoint) return false;
             foundPoint = true;
-        } else if (!isdigit(literal[i])) {
+        } else if (!isdigit(static_cast<unsigned char>(literal[i]))) {
             return false;
         }
     }

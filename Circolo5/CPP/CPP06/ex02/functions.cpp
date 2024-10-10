@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:27:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 16:30:59 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:50:28 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Base *generate(void) {
             return new C;
     }
 
-    return nullptr;  // If none matched, though unreachable due to the rand constraint
+    return NULL;  // If none matched, though unreachable due to the rand constraint
 }
 
 void identify(Base *p) {
