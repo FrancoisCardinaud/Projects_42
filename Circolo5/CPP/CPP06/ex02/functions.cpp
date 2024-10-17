@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:27:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/10/10 16:50:28 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:29:35 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@
 #include <iostream>
 
 Base *generate(void) {
-    srand(time(NULL));
-    char c = "ABC"[rand() % 3];
+    static bool seeded = false;
+    if (!seeded) {
+        // Seed with current time, but ensure it's done only once
+        srand(time(NULL));
+        seeded = true;
+    }
+
+    char c = "ABC"[rand() % 3];  // Still using random selection from A, B, C
 
     std::cout << "Type " << c << " created!" << std::endl;
 
@@ -29,9 +35,9 @@ Base *generate(void) {
             return new B;
         case 'C':
             return new C;
+        default:
+            return NULL;  // Fallback, though unreachable
     }
-
-    return NULL;  // If none matched, though unreachable due to the rand constraint
 }
 
 void identify(Base *p) {

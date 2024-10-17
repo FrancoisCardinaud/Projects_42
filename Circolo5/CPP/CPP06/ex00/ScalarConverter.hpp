@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:15 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 16:19:21 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:47:42 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ class ScalarConverter {
         static void convert(const std::string& literal);
 
     private:
-        // Declare the constructor, copy constructor, and assignment operator private
         ScalarConverter();
         ScalarConverter(const ScalarConverter&);
         ScalarConverter& operator=(const ScalarConverter&);
+        ~ScalarConverter() {};
 };
 
 #endif
