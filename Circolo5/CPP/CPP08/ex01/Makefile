@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:29:48 by fcardina          #+#    #+#              #
-#    Updated: 2024/07/25 18:33:45 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/23 20:41:22 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RM = rm -rf
 
 GENERAL = Span
 
-TARGET = ex01
+TARGET = span
 SRCS = $(addsuffix .cpp, $(GENERAL))\
 		main.cpp
 

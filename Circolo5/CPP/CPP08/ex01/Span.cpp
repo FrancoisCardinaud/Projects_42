@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:50 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 17:26:19 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/23 20:45:54 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,29 @@ void Span::addRandomNumbers(unsigned int quantity) {
 }
 
 int Span::shortestSpan(void) const {
-	if (this->storage.size() < 2)
-		throw Span::NotEnoughElementsException();
-	
-	std::vector<int> temp = this->storage;
-	std::sort(temp.begin(), temp.end());
+    if (this->storage.size() < 2)
+        throw Span::NotEnoughElementsException();
 
-	int shortest_span = temp[1] - temp[0];
-	for (size_t i = 1; i < temp.size() - 1; ++i) {
-		int span = temp[i + 1] - temp[i];
-		if (span < shortest_span)
-			shortest_span = span;
-	}
-	return shortest_span;
+    std::vector<int> temp = this->storage;
+    std::sort(temp.begin(), temp.end());
+
+    unsigned int shortest_span = static_cast<unsigned int>(std::abs(temp[1] - temp[0]));
+    for (size_t i = 1; i < temp.size() - 1; ++i) {
+        unsigned int span = static_cast<unsigned int>(std::abs(temp[i + 1] - temp[i]));
+        if (span < shortest_span)
+            shortest_span = span;
+    }
+    return static_cast<int>(shortest_span);
 }
 
 int Span::longestSpan(void) const {
-	if (this->storage.size() < 2)
-		throw Span::NotEnoughElementsException();
-	
-	int min_val = *std::min_element(this->storage.begin(), this->storage.end());
-	int max_val = *std::max_element(this->storage.begin(), this->storage.end());
+    if (this->storage.size() < 2)
+        throw Span::NotEnoughElementsException();
 
-	return max_val - min_val;
+    int min_val = *std::min_element(this->storage.begin(), this->storage.end());
+    int max_val = *std::max_element(this->storage.begin(), this->storage.end());
+
+    return static_cast<int>(static_cast<unsigned int>(std::abs(max_val - min_val)));
 }
 
 void Span::printStorage(void) const {

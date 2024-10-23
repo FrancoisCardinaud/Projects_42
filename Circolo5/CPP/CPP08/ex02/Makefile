@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:29:59 by fcardina          #+#    #+#              #
-#    Updated: 2024/07/25 18:34:21 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/23 20:52:05 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RM = rm -rf
 
 GENERAL = 
 
-TARGET = ex02
+TARGET = mutant
 SRCS = $(addsuffix .cpp, $(GENERAL))\
 		main.cpp
 
