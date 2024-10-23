@@ -1,0 +1,37 @@
+# Basic Sorting
+./PmergeMe 5 3 8 1 2 9 4 7 6
+
+# Already Sorted
+./PmergeMe 1 2 3 4 5 6 7 8 9
+
+# Reverse Sorted
+./PmergeMe 9 8 7 6 5 4 3 2 1
+
+# Single Element
+./PmergeMe 42
+
+# Two Elements
+./PmergeMe 100 50
+
+# Duplicate Elements (should throw an exception)
+./PmergeMe 1 2 2 3 4
+
+# Invalid Characters (should throw an exception)
+./PmergeMe 1 2 a 3
+
+# Medium-Sized Random Values
+./PmergeMe 10 20 30 40 50 60 70 80 90 100
+./PmergeMe 3 5 7 2 8 10 4 9 6 1
+
+# Large Random Data Set (Linux)
+./PmergeMe $(shuf -i 1-1000 -n 3000 | tr "\n" " ")
+
+# Large Random Data Set (OSX)
+./PmergeMe $(jot -r 3000 1 1000 | sort -u | tr '\n' ' ')
+
+
+# Handling Large Values
+./PmergeMe 2147483647 1 2147483646 2
+
+# Handling Zero (should throw an exception due to duplicates)
+./PmergeMe 0 0 0 0

@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:30:47 by fcardina          #+#    #+#              #
-#    Updated: 2024/07/25 18:35:03 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/23 20:58:42 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ re: fclean all
 run: all clean
 	./$(TARGET) input.txt
 
-noleaks: re clean
+leaks: re clean
 	echo ""
 	valgrind --leak-check=full -s ./$(TARGET)
 
