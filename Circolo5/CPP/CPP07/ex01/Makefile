@@ -6,7 +6,7 @@
 #    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:29:05 by fcardina          #+#    #+#              #
-#    Updated: 2024/07/25 18:30:58 by fcardina         ###   ########.fr        #
+#    Updated: 2024/10/23 20:57:57 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ run: all clean
 	@echo "TEST 3"
 	./$(TARGET) 42.0f
 
-noleaks: re clean
+leaks: re clean
 	@echo ""
 	valgrind --leak-check=full -s ./$(TARGET)
 
