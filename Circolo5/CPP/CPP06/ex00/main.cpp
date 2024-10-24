@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:09:27 by fcardina          #+#    #+#             */
-/*   Updated: 2024/10/17 18:18:38 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:16:06 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #include <iostream>
 #include <cstdlib>
 
-using std::cerr;
-
 int	main(int argc, char **argv)
 {
     if (argc != 2 || !argv[1][0])
     {
-        cerr << "Usage: ./convert <literal>" << "\n";
+        std::cerr << "Usage: ./convert <literal>" << "\n";
         return EXIT_FAILURE;
     }
     ScalarConverter::convert(argv[1]);
@@ -28,14 +26,11 @@ int	main(int argc, char **argv)
 }
 
 /*
-using std::cout;
-using std::cerr;
-
 void testLiteral(const std::string &literal)
 {
-    cout << "\nTesting literal: \"" << literal << "\"\n";
+    std::cout << "\nTesting literal: \"" << literal << "\"\n";
     ScalarConverter::convert(literal);
-    cout << "------------------------------\n";
+    std::cout << "------------------------------\n";
 }
 
 int	main(void)
@@ -100,5 +95,5 @@ int	main(void)
     testLiteral("  42  ");
 
     return EXIT_SUCCESS;
-}*/
-
+}
+*/

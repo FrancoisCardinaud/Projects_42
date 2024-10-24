@@ -6,7 +6,7 @@
 /*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:26:19 by fcardina          #+#    #+#             */
-/*   Updated: 2024/10/17 18:19:26 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:56:08 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 #include <iomanip>
 #include <limits>
 #include <sstream>
-#include "ScalarConverter.hpp"
 #include <cctype>
 #include <cmath>
+#include "ScalarConverter.hpp"
+
+// Enum for scalar literal types
+enum LiteralType {
+    InvalidType,
+    PseudoLiteral,
+    CharType,
+    IntType,
+    FloatType,
+    DoubleType
+};
 
 // Trim leading and trailing spaces from a string
 static std::string trim(const std::string& str)
@@ -59,15 +69,6 @@ static float stringToFloat(const std::string& str)
     return num;
 }
 
-#include "ScalarConverter.hpp"
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <limits>
-#include <cmath>
-
-// ... (keep other existing code)
-
 static double stringToDouble(const std::string& literal) {
     std::cout << "Debug: Attempting to convert '" << literal << "' to double" << std::endl;
     
@@ -100,16 +101,6 @@ static double stringToDouble(const std::string& literal) {
     std::cout << "Debug: Successfully converted to " << num << std::endl;
     return num;
 }
-
-// Enum for scalar literal types
-enum LiteralType {
-    InvalidType,
-    PseudoLiteral,
-    CharType,
-    IntType,
-    FloatType,
-    DoubleType
-};
 
 // Helper function to identify char literals
 static bool isChar(const std::string& literal)
