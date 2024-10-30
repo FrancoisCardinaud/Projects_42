@@ -20,10 +20,10 @@ int main(void)
 
     // Finding an existing element
     try {
-        std::vector<int>::iterator it = easyfind(v1, 0);
+        std::vector<int>::iterator it = easyfind(v1, 7);
         std::cout << "Found element in vector: " << *it << std::endl;
     }
-    catch (const std::exception& e) {
+    catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
 
@@ -51,7 +51,7 @@ int main(void)
 
     // Finding an existing element in list
     try {
-        std::list<int>::iterator it = easyfind(l1, 5);
+        std::list<int>::iterator it = easyfind(l1, 4);
         std::cout << "Found element in list: " << *it << std::endl;
     }
     catch (const std::exception& e) {
@@ -82,7 +82,7 @@ int main(void)
 
     // Finding an existing element in deque
     try {
-        std::deque<int>::iterator it = easyfind(d1, 7);
+        std::deque<int>::iterator it = easyfind(d1, 9);
         std::cout << "Found element in deque: " << *it << std::endl;
     }
     catch (const std::exception& e) {
@@ -97,5 +97,5 @@ int main(void)
         std::cerr << e.what() << std::endl;
     }
 
-    return EXIT_SUCCESS;
+    return 0;
 }

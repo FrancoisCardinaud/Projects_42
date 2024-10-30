@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:01 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 17:30:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:10:45 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,9 @@ class MutantStack : public std::stack<T> {
 		// Typedef for iterator type to match the underlying container's iterator
 		typedef typename std::stack<T>::container_type::iterator iterator;
 
-		// Default constructor
 		MutantStack(void);
-		
-		// Copy constructor
 		MutantStack(const MutantStack &other);
-
-		// Assignment operator overload
 		MutantStack &operator=(const MutantStack& other);
-
-		// Destructor
 		~MutantStack(void);
 
 		// Iterator access methods
