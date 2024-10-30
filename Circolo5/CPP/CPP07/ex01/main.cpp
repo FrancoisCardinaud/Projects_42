@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:03 by fcardina          #+#    #+#             */
-/*   Updated: 2024/10/22 04:44:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:39:22 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ int main(void)
     std::cout << "Empty array test:" << std::endl;
     ::iter(empty_array, 0, &::print_element);
 
-    return EXIT_SUCCESS;
+    return 0;
 }

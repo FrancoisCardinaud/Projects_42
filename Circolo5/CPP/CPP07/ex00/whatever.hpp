@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:28:58 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 16:44:47 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:27:01 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,4 @@ const T& max(const T& a, const T& b)
     return (a > b ? a : b);
 }
 
-#endif // WHATEVER_HPP
+#endif

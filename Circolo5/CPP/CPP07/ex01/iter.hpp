@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:29:01 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 17:04:24 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:27:06 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void iter(const T *array, size_t length, void(*fn)(const T&))
 	}
 }
 
-#endif // ITER_HPP
+#endif
 
