@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:55 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 19:17:11 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:31:33 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ bool RPN::valid_expression(const std::string& expr)
 long long RPN::calculate(const std::string& expr)
 {
     std::stringstream postfix(expr);
+    //Stack container
     std::stack<int> temp;
     std::string s;
 

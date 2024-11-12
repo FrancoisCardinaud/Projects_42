@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:30:53 by fcardina          #+#    #+#              #
-#    Updated: 2024/07/25 18:35:43 by fcardina         ###   ########.fr        #
+#    Updated: 2024/11/12 17:29:25 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address #-DLOGS
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDE = -I./includes
 RM = rm -rf
 
@@ -43,27 +43,7 @@ fclean: clean
 
 re: fclean all
 
-run: all clean
-	@echo ""
-	@echo "TEST 1"
-	./$(TARGET) "8 9 * 9 - 9 - 9 - 4 - 1 +"
-	@echo ""
-	@echo "TEST 2"
-	./$(TARGET) "7 7 * 7 -"
-	@echo ""
-	@echo "TEST 3"
-	./$(TARGET) "1 2 * 2 / 2 * 2 4 - +"
-	@echo ""
-	@echo "TEST 4"
-	./$(TARGET) "1 0 /"
-	@echo ""
-	@echo "TEST 5"
-	./$(TARGET) "3 3 * 9 / 1"
-	@echo ""
-	@echo "TEST 6"
-	./$(TARGET) "(1 + 1)"
-
-noleaks: re clean
+leaks: re clean
 	echo ""
 	valgrind --leak-check=full -s ./$(TARGET)
 

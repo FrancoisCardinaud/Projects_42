@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:45 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 17:57:09 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:23:49 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ using std::cerr;
 
 float ft_stof(const std::string& str);
 
-static int panic(std::string error_msg)
+static int error_handling(std::string error_msg)
 {
     cerr << error_msg << "\n";
     return EXIT_FAILURE;
@@ -37,15 +37,15 @@ static int panic(std::string error_msg)
 int main(int argc, char **argv)
 {
     if (argc != 2)
-        return panic(FILE_OPEN_ERR);
+        return error_handling(FILE_OPEN_ERR);
 
     std::ifstream input_db(argv[1], std::ifstream::in);
     if (!input_db.is_open())
-        return panic(FILE_OPEN_ERR);
+        return error_handling(FILE_OPEN_ERR);
 
     std::ifstream internal_db(INTERNAL_DB_FILE, std::ifstream::in);
     if (!internal_db.is_open())
-        return panic(INTERNAL_DB_OPEN_ERR);
+        return error_handling(INTERNAL_DB_OPEN_ERR);
 
     BitcoinExchange btc;
     btc.readInternalDataBase(internal_db);

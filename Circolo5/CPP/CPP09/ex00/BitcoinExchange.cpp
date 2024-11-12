@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:30:38 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 19:01:30 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:23:00 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <algorithm>
 
 // Utility functions for string to number conversion
+// String to unsigned
 static unsigned int ft_stou(const std::string& str) {
     unsigned int num;
     std::stringstream ss(str);
@@ -23,6 +24,7 @@ static unsigned int ft_stou(const std::string& str) {
     return num;
 }
 
+// String to float
 float ft_stof(const std::string& str) {
     float num;
     std::stringstream ss(str);
@@ -47,7 +49,9 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
 BitcoinExchange::~BitcoinExchange() {}
 
 // Database access
-float BitcoinExchange::getRateFromDataBase(const std::string& date) const { // Ensure it matches the header
+// Map container stores keys in sorted order
+float BitcoinExchange::getRateFromDataBase(const std::string& date) const
+{
     std::map<std::string, float>::const_iterator it = this->dataBase.find(date);
     if (it != this->dataBase.end()) {
         return it->second;
@@ -56,7 +60,8 @@ float BitcoinExchange::getRateFromDataBase(const std::string& date) const { // E
 }
 
 // File reading
-void BitcoinExchange::readInternalDataBase(std::ifstream& internal_db) {
+void BitcoinExchange::readInternalDataBase(std::ifstream& internal_db)
+{
     std::string line;
     std::getline(internal_db, line); // Skip first line (header)
     while (std::getline(internal_db, line)) {

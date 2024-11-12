@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+         #
+#    By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 19:30:47 by fcardina          #+#    #+#              #
-#    Updated: 2024/10/23 20:58:42 by fcardina         ###   ########.fr        #
+#    Updated: 2024/11/12 17:42:54 by fcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address #-DLOGS
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 INCLUDE = -I./includes
 RM = rm -rf
 

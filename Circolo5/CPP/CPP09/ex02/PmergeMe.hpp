@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:10 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 19:16:44 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:45:01 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,4 @@ class PmergeMe {
         };
 };
 
-#endif // PMERGEME_HPP
+#endif

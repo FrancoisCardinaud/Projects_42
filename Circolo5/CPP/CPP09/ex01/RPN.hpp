@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcardina <fcardina@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: fcardina <fcardina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:31:00 by fcardina          #+#    #+#             */
-/*   Updated: 2024/09/18 19:08:12 by fcardina         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:30:18 by fcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,4 @@ class RPN {
         };
 };
 
-#endif // RPN_HPP
+#endif
