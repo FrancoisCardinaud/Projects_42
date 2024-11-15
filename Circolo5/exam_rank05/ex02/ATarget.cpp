@@ -3,9 +3,6 @@
 ATarget::ATarget(const std::string& type) : type(type) {
 }
 
-ATarget::~ATarget() {
-}
-
 const std::string& ATarget::getType() const {
     return type;
 }

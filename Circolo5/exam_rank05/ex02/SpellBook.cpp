@@ -1,5 +1,13 @@
 #include "SpellBook.hpp"
 
+SpellBook::~SpellBook()
+{
+	for (std::map<std::string, ASpell*>::iterator it = _SpellBook.begin(); it != _SpellBook.end(); ++it) {
+		delete it->second;
+	}
+	_SpellBook.clear();
+}
+
 SpellBook::SpellBook(SpellBook const & src)
 {
 	*this = src;
@@ -9,17 +17,6 @@ SpellBook & SpellBook::operator=(SpellBook const & src)
 {
 	_SpellBook = src._SpellBook;
 	return (*this);
-}
-
-SpellBook::SpellBook()
-{}
-
-SpellBook::~SpellBook()
-{
-	for (std::map<std::string, ASpell*>::iterator it = _SpellBook.begin(); it != _SpellBook.end(); ++it) {
-		delete it->second;
-	}
-	_SpellBook.clear();
 }
 
 void SpellBook::learnSpell(ASpell* spell)
