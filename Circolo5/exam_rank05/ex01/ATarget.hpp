@@ -5,16 +5,17 @@
 
 class ASpell;
 
-class ATarget {
+class ATarget
+{
     public:
         virtual ~ATarget();
         ATarget(const std::string& type);
 
         const std::string& getType() const;
 
-        virtual ATarget* clone() const = 0;
         void getHitBySpell(const ASpell& spell) const;
+        virtual ATarget* clone() const = 0;
 
-    protected:
+    private:
         std::string type;
 };

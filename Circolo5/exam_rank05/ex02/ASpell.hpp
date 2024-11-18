@@ -5,18 +5,19 @@
 
 class ATarget;
 
-class ASpell {
+class ASpell
+{
     public:
         virtual ~ASpell();
         ASpell(const std::string& name, const std::string& effects);
 
         const std::string& getName() const;
         const std::string& getEffects() const;
-
-        virtual ASpell* clone() const = 0;
         void launch(const ATarget& target) const;
-    
-    protected:
+        virtual ASpell* clone() const = 0;
+
+    private:
         std::string name;
         std::string effects;
+
 };
