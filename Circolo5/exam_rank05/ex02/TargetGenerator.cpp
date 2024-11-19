@@ -5,14 +5,14 @@ TargetGenerator::TargetGenerator()
 
 TargetGenerator::~TargetGenerator()
 {
-    std::map<std::string, ATarget *>::iterator it_begin = this->arr_target.begin();
-    std::map<std::string, ATarget *>::iterator it_end = this->arr_target.end();
+    std::map<std::string, ATarget *>::iterator it_begin = arr_target.begin();
+    std::map<std::string, ATarget *>::iterator it_end = arr_target.end();
     while (it_begin != it_end)
     {
         delete it_begin->second;
         ++it_begin;
     }
-    this->arr_target.clear();
+    arr_target.clear();
 }
 
 void TargetGenerator::learnTargetType(ATarget* target_ptr)

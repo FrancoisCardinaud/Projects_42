@@ -8,23 +8,10 @@ SpellBook::~SpellBook()
 	_SpellBook.clear();
 }
 
-SpellBook::SpellBook(SpellBook const & src)
-{
-	*this = src;
-}
-
-SpellBook & SpellBook::operator=(SpellBook const & src)
-{
-	_SpellBook = src._SpellBook;
-	return (*this);
-}
-
 void SpellBook::learnSpell(ASpell* spell)
 {
 	if (spell)
-	{
 		_SpellBook[spell->getName()] = spell->clone();
-	}
 }
 
 void SpellBook::forgetSpell(std::string const & SpellName)
@@ -39,8 +26,7 @@ void SpellBook::forgetSpell(std::string const & SpellName)
 
 ASpell* SpellBook::createSpell(std::string const &SpellName)
 {
-	ASpell* tmp = NULL;
 	if (_SpellBook.find(SpellName) != _SpellBook.end())
-		tmp = _SpellBook[SpellName];
-	return (tmp);
+		return _SpellBook[SpellName];
+	return NULL;
 }
