@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'puma'
+gem 'bcrypt'
+gem 'pg'
+gem 'sequel'
+gem 'faye-websocket'
+gem 'jwt'
+gem 'securerandom'
+gem 'redis'

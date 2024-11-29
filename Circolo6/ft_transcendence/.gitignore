@@ -1,0 +1,6 @@
+# Ignore logs and temporary files
+*.log
+*.tmp
+node_modules/
+*.env
+.DS_Store
