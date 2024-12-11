@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
 
     struct sockaddr_in server_addr = {0};
     server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    server_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
     server_addr.sin_port = htons(atoi(argv[1]));
 
     if (bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0 ||
@@ -124,6 +124,5 @@ int main(int argc, char **argv) {
             }
         }
     }
-
     return 0;
 }
