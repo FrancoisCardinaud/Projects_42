@@ -40,7 +40,7 @@ void send_to_all(int sender_fd, int server_fd)
     }
 }
 
-void handle_new_client(int server_fd)
+void handle_new_connection(int server_fd)
 {
     struct sockaddr_in client_addr;
     socklen_t len = sizeof(client_addr);
@@ -101,13 +101,13 @@ int main(int argc, char **argv)
     
     max_fd = server_fd;
 
-    struct sockaddr_in serveraddr;
-    memset(&serveraddr, 0, sizeof(serveraddr));
-    serveraddr.sin_family = AF_INET;
-    serveraddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-    serveraddr.sin_port = htons(atoi(argv[1]));
+    struct sockaddr_in server_addr;
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    server_addr.sin_port = htons(atoi(argv[1]));
 
-    if (bind(server_fd, (const struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0 || listen(server_fd, 100) < 0)
+    if (bind(server_fd, (const struct sockaddr *)&server_addr, sizeof(server_addr)) < 0 || listen(server_fd, 100) < 0)
         err(NULL);
 
     FD_ZERO(&current_set);
@@ -127,7 +127,7 @@ int main(int argc, char **argv)
             if (FD_ISSET(fd, &read_set))
             {
                 if (fd == server_fd)
-                    handle_new_client(server_fd);
+                    handle_new_connection(server_fd);
                 else
                     handle_client_message(fd, server_fd);
             }
