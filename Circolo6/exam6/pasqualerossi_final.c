@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 
     FD_ZERO(&current_set);
     FD_SET(server_fd, &current_set);
-    bzero(clients, sizeof(clients));
+    memset(clients, 0, sizeof(clients));
 
     while (1)
     {
