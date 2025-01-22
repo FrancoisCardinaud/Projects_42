@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+typedef struct s_client
+{
+    int id;
+    char msg[100000];
+} t_client;
+
+t_client clients[2048];
+fd_set read_set, write_set, current_set;
+int max_fd = 0, next_id = 0;
+char send_buffer[120000], recv_buffer[120000];
+
+void err(char *msg)
+{
+    if (msg)
+        write(2, msg, strlen(msg));
+    else
+        write(2, "Fatal error", 11);
+    write(2, "\n", 1);
+    exit(1);
+}
+
+void send_to_all(int sender_fd, int server_fd)
+{
+    for (int fd = 0; fd <= max_fd; fd++)
+    {
+        if (fd != server_fd && FD_ISSET(fd, &write_set) && fd != sender_fd)
+        {
+            if (send(fd, send_buffer, strlen(send_buffer), 0) < 0)
+            {
+                err(NULL);
+            }
+        }
+    }
+}
+
+void handle_new_client(int server_fd)
+{
+    struct sockaddr_in client_addr;
+    socklen_t len = sizeof(client_addr);
+    int client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &len);
+
+    if (client_fd < 0)
+        return;
+
+    FD_SET(client_fd, &current_set);
+    if (client_fd > max_fd)
+        max_fd = client_fd;
+
+    clients[client_fd].id = next_id++;
+    sprintf(send_buffer, "server: client %d just arrived\n", clients[client_fd].id);
+    send_to_all(client_fd, server_fd);
+}
+
+void handle_client_message(int fd, int server_fd)
+{
+    int bytes_received = recv(fd, recv_buffer, sizeof(recv_buffer), 0);
+
+    if (bytes_received < 0)
+        return;
+    else if (bytes_received == 0)
+    {
+        sprintf(send_buffer, "server: client %d just left\n", clients[fd].id);
+        send_to_all(fd, server_fd);
+        FD_CLR(fd, &current_set);
+        close(fd);
+        memset(clients[fd].msg, 0, sizeof(clients[fd].msg));
+    }
+    else
+    {
+        for (int i = 0, j = strlen(clients[fd].msg); i < bytes_received; i++, j++)
+        {
+            clients[fd].msg[j] = recv_buffer[i];
+            if (clients[fd].msg[j] == '\n') {
+                clients[fd].msg[j] = '\0';
+                sprintf(send_buffer, "client %d: %s\n", clients[fd].id, clients[fd].msg);
+                send_to_all(fd, server_fd);
+                memset(clients[fd].msg, 0, sizeof(clients[fd].msg));
+                j = -1;
+            }
+        }
+    }
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        err("Wrong number of arguments");
+    }
+
+    int server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_fd < 0)
+        err(NULL);
+    
+    max_fd = server_fd;
+
+    struct sockaddr_in serveraddr;
+    memset(&serveraddr, 0, sizeof(serveraddr));
+    serveraddr.sin_family = AF_INET;
+    serveraddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    serveraddr.sin_port = htons(atoi(argv[1]));
+
+    if (bind(server_fd, (const struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0 || listen(server_fd, 100) < 0)
+        err(NULL);
+
+    FD_ZERO(&current_set);
+    FD_SET(server_fd, &current_set);
+    bzero(clients, sizeof(clients));
+
+    while (1)
+    {
+        read_set = current_set;
+        write_set = current_set;
+
+        if (select(max_fd + 1, &read_set, &write_set, NULL, NULL) < 0) 
+            continue;
+
+        for (int fd = 0; fd <= max_fd; fd++)
+        {
+            if (FD_ISSET(fd, &read_set))
+            {
+                if (fd == server_fd)
+                    handle_new_client(server_fd);
+                else
+                    handle_client_message(fd, server_fd);
+            }
+        }
+    }
+    return (0);
+}
