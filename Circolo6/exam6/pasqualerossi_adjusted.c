@@ -53,17 +53,17 @@ void handle_new_connection(int server_fd) {
 
     clients[client_fd].id = next_id++;
     sprintf(send_buffer, "server: client %d just arrived\n", clients[client_fd].id);
-    send_to_all(client_fd);
+    send_to_all(client_fd, server_fd);
 }
 
-void handle_client_message(int client_fd) 
+void handle_client_message(int client_fd, int server_fd) 
 {
     int bytes_received = recv(client_fd, recv_buffer, sizeof(recv_buffer), 0);
 
     if (bytes_received <= 0) 
     {
         sprintf(send_buffer, "server: client %d just left\n", clients[client_fd].id);
-        send_to_all(client_fd);
+        send_to_all(client_fd, server_fd);
         FD_CLR(client_fd, &current_set);
         close(client_fd);
         memset(clients[client_fd].msg, 0, strlen(clients[client_fd].msg));
@@ -77,7 +77,7 @@ void handle_client_message(int client_fd)
             {
                 clients[client_fd].msg[j] = '\0';
                 sprintf(send_buffer, "client %d: %s\n", clients[client_fd].id, clients[client_fd].msg);
-                send_to_all(client_fd);
+                send_to_all(client_fd, server_fd);
                 memset(clients[client_fd].msg, 0, strlen(clients[client_fd].msg));
                 j = -1;
             }

@@ -58,30 +58,30 @@ void handle_new_client(int server_fd)
     send_to_all(client_fd, server_fd);
 }
 
-void handle_client_message(int fd, int server_fd)
+void handle_client_message(int client_fd, int server_fd)
 {
-    int bytes_received = recv(fd, recv_buffer, sizeof(recv_buffer), 0);
+    int bytes_received = recv(client_fd, recv_buffer, sizeof(recv_buffer), 0);
 
     if (bytes_received < 0)
         return;
     else if (bytes_received == 0)
     {
-        sprintf(send_buffer, "server: client %d just left\n", clients[fd].id);
-        send_to_all(fd, server_fd);
-        FD_CLR(fd, &current_set);
-        close(fd);
-        memset(clients[fd].msg, 0, sizeof(clients[fd].msg));
+        sprintf(send_buffer, "server: client %d just left\n", clients[client_fd].id);
+        send_to_all(client_fd, server_fd);
+        FD_CLR(client_fd, &current_set);
+        close(client_fd);
+        memset(clients[client_fd].msg, 0, sizeof(clients[client_fd].msg));
     }
     else
     {
-        for (int i = 0, j = strlen(clients[fd].msg); i < bytes_received; i++, j++)
+        for (int i = 0, j = strlen(clients[client_fd].msg); i < bytes_received; i++, j++)
         {
-            clients[fd].msg[j] = recv_buffer[i];
-            if (clients[fd].msg[j] == '\n') {
-                clients[fd].msg[j] = '\0';
-                sprintf(send_buffer, "client %d: %s\n", clients[fd].id, clients[fd].msg);
-                send_to_all(fd, server_fd);
-                memset(clients[fd].msg, 0, sizeof(clients[fd].msg));
+            clients[client_fd].msg[j] = recv_buffer[i];
+            if (clients[client_fd].msg[j] == '\n') {
+                clients[client_fd].msg[j] = '\0';
+                sprintf(send_buffer, "client %d: %s\n", clients[client_fd].id, clients[client_fd].msg);
+                send_to_all(client_fd, server_fd);
+                memset(clients[client_fd].msg, 0, sizeof(clients[client_fd].msg));
                 j = -1;
             }
         }
